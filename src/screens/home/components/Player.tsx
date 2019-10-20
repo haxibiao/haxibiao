@@ -1,0 +1,149 @@
+import React, { useRef, useMemo, useState, useCallback, useEffect } from 'react';
+import { StyleSheet, View, TouchableWithoutFeedback } from 'react-native';
+import { useNavigation } from '@src/router';
+import { Iconfont } from '@src/components';
+import { observer } from '@src/store';
+import VideoStore from '../VideoStore';
+import VideoLoading from './VideoLoading';
+import Video from 'react-native-video';
+
+export default observer(props => {
+    const { media, index } = props;
+    const navigation = useNavigation();
+    const [progress, setProgress] = useState(0);
+    const currentTime = useRef(0);
+    const duration = useRef(100);
+    const videoRef = useRef();
+    const isIntoView = index === VideoStore.viewableItemIndex;
+    const [paused, setPause] = useState(true);
+    const [loading, setLoaded] = useState(true);
+    const resizeMode = useMemo(() => {
+        const videoHeight = Helper.syncGetter('video.info.height', media);
+        const videoWidth = Helper.syncGetter('video.info.width', media);
+        return videoHeight > videoWidth * 1.3 ? 'cover' : 'contain';
+    }, [media]);
+
+    const togglePause = useCallback(() => {
+        setPause(v => !v);
+    }, []);
+
+    const videoEvents = useMemo((): object => {
+        return {
+            onLoadStart() {
+                setProgress(0);
+                currentTime.current = 0;
+                VideoStore.playedVideoIds.push(media.id);
+            },
+
+            onLoad(data) {
+                duration.current = data.duration;
+                setLoaded(false);
+            },
+
+            onProgress(data) {
+                if (!media.watched) {
+                    VideoStore.rewardProgress += data.currentTime - currentTime.current;
+                    if (Math.abs(currentTime.current - duration.current) <= 1) {
+                        media.watched = true;
+                    }
+                }
+                setProgress(data.currentTime);
+                currentTime.current = data.currentTime;
+            },
+
+            onEnd() {},
+
+            onError() {},
+
+            onAudioBecomingNoisy() {
+                setPause(true);
+            },
+
+            onAudioFocusChanged(event: { hasAudioFocus: boolean }) {
+                videoRef.current.seek(0);
+            },
+        };
+    }, []);
+
+    useEffect(() => {
+        setPause(!isIntoView);
+        const navWillFocusListener = navigation.addListener('willFocus', () => {
+            setPause(!isIntoView);
+        });
+        const navWillBlurListener = navigation.addListener('willBlur', () => {
+            setPause(true);
+        });
+        return () => {
+            navWillFocusListener.remove();
+            navWillBlurListener.remove();
+        };
+    }, [isIntoView]);
+
+    return (
+        <TouchableWithoutFeedback onPress={togglePause}>
+            <View style={styles.playContainer}>
+                <Video
+                    ref={videoRef}
+                    resizeMode={resizeMode}
+                    paused={paused}
+                    source={{
+                        uri: Helper.syncGetter('video.url', media),
+                    }}
+                    style={styles.fullScreen}
+                    rate={1} // 控制暂停/播放，0 代表暂停paused, 1代表播放normal.
+                    volume={1} // 声音的放大倍数，0 代表没有声音，就是静音muted, 1 代表正常音量 normal，更大的数字表示放大的倍数
+                    muted={false} // true代表静音，默认为false.
+                    progressUpdateInterval={150}
+                    disableFocus={true}
+                    useTextureView={false}
+                    repeat={true} // 是否重复播放
+                    ignoreSilentSwitch="obey"
+                    playWhenInactive={false}
+                    playInBackground={false}
+                    {...videoEvents}
+                />
+
+                {paused && <Iconfont name="play" size={PxDp(70)} color="rgba(255,255,255,0.8)" />}
+                <View style={styles.bottom}>
+                    <VideoLoading loading={loading} />
+                    <View style={[styles.progress, { width: (progress / duration.current) * 100 + '%' }]} />
+                </View>
+            </View>
+        </TouchableWithoutFeedback>
+    );
+});
+
+const styles = StyleSheet.create({
+    fullScreen: {
+        bottom: 0,
+        left: 0,
+        position: 'absolute',
+        right: 0,
+        top: 0,
+    },
+    playContainer: {
+        alignItems: 'center',
+        bottom: 0,
+        justifyContent: 'center',
+        left: 0,
+        position: 'absolute',
+        right: 0,
+        top: 0,
+    },
+    bottom: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        bottom: Theme.HOME_INDICATOR_HEIGHT + PxDp(56),
+        height: PxDp(1),
+        backgroundColor: 'rgba(255,255,255,0.5)',
+    },
+    progress: {
+        backgroundColor: '#fff',
+        bottom: 0,
+        height: PxDp(1),
+        left: 0,
+        position: 'absolute',
+        width: 0,
+    },
+});

@@ -1,0 +1,1346 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		00E356F31AD99517003FC87E /* haxibiaoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* haxibiaoTests.m */; };
+		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
+		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
+		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		187F635D41844F12B8249B97 /* iconfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D00C12FEFD0243EC8B081DE3 /* iconfont.ttf */; };
+		2C4C3225234543650069BBEA /* fixlottie.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C4C3224234543650069BBEA /* fixlottie.swift */; };
+		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
+		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		2DCD954D1E0B4F2C00145EB5 /* haxibiaoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* haxibiaoTests.m */; };
+		354ACE44F24031FEDEC3ABEF /* libPods-haxibiao-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D7593A90D1CDA9F8B5230779 /* libPods-haxibiao-tvOS.a */; };
+		A7875F11233E074000503ECC /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = A7875ECA233E074000503ECC /* .gitignore */; };
+		A7875F12233E074000503ECC /* BUDSlotViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A7875ECD233E074000503ECC /* BUDSlotViewModel.m */; };
+		A7875F13233E074000503ECC /* BUDBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = A7875ED1233E074000503ECC /* BUDBase64.m */; };
+		A7875F14233E074000503ECC /* UIView+Draw.m in Sources */ = {isa = PBXBuildFile; fileRef = A7875ED4233E074000503ECC /* UIView+Draw.m */; };
+		A7875F15233E074000503ECC /* NSString+Json.m in Sources */ = {isa = PBXBuildFile; fileRef = A7875ED5233E074000503ECC /* NSString+Json.m */; };
+		A7875F16233E074000503ECC /* NSString+LocalizedString.m in Sources */ = {isa = PBXBuildFile; fileRef = A7875ED6233E074000503ECC /* NSString+LocalizedString.m */; };
+		A7875F17233E074000503ECC /* RRFPSBar.m in Sources */ = {isa = PBXBuildFile; fileRef = A7875EDC233E074000503ECC /* RRFPSBar.m */; };
+		A7875F18233E074000503ECC /* BUDCocoaSecurity.m in Sources */ = {isa = PBXBuildFile; fileRef = A7875EDE233E074000503ECC /* BUDCocoaSecurity.m */; };
+		A7875F19233E074000503ECC /* BUDRewardedVideoAdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7875EE0233E074000503ECC /* BUDRewardedVideoAdViewController.m */; };
+		A7875F1A233E074000503ECC /* BUDFullscreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7875EE3233E074000503ECC /* BUDFullscreenViewController.m */; };
+		A7875F1B233E074000503ECC /* BannerAd.m in Sources */ = {isa = PBXBuildFile; fileRef = A7875EE5233E074000503ECC /* BannerAd.m */; };
+		A7875F1C233E074000503ECC /* FeedAd.m in Sources */ = {isa = PBXBuildFile; fileRef = A7875EE7233E074000503ECC /* FeedAd.m */; };
+		A7875F1D233E074000503ECC /* DrawFeedAd.m in Sources */ = {isa = PBXBuildFile; fileRef = A7875EE8233E074000503ECC /* DrawFeedAd.m */; };
+		A7875F1E233E074000503ECC /* FeedAdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A7875EE9233E074000503ECC /* FeedAdManager.m */; };
+		A7875F1F233E074000503ECC /* BannerAdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A7875EEB233E074000503ECC /* BannerAdManager.m */; };
+		A7875F20233E074000503ECC /* DrawFeedAdManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A7875EED233E074000503ECC /* DrawFeedAdManager.m */; };
+		A7875F21233E074000503ECC /* BUDConfigHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A7875EF0233E074000503ECC /* BUDConfigHelper.m */; };
+		A7875F22233E074000503ECC /* BUDFeedNormalModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A7875EF4233E074000503ECC /* BUDFeedNormalModel.m */; };
+		A7875F23233E074000503ECC /* BUDFeedNormalTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A7875EF6233E074000503ECC /* BUDFeedNormalTableViewCell.m */; };
+		A7875F24233E074000503ECC /* BUDRefreshButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A7875EF7233E074000503ECC /* BUDRefreshButton.m */; };
+		A7875F25233E074000503ECC /* BUDNormalButton.m in Sources */ = {isa = PBXBuildFile; fileRef = A7875EF8233E074000503ECC /* BUDNormalButton.m */; };
+		A7875F26233E074000503ECC /* BUDSettingTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = A7875EFB233E074000503ECC /* BUDSettingTableView.m */; };
+		A7875F27233E074000503ECC /* BUDFeedStyleHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A7875EFC233E074000503ECC /* BUDFeedStyleHelper.m */; };
+		A7875F28233E074000503ECC /* BUDDrawTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A7875EFD233E074000503ECC /* BUDDrawTableViewCell.m */; };
+		A7875F29233E074000503ECC /* BUDPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7875EFE233E074000503ECC /* BUDPlayerController.m */; };
+		A7875F2A233E074000503ECC /* BUDdemoDislikeCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A7875F02233E074000503ECC /* BUDdemoDislikeCollectionCell.m */; };
+		A7875F2B233E074000503ECC /* BUDActionAreaView.m in Sources */ = {isa = PBXBuildFile; fileRef = A7875F03233E074000503ECC /* BUDActionAreaView.m */; };
+		A7875F2C233E074000503ECC /* FullScreenVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = A7875F09233E074000503ECC /* FullScreenVideo.m */; };
+		A7875F2D233E074000503ECC /* AppUtilModule.m in Sources */ = {isa = PBXBuildFile; fileRef = A7875F0A233E074000503ECC /* AppUtilModule.m */; };
+		A7875F2E233E074000503ECC /* RewardVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = A7875F0B233E074000503ECC /* RewardVideo.m */; };
+		A7875F2F233E074000503ECC /* SplashAd.m in Sources */ = {isa = PBXBuildFile; fileRef = A7875F0C233E074000503ECC /* SplashAd.m */; };
+		A7875F30233E074000503ECC /* VideoUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = A7875F0D233E074000503ECC /* VideoUploader.m */; };
+		A7875F31233E074000503ECC /* AdBoss.m in Sources */ = {isa = PBXBuildFile; fileRef = A7875F10233E074000503ECC /* AdBoss.m */; };
+		A7875F34233E0F8F00503ECC /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A7875F33233E0F8F00503ECC /* libc++.tbd */; };
+		AC56F202FB1B36762582AAC1 /* libPods-haxibiao-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 28988192A2AA262CDEE78A21 /* libPods-haxibiao-tvOSTests.a */; };
+		B70B0A192356FAC600228FC3 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70B0A182356FAC500228FC3 /* UserNotifications.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		C01770BE020EBAF568EE9D1E /* libPods-haxibiaoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE7886B87E20EF4E176705A4 /* libPods-haxibiaoTests.a */; };
+		E96458965865D5BE1DC0E387 /* libPods-haxibiao.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D313494CB476D39F9D26F4C /* libPods-haxibiao.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		00E356F41AD99517003FC87E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
+			remoteInfo = haxibiao;
+		};
+		2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
+			remoteInfo = "haxibiao-tvOS";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
+		00E356EE1AD99517003FC87E /* haxibiaoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = haxibiaoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* haxibiaoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = haxibiaoTests.m; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* haxibiao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = haxibiao.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = haxibiao/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = haxibiao/AppDelegate.m; sourceTree = "<group>"; };
+		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = haxibiao/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = haxibiao/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = haxibiao/main.m; sourceTree = "<group>"; };
+		28988192A2AA262CDEE78A21 /* libPods-haxibiao-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-haxibiao-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C4C3223234543640069BBEA /* haxibiao-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "haxibiao-Bridging-Header.h"; sourceTree = "<group>"; };
+		2C4C3224234543650069BBEA /* fixlottie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fixlottie.swift; sourceTree = "<group>"; };
+		2D02E47B1E0B4A5D006451C7 /* haxibiao-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "haxibiao-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E4901E0B4A5D006451C7 /* haxibiao-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "haxibiao-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		385D9B8256CBEB2020F2AC1A /* Pods-haxibiao.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-haxibiao.debug.xcconfig"; path = "Target Support Files/Pods-haxibiao/Pods-haxibiao.debug.xcconfig"; sourceTree = "<group>"; };
+		3D313494CB476D39F9D26F4C /* libPods-haxibiao.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-haxibiao.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A64776C2BCD6545AD496A14F /* Pods-haxibiao-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-haxibiao-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-haxibiao-tvOSTests/Pods-haxibiao-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		A7875ECA233E074000503ECC /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		A7875ECD233E074000503ECC /* BUDSlotViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BUDSlotViewModel.m; sourceTree = "<group>"; };
+		A7875ECE233E074000503ECC /* BUDDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUDDefs.h; sourceTree = "<group>"; };
+		A7875ECF233E074000503ECC /* BUDSlotViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUDSlotViewModel.h; sourceTree = "<group>"; };
+		A7875ED1233E074000503ECC /* BUDBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BUDBase64.m; sourceTree = "<group>"; };
+		A7875ED3233E074000503ECC /* NSString+LocalizedString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+LocalizedString.h"; sourceTree = "<group>"; };
+		A7875ED4233E074000503ECC /* UIView+Draw.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Draw.m"; sourceTree = "<group>"; };
+		A7875ED5233E074000503ECC /* NSString+Json.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Json.m"; sourceTree = "<group>"; };
+		A7875ED6233E074000503ECC /* NSString+LocalizedString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+LocalizedString.m"; sourceTree = "<group>"; };
+		A7875ED7233E074000503ECC /* NSString+Json.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Json.h"; sourceTree = "<group>"; };
+		A7875ED8233E074000503ECC /* UIView+Draw.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Draw.h"; sourceTree = "<group>"; };
+		A7875ED9233E074000503ECC /* BUDCocoaSecurity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUDCocoaSecurity.h; sourceTree = "<group>"; };
+		A7875EDB233E074000503ECC /* RRFPSBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RRFPSBar.h; sourceTree = "<group>"; };
+		A7875EDC233E074000503ECC /* RRFPSBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RRFPSBar.m; sourceTree = "<group>"; };
+		A7875EDD233E074000503ECC /* BUDBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUDBase64.h; sourceTree = "<group>"; };
+		A7875EDE233E074000503ECC /* BUDCocoaSecurity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BUDCocoaSecurity.m; sourceTree = "<group>"; };
+		A7875EE0233E074000503ECC /* BUDRewardedVideoAdViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BUDRewardedVideoAdViewController.m; sourceTree = "<group>"; };
+		A7875EE1233E074000503ECC /* BUDFullscreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUDFullscreenViewController.h; sourceTree = "<group>"; };
+		A7875EE2233E074000503ECC /* BUDRewardedVideoAdViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUDRewardedVideoAdViewController.h; sourceTree = "<group>"; };
+		A7875EE3233E074000503ECC /* BUDFullscreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BUDFullscreenViewController.m; sourceTree = "<group>"; };
+		A7875EE5233E074000503ECC /* BannerAd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerAd.m; sourceTree = "<group>"; };
+		A7875EE6233E074000503ECC /* DrawFeedAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawFeedAd.h; sourceTree = "<group>"; };
+		A7875EE7233E074000503ECC /* FeedAd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedAd.m; sourceTree = "<group>"; };
+		A7875EE8233E074000503ECC /* DrawFeedAd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawFeedAd.m; sourceTree = "<group>"; };
+		A7875EE9233E074000503ECC /* FeedAdManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedAdManager.m; sourceTree = "<group>"; };
+		A7875EEA233E074000503ECC /* BannerAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerAd.h; sourceTree = "<group>"; };
+		A7875EEB233E074000503ECC /* BannerAdManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerAdManager.m; sourceTree = "<group>"; };
+		A7875EEC233E074000503ECC /* FeedAd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedAd.h; sourceTree = "<group>"; };
+		A7875EED233E074000503ECC /* DrawFeedAdManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawFeedAdManager.m; sourceTree = "<group>"; };
+		A7875EEF233E074000503ECC /* BUDMacros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUDMacros.h; sourceTree = "<group>"; };
+		A7875EF0233E074000503ECC /* BUDConfigHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BUDConfigHelper.m; sourceTree = "<group>"; };
+		A7875EF1233E074000503ECC /* BUDConfigHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUDConfigHelper.h; sourceTree = "<group>"; };
+		A7875EF3233E074000503ECC /* BUDFeedNormalModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUDFeedNormalModel.h; sourceTree = "<group>"; };
+		A7875EF4233E074000503ECC /* BUDFeedNormalModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BUDFeedNormalModel.m; sourceTree = "<group>"; };
+		A7875EF6233E074000503ECC /* BUDFeedNormalTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BUDFeedNormalTableViewCell.m; sourceTree = "<group>"; };
+		A7875EF7233E074000503ECC /* BUDRefreshButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BUDRefreshButton.m; sourceTree = "<group>"; };
+		A7875EF8233E074000503ECC /* BUDNormalButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BUDNormalButton.m; sourceTree = "<group>"; };
+		A7875EF9233E074000503ECC /* BUDActionAreaView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUDActionAreaView.h; sourceTree = "<group>"; };
+		A7875EFA233E074000503ECC /* BUDdemoDislikeCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUDdemoDislikeCollectionCell.h; sourceTree = "<group>"; };
+		A7875EFB233E074000503ECC /* BUDSettingTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BUDSettingTableView.m; sourceTree = "<group>"; };
+		A7875EFC233E074000503ECC /* BUDFeedStyleHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BUDFeedStyleHelper.m; sourceTree = "<group>"; };
+		A7875EFD233E074000503ECC /* BUDDrawTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BUDDrawTableViewCell.m; sourceTree = "<group>"; };
+		A7875EFE233E074000503ECC /* BUDPlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BUDPlayerController.m; sourceTree = "<group>"; };
+		A7875EFF233E074000503ECC /* BUDRefreshButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUDRefreshButton.h; sourceTree = "<group>"; };
+		A7875F00233E074000503ECC /* BUDFeedNormalTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUDFeedNormalTableViewCell.h; sourceTree = "<group>"; };
+		A7875F01233E074000503ECC /* BUDSettingTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUDSettingTableView.h; sourceTree = "<group>"; };
+		A7875F02233E074000503ECC /* BUDdemoDislikeCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BUDdemoDislikeCollectionCell.m; sourceTree = "<group>"; };
+		A7875F03233E074000503ECC /* BUDActionAreaView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BUDActionAreaView.m; sourceTree = "<group>"; };
+		A7875F04233E074000503ECC /* BUDNormalButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUDNormalButton.h; sourceTree = "<group>"; };
+		A7875F05233E074000503ECC /* BUDPlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUDPlayerController.h; sourceTree = "<group>"; };
+		A7875F06233E074000503ECC /* BUDDrawTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUDDrawTableViewCell.h; sourceTree = "<group>"; };
+		A7875F07233E074000503ECC /* BUDFeedStyleHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUDFeedStyleHelper.h; sourceTree = "<group>"; };
+		A7875F09233E074000503ECC /* FullScreenVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FullScreenVideo.m; sourceTree = "<group>"; };
+		A7875F0A233E074000503ECC /* AppUtilModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppUtilModule.m; sourceTree = "<group>"; };
+		A7875F0B233E074000503ECC /* RewardVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RewardVideo.m; sourceTree = "<group>"; };
+		A7875F0C233E074000503ECC /* SplashAd.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SplashAd.m; sourceTree = "<group>"; };
+		A7875F0D233E074000503ECC /* VideoUploader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoUploader.m; sourceTree = "<group>"; };
+		A7875F0F233E074000503ECC /* AdBoss.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AdBoss.h; sourceTree = "<group>"; };
+		A7875F10233E074000503ECC /* AdBoss.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AdBoss.m; sourceTree = "<group>"; };
+		A7875F32233E0D2000503ECC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
+		A7875F33233E0F8F00503ECC /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		B70B0A182356FAC500228FC3 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
+		B70B0A1A2356FCD600228FC3 /* haxibiao.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = haxibiao.entitlements; path = haxibiao/haxibiao.entitlements; sourceTree = "<group>"; };
+		B70F3A7856A8E1CA4F7BCEF1 /* Pods-haxibiao-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-haxibiao-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-haxibiao-tvOS/Pods-haxibiao-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		C25B8A00624BE26161A2D3A3 /* Pods-haxibiao.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-haxibiao.release.xcconfig"; path = "Target Support Files/Pods-haxibiao/Pods-haxibiao.release.xcconfig"; sourceTree = "<group>"; };
+		D00C12FEFD0243EC8B081DE3 /* iconfont.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = iconfont.ttf; path = ../src/components/Iconfont/fonts/iconfont.ttf; sourceTree = "<group>"; };
+		D3253EB9919D3E7670A19BC4 /* Pods-haxibiao-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-haxibiao-tvOS.release.xcconfig"; path = "Target Support Files/Pods-haxibiao-tvOS/Pods-haxibiao-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		D7593A90D1CDA9F8B5230779 /* libPods-haxibiao-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-haxibiao-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7BD8E70289AE0A95537F43A /* Pods-haxibiao-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-haxibiao-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-haxibiao-tvOSTests/Pods-haxibiao-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E99F0EE5E749B904D1253B38 /* Pods-haxibiaoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-haxibiaoTests.debug.xcconfig"; path = "Target Support Files/Pods-haxibiaoTests/Pods-haxibiaoTests.debug.xcconfig"; sourceTree = "<group>"; };
+		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
+		EE7886B87E20EF4E176705A4 /* libPods-haxibiaoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-haxibiaoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE6AE12F268785E85EAC46EC /* Pods-haxibiaoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-haxibiaoTests.release.xcconfig"; path = "Target Support Files/Pods-haxibiaoTests/Pods-haxibiaoTests.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		00E356EB1AD99517003FC87E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C01770BE020EBAF568EE9D1E /* libPods-haxibiaoTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13B07F8C1A680F5B00A75B9A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B70B0A192356FAC600228FC3 /* UserNotifications.framework in Frameworks */,
+				A7875F34233E0F8F00503ECC /* libc++.tbd in Frameworks */,
+				E96458965865D5BE1DC0E387 /* libPods-haxibiao.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D02E4781E0B4A5D006451C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				354ACE44F24031FEDEC3ABEF /* libPods-haxibiao-tvOS.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D02E48D1E0B4A5D006451C7 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC56F202FB1B36762582AAC1 /* libPods-haxibiao-tvOSTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		00E356EF1AD99517003FC87E /* haxibiaoTests */ = {
+			isa = PBXGroup;
+			children = (
+				00E356F21AD99517003FC87E /* haxibiaoTests.m */,
+				00E356F01AD99517003FC87E /* Supporting Files */,
+			);
+			path = haxibiaoTests;
+			sourceTree = "<group>";
+		};
+		00E356F01AD99517003FC87E /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				00E356F11AD99517003FC87E /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		13B07FAE1A68108700A75B9A /* haxibiao */ = {
+			isa = PBXGroup;
+			children = (
+				B70B0A1A2356FCD600228FC3 /* haxibiao.entitlements */,
+				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
+				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
+				13B07FB01A68108700A75B9A /* AppDelegate.m */,
+				13B07FB51A68108700A75B9A /* Images.xcassets */,
+				13B07FB61A68108700A75B9A /* Info.plist */,
+				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
+				13B07FB71A68108700A75B9A /* main.m */,
+				2C4C3224234543650069BBEA /* fixlottie.swift */,
+				2C4C3223234543640069BBEA /* haxibiao-Bridging-Header.h */,
+			);
+			name = haxibiao;
+			sourceTree = "<group>";
+		};
+		20EF13FB9DFAD2B5CB43C699 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				385D9B8256CBEB2020F2AC1A /* Pods-haxibiao.debug.xcconfig */,
+				C25B8A00624BE26161A2D3A3 /* Pods-haxibiao.release.xcconfig */,
+				B70F3A7856A8E1CA4F7BCEF1 /* Pods-haxibiao-tvOS.debug.xcconfig */,
+				D3253EB9919D3E7670A19BC4 /* Pods-haxibiao-tvOS.release.xcconfig */,
+				E7BD8E70289AE0A95537F43A /* Pods-haxibiao-tvOSTests.debug.xcconfig */,
+				A64776C2BCD6545AD496A14F /* Pods-haxibiao-tvOSTests.release.xcconfig */,
+				E99F0EE5E749B904D1253B38 /* Pods-haxibiaoTests.debug.xcconfig */,
+				FE6AE12F268785E85EAC46EC /* Pods-haxibiaoTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B70B0A182356FAC500228FC3 /* UserNotifications.framework */,
+				A7875F33233E0F8F00503ECC /* libc++.tbd */,
+				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
+				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
+				3D313494CB476D39F9D26F4C /* libPods-haxibiao.a */,
+				D7593A90D1CDA9F8B5230779 /* libPods-haxibiao-tvOS.a */,
+				28988192A2AA262CDEE78A21 /* libPods-haxibiao-tvOSTests.a */,
+				EE7886B87E20EF4E176705A4 /* libPods-haxibiaoTests.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Libraries;
+			sourceTree = "<group>";
+		};
+		83CBB9F61A601CBA00E9B192 = {
+			isa = PBXGroup;
+			children = (
+				A7875EC9233E074000503ECC /* toolkits */,
+				13B07FAE1A68108700A75B9A /* haxibiao */,
+				832341AE1AAA6A7D00B99B32 /* Libraries */,
+				00E356EF1AD99517003FC87E /* haxibiaoTests */,
+				83CBBA001A601CBA00E9B192 /* Products */,
+				2D16E6871FA4F8E400B85C8A /* Frameworks */,
+				BAE27FD94CEA444098D77D63 /* Resources */,
+				20EF13FB9DFAD2B5CB43C699 /* Pods */,
+			);
+			indentWidth = 2;
+			sourceTree = "<group>";
+			tabWidth = 2;
+			usesTabs = 0;
+		};
+		83CBBA001A601CBA00E9B192 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				13B07F961A680F5B00A75B9A /* haxibiao.app */,
+				00E356EE1AD99517003FC87E /* haxibiaoTests.xctest */,
+				2D02E47B1E0B4A5D006451C7 /* haxibiao-tvOS.app */,
+				2D02E4901E0B4A5D006451C7 /* haxibiao-tvOSTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A7875EC9233E074000503ECC /* toolkits */ = {
+			isa = PBXGroup;
+			children = (
+				A7875ECA233E074000503ECC /* .gitignore */,
+				A7875ECB233E074000503ECC /* ttad */,
+				A7875F0E233E074000503ECC /* src */,
+			);
+			name = toolkits;
+			path = ../../../ios/toolkits;
+			sourceTree = "<group>";
+		};
+		A7875ECB233E074000503ECC /* ttad */ = {
+			isa = PBXGroup;
+			children = (
+				A7875ECC233E074000503ECC /* viewmodel */,
+				A7875ED0233E074000503ECC /* Until */,
+				A7875EDF233E074000503ECC /* controller */,
+				A7875EE4233E074000503ECC /* rnviews */,
+				A7875EEE233E074000503ECC /* Macros */,
+				A7875EF2233E074000503ECC /* model */,
+				A7875EF5233E074000503ECC /* view */,
+				A7875F08233E074000503ECC /* rnmodules */,
+			);
+			path = ttad;
+			sourceTree = "<group>";
+		};
+		A7875ECC233E074000503ECC /* viewmodel */ = {
+			isa = PBXGroup;
+			children = (
+				A7875ECD233E074000503ECC /* BUDSlotViewModel.m */,
+				A7875ECE233E074000503ECC /* BUDDefs.h */,
+				A7875ECF233E074000503ECC /* BUDSlotViewModel.h */,
+			);
+			path = viewmodel;
+			sourceTree = "<group>";
+		};
+		A7875ED0233E074000503ECC /* Until */ = {
+			isa = PBXGroup;
+			children = (
+				A7875ED1233E074000503ECC /* BUDBase64.m */,
+				A7875ED2233E074000503ECC /* Category */,
+				A7875ED9233E074000503ECC /* BUDCocoaSecurity.h */,
+				A7875EDA233E074000503ECC /* FPSLabel */,
+				A7875EDD233E074000503ECC /* BUDBase64.h */,
+				A7875EDE233E074000503ECC /* BUDCocoaSecurity.m */,
+			);
+			path = Until;
+			sourceTree = "<group>";
+		};
+		A7875ED2233E074000503ECC /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				A7875ED3233E074000503ECC /* NSString+LocalizedString.h */,
+				A7875ED4233E074000503ECC /* UIView+Draw.m */,
+				A7875ED5233E074000503ECC /* NSString+Json.m */,
+				A7875ED6233E074000503ECC /* NSString+LocalizedString.m */,
+				A7875ED7233E074000503ECC /* NSString+Json.h */,
+				A7875ED8233E074000503ECC /* UIView+Draw.h */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		A7875EDA233E074000503ECC /* FPSLabel */ = {
+			isa = PBXGroup;
+			children = (
+				A7875EDB233E074000503ECC /* RRFPSBar.h */,
+				A7875EDC233E074000503ECC /* RRFPSBar.m */,
+			);
+			path = FPSLabel;
+			sourceTree = "<group>";
+		};
+		A7875EDF233E074000503ECC /* controller */ = {
+			isa = PBXGroup;
+			children = (
+				A7875EE0233E074000503ECC /* BUDRewardedVideoAdViewController.m */,
+				A7875EE1233E074000503ECC /* BUDFullscreenViewController.h */,
+				A7875EE2233E074000503ECC /* BUDRewardedVideoAdViewController.h */,
+				A7875EE3233E074000503ECC /* BUDFullscreenViewController.m */,
+			);
+			path = controller;
+			sourceTree = "<group>";
+		};
+		A7875EE4233E074000503ECC /* rnviews */ = {
+			isa = PBXGroup;
+			children = (
+				A7875EE5233E074000503ECC /* BannerAd.m */,
+				A7875EE6233E074000503ECC /* DrawFeedAd.h */,
+				A7875EE7233E074000503ECC /* FeedAd.m */,
+				A7875EE8233E074000503ECC /* DrawFeedAd.m */,
+				A7875EE9233E074000503ECC /* FeedAdManager.m */,
+				A7875EEA233E074000503ECC /* BannerAd.h */,
+				A7875EEB233E074000503ECC /* BannerAdManager.m */,
+				A7875EEC233E074000503ECC /* FeedAd.h */,
+				A7875EED233E074000503ECC /* DrawFeedAdManager.m */,
+			);
+			path = rnviews;
+			sourceTree = "<group>";
+		};
+		A7875EEE233E074000503ECC /* Macros */ = {
+			isa = PBXGroup;
+			children = (
+				A7875EEF233E074000503ECC /* BUDMacros.h */,
+				A7875EF0233E074000503ECC /* BUDConfigHelper.m */,
+				A7875EF1233E074000503ECC /* BUDConfigHelper.h */,
+			);
+			path = Macros;
+			sourceTree = "<group>";
+		};
+		A7875EF2233E074000503ECC /* model */ = {
+			isa = PBXGroup;
+			children = (
+				A7875EF3233E074000503ECC /* BUDFeedNormalModel.h */,
+				A7875EF4233E074000503ECC /* BUDFeedNormalModel.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		A7875EF5233E074000503ECC /* view */ = {
+			isa = PBXGroup;
+			children = (
+				A7875EF6233E074000503ECC /* BUDFeedNormalTableViewCell.m */,
+				A7875EF7233E074000503ECC /* BUDRefreshButton.m */,
+				A7875EF8233E074000503ECC /* BUDNormalButton.m */,
+				A7875EF9233E074000503ECC /* BUDActionAreaView.h */,
+				A7875EFA233E074000503ECC /* BUDdemoDislikeCollectionCell.h */,
+				A7875EFB233E074000503ECC /* BUDSettingTableView.m */,
+				A7875EFC233E074000503ECC /* BUDFeedStyleHelper.m */,
+				A7875EFD233E074000503ECC /* BUDDrawTableViewCell.m */,
+				A7875EFE233E074000503ECC /* BUDPlayerController.m */,
+				A7875EFF233E074000503ECC /* BUDRefreshButton.h */,
+				A7875F00233E074000503ECC /* BUDFeedNormalTableViewCell.h */,
+				A7875F01233E074000503ECC /* BUDSettingTableView.h */,
+				A7875F02233E074000503ECC /* BUDdemoDislikeCollectionCell.m */,
+				A7875F03233E074000503ECC /* BUDActionAreaView.m */,
+				A7875F04233E074000503ECC /* BUDNormalButton.h */,
+				A7875F05233E074000503ECC /* BUDPlayerController.h */,
+				A7875F06233E074000503ECC /* BUDDrawTableViewCell.h */,
+				A7875F07233E074000503ECC /* BUDFeedStyleHelper.h */,
+			);
+			path = view;
+			sourceTree = "<group>";
+		};
+		A7875F08233E074000503ECC /* rnmodules */ = {
+			isa = PBXGroup;
+			children = (
+				A7875F09233E074000503ECC /* FullScreenVideo.m */,
+				A7875F0A233E074000503ECC /* AppUtilModule.m */,
+				A7875F0B233E074000503ECC /* RewardVideo.m */,
+				A7875F0C233E074000503ECC /* SplashAd.m */,
+				A7875F0D233E074000503ECC /* VideoUploader.m */,
+			);
+			path = rnmodules;
+			sourceTree = "<group>";
+		};
+		A7875F0E233E074000503ECC /* src */ = {
+			isa = PBXGroup;
+			children = (
+				A7875F0F233E074000503ECC /* AdBoss.h */,
+				A7875F10233E074000503ECC /* AdBoss.m */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		BAE27FD94CEA444098D77D63 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				D00C12FEFD0243EC8B081DE3 /* iconfont.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		00E356ED1AD99517003FC87E /* haxibiaoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "haxibiaoTests" */;
+			buildPhases = (
+				F06BBA640DD6F00B718C5274 /* [CP] Check Pods Manifest.lock */,
+				00E356EA1AD99517003FC87E /* Sources */,
+				00E356EB1AD99517003FC87E /* Frameworks */,
+				00E356EC1AD99517003FC87E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				00E356F51AD99517003FC87E /* PBXTargetDependency */,
+			);
+			name = haxibiaoTests;
+			productName = haxibiaoTests;
+			productReference = 00E356EE1AD99517003FC87E /* haxibiaoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		13B07F861A680F5B00A75B9A /* haxibiao */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "haxibiao" */;
+			buildPhases = (
+				E061CBE2CBF8E431FA84D314 /* [CP] Check Pods Manifest.lock */,
+				FD10A7F022414F080027D42C /* Start Packager */,
+				13B07F871A680F5B00A75B9A /* Sources */,
+				13B07F8C1A680F5B00A75B9A /* Frameworks */,
+				13B07F8E1A680F5B00A75B9A /* Resources */,
+				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
+				26D44639630A4762C54D7242 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = haxibiao;
+			productName = haxibiao;
+			productReference = 13B07F961A680F5B00A75B9A /* haxibiao.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2D02E47A1E0B4A5D006451C7 /* haxibiao-tvOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "haxibiao-tvOS" */;
+			buildPhases = (
+				E224E6EF02392142B55AD923 /* [CP] Check Pods Manifest.lock */,
+				FD10A7F122414F3F0027D42C /* Start Packager */,
+				2D02E4771E0B4A5D006451C7 /* Sources */,
+				2D02E4781E0B4A5D006451C7 /* Frameworks */,
+				2D02E4791E0B4A5D006451C7 /* Resources */,
+				2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "haxibiao-tvOS";
+			productName = "haxibiao-tvOS";
+			productReference = 2D02E47B1E0B4A5D006451C7 /* haxibiao-tvOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2D02E48F1E0B4A5D006451C7 /* haxibiao-tvOSTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "haxibiao-tvOSTests" */;
+			buildPhases = (
+				7403BA95C42BAB2E68A93BB4 /* [CP] Check Pods Manifest.lock */,
+				2D02E48C1E0B4A5D006451C7 /* Sources */,
+				2D02E48D1E0B4A5D006451C7 /* Frameworks */,
+				2D02E48E1E0B4A5D006451C7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */,
+			);
+			name = "haxibiao-tvOSTests";
+			productName = "haxibiao-tvOSTests";
+			productReference = 2D02E4901E0B4A5D006451C7 /* haxibiao-tvOSTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		83CBB9F71A601CBA00E9B192 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 940;
+				ORGANIZATIONNAME = Facebook;
+				TargetAttributes = {
+					00E356ED1AD99517003FC87E = {
+						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = 3W7L7CX92N;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 13B07F861A680F5B00A75B9A;
+					};
+					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = 3W7L7CX92N;
+						LastSwiftMigration = 1100;
+						ProvisioningStyle = Manual;
+					};
+					2D02E47A1E0B4A5D006451C7 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+					};
+					2D02E48F1E0B4A5D006451C7 = {
+						CreatedOnToolsVersion = 8.2.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 2D02E47A1E0B4A5D006451C7;
+					};
+				};
+			};
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "haxibiao" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				English,
+				en,
+				Base,
+				"zh-Hans",
+			);
+			mainGroup = 83CBB9F61A601CBA00E9B192;
+			productRefGroup = 83CBBA001A601CBA00E9B192 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				13B07F861A680F5B00A75B9A /* haxibiao */,
+				00E356ED1AD99517003FC87E /* haxibiaoTests */,
+				2D02E47A1E0B4A5D006451C7 /* haxibiao-tvOS */,
+				2D02E48F1E0B4A5D006451C7 /* haxibiao-tvOSTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		00E356EC1AD99517003FC87E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13B07F8E1A680F5B00A75B9A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				A7875F11233E074000503ECC /* .gitignore in Resources */,
+				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
+				187F635D41844F12B8249B97 /* iconfont.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D02E4791E0B4A5D006451C7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D02E48E1E0B4A5D006451C7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Bundle React Native code and images";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+		};
+		26D44639630A4762C54D7242 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-haxibiao/Pods-haxibiao-resources.sh",
+				"${PODS_ROOT}/Bytedance-UnionAD/Bytedance-UnionAd/Frameworks/BUAdSDK.bundle",
+				"${PODS_CONFIGURATION_BUILD_DIR}/QBImagePickerController/QBImagePicker.bundle",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Feather.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Regular.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Fontisto.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Foundation.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/MaterialIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf",
+				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Zocial.ttf",
+				"${PODS_ROOT}/RSKImageCropper/RSKImageCropper/RSKImageCropperStrings.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/BUAdSDK.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/QBImagePicker.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AntDesign.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Entypo.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EvilIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Feather.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Brands.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Regular.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/FontAwesome5_Solid.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Fontisto.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Foundation.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Ionicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialCommunityIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MaterialIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Octicons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SimpleLineIcons.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/Zocial.ttf",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RSKImageCropperStrings.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-haxibiao/Pods-haxibiao-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Bundle React Native Code And Images";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+		};
+		7403BA95C42BAB2E68A93BB4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-haxibiao-tvOSTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E061CBE2CBF8E431FA84D314 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-haxibiao-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E224E6EF02392142B55AD923 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-haxibiao-tvOS-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F06BBA640DD6F00B718C5274 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-haxibiaoTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FD10A7F022414F080027D42C /* Start Packager */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Start Packager";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FD10A7F122414F3F0027D42C /* Start Packager */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Start Packager";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		00E356EA1AD99517003FC87E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				00E356F31AD99517003FC87E /* haxibiaoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		13B07F871A680F5B00A75B9A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A7875F1D233E074000503ECC /* DrawFeedAd.m in Sources */,
+				A7875F31233E074000503ECC /* AdBoss.m in Sources */,
+				A7875F2A233E074000503ECC /* BUDdemoDislikeCollectionCell.m in Sources */,
+				A7875F1B233E074000503ECC /* BannerAd.m in Sources */,
+				A7875F1F233E074000503ECC /* BannerAdManager.m in Sources */,
+				A7875F12233E074000503ECC /* BUDSlotViewModel.m in Sources */,
+				A7875F25233E074000503ECC /* BUDNormalButton.m in Sources */,
+				A7875F19233E074000503ECC /* BUDRewardedVideoAdViewController.m in Sources */,
+				A7875F15233E074000503ECC /* NSString+Json.m in Sources */,
+				A7875F2E233E074000503ECC /* RewardVideo.m in Sources */,
+				A7875F27233E074000503ECC /* BUDFeedStyleHelper.m in Sources */,
+				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				A7875F13233E074000503ECC /* BUDBase64.m in Sources */,
+				A7875F29233E074000503ECC /* BUDPlayerController.m in Sources */,
+				A7875F1E233E074000503ECC /* FeedAdManager.m in Sources */,
+				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				A7875F23233E074000503ECC /* BUDFeedNormalTableViewCell.m in Sources */,
+				A7875F2B233E074000503ECC /* BUDActionAreaView.m in Sources */,
+				A7875F24233E074000503ECC /* BUDRefreshButton.m in Sources */,
+				A7875F20233E074000503ECC /* DrawFeedAdManager.m in Sources */,
+				A7875F21233E074000503ECC /* BUDConfigHelper.m in Sources */,
+				A7875F26233E074000503ECC /* BUDSettingTableView.m in Sources */,
+				A7875F2F233E074000503ECC /* SplashAd.m in Sources */,
+				A7875F28233E074000503ECC /* BUDDrawTableViewCell.m in Sources */,
+				A7875F18233E074000503ECC /* BUDCocoaSecurity.m in Sources */,
+				A7875F16233E074000503ECC /* NSString+LocalizedString.m in Sources */,
+				A7875F2D233E074000503ECC /* AppUtilModule.m in Sources */,
+				A7875F22233E074000503ECC /* BUDFeedNormalModel.m in Sources */,
+				A7875F14233E074000503ECC /* UIView+Draw.m in Sources */,
+				2C4C3225234543650069BBEA /* fixlottie.swift in Sources */,
+				A7875F17233E074000503ECC /* RRFPSBar.m in Sources */,
+				A7875F1A233E074000503ECC /* BUDFullscreenViewController.m in Sources */,
+				A7875F30233E074000503ECC /* VideoUploader.m in Sources */,
+				A7875F2C233E074000503ECC /* FullScreenVideo.m in Sources */,
+				A7875F1C233E074000503ECC /* FeedAd.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D02E4771E0B4A5D006451C7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */,
+				2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2D02E48C1E0B4A5D006451C7 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2DCD954D1E0B4F2C00145EB5 /* haxibiaoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 13B07F861A680F5B00A75B9A /* haxibiao */;
+			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
+		};
+		2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2D02E47A1E0B4A5D006451C7 /* haxibiao-tvOS */;
+			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		13B07FB11A68108700A75B9A /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				13B07FB21A68108700A75B9A /* Base */,
+				A7875F32233E0D2000503ECC /* zh-Hans */,
+			);
+			name = LaunchScreen.xib;
+			path = haxibiao;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		00E356F61AD99517003FC87E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E99F0EE5E749B904D1253B38 /* Pods-haxibiaoTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3W7L7CX92N;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = haxibiaoTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+					"$(inherited)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/haxibiao.app/haxibiao";
+			};
+			name = Debug;
+		};
+		00E356F71AD99517003FC87E /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FE6AE12F268785E85EAC46EC /* Pods-haxibiaoTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = haxibiaoTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lc++",
+					"$(inherited)",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/haxibiao.app/haxibiao";
+			};
+			name = Release;
+		};
+		13B07F941A680F5B00A75B9A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 385D9B8256CBEB2020F2AC1A /* Pods-haxibiao.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = haxibiao/haxibiao.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 2;
+				DEAD_CODE_STRIPPING = NO;
+				DEVELOPMENT_TEAM = 3W7L7CX92N;
+				INFOPLIST_FILE = haxibiao/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 2.1;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.haxibiao;
+				PRODUCT_NAME = haxibiao;
+				PROVISIONING_PROFILE_SPECIFIER = haxibiao_test;
+				SWIFT_OBJC_BRIDGING_HEADER = "haxibiao-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		13B07F951A680F5B00A75B9A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C25B8A00624BE26161A2D3A3 /* Pods-haxibiao.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = haxibiao/haxibiao.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 2;
+				DEVELOPMENT_TEAM = 3W7L7CX92N;
+				INFOPLIST_FILE = haxibiao/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 2.1;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.haxibiao;
+				PRODUCT_NAME = haxibiao;
+				PROVISIONING_PROFILE_SPECIFIER = haxibiao;
+				SWIFT_OBJC_BRIDGING_HEADER = "haxibiao-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		2D02E4971E0B4A5E006451C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B70F3A7856A8E1CA4F7BCEF1 /* Pods-haxibiao-tvOS.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "haxibiao-tvOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.haxibiao-tvOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+			};
+			name = Debug;
+		};
+		2D02E4981E0B4A5E006451C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D3253EB9919D3E7670A19BC4 /* Pods-haxibiao-tvOS.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "haxibiao-tvOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.haxibiao-tvOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = appletvos;
+				TARGETED_DEVICE_FAMILY = 3;
+				TVOS_DEPLOYMENT_TARGET = 9.2;
+			};
+			name = Release;
+		};
+		2D02E4991E0B4A5E006451C7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E7BD8E70289AE0A95537F43A /* Pods-haxibiao-tvOSTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "haxibiao-tvOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.haxibiao-tvOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/haxibiao-tvOS.app/haxibiao-tvOS";
+				TVOS_DEPLOYMENT_TARGET = 10.1;
+			};
+			name = Debug;
+		};
+		2D02E49A1E0B4A5E006451C7 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A64776C2BCD6545AD496A14F /* Pods-haxibiao-tvOSTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = "haxibiao-tvOSTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-lc++",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.haxibiao-tvOSTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = appletvos;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/haxibiao-tvOS.app/haxibiao-tvOS";
+				TVOS_DEPLOYMENT_TARGET = 10.1;
+			};
+			name = Release;
+		};
+		83CBBA201A601CBA00E9B192 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		83CBBA211A601CBA00E9B192 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "haxibiaoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				00E356F61AD99517003FC87E /* Debug */,
+				00E356F71AD99517003FC87E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "haxibiao" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				13B07F941A680F5B00A75B9A /* Debug */,
+				13B07F951A680F5B00A75B9A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "haxibiao-tvOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2D02E4971E0B4A5E006451C7 /* Debug */,
+				2D02E4981E0B4A5E006451C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "haxibiao-tvOSTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2D02E4991E0B4A5E006451C7 /* Debug */,
+				2D02E49A1E0B4A5E006451C7 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "haxibiao" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				83CBBA201A601CBA00E9B192 /* Debug */,
+				83CBBA211A601CBA00E9B192 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 83CBB9F71A601CBA00E9B192 /* Project object */;
+}

@@ -1,0 +1,25 @@
+{
+    "name": "haxibiao",
+    "AppID": "com.haxibiao",
+    "DisplayName": "哈希表",
+    "ServerRoot": "http://haxibiao.com",
+    "UploadServer": "http://haxibiao.com",
+    "Spinner": "9CubeGrid",
+    "AppSlogan": "互联网创业人的短视频社区",
+    "Version": "2.1.0",
+    "Build": 2,
+    "AppVersionNumber": 2.1,
+
+    "CodeIdBanner": "916518401",
+    "CodeIdBannerIOS": "",
+    "CodeIdFeed": "917576575",
+    "CodeIdFeedIOS": "931407994",
+    "CodeIdSplash": "817576238",
+    "CodeIdSplashIOS": "831407678",
+    "CodeIdDrawFeed": "917576134",
+    "CodeIdDrawFeedIOS": "931407500",
+    "CodeIdFullVideo": "916518198",
+    "CodeIdFullVideoIOS": "",
+    "CodeIdRewardVideo": "916518846",
+    "CodeIdRewardVideoIOS": "916582412"
+}

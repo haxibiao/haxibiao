@@ -1,0 +1,247 @@
+#import './mutation.graphql'
+
+#首页 推荐文章
+query articlesQuery($page: Int) {
+    articles(page: $page) {
+        paginatorInfo {
+            hasMorePages
+            currentPage
+        }
+        data {
+            id
+            type
+            body
+            description
+            time_ago
+            cover
+            hits
+            count_likes
+            count_replies
+            count_tips
+            liked
+            answered_status
+            question_reward
+            user {
+                avatar
+                name
+                id
+            }
+            category {
+                id
+                name
+                logo
+            }
+            images {
+                id
+                url
+                width
+                height
+            }
+            video {
+                id
+                url
+                duration
+                info {
+                    width
+                    height
+                    rotate
+                    covers
+                }
+                cover_url
+            }
+        }
+    }
+}
+
+#用户的公开文章
+query userArticlesQuery($user_id: Int, $status: ArticleStatus, $category_id: Int, $page: Int, $count: Int) {
+    articles(
+        submit: SUBMITTED_SUBMIT
+        user_id: $user_id
+        status: $status
+        category_id: $category_id
+        page: $page
+        count: $count
+        orderBy: [{ field: "id", order: DESC }]
+    ) {
+        paginatorInfo {
+            hasMorePages
+            currentPage
+        }
+        data {
+            id
+            type
+            body
+            description
+            time_ago
+            cover
+            hits
+            count_likes
+            count_replies
+            count_tips
+            liked
+            submit
+            answered_status
+            question_reward
+            user {
+                avatar
+                name
+                id
+            }
+            category {
+                id
+                name
+                logo
+            }
+            images {
+                id
+                url
+                width
+                height
+            }
+            video {
+                id
+                url
+                duration
+                info {
+                    width
+                    height
+                    rotate
+                    covers
+                }
+                cover_url
+            }
+        }
+    }
+}
+
+#我公开的文章
+query myArticlesQuery($user_id: Int, $status: ArticleStatus, $category_id: Int, $page: Int, $count: Int) {
+    articles(
+        submit: ALL
+        user_id: $user_id
+        status: $status
+        category_id: $category_id
+        page: $page
+        count: $count
+        orderBy: [{ field: "id", order: DESC }]
+    ) {
+        paginatorInfo {
+            hasMorePages
+            currentPage
+        }
+        data {
+            id
+            type
+            body
+            description
+            time_ago
+            cover
+            hits
+            count_likes
+            count_replies
+            count_tips
+            liked
+            submit
+            answered_status
+            question_reward
+            user {
+                avatar
+                name
+                id
+            }
+            category {
+                id
+                name
+                logo
+            }
+            images {
+                id
+                url
+                width
+                height
+            }
+            video {
+                id
+                url
+                duration
+                info {
+                    width
+                    height
+                    rotate
+                    covers
+                }
+                cover_url
+            }
+        }
+    }
+}
+
+#文章详情
+query articleQuery($id: Int!) {
+    article(id: $id) {
+        id
+        type
+        body
+        description
+        body
+        cover
+        video_url
+        time_ago
+        hits
+        liked_id
+        favorited
+        count_words
+        count_likes
+        count_tips
+        count_replies
+        count_comments
+        user {
+            id
+            name
+            avatar
+            introduction
+            count_articles
+            count_likes
+            followed_status
+        }
+        video {
+            id
+            info {
+                height
+                width
+                rotate
+            }
+        }
+        images {
+            id
+            url
+            width
+            height
+        }
+        collection {
+            id
+            name
+        }
+        category {
+            id
+            name
+        }
+        categories {
+            id
+            name
+            logo
+            count_articles
+            count_follows
+            followed
+        }
+        tips {
+            id
+            user {
+                id
+                name
+                avatar
+            }
+        }
+    }
+}

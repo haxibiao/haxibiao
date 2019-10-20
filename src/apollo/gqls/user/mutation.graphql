@@ -1,0 +1,162 @@
+mutation signInMutation($account: String!, $password: String!) {
+    signIn(account: $account, password: $password) {
+        id
+        name
+        avatar
+        token
+        balance
+        gold
+        wallet {
+            id
+            pay_account
+            real_name
+        }
+        birthday_msg
+        gender
+        phone
+        introduction
+        count_articles
+        count_production
+        count_likes
+        count_follows
+        count_followers
+        count_followings
+        count_favorites
+        reward
+    }
+}
+
+#静默登录
+mutation autoSignInMutation($UUID: String!, $PHONE: String) {
+    autoSignIn(uuid: $UUID, phone: $PHONE) {
+        id
+        name
+        avatar
+        token
+        balance
+        gold
+        wallet {
+            id
+            pay_account
+            real_name
+        }
+        birthday_msg
+        gender
+        phone
+        introduction
+        count_articles
+        count_production
+        count_likes
+        count_follows
+        count_followers
+        count_followings
+        count_favorites
+        reward
+    }
+}
+
+mutation signUpMutation($account: String!, $password: String!, $name: String!) {
+    signUp(account: $account, password: $password, name: $name) {
+        id
+        name
+        avatar
+        token
+        balance
+        gold
+        wallet {
+            id
+            pay_account
+            real_name
+        }
+        birthday_msg
+        gender
+        phone
+        introduction
+        count_articles
+        count_production
+        count_likes
+        count_follows
+        count_followers
+        count_followings
+        count_favorites
+        reward
+    }
+}
+
+#删除查询日志
+#id：查询日志的ID,如果不传参则删除该用户所有的查询记录
+mutation deleteQueryLogMutation($id: Int) {
+    deleteQueryLog(id: $id) {
+        id
+        query
+    }
+}
+
+mutation submitArticleMutation($article_id: Int!, $category_id: Int!) {
+    submitArticle(article_id: $article_id, category_id: $category_id) {
+        id
+        submit_status
+    }
+}
+
+mutation approveArticleMutation($article_id: Int!, $category_id: Int!, $is_reject: Boolean!) {
+    approveArticle(article_id: $article_id, category_id: $category_id, is_reject: $is_reject) {
+        id
+        pivot_status
+    }
+}
+
+# 修改用户名
+mutation updateUserName($id: Int!, $input: updateUserInfo!) {
+    updateUserInfo(id: $id, input: $input) {
+        name
+    }
+}
+
+mutation updateUserGender($id: Int!, $gender: String!) {
+    updateUserInfo(id: $id, input: { gender: $gender }) {
+        id
+        name
+        gender
+        introduction
+    }
+}
+
+# 修改生日
+mutation updateUserBirthday($id: Int!, $input: updateUserInfo!) {
+    updateUserInfo(id: $id, input: $input) {
+        birthday_msg
+    }
+}
+
+# 修改签名
+mutation updateUserIntroduction($id: Int!, $input: updateUserInfo!) {
+    updateUserInfo(id: $id, input: $input) {
+        introduction
+    }
+}
+
+mutation updateUserPasswordMutation($oldpassword: String!, $password: String!) {
+    updateUserPassword(oldpassword: $oldpassword, password: $password) {
+        id
+        name
+    }
+}
+#静默注册用户绑定手机号，设置初始密码
+mutation updateUserInfoSecurity($id: Int!, $phone: String!, $password: String!) {
+    updateUserInfo(id: $id, input: { phone: $phone, password: $password }) {
+        id
+        name
+        phone
+    }
+}
+
+#找回密码
+mutation retrievePasswordMutation($code: String!, $phone: String, $newPassword: String!){
+  retrievePassword(code:$code,phone:$phone,newPassword:$newPassword){
+    id
+    name
+    token
+    phone
+  }
+}

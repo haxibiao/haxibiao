@@ -1,0 +1,39 @@
+query RecommendVideosQuery($page: Int, $count: Int!) {
+    recommendVideos(page: $page, count: $count) {
+        paginatorInfo {
+            currentPage
+            lastPage
+        }
+        data {
+            id
+            isAdPosition
+            cover
+            body
+            count_likes
+            count_comments
+            liked
+            user {
+                id
+                name
+                avatar
+            }
+            video {
+                id
+                url
+                duration
+                cover_url
+                info {
+                    height
+                    width
+                }
+            }
+        }
+    }
+}
+
+#看视频奖励
+mutation VideoPlayReward($input: videoPlayReport) {
+    videoPlayReward(input: $input) {
+        gold
+    }
+}

@@ -1,0 +1,43 @@
+mutation CreateWithdrawMutation($amount: Float!) {
+    createWithdraw(amount: $amount) {
+        id
+        created_at
+    }
+}
+
+mutation setWalletPaymentInfoMutation($input: walletInput!) {
+    setWalletPaymentInfo(input: $input) {
+        id
+        type
+        balance
+        pay_account
+        real_name
+        total_withdraw_amount
+        available_balance
+        today_withdraw_left
+    }
+}
+
+mutation SendVerifyCodeMutation($phone: String!, $action: verifyType!) {
+    sendVerifyCode(phone: $phone, action: $action) {
+        id
+        user {
+            id
+            name
+        }
+        code
+        channel
+    }
+}
+
+mutation CheckVerifyCodeMutation($code: String!, $phone: String!, $action: verifyType!) {
+    checkVerifyCode(code: $code, phone: $phone, action: $action) {
+        id
+        user {
+            id
+            name
+        }
+        code
+        channel
+    }
+}
