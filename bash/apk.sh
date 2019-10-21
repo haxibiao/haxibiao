@@ -15,7 +15,7 @@ echo "${yel}开始上传 apk 正式包"
 node ./bash/nodejs/cos_upload_apk.js release
 
 echo  -e "${grn}上传完成${end}"
-echo "下载地址：http://$app-1251052432.cos.ap-shanghai.myqcloud.com/$app-release.apk"
+echo "下载地址：http://$app-1251052432.cosgz.myqcloud.com/$app-release.apk"
 
 else
 

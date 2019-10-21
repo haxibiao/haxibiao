@@ -14,7 +14,7 @@ env = args[0];
 cos.sliceUploadFile(
     {
         Bucket: 'haxibiao-1251052432',
-        Region: 'ap-shanghai',
+        Region: 'ap-guangzhou',
         Key: 'haxibiao-' + env + '.apk',
         FilePath: './android/app/build/outputs/apk/' + env + '/app-' + env + '.apk',
     },
