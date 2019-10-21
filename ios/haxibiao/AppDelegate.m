@@ -43,7 +43,7 @@
   [RNSplashScreen show];
   
   // 穿山甲广告
-  [AdBoss init:@"5031407"];
+  [AdBoss init:@"5016582"];
   [AdBoss hookApp:self];
   [AdBoss hookWindow:self.window];
   
