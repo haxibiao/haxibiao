@@ -1,6 +1,40 @@
 #import './mutation.graphql'
 
-#首页 推荐文章
+# 首页推荐视频
+query RecommendVideosQuery($page: Int, $count: Int!) {
+    recommendVideos(page: $page, count: $count) {
+        paginatorInfo {
+            currentPage
+            lastPage
+        }
+        data {
+            id
+            isAdPosition
+            cover
+            body
+            count_likes
+            count_comments
+            liked
+            user {
+                id
+                name
+                avatar
+            }
+            video {
+                id
+                url
+                duration
+                cover_url
+                info {
+                    height
+                    width
+                }
+            }
+        }
+    }
+}
+
+#推荐文章
 query articlesQuery($page: Int) {
     articles(page: $page) {
         paginatorInfo {
@@ -26,7 +60,7 @@ query articlesQuery($page: Int) {
                 name
                 id
             }
-            category {
+            categories {
                 id
                 name
                 logo
@@ -88,7 +122,7 @@ query userArticlesQuery($user_id: Int, $status: ArticleStatus, $category_id: Int
                 name
                 id
             }
-            category {
+            categories {
                 id
                 name
                 logo
@@ -115,7 +149,7 @@ query userArticlesQuery($user_id: Int, $status: ArticleStatus, $category_id: Int
     }
 }
 
-#我公开的文章
+#我的发布
 query myArticlesQuery($user_id: Int, $status: ArticleStatus, $category_id: Int, $page: Int, $count: Int) {
     articles(
         submit: ALL
@@ -143,6 +177,7 @@ query myArticlesQuery($user_id: Int, $status: ArticleStatus, $category_id: Int, 
             count_tips
             liked
             submit
+            remark
             answered_status
             question_reward
             user {
@@ -150,7 +185,7 @@ query myArticlesQuery($user_id: Int, $status: ArticleStatus, $category_id: Int, 
                 name
                 id
             }
-            category {
+            categories {
                 id
                 name
                 logo
@@ -218,14 +253,6 @@ query articleQuery($id: Int!) {
             url
             width
             height
-        }
-        collection {
-            id
-            name
-        }
-        category {
-            id
-            name
         }
         categories {
             id

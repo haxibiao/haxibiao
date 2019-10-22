@@ -75,7 +75,7 @@ export default observer(props => {
                                             <View style={styles.headerWrapper}>
                                                 <TouchableOpacity style={styles.userInfo}>
                                                     <Avatar
-                                                        source={`http://cos.haxibiao.com/storage/avatar/avatar-${avatarId}.jpg`}
+                                                        source={`http://cos.dianmoge.com/storage/avatar/avatar-${avatarId}.jpg`}
                                                         size={PxDp(38)}
                                                     />
                                                     <View style={styles.info}>

@@ -33,7 +33,6 @@ const HomeScreen = (props: any) => {
                 const hasMorePages = Helper.syncGetter('articles.paginatorInfo.hasMorePages', data);
                 let currentPage = Helper.syncGetter('articles.paginatorInfo.currentPage', data);
                 if (loading || !articles || !userData) return <SpinnerLoading />;
-                console.log('articles', articles);
                 return (
                     <PageContainer contentViewStyle={{ marginTop: 0 }} error={error}>
                         <View style={{ flex: 1 }}>

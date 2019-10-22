@@ -87,7 +87,7 @@ const Comments = observer((props: Props) => {
                                     return Object.assign({}, prev, {
                                         comments: Object.assign({}, prev.comments, {
                                             paginatorInfo: fetchMoreResult.comments.paginatorInfo,
-                                            data: [...fetchMoreResult.comments.data, ...prev.comments.data],
+                                            data: [...prev.comments.data, ...fetchMoreResult.comments.data],
                                         }),
                                     });
                                 }

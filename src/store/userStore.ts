@@ -19,7 +19,6 @@ class UserStore {
     @observable me: UserScheme = {};
     @observable login: boolean = false;
     @observable firstInstall: boolean = true;
-    @observable resetVersion: string = '2.0.1'; //当前版本 2.0.1
 
     constructor() {
         this.recall();
@@ -28,7 +27,6 @@ class UserStore {
     @action.bound
     async recall() {
         const profile = await Storage.getItem(Keys.me);
-        console.log('profile', profile);
         if (profile) {
             this.signIn(profile);
         }
@@ -50,13 +48,7 @@ class UserStore {
         TOKEN = null;
         Storage.removeItem(Keys.me);
         // 主动注销后设置 firstInstall 为 false
-        Storage.setItem(Keys.firstInstall,false);
-    }
-
-    @action.bound
-    changeResetVersion(version: string){
-        this.resetVersion = version;
-        Storage.setItem(Keys.resetVersion,version);
+        Storage.setItem(Keys.firstInstall, false);
     }
 
     @action.bound
@@ -104,8 +96,8 @@ class UserStore {
     changeAlipay(real_name: string, pay_account: string) {
         this.me.wallet = {
             ...this.me.wallet,
-            real_name: real_name,
-            pay_account: pay_account,
+            real_name,
+            pay_account,
         };
         Storage.setItem(Keys.me, this.me);
     }

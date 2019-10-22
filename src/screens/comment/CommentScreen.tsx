@@ -52,7 +52,7 @@ export default observer(props => {
                         comment: Object.assign({}, prev.comment, {
                             comments: Object.assign({}, prev.comment.comments, {
                                 paginatorInfo: fetchMoreResult.comment.comments.paginatorInfo,
-                                data: [...fetchMoreResult.comment.comments.data, ...prev.comment.comments.data],
+                                data: [...prev.comment.comments.data, ...fetchMoreResult.comment.comments.data],
                             }),
                         }),
                     });

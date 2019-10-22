@@ -46,7 +46,7 @@ export default (props: any) => {
                                 refreshControl={<CustomRefreshControl onRefresh={refetch} />}
                                 keyExtractor={(item, index) => index.toString()}
                                 scrollEventThrottle={16}
-                                renderItem={(item: any) => <PostItem post={item.item} />}
+                                renderItem={(item: any) => <PostItem post={item.item} showSubmitStatus={true} />}
                                 ItemSeparatorComponent={() => <ItemSeparator />}
                                 ListEmptyComponent={
                                     <StatusView.EmptyView

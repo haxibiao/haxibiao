@@ -4,6 +4,10 @@ import { RootStackNavigator, setRootNavigation } from '@src/router';
 import StoreContext, { observer, appStore } from '@src/store';
 import { ApolloProvider as OldApolloProvider } from 'react-apollo';
 
+import {
+    SocketServer
+} from '@app/app.json';
+
 import Echo from 'laravel-echo';
 import Socketio from 'socket.io-client';
 
@@ -20,8 +24,7 @@ export default observer(() => {
             // 构造laravel echo及Socket Client
             const echo = new Echo({
                 broadcaster: 'socket.io',
-                // host: 'ws://192.168.1.196:6001',
-                host: 'ws://socket.haxibiao.com:6002',
+                host: SocketServer,
                 client: Socketio,
                 auth: {
                     headers: {

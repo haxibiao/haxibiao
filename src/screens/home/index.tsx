@@ -15,6 +15,8 @@ import { Keys, Storage } from '../../store/localStorage';
 
 export default observer(props => {
     const store = useContext(StoreContext);
+    const { userStore } = store;
+    const me = userStore.me;
     const client = useApolloClient();
     const navigation = useNavigation();
     const firstAuthenticationQuery = useRef(false);
@@ -108,40 +110,29 @@ export default observer(props => {
     }, [TOKEN]);
 
     // 静默注册登录
-    const { userStore } = store;
-    let me = { ...userStore.me };
 
     async function HandleSilentLogin() {
         // 如果 firstInstall 为 false 则用户主动注销过，不再进行静默登录
-        let firstInstall = await Storage.getItem(Keys.firstInstall);
-        console.log('Info : firstInstall from storage : ', firstInstall);
+        const firstInstall = await Storage.getItem(Keys.firstInstall);
         if (firstInstall) {
-            //首次静默注册登录
-            console.log('Info : firstInstall 为 true，用户未主动注销账号');
+            // 首次静默注册登录
             SilentSignIn();
-        } else {
-            //不进行静默登录
-            console.log('Info : firstInstall 为 false 用户主动注销过，不进行静默登录');
         }
     }
     async function ResetVersionHandler() {
-        let resetVersion = await Storage.getItem(Keys.resetVersion);
-        if (resetVersion !== Config.AppVersion && me) {
-            //版本变动，重新静默注册登录.更新版本号
-            userStore.changeResetVersion(Config.AppVersion);
+        const resetVersion = await Storage.getItem(Keys.resetVersion);
+        if (resetVersion !== Config.AppVersion && me.id) {
+            // 版本变动，重新静默注册登录.更新版本号
+            appStore.changeResetVersion(Config.AppVersion);
             SilentSignIn();
         }
     }
 
     useEffect(() => {
-        console.log('me :', me);
-        //版本变动，重新静默注册登录
+        // 版本变动，重新静默注册登录
         ResetVersionHandler();
-        if (me && me.id !== undefined) {
-            console.log('me.id : ', me.id);
-            // 该APP已经登录过，不调用静默登录
-        } else {
-            console.log('Info : [home/index.tsx]  userStore.me : ', me);
+        // 该APP没有登录过，调用静默登录
+        if (!me.id) {
             HandleSilentLogin();
         }
     }, [me]);
@@ -157,9 +148,7 @@ export default observer(props => {
                 })
                 .then(result => {
                     const safeData = Helper.syncGetter('data.autoSignIn', result);
-                    const { userStore } = store;
                     userStore.signIn(safeData);
-                    console.log('Info : 静默注册登录成功 , me ', safeData);
                 })
                 .catch(error => {
                     // 静默登录失败，引导用户到手动登录页

@@ -52,7 +52,7 @@ const index = (props: Props) => {
         [fancyInputRef],
     );
 
-    const { data, refetch, fetchMore } = useQuery(GQL.commentsQuery, {
+    const { data, refetch, loading, fetchMore } = useQuery(GQL.commentsQuery, {
         variables: { commentable_type: 'articles', commentable_id: media.id, replyCount: 3 },
         fetchPolicy: 'network-only',
     });
@@ -61,11 +61,43 @@ const index = (props: Props) => {
     const hasMorePages = useMemo(() => Helper.syncGetter('comments.paginatorInfo.hasMorePages', data), [data]);
     const hiddenListFooter = commentsData && commentsData.length === 0;
 
+    const fetchMoreComments = useCallback(() => {
+        if (hasMorePages && !loading) {
+            fetchMore({
+                variables: {
+                    page: ++currentPage,
+                },
+                updateQuery: (prev, { fetchMoreResult }) => {
+                    if (fetchMoreResult && fetchMoreResult.comments) {
+                        return Object.assign({}, prev, {
+                            comments: Object.assign({}, prev.comments, {
+                                paginatorInfo: fetchMoreResult.comments.paginatorInfo,
+                                data: [...prev.comments.data, ...fetchMoreResult.comments.data],
+                            }),
+                        });
+                    }
+                },
+            });
+        }
+    }, [hasMorePages, currentPage]);
+
+    const onScroll = useCallback(
+        e => {
+            const { contentOffset, contentSize } = e.nativeEvent;
+            // fetchMore触发条件
+            if (contentSize.height - contentOffset.y < Device.HEIGHT - PxDp(50)) {
+                fetchMoreComments();
+            }
+        },
+        [fetchMoreComments],
+    );
+
     return (
         <PageContainer title="详情" contentViewStyle={hasVideo ? { marginTop: 0 } : {}}>
             {hasVideo && <Player video={media.video} />}
             <View style={[styles.container, Device.IOS && { paddingBottom: Theme.HOME_INDICATOR_HEIGHT }]}>
                 <ScrollView
+                    onScroll={onScroll}
                     style={styles.container}
                     contentContainerStyle={styles.contentContainerStyle}
                     keyboardShouldPersistTaps={'handled'}>
@@ -99,25 +131,6 @@ const index = (props: Props) => {
                         onScrollBeginDrag={() => {
                             Keyboard.dismiss();
                         }}
-                        // onEndReached={() => {
-                        //     if (hasMorePages) {
-                        //         fetchMore({
-                        //             variables: {
-                        //                 page: ++currentPage,
-                        //             },
-                        //             updateQuery: (prev, { fetchMoreResult }) => {
-                        //                 if (fetchMoreResult && fetchMoreResult.comments) {
-                        //                     return Object.assign({}, prev, {
-                        //                         comments: Object.assign({}, prev.comments, {
-                        //                             paginatorInfo: fetchMoreResult.comments.paginatorInfo,
-                        //                             data: [...fetchMoreResult.comments.data, ...prev.comments.data],
-                        //                         }),
-                        //                     });
-                        //                 }
-                        //             },
-                        //         });
-                        //     }
-                        // }}
                     />
                 </ScrollView>
                 <CommentInput

@@ -51,6 +51,10 @@ class App {
     async updateViewedVesion(viewedVersion) {
         await Storage.setItem(Keys.viewedVersion, viewedVersion);
     }
+
+    changeResetVersion(version: string) {
+        Storage.setItem(Keys.resetVersion, version);
+    }
 }
 
 export default new App();

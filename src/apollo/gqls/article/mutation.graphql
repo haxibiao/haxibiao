@@ -71,3 +71,17 @@ mutation createPostMutation(
         }
     }
 }
+
+#看视频奖励
+mutation VideoPlayReward($input: videoPlayReport) {
+    videoPlayReward(input: $input) {
+        gold
+    }
+}
+
+# 删除
+mutation deleteArticle($id: Int!) {
+    deleteArticle(id: $id) {
+        id
+    }
+}

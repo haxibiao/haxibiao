@@ -9,6 +9,7 @@
     "Version": "2.1.0",
     "Build": 2,
     "AppVersionNumber": 2.1,
+    "SocketServer": "ws://socket.haxibiao.com:6001",
 
     "CodeIdBanner": "916582063",
     "CodeIdBannerIOS": "916582063",

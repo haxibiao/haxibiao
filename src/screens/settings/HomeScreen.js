@@ -22,7 +22,9 @@ class index extends Component {
         if (!this.state.logoutConfirm) {
             if (me.phone === null || me.phone === undefined) {
                 PopOverlay({
-                    content: '该账号还未绑定手机号、退出登录会可能丢失已有的数据、是否前去绑定手机号?',
+                    content: '该账号还未绑定手机号，退出登录可能会丢失数据！可以在设置/账号安全中绑定手机号',
+                    leftContent: '我再想想',
+                    rightContent: '前去绑定',
                     onConfirm: async () => {
                         navigation.navigate('账号安全');
                     },

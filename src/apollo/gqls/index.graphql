@@ -4,7 +4,6 @@
 #import './favorite/index.graphql'
 #import './follow/index.graphql'
 #import './like/index.graphql'
-#import './media/index.graphql'
 #import './chat/index.graphql'
 #import './category/index.graphql'
 #import './comment/index.graphql'

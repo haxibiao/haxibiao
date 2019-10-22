@@ -1,3 +1,4 @@
+# 登录功能
 mutation signInMutation($account: String!, $password: String!) {
     signIn(account: $account, password: $password) {
         id
@@ -55,8 +56,10 @@ mutation autoSignInMutation($UUID: String!, $PHONE: String) {
     }
 }
 
-mutation signUpMutation($account: String!, $password: String!, $name: String!) {
-    signUp(account: $account, password: $password, name: $name) {
+# 注册功能
+# 为了统一接口后端会优先用account，但是老版本email是必传的，所以这里email默认给个值，后端会忽略掉
+mutation signUpMutation($account: String, $password: String!, $name: String) {
+    signUp(email: "123", account: $account, password: $password, name: $name) {
         id
         name
         avatar
@@ -152,11 +155,11 @@ mutation updateUserInfoSecurity($id: Int!, $phone: String!, $password: String!) 
 }
 
 #找回密码
-mutation retrievePasswordMutation($code: String!, $phone: String, $newPassword: String!){
-  retrievePassword(code:$code,phone:$phone,newPassword:$newPassword){
-    id
-    name
-    token
-    phone
-  }
+mutation retrievePasswordMutation($code: String!, $phone: String, $newPassword: String!) {
+    retrievePassword(code: $code, phone: $phone, newPassword: $newPassword) {
+        id
+        name
+        token
+        phone
+    }
 }

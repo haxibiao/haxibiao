@@ -1,4 +1,4 @@
-import React, { Component, useState, useContext, useEffect } from 'react';
+import React, { Component, useState, useContext, useEffect, useCallback } from 'react';
 import { StyleSheet, View, Image, Text, TouchableOpacity, StatusBar } from 'react-native';
 import { PageContainer, HxfTextInput, HxfButton, Row, Center, Iconfont, GradientView } from '@src/components';
 import { exceptionCapture, useBounceAnimation } from '@src/common';
@@ -14,9 +14,7 @@ export default observer(props => {
     const [secure, setSecure] = useState(true);
     const [thumb, setThumbType] = useState(false);
     const [signIn, toggleEntrance] = useState(true);
-    const [convenienceLogin, setConvenienceLogin] = useState(true);
     const [formData, setFormData] = useState({ name: '', account: '', password: '' });
-    const [uniqueID, setUniqueID] = useState('');
     const [signInMutation, { data: signInData }] = useMutation(GQL.signInMutation, {
         variables: {
             account: formData.account,
@@ -32,7 +30,7 @@ export default observer(props => {
     });
     const [autoSignInMutation, { data: autoSignInData }] = useMutation(GQL.autoSignInMutation, {
         variables: {
-            UUID: uniqueID,
+            UUID: Device.UUID,
         },
     });
 
@@ -61,61 +59,48 @@ export default observer(props => {
         });
     }
 
-    async function handleConvenienceLogin() {
-        //获取本机UUID, 使用静默登录接口进行登录
-        let uuid = Device.UUID;
-        console.log('uuid : ', uuid);
-        if (uuid) {
-            await setUniqueID(uuid); //等待更新完state的UUID后再进行接口查询操作
+    // 手动登录
+    const onSignIn = useCallback(async () => {
+        toggleSubmitting(true);
+        const [error, result] = await exceptionCapture(signInMutation);
+        toggleSubmitting(false);
+        if (error) {
+            Toast.show({ content: error.message || '登录失败', layout: 'top' });
+        } else {
+            store.userStore.signIn(Helper.syncGetter('data.signIn', result));
+            navigation.goBack();
+        }
+    }, [signUpMutation]);
+
+    // 手动注册
+    const onSignUp = useCallback(async () => {
+        toggleSubmitting(true);
+        const [error, result] = await exceptionCapture(signUpMutation);
+        toggleSubmitting(false);
+        if (error) {
+            Toast.show({ content: error.message || '注册失败', layout: 'top' });
+        } else {
+            store.userStore.signIn(Helper.syncGetter('data.signUp', result));
+            navigation.goBack();
+        }
+    }, [signUpMutation]);
+
+    // 使用本机UUID进行静默登录
+    const onSilentLogin = useCallback(async () => {
+        if (Device.UUID) {
             const [error, result] = await exceptionCapture(autoSignInMutation);
             if (error) {
-                console.log('Error: [login/index.js] 静默登录接口 autoSignInMutation 返回错误 :', error);
-                Toast.show({ content: '一键登录失败、切换到手动登录', layout: 'top' });
-                setConvenienceLogin(false);
+                Toast.show({ content: '一键登录失败，请手动登录', layout: 'top' });
             } else {
                 //登录成功,更新用户全局状态
                 const meInfo = Helper.syncGetter('data.autoSignIn', result);
                 store.userStore.signIn(meInfo);
-                //返回上一个页面
                 navigation.goBack();
             }
         } else {
-            console.log('Info: [login/index.js] 获取UUID失败 ,切换到手动登录');
-            setConvenienceLogin(false);
+            Toast.show({ content: '一键登录失败，请手动登录', layout: 'top' });
         }
-    }
-
-    // 修改state，从而调出手动登录
-    function LoginWaySwitch() {
-        setConvenienceLogin(false);
-        console.log('switch');
-    }
-
-    async function onSubmit() {
-        toggleSubmitting(true);
-        if (signIn) {
-            const [error, result] = await exceptionCapture(signInMutation);
-            console.log(error, '===', result);
-            toggleSubmitting(false);
-
-            if (error) {
-                Toast.show({ content: error.message || '登录失败', layout: 'top' });
-            } else {
-                store.userStore.signIn(Helper.syncGetter('data.signIn', result));
-                navigation.goBack();
-            }
-        } else {
-            const [error, result] = await exceptionCapture(signUpMutation);
-            console.log(error, '===', result);
-            toggleSubmitting(false);
-            if (error) {
-                Toast.show({ content: error.message || '注册失败', layout: 'top' });
-            } else {
-                store.userStore.signIn(Helper.syncGetter('data.signUp', result));
-                navigation.goBack();
-            }
-        }
-    }
+    }, []);
 
     useEffect(() => {
         resetForm();
@@ -133,91 +118,98 @@ export default observer(props => {
                     <TouchableOpacity style={{ padding: PxDp(5) }} onPress={() => navigation.pop()}>
                         <Iconfont name="chacha" size={Font(24)} color={'#fff'} />
                     </TouchableOpacity>
+                    <TouchableOpacity style={{ padding: PxDp(5) }} onPress={() => toggleEntrance(!signIn)}>
+                        <Text style={styles.linkText}>{signIn ? '去注册' : '去登录'}</Text>
+                    </TouchableOpacity>
                 </View>
                 <View style={styles.formContainer}>
                     <Center>
                         <Image source={require('@src/assets/images/dmg_logo_white.png')} style={styles.logo} />
                     </Center>
-                    {convenienceLogin ? (
-                        <TouchableOpacity
-                            style={[styles.buttonStyle, disabled && { backgroundColor: 'rgba(255,255,255,0.2)' }]}
-                            onPress={handleConvenienceLogin}
-                            gradient>
-                            <Text style={styles.buttonText}>一键登录</Text>
-                        </TouchableOpacity>
-                    ) : (
-                        <View />
-                    )}
+                    <View>
+                        <View style={styles.fieldGroup}>
+                            <View style={styles.inputWrap}>
+                                <HxfTextInput
+                                    placeholderTextColor={'rgba(255,255,255,0.4)'}
+                                    autoCorrect={false}
+                                    placeholder={'请输入手机号'}
+                                    style={styles.inputStyle}
+                                    value={formData.account}
+                                    onChangeText={changeAccount}
+                                    onFocus={() => setThumbType(thumbType[1])}
+                                />
 
-                    {convenienceLogin ? (
-                        <View />
-                    ) : (
-                        <View>
+                                {thumb == thumbType[1] && (
+                                    <TouchableOpacity onPress={() => changeAccount('')}>
+                                        <Iconfont name={'chacha'} size={PxDp(20)} color={Theme.tintTextColor} />
+                                    </TouchableOpacity>
+                                )}
+                            </View>
+                        </View>
+                        {!signIn && (
                             <View style={styles.fieldGroup}>
                                 <View style={styles.inputWrap}>
                                     <HxfTextInput
                                         placeholderTextColor={'rgba(255,255,255,0.4)'}
                                         autoCorrect={false}
-                                        placeholder={'请输入手机号'}
+                                        placeholder={'请输入昵称'}
                                         style={styles.inputStyle}
-                                        value={formData.account}
-                                        onChangeText={changeAccount}
-                                        onFocus={() => setThumbType(thumbType[1])}
+                                        value={formData.name}
+                                        onChangeText={changeName}
+                                        onFocus={() => setThumbType(thumbType[0])}
                                     />
 
-                                    {thumb == thumbType[1] && (
-                                        <TouchableOpacity onPress={() => changeAccount('')}>
+                                    {thumb == thumbType[0] && (
+                                        <TouchableOpacity onPress={() => changeName('')}>
                                             <Iconfont name={'chacha'} size={PxDp(20)} color={Theme.tintTextColor} />
                                         </TouchableOpacity>
                                     )}
                                 </View>
                             </View>
-                            <View style={styles.fieldGroup}>
-                                <View style={styles.inputWrap}>
-                                    <HxfTextInput
-                                        placeholderTextColor={'rgba(255,255,255,0.4)'}
-                                        autoCorrect={false}
-                                        placeholder={'请输入密码'}
-                                        secureTextEntry={secure}
-                                        style={styles.inputStyle}
-                                        value={formData.password}
-                                        onChangeText={changePassword}
-                                        onFocus={() => setThumbType(thumbType[2])}
-                                    />
-                                    {thumb == thumbType[2] && (
-                                        <TouchableOpacity onPress={() => setSecure(!secure)}>
-                                            <Iconfont
-                                                name={secure ? 'privacy' : 'browse'}
-                                                size={secure ? PxDp(22) : PxDp(20)}
-                                                color={Theme.tintTextColor}
-                                            />
-                                        </TouchableOpacity>
-                                    )}
-                                </View>
+                        )}
+                        <View style={styles.fieldGroup}>
+                            <View style={styles.inputWrap}>
+                                <HxfTextInput
+                                    placeholderTextColor={'rgba(255,255,255,0.4)'}
+                                    autoCorrect={false}
+                                    placeholder={'请输入密码'}
+                                    secureTextEntry={secure}
+                                    style={styles.inputStyle}
+                                    value={formData.password}
+                                    onChangeText={changePassword}
+                                    onFocus={() => setThumbType(thumbType[2])}
+                                />
+                                {thumb == thumbType[2] && (
+                                    <TouchableOpacity onPress={() => setSecure(!secure)}>
+                                        <Iconfont
+                                            name={secure ? 'privacy' : 'browse'}
+                                            size={secure ? PxDp(22) : PxDp(20)}
+                                            color={Theme.tintTextColor}
+                                        />
+                                    </TouchableOpacity>
+                                )}
                             </View>
                         </View>
-                    )}
-
-                    {convenienceLogin ? (
-                        <TouchableOpacity
-                            style={[styles.buttonStyle, disabled && { backgroundColor: 'rgba(255,255,255,0.2)' }]}
-                            onPress={LoginWaySwitch}
-                            gradient>
-                            <Text style={styles.buttonText}>{'使用其他手机号登录'}</Text>
-                        </TouchableOpacity>
-                    ) : (
-                        <View />
-                    )}
-                    {convenienceLogin ? (
-                        <View />
-                    ) : (
-                        <TouchableOpacity
-                            style={[styles.buttonStyle, disabled && { backgroundColor: 'rgba(255,255,255,0.2)' }]}
-                            disabled={disabled}
-                            onPress={onSubmit}
-                            gradient>
-                            <Text style={styles.buttonText}>{'登 录'}</Text>
-                        </TouchableOpacity>
+                    </View>
+                    <TouchableOpacity
+                        style={[styles.buttonStyle, disabled && { backgroundColor: 'rgba(255,255,255,0.2)' }]}
+                        disabled={disabled}
+                        onPress={signIn ? onSignIn : onSignUp}
+                        gradient>
+                        <Text style={styles.buttonText}>{signIn ? '登 录' : '注 册'}</Text>
+                    </TouchableOpacity>
+                    {signIn && (
+                        <View style={styles.groupFooter}>
+                            <TouchableOpacity onPress={onSilentLogin}>
+                                <Row>
+                                    <Iconfont name="phone" size={PxDp(15)} color="#fff" />
+                                    <Text style={styles.grayText}>一键登录</Text>
+                                </Row>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => navigation.navigate('获取验证码')}>
+                                <Text style={styles.grayText}>忘记密码？</Text>
+                            </TouchableOpacity>
+                        </View>
                     )}
                 </View>
 
@@ -316,6 +308,11 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         color: '#fff',
     },
+    boldText: {
+        fontSize: Font(15),
+        color: '#fff',
+        fontWeight: 'bold',
+    },
     grayText: {
         fontSize: Font(14),
         color: '#fff',
@@ -336,8 +333,6 @@ const styles = StyleSheet.create({
     },
     protocol: {
         marginBottom: Theme.HOME_INDICATOR_HEIGHT + PxDp(Theme.itemSpace),
-        width: '100%',
-        height: 50,
         alignItems: 'center',
         justifyContent: 'center',
     },

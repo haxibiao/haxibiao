@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, TouchableOpacity, View, Text, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, TouchableOpacity, View, Text, TouchableWithoutFeedback, ActivityIndicator } from 'react-native';
 import GradientView from '../Basic/GradientView';
 
 type Size = 'mini' | 'small' | 'medium' | 'default';
@@ -10,7 +10,6 @@ export interface Props {
     gradient?: boolean;
     size?: Size;
     onPress?: (e: SyntheticEvent) => void;
-    innerStyle?: any;
     plain?: bool;
     icon?: bool;
     loading?: bool;
@@ -18,34 +17,23 @@ export interface Props {
 }
 
 class HxfButton extends Component<Props, any> {
-    static defaultProps: Props = {
-        theme: Theme.primaryColor,
-        size: 'default',
-        innerStyle: {},
-        plain: false,
-        icon: false,
-        loading: false,
-        disabled: false,
-    };
-
-    constructor(props: Props) {
+    public constructor(props: Props) {
         super(props);
     }
 
     public buildProps() {
-        const { theme, size, innerStyle, plain, ...others } = this.props;
+        const { theme, size, plain, ...others } = this.props;
 
         let buttonStyle, titleStyle;
         if (plain) {
             buttonStyle = {
                 ...buttonLayout[size],
-                ...innerStyle,
                 borderWidth: PxDp(1),
                 borderColor: theme,
             };
             titleStyle = { ...buttonTitle[size], color: theme };
         } else {
-            buttonStyle = { ...buttonLayout[size], ...innerStyle, backgroundColor: theme };
+            buttonStyle = { ...buttonLayout[size], backgroundColor: theme };
             titleStyle = { ...buttonTitle[size], color: '#fff' };
         }
         return {
@@ -79,7 +67,9 @@ class HxfButton extends Component<Props, any> {
         if (gradient) {
             return (
                 <TouchableWithoutFeedback disabled={disabled} onPress={onPress}>
-                    <GradientView colors={disabled?['#787878', '#a4a4a4']:[Theme.primaryColor, Theme.secondaryColor]} style={[styles.buttonWrap, style]}>
+                    <GradientView
+                        colors={disabled ? ['#787878', '#a4a4a4'] : [Theme.primaryColor, Theme.secondaryColor]}
+                        style={[styles.buttonWrap, style]}>
                         {this.renderIcon()}
                         {children || <Text style={titleStyle}>{title}</Text>}
                     </GradientView>
@@ -101,12 +91,21 @@ class HxfButton extends Component<Props, any> {
 const styles = StyleSheet.create({
     buttonWrap: {
         alignItems: 'center',
-        borderRadius:PxDp(4),
+        borderRadius: PxDp(4),
         flexDirection: 'row',
         justifyContent: 'center',
         overflow: 'hidden',
     },
 });
+
+HxfButton.defaultProps = {
+    theme: Theme.primaryColor,
+    size: 'default',
+    plain: false,
+    icon: false,
+    loading: false,
+    disabled: false,
+};
 
 export default HxfButton;
 

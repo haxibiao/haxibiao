@@ -59,9 +59,41 @@ const index = (props: Props) => {
     const hasMorePages = useMemo(() => Helper.syncGetter('comments.paginatorInfo.hasMorePages', data), [data]);
     const hiddenListFooter = commentsData && commentsData.length === 0;
 
+    const fetchMoreComments = useCallback(() => {
+        if (hasMorePages) {
+            fetchMore({
+                variables: {
+                    page: ++currentPage,
+                },
+                updateQuery: (prev, { fetchMoreResult }) => {
+                    if (fetchMoreResult && fetchMoreResult.comments) {
+                        return Object.assign({}, prev, {
+                            comments: Object.assign({}, prev.comments, {
+                                paginatorInfo: fetchMoreResult.comments.paginatorInfo,
+                                data: [...prev.comments.data, ...fetchMoreResult.comments.data],
+                            }),
+                        });
+                    }
+                },
+            });
+        }
+    }, [hasMorePages, currentPage]);
+
+    const onScroll = useCallback(
+        e => {
+            const { contentOffset, contentSize } = e.nativeEvent;
+            // fetchMore触发条件
+            if (contentSize.height - contentOffset.y < Device.HEIGHT - PxDp(50)) {
+                __.throttle(fetchMoreComments, 500);
+            }
+        },
+        [fetchMoreComments],
+    );
+
     return (
         <PageContainer title="详情" safeView>
             <ScrollView
+                onScroll={onScroll}
                 style={styles.container}
                 contentContainerStyle={styles.contentContainerStyle}
                 keyboardShouldPersistTaps={'handled'}>
@@ -97,25 +129,6 @@ const index = (props: Props) => {
                     onScrollBeginDrag={() => {
                         Keyboard.dismiss();
                     }}
-                    // onEndReached={() => {
-                    //     if (hasMorePages) {
-                    //         fetchMore({
-                    //             variables: {
-                    //                 page: ++currentPage,
-                    //             },
-                    //             updateQuery: (prev, { fetchMoreResult }) => {
-                    //                 if (fetchMoreResult && fetchMoreResult.comments) {
-                    //                     return Object.assign({}, prev, {
-                    //                         comments: Object.assign({}, prev.comments, {
-                    //                             paginatorInfo: fetchMoreResult.comments.paginatorInfo,
-                    //                             data: [...fetchMoreResult.comments.data, ...prev.comments.data],
-                    //                         }),
-                    //                     });
-                    //                 }
-                    //             },
-                    //         });
-                    //     }
-                    // }}
                 />
             </ScrollView>
             <CommentInput
@@ -127,7 +140,6 @@ const index = (props: Props) => {
                 setReplyByComment={setReplyByComment}
                 ref={fancyInputRef}
             />
-            {/* <KeyboardSpacer /> */}
         </PageContainer>
     );
 };
