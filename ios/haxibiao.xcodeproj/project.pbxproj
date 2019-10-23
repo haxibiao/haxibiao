@@ -1054,7 +1054,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = haxibiao/haxibiao.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 3W7L7CX92N;
@@ -1068,7 +1068,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.haxibiao;
 				PRODUCT_NAME = haxibiao;
-				PROVISIONING_PROFILE_SPECIFIER = haxibiao;
+				PROVISIONING_PROFILE_SPECIFIER = haxibiao_test;
 				SWIFT_OBJC_BRIDGING_HEADER = "haxibiao-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
