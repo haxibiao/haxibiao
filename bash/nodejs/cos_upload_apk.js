@@ -7,15 +7,16 @@ var cos = new COS({
     SecretKey: '70e2B4g27wWr1wf9ON8ev1rWzC9rKYXH',
 });
 
-var env = 'staging';
+let env = 'staging';
 const args = process.argv.slice(2);
-env = args[0];
+const app = args[0];
+env = args[1];
 // 分片上传
 cos.sliceUploadFile(
     {
-        Bucket: 'haxibiao-1251052432',
+        Bucket: app + '-1251052432',
         Region: 'ap-guangzhou',
-        Key: 'haxibiao-' + env + '.apk',
+        Key: app + '-' + env + '.apk',
         FilePath: './android/app/build/outputs/apk/' + env + '/app-' + env + '.apk',
     },
     function(err, data) {

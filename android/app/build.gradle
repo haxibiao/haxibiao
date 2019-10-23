@@ -172,8 +172,8 @@ android {
         applicationId "com.haxibiao"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 11
-        versionName "2.1"
+        versionCode 12
+        versionName "2.2"
         multiDexEnabled true
         manifestPlaceholders = [
                 JPUSH_APPKEY: "e2a41156f64a44a99af56d47", //在此替换你的APPKey
