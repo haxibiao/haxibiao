@@ -6,3 +6,4 @@ export * from './imagePicker';
 export * from './videoPicker';
 export * from './videoUpload';
 export * from './checkUpdate';
+export * from './download';

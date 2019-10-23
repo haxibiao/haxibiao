@@ -76,7 +76,9 @@ export default observer(props => {
                                         {user.token ? userProfile.name : '登录/注册'}
                                     </Text>
                                     <Text style={styles.introduction} numberOfLines={1}>
-                                        {user.token ? user.introduction : '欢迎来到' + Config.AppName}
+                                        {user.token
+                                            ? user.introduction || '这个人很懒，啥都没留下'
+                                            : '欢迎来到' + Config.AppName}
                                     </Text>
                                 </View>
                                 <Avatar

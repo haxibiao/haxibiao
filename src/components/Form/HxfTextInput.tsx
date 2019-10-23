@@ -24,6 +24,7 @@ HxfTextInput.defaultProps = {
     underlineColorAndroid: 'transparent',
     placeholderTextColor: Theme.subTextColor,
     selectionColor: Theme.primaryColor,
+    textAlignVertical: 'center',
 };
 
 const styles = StyleSheet.create({

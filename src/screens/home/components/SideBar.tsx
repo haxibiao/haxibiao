@@ -36,6 +36,11 @@ export default observer(props => {
                     <Image source={require('@src/assets/images/question_reward.png')} style={styles.questionReward} />
                 )}
             </View>
+            <View style={styles.itemWrap}>
+                <TouchableOpacity onPress={VideoStore.showMoreOperation}>
+                    <Image source={require('@src/assets/images/more_item.png')} style={styles.imageStyle} />
+                </TouchableOpacity>
+            </View>
         </View>
     );
 });

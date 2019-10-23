@@ -1,17 +1,19 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo, useContext } from 'react';
 import { StyleSheet, View, FlatList, StatusBar, Image, ImageBackground, Text } from 'react-native';
 
-import { GQL, useQuery, useApolloClient } from '@src/apollo';
+import { GQL, useQuery, useApolloClient, ApolloProvider } from '@src/apollo';
 import StoreContext, { observer, appStore } from '@src/store';
 import { ttad } from '@src/native';
 
 import VideoItem from './components/VideoItem';
 import Footer from './components/Footer';
 import RewardProgress from './components/RewardProgress';
+import MoreOperation from './components/MoreOperation';
 import VideoStore from './VideoStore';
 import CommentOverlay from '../comment/CommentOverlay';
 import { useNavigation } from '@src/router';
 import { Keys, Storage } from '../../store/localStorage';
+import { Overlay } from 'teaset';
 
 export default observer(props => {
     const store = useContext(StoreContext);
@@ -21,15 +23,35 @@ export default observer(props => {
     const navigation = useNavigation();
     const firstAuthenticationQuery = useRef(false);
     const commentRef = useRef();
-    const activeItem = useRef(0);
     const config = useRef({
         waitForInteraction: true,
         viewAreaCoveragePercentThreshold: 95,
     });
+    const activeMedia = VideoStore.dataSource[VideoStore.viewableItemIndex >= 0 ? VideoStore.viewableItemIndex : 0];
 
     VideoStore.showComment = useCallback(() => {
         commentRef.current.slideUp();
     }, [commentRef]);
+
+    VideoStore.showMoreOperation = useCallback(() => {
+        let overlayRef;
+        const MoreOperationOverlay = (
+            <Overlay.PullView
+                style={{ flexDirection: 'column', justifyContent: 'flex-end' }}
+                containerStyle={{ backgroundColor: 'transparent' }}
+                animated={true}
+                ref={ref => (overlayRef = ref)}>
+                <ApolloProvider client={client}>
+                    <MoreOperation
+                        onPressIn={() => overlayRef.close()}
+                        target={activeMedia}
+                        downloadUrl={Helper.syncGetter('video.url', activeMedia)}
+                    />
+                </ApolloProvider>
+            </Overlay.PullView>
+        );
+        Overlay.show(MoreOperationOverlay);
+    }, [client, activeMedia]);
 
     const hideComment = useCallback(() => {
         commentRef.current.slideDown();
@@ -73,14 +95,13 @@ export default observer(props => {
 
     const getVisibleRows = useCallback(info => {
         if (info.viewableItems[0]) {
-            activeItem.current = info.viewableItems[0].index;
-            VideoStore.viewableItemIndex = activeItem.current;
+            VideoStore.viewableItemIndex = info.viewableItems[0].index;
         }
     }, []);
 
     const onMomentumScrollEnd = useCallback(
         event => {
-            if (VideoStore.dataSource.length - activeItem.current <= 3) {
+            if (VideoStore.dataSource.length - VideoStore.viewableItemIndex <= 3) {
                 fetchData({ authentication: firstAuthenticationQuery.current });
             }
         },
@@ -204,11 +225,7 @@ export default observer(props => {
                 </View>
             )}
 
-            <CommentOverlay
-                ref={commentRef}
-                media={VideoStore.dataSource[VideoStore.viewableItemIndex >= 0 ? VideoStore.viewableItemIndex : 0]}
-                navigation={navigation}
-            />
+            <CommentOverlay ref={commentRef} media={activeMedia} navigation={navigation} />
         </View>
     );
 });
@@ -232,7 +249,7 @@ const styles = StyleSheet.create({
     rewardProgress: {
         position: 'absolute',
         right: PxDp(Theme.itemSpace),
-        bottom: PxDp(330 + Theme.HOME_INDICATOR_HEIGHT),
+        bottom: PxDp(400 + Theme.HOME_INDICATOR_HEIGHT),
     },
     overlayTip: {
         position: 'absolute',

@@ -1,24 +1,31 @@
 import React, { Component, useState } from 'react';
-import { StyleSheet, Text, ScrollView, View,TextInput, TouchableOpacity } from 'react-native';
-import { PageContainer, TouchFeedback, Iconfont, ListItem, ItemSeparator, PopOverlay } from 'components';
+import { StyleSheet, Text, ScrollView, View, TextInput, TouchableOpacity } from 'react-native';
+import { PageContainer, TouchFeedback, Iconfont, HxfButton, HxfTextInput } from '@src/components';
 import { userStore } from '@src/store';
-import { GQL, useQuery, useApolloClient,withApollo } from '@src/apollo';
+import { GQL, useQuery, useMutation } from '@src/apollo';
 import { useNavigation } from '@src/router';
 
-export default function AccountSafety(){
-
-    const [phone,onChangeText] = useState('');
-    const [password,onPasswordChange] = useState('');
-
-    const [valid, setValide] = useState(false);
-    const [activeOpacity,setActiveOpacity] = useState(1);
-
-    const client = useApolloClient();
-    const me = {...userStore.me};
-    let {id} = me;
-    console.log("me from accountsafety  Phone NUmber : ",me.phone);
-
+export default function AccountSafety() {
     const navigation = useNavigation();
+    const [phone, onChangeNumber] = useState('');
+    const [password, onPasswordChange] = useState('');
+    const me = userStore.me;
+
+    const [updateUserInfoSecurity] = useMutation(GQL.updateUserInfoSecurity, {
+        variables: { id: me.id, phone, password },
+        onError: error => {
+            Toast.show({
+                content: error.message.replace('GraphQL error: ', '') || '手机号绑定失败',
+            });
+        },
+        onCompleted: mutationResult => {
+            Toast.show({
+                content: '手机号绑定成功',
+            });
+            navigation.goBack();
+            userStore.changePhone(phone);
+        },
+    });
 
     return (
         <PageContainer title="设置账号" white>
@@ -27,116 +34,79 @@ export default function AccountSafety(){
                     <Text style={styles.title}>设置账号与密码</Text>
                 </View>
                 <View style={styles.inputWrapper}>
-                    <TextInput 
-                        style={styles.input} 
-                        onChangeText = { text => onChangeText(text)}
-                        value={phone}
+                    <HxfTextInput
+                        style={styles.inputStyle}
+                        placeholderTextColor={Theme.slateGray1}
+                        onChangeText={onChangeNumber}
                         maxLength={11}
-                        placeholder={"请输入手机号"}
-                        placeholderTextColor="#c1c4cb"
+                        placeholder="请输入手机号"
                     />
                 </View>
                 <View style={styles.inputWrapper}>
-                    <TextInput 
-                        style={styles.input} 
-                        onChangeText = { text => {
-                            onPasswordChange(text)
-                            if(phone === '' || password === ''){
-
-                            }else{
-                                setValide(true);
-                                setActiveOpacity(0.5);
-                            }
-                        }}
-                        value={password}
+                    <HxfTextInput
+                        style={styles.inputStyle}
+                        placeholderTextColor={Theme.slateGray1}
+                        onChangeText={onPasswordChange}
                         maxLength={16}
-                        placeholder={"请设置密码"}
-                        placeholderTextColor="#c1c4cb"
+                        placeholder="请设置密码"
                     />
                 </View>
-                <TouchableOpacity 
-                onPress={() => {
-                    // TODO: 调用更新数据接口
-                    client.mutate({
-                        mutation: GQL.updateUserInfoSecurity,
-                        variables: {id: id,phone:phone,password: password}
-                    }).then( result => {
-                        console.log("更新用户数据后返回的用户信息: ",result);
-                        Toast.show({content: '绑定成功'});
-                        navigation.goBack();
-                        userStore.changePhone(phone);
-                    })
-                    .catch(error => {
-                        console.log("绑定静默注册用户账号密码接口错误  error : ",error);
-                        PopOverlay({
-                            content: '网络错误，绑定失败，请稍后重试',
-                            onConfirm: async () => {
-
-                            }
-                        })
-                    });
-                }} 
-                activeOpacity={activeOpacity}
-                style={{width:'100%',justifyContent:'center',alignItems:'center'}}>
-                    <View style={{width:'90%',height:40,marginTop:30,backgroundColor: Theme.primaryColor,flexDirection:'column',justifyContent:'center',alignItems:'center',borderRadius:PxDp(5)}}>
-                        <Text style={{color: '#fff',fontSize:15}}>完成</Text>
-                    </View>
-                </TouchableOpacity>
+                <View style={styles.btnWrap}>
+                    <HxfButton
+                        title={'提交'}
+                        gradient={true}
+                        style={{ height: PxDp(40) }}
+                        disabled={!(password && phone)}
+                        onPress={updateUserInfoSecurity}
+                    />
+                </View>
             </View>
         </PageContainer>
-    )
+    );
 }
 
 const styles = StyleSheet.create({
     container: {
-        width:'100%',
-        height:'100%',
-        flexDirection:'column',
-        justifyContent:'flex-start',
-        alignItems:"center",
-        backgroundColor:"#fff",
+        width: '100%',
+        height: '100%',
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        backgroundColor: '#fff',
     },
     itemWrapper: {
-        flexDirection:'column',
-        justifyContent:'flex-start',
-        alignItems:'center',
-        alignSelf:'flex-start',
-        height:43,
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+        alignSelf: 'flex-start',
+        height: 43,
         marginTop: 50,
         marginStart: 26,
-        marginBottom: 28
+        marginBottom: 28,
     },
-    
-    input: {
-        
-        width:'90%',
-        height: 30,
-        color: '#444',
-        fontSize: 17,
-        paddingStart: 14,
-        paddingVertical:0,
+    inputStyle: {
+        fontSize: PxDp(16),
+        height: PxDp(40),
         borderBottomWidth: Theme.minimumPixel,
-        borderBottomColor: Theme.borderColor
+        borderBottomColor: Theme.borderColor,
     },
     card: {
         width: '100%',
-        backgroundColor:'#fff',
-        flexDirection:'column',
-        justifyContent:'flex-start',
-        alignItems:'flex-start'
+        backgroundColor: '#fff',
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        alignItems: 'flex-start',
     },
     title: {
-        color:Theme.black,
+        color: Theme.defaultTextColor,
         fontSize: 26,
-        fontWeight: '400'
+        fontWeight: '400',
     },
     inputWrapper: {
-        height: 46,
-        width:'100%',
-        marginTop: 12,
-        backgroundColor: '#fff',
-        flexDirection: 'row',
-        justifyContent:'center',
-        alignItems: 'center',
-    }
+        marginHorizontal: PxDp(Theme.itemSpace * 2),
+        marginBottom: PxDp(Theme.itemSpace),
+    },
+    btnWrap: {
+        marginTop: PxDp(Theme.itemSpace),
+        marginHorizontal: PxDp(Theme.itemSpace * 2),
+    },
 });

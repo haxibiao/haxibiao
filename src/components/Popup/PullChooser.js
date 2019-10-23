@@ -67,6 +67,7 @@ class PullChooser {
                             renderItem={({ item, index }) => {
                                 return (
                                     <TouchableOpacity
+                                        activeOpacity={0.8}
                                         key={index}
                                         style={styles.chooserItem}
                                         onPress={() => {
@@ -81,6 +82,7 @@ class PullChooser {
                             keyExtractor={(item, index) => 'key_' + (item.id ? item.id : index)}
                         />
                         <TouchableOpacity
+                            activeOpacity={0.8}
                             style={styles.closeItem}
                             onPress={() => {
                                 this.popViewRef.close();
