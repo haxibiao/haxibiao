@@ -20,6 +20,11 @@ query RecommendVideosQuery($page: Int, $count: Int!) {
                 name
                 avatar
             }
+            categories {
+                id
+                name
+                logo
+            }
             video {
                 id
                 url

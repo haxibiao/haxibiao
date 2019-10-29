@@ -131,7 +131,6 @@ export default observer(props => {
                             );
                         }
                     }}
-                    ItemSeparatorComponent={() => <ItemSeparator />}
                     refreshing={loading}
                     onRefresh={refetch}
                     onEndReachedThreshold={0.01}

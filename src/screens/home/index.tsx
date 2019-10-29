@@ -1,14 +1,11 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo, useContext } from 'react';
 import { StyleSheet, View, FlatList, StatusBar, Image, ImageBackground, Text } from 'react-native';
-
-import { GQL, useQuery, useApolloClient, ApolloProvider } from '@src/apollo';
+import { GQL, useQuery, useApolloClient } from '@src/apollo';
 import StoreContext, { observer, appStore } from '@src/store';
-import { ttad } from '@src/native';
 
 import VideoItem from './components/VideoItem';
 import Footer from './components/Footer';
 import RewardProgress from './components/RewardProgress';
-import MoreOperation from './components/MoreOperation';
 import VideoStore from './VideoStore';
 import CommentOverlay from '../comment/CommentOverlay';
 import { useNavigation } from '@src/router';
@@ -21,77 +18,51 @@ export default observer(props => {
     const me = userStore.me;
     const client = useApolloClient();
     const navigation = useNavigation();
-    const firstAuthenticationQuery = useRef(false);
     const commentRef = useRef();
     const config = useRef({
         waitForInteraction: true,
         viewAreaCoveragePercentThreshold: 95,
     });
-    const activeMedia = VideoStore.dataSource[VideoStore.viewableItemIndex >= 0 ? VideoStore.viewableItemIndex : 0];
-
-    VideoStore.showComment = useCallback(() => {
-        commentRef.current.slideUp();
-    }, [commentRef]);
-
-    VideoStore.showMoreOperation = useCallback(() => {
-        let overlayRef;
-        const MoreOperationOverlay = (
-            <Overlay.PullView
-                style={{ flexDirection: 'column', justifyContent: 'flex-end' }}
-                containerStyle={{ backgroundColor: 'transparent' }}
-                animated={true}
-                ref={ref => (overlayRef = ref)}>
-                <ApolloProvider client={client}>
-                    <MoreOperation
-                        onPressIn={() => overlayRef.close()}
-                        target={activeMedia}
-                        downloadUrl={Helper.syncGetter('video.url', activeMedia)}
-                    />
-                </ApolloProvider>
-            </Overlay.PullView>
-        );
-        Overlay.show(MoreOperationOverlay);
-    }, [client, activeMedia]);
-
-    const hideComment = useCallback(() => {
-        commentRef.current.slideDown();
-    }, [commentRef]);
+    const activeMedia = useMemo(
+        () => VideoStore.dataSource[VideoStore.viewableItemIndex >= 0 ? VideoStore.viewableItemIndex : 0],
+        [VideoStore.dataSource, VideoStore.viewableItemIndex],
+    );
 
     const onLayout = useCallback(event => {
         const { height } = event.nativeEvent.layout;
         appStore.viewportHeight = height;
     }, []);
 
+    VideoStore.showComment = useCallback(() => {
+        commentRef.current.slideUp();
+    }, [commentRef]);
+
+    const hideComment = useCallback(() => {
+        commentRef.current.slideDown();
+    }, [commentRef]);
+
     const VideosQuery = useCallback(() => {
         return client.query({
             query: GQL.RecommendVideosQuery,
             variables: { page: VideoStore.currentPage, count: 5 },
         });
-    }, [client]);
+    }, [client, TOKEN]);
 
-    const fetchData = useCallback(
-        async ({ authentication }) => {
-            VideoStore.isLoadMore = true;
-            const [error, result] = await Helper.exceptionCapture(VideosQuery);
-            const videoSource = Helper.syncGetter('data.recommendVideos.data', result);
-            if (error) {
-                VideoStore.isError = true;
+    const fetchData = useCallback(async () => {
+        VideoStore.isLoadMore = true;
+        const [error, result] = await Helper.exceptionCapture(VideosQuery);
+        const videoSource = Helper.syncGetter('data.recommendVideos.data', result);
+        if (error) {
+            VideoStore.isError = true;
+        } else {
+            if (Array.isArray(videoSource) && videoSource.length > 0) {
+                VideoStore.addSource(videoSource);
             } else {
-                if (Array.isArray(videoSource) && videoSource.length > 0) {
-                    if (authentication) {
-                        VideoStore.dataSource = videoSource;
-                        firstAuthenticationQuery.current = false;
-                    } else {
-                        VideoStore.addSource(videoSource);
-                    }
-                } else {
-                    VideoStore.isFinish = true;
-                }
+                VideoStore.isFinish = true;
             }
-            VideoStore.isLoadMore = false;
-        },
-        [VideosQuery],
-    );
+        }
+        VideoStore.isLoadMore = false;
+    }, [VideosQuery]);
 
     const getVisibleRows = useCallback(info => {
         if (info.viewableItems[0]) {
@@ -102,20 +73,18 @@ export default observer(props => {
     const onMomentumScrollEnd = useCallback(
         event => {
             if (VideoStore.dataSource.length - VideoStore.viewableItemIndex <= 3) {
-                fetchData({ authentication: firstAuthenticationQuery.current });
+                fetchData();
             }
         },
         [fetchData],
     );
 
     useEffect(() => {
-        fetchData({ authentication: firstAuthenticationQuery.current });
         const navWillFocusListener = props.navigation.addListener('willFocus', () => {
             StatusBar.setBarStyle('light-content');
         });
         const navWillBlurListener = navigation.addListener('willBlur', () => {
             StatusBar.setBarStyle('dark-content');
-            // hideComment();
         });
         return () => {
             navWillFocusListener.remove();
@@ -124,11 +93,10 @@ export default observer(props => {
     }, []);
 
     useEffect(() => {
-        if (TOKEN) {
-            firstAuthenticationQuery.current = true;
-            fetchData({ authentication: firstAuthenticationQuery.current });
+        if (userStore.launched) {
+            fetchData();
         }
-    }, [TOKEN]);
+    }, [userStore.launched]);
 
     // 静默注册登录
 

@@ -1,10 +1,11 @@
-import React, { Component, useContext } from 'react';
+import React, { Component, useContext, useRef, useEffect } from 'react';
 import { StyleSheet, View, TouchableOpacity, Animated, Image, Text } from 'react-native';
 import { useBounceAnimation } from '@src/common';
 import { GQL, useMutation } from '@src/apollo';
 import { useNavigation } from '@src/router';
 import { observer } from '@src/store';
 import Iconfont from '../Iconfont';
+import SafeText from '../Basic/SafeText';
 
 const imageSource = {
     liked: require('@src/assets/images/ic_liked.png'),
@@ -21,11 +22,13 @@ interface ThumbUpTarget {
 interface Props {
     [key: string]: any;
     isAd?: boolean;
+    shadowText?: boolean;
 }
 
 const Like = observer((props: Props) => {
-    const { media, containerStyle, imageStyle, textStyle, iconSize, type } = props;
+    const { media, containerStyle, imageStyle, textStyle, shadowText, iconSize, type } = props;
     const navigation = useNavigation();
+    const firstMount = useRef(true);
     const [animation, startAnimation] = useBounceAnimation({ value: 1, toValue: 1.2 });
     const [likeArticle] = useMutation(GQL.toggleLikeMutation, {
         variables: {
@@ -36,7 +39,6 @@ const Like = observer((props: Props) => {
 
     const likeHandler = __.debounce(async function() {
         const [error, result] = await Helper.exceptionCapture(likeArticle);
-        media.xxx = 123;
         if (error) {
             media.liked ? media.count_likes-- : media.count_likes++;
             media.liked = !media.liked;
@@ -50,12 +52,18 @@ const Like = observer((props: Props) => {
         if (TOKEN) {
             media.liked ? media.count_likes-- : media.count_likes++;
             media.liked = !media.liked;
-            startAnimation();
-            likeHandler();
         } else {
             navigation.navigate('Login');
         }
     }
+
+    useEffect(() => {
+        if (!firstMount.current) {
+            startAnimation();
+            likeHandler();
+        }
+        firstMount.current = false;
+    }, [media.liked]);
 
     const scale = animation.interpolate({
         inputRange: [1, 1.1, 1.2],
@@ -65,8 +73,10 @@ const Like = observer((props: Props) => {
         return (
             <Animated.View style={{ transform: [{ scale }] }}>
                 <TouchableOpacity onPress={toggleLike} style={containerStyle}>
-                    <Iconfont size={iconSize} name="like" color={media.liked ? Theme.watermelon : '#CCD5E0'} />
-                    <Text style={textStyle}>{media.count_likes}</Text>
+                    <Iconfont size={iconSize} name="xihuanfill" color={media.liked ? Theme.watermelon : '#CCD5E0'} />
+                    <SafeText style={textStyle} shadowText={shadowText}>
+                        {media.count_likes}
+                    </SafeText>
                 </TouchableOpacity>
             </Animated.View>
         );
@@ -75,7 +85,9 @@ const Like = observer((props: Props) => {
         <Animated.View style={{ transform: [{ scale }] }}>
             <TouchableOpacity onPress={toggleLike} style={containerStyle}>
                 <Image source={media.liked ? imageSource.liked : imageSource.unlike} style={imageStyle} />
-                <Text style={textStyle}>{media.count_likes}</Text>
+                <SafeText style={textStyle} shadowText={shadowText}>
+                    {media.count_likes}
+                </SafeText>
             </TouchableOpacity>
         </Animated.View>
     );

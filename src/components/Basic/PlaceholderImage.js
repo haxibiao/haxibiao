@@ -44,7 +44,7 @@ class PlaceholderImage extends Component<Props> {
                 />
                 {videoMark && (
                     <View style={styles.videoMark}>
-                        <Iconfont name="play" size={videoMarkSize} color={'#fff'} style={{ opacity: 0.8 }} />
+                        <Iconfont name="bofang1" size={videoMarkSize} color={'#fff'} style={{ opacity: 0.8 }} />
                     </View>
                 )}
             </View>

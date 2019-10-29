@@ -285,7 +285,7 @@ const styles = StyleSheet.create({
     },
     introduction: {
         color: '#fff',
-        fontSize: Font(14),
+        fontSize: PxDp(14),
         marginTop: PxDp(10),
     },
     itemType: {
@@ -296,12 +296,12 @@ const styles = StyleSheet.create({
     },
     itemTypeText: {
         color: Theme.secondaryTextColor,
-        fontSize: Font(16),
+        fontSize: PxDp(16),
         marginLeft: PxDp(Theme.itemSpace),
     },
     metaCount: {
         color: '#fff',
-        fontSize: Font(15),
+        fontSize: PxDp(15),
         fontWeight: 'bold',
     },
 
@@ -314,7 +314,7 @@ const styles = StyleSheet.create({
     },
     metaLabel: {
         color: '#fff',
-        fontSize: Font(13),
+        fontSize: PxDp(13),
         marginLeft: PxDp(10),
     },
     metaWrap: {
@@ -362,7 +362,7 @@ const styles = StyleSheet.create({
     },
     userName: {
         color: '#fff',
-        fontSize: Font(20),
+        fontSize: PxDp(20),
         fontWeight: 'bold',
     },
     wallet: {
@@ -383,7 +383,7 @@ const styles = StyleSheet.create({
     },
     walletItemCount: {
         color: Theme.secondaryTextColor,
-        fontSize: Font(15),
+        fontSize: PxDp(15),
         fontWeight: 'bold',
     },
     walletItemIcon: {
@@ -394,6 +394,6 @@ const styles = StyleSheet.create({
     },
     walletItemLabel: {
         color: Theme.secondaryTextColor,
-        fontSize: Font(13),
+        fontSize: PxDp(13),
     },
 });

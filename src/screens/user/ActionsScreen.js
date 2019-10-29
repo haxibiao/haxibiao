@@ -243,7 +243,7 @@ class ActionsScreen extends Component {
 			case "comments":
 				return (
 					<View style={[styles.activityMark, { backgroundColor: Colors.weixinColor }]}>
-						<Iconfont name="comment" size={11} color="#fff" />
+						<Iconfont name="liuyanfill" size={11} color="#fff" />
 					</View>
 				);
 				break;
@@ -257,7 +257,7 @@ class ActionsScreen extends Component {
 			case "likes":
 				return (
 					<View style={[styles.activityMark, { backgroundColor: Colors.themeColor }]}>
-						<Iconfont name="like" size={11} color="#fff" />
+						<Iconfont name="xihuanfill" size={11} color="#fff" />
 					</View>
 				);
 				break;
@@ -271,7 +271,7 @@ class ActionsScreen extends Component {
 			default:
 				return (
 					<View style={[styles.activityMark, { backgroundColor: Colors.darkBorderColor }]}>
-						<Iconfont name="more" size={11} color="#fff" />
+						<Iconfont name="qita1" size={11} color="#fff" />
 					</View>
 				);
 		}

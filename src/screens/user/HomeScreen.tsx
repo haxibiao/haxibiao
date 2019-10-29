@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { StyleSheet, View, FlatList, Animated } from 'react-native';
 
 import {
@@ -13,18 +13,54 @@ import {
     HxfButton,
 } from '@src/components';
 import { Query, useQuery, GQL } from '@src/apollo';
-import { userStore, observer } from '@src/store';
+import { observer, userStore } from '@src/store';
 import UserProfile from './components/UserProfile';
+import BottomBar from './components/BottomBar';
 
-const HomeScreen = (props: any) => {
+const animatedReferenceValue = Device.WIDTH * 0.75 - PxDp(Theme.NAVBAR_HEIGHT + Theme.statusBarHeight);
+
+export default observer((props: any) => {
     const user = props.navigation.getParam('user', {});
     const { data: result } = useQuery(GQL.userQuery, {
         variables: { id: user.id },
     });
     const userData = Helper.syncGetter('user', result);
-
     const me = Helper.syncGetter('me', userStore);
     const isSelf = me.id === user.id;
+    const scrollAnimateValue = useRef(new Animated.Value(0));
+
+    const scrollListener = useCallback(e => {
+        const { contentOffset, contentSize } = e.nativeEvent;
+        const { y } = contentOffset;
+    }, []);
+
+    const onScroll = useMemo(() => {
+        return Animated.event(
+            [{ nativeEvent: { contentOffset: { y: scrollAnimateValue.current } } }],
+            {
+                listener: scrollListener,
+            },
+            { useNativeDriver: true },
+        );
+    }, [scrollListener]);
+
+    const height = scrollAnimateValue.current.interpolate({
+        inputRange: [0, animatedReferenceValue],
+        outputRange: [Device.WIDTH * 0.75, PxDp(Theme.NAVBAR_HEIGHT + Theme.statusBarHeight)],
+        extrapolate: 'clamp',
+    });
+
+    const opacity = scrollAnimateValue.current.interpolate({
+        inputRange: [0, animatedReferenceValue],
+        outputRange: [1, 0],
+        extrapolate: 'clamp',
+    });
+
+    const titleOpacity = scrollAnimateValue.current.interpolate({
+        inputRange: [0, animatedReferenceValue],
+        outputRange: [0, 1],
+        extrapolate: 'clamp',
+    });
 
     return (
         <Query query={GQL.userArticlesQuery} variables={{ user_id: user.id }} fetchPolicy="network-only">
@@ -35,90 +71,77 @@ const HomeScreen = (props: any) => {
                 if (loading || !articles || !userData) return <SpinnerLoading />;
                 return (
                     <PageContainer contentViewStyle={{ marginTop: 0 }} error={error}>
-                        <View style={{ flex: 1 }}>
-                            <FlatList
-                                contentContainerStyle={styles.contentContainer}
-                                bounces={false}
-                                ListHeaderComponent={() => <UserProfile user={userData} />}
-                                data={articles}
-                                refreshing={loading}
-                                refreshControl={<CustomRefreshControl onRefresh={refetch} />}
-                                keyExtractor={(item, index) => index.toString()}
-                                showsVerticalScrollIndicator={false}
-                                scrollEventThrottle={16}
-                                renderItem={(item: any) => <PostItem post={item.item} />}
-                                ItemSeparatorComponent={() => <ItemSeparator />}
-                                ListEmptyComponent={
-                                    <StatusView.EmptyView
-                                        title="TA还没有作品"
-                                        imageSource={require('@src/assets/images/default_empty.png')}
-                                    />
-                                }
-                                onEndReached={() => {
-                                    if (hasMorePages) {
-                                        fetchMore({
-                                            variables: {
-                                                page: ++currentPage,
-                                            },
-                                            updateQuery: (prev: any, { fetchMoreResult: more }) => {
-                                                if (more && more.articles) {
-                                                    return {
-                                                        articles: {
-                                                            ...more.articles,
-                                                            data: [...prev.articles.data, ...more.articles.data],
-                                                        },
-                                                    };
-                                                }
-                                            },
-                                        });
-                                    }
-                                }}
-                                ListFooterComponent={() => (hasMorePages ? <Placeholder quantity={1} /> : null)}
-                            />
-                            {!isSelf && (
-                                <HxfButton
-                                    size="small"
-                                    title="私信"
-                                    plain={true}
-                                    titleStyle={{
-                                        color: '#FFF',
-                                    }}
-                                    style={{
-                                        position: 'absolute',
-                                        bottom: 10,
-                                        right: 50,
-                                        left: 50,
-                                        backgroundColor: '#53A1F7',
-                                        flexDirection: 'row',
-                                        justifyContent: 'center',
-                                        alignItems: 'center',
-                                        paddingVertical: 15,
-                                        borderRadius: 50,
-                                        overflow: 'hidden',
-                                        borderWidth: 0,
-                                    }}
-                                    onPress={() => {
-                                        props.navigation.navigate('Chat', {
-                                            chat: {
-                                                withUser: { ...user },
-                                            },
-                                        });
-                                    }}
+                        <FlatList
+                            contentContainerStyle={styles.contentContainer}
+                            bounces={false}
+                            data={articles}
+                            refreshing={loading}
+                            refreshControl={<CustomRefreshControl onRefresh={refetch} />}
+                            keyExtractor={(item, index) => index.toString()}
+                            showsVerticalScrollIndicator={false}
+                            scrollEventThrottle={16}
+                            onScroll={onScroll}
+                            renderItem={(item: any) => <PostItem post={item.item} />}
+                            ListEmptyComponent={
+                                <StatusView.EmptyView
+                                    title="TA还没有作品"
+                                    imageSource={require('@src/assets/images/default_empty.png')}
                                 />
-                            )}
-                        </View>
+                            }
+                            onEndReached={() => {
+                                if (hasMorePages) {
+                                    fetchMore({
+                                        variables: {
+                                            page: ++currentPage,
+                                        },
+                                        updateQuery: (prev: any, { fetchMoreResult: more }) => {
+                                            if (more && more.articles) {
+                                                return {
+                                                    articles: {
+                                                        ...more.articles,
+                                                        data: [...prev.articles.data, ...more.articles.data],
+                                                    },
+                                                };
+                                            }
+                                        },
+                                    });
+                                }
+                            }}
+                            ListFooterComponent={() => (hasMorePages ? <Placeholder quantity={1} /> : null)}
+                        />
+                        <Animated.View style={[styles.profileView, { height }]}>
+                            <UserProfile
+                                user={userData}
+                                titleStyle={{
+                                    opacity: titleOpacity,
+                                }}
+                                contentStyle={{
+                                    opacity,
+                                }}
+                            />
+                        </Animated.View>
+
+                        {!isSelf && <BottomBar user={userData} navigation={props.navigation} />}
                     </PageContainer>
                 );
             }}
         </Query>
     );
-};
+});
 
 const styles = StyleSheet.create({
     contentContainer: {
         backgroundColor: '#fff',
         flexGrow: 1,
+        paddingTop: Device.WIDTH * 0.75,
+    },
+    profileView: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        right: 0,
+        width: Device.WIDTH,
+        height: Device.WIDTH * 0.75,
+        overflow: 'hidden',
     },
 });
-
-export default observer(HomeScreen);

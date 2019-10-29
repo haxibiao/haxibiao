@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, TouchableOpacity, StyleSheet } from 'react-native';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 import { GQL, useQuery, useApolloClient } from '@src/apollo';
-import { PageContainer, Iconfont, ItemSeparator, PopOverlay, ScrollTabBar, TouchFeedback } from 'components';
+import { PageContainer, Iconfont, ItemSeparator, PopOverlay, ScrollTabBar, TouchFeedback } from '@src/components';
 
 import CreateFeedback from './CreateFeedback';
 import FeedbackHistory from './FeedbackHistory';
@@ -27,7 +27,7 @@ function Feedback(props: Props) {
             </ScrollableTabView>
             <View style={styles.back}>
                 <TouchFeedback activeOpacity={1} onPress={() => navigation.goBack()}>
-                    <Iconfont name="left" color={Theme.defaultTextColor} size={PxDp(21)} />
+                    <Iconfont name="zuojiantou" color={Theme.defaultTextColor} size={PxDp(21)} />
                 </TouchFeedback>
             </View>
         </PageContainer>

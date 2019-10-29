@@ -10,6 +10,7 @@ interface ItemKeys {
     resetVersion: string;
     firstInstall: string;
     viewedVersion: any;
+    createPostGuidance: string;
 }
 
 const Keys: ItemKeys = {
@@ -18,6 +19,7 @@ const Keys: ItemKeys = {
     resetVersion: 'resetVersion',
     firstInstall: 'firstInstall',
     viewedVersion: 'viewedVersion',
+    createPostGuidance: 'createPostGuidance',
 };
 
 async function removeItem(key: keyof ItemKeys) {

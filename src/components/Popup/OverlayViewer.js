@@ -26,7 +26,7 @@ class OverlayViewer {
                                 justifyContent: 'center',
                                 alignItems: 'center',
                             }}>
-                            <Iconfont name="chacha" color={Theme.navBarMenuColor} size={PxDp(24)} />
+                            <Iconfont name="guanbi1" color={Theme.navBarMenuColor} size={PxDp(24)} />
                         </TouchableOpacity>
                     </View>
                     <View style={{ flex: 1 }}>{children}</View>

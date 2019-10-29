@@ -83,7 +83,6 @@ export default observer(props => {
                     renderItem={({ item, index }) => {
                         return (
                             <CommentItem
-                                separator={true}
                                 comment={item}
                                 replyHandler={replyHandler}
                                 showReplyComment={false}
@@ -99,15 +98,13 @@ export default observer(props => {
                         <StatusView.EmptyView imageSource={require('@src/assets/images/default_comment.png')} />
                     )}
                     ListHeaderComponent={() => (
-                        <>
-                            <CommentItem
-                                disableLongPress={true}
-                                comment={comment}
-                                replyHandler={replyHandler}
-                                showReplyComment={false}
-                            />
-                            <ItemSeparator height={PxDp(10)} />
-                        </>
+                        <CommentItem
+                            disableLongPress={true}
+                            comment={comment}
+                            replyHandler={replyHandler}
+                            showReplyComment={false}
+                            separatorHeight={PxDp(10)}
+                        />
                     )}
                     ListFooterComponent={() => <ListFooter hidden={hiddenListFooter} finished={!hasMorePages} />}
                 />

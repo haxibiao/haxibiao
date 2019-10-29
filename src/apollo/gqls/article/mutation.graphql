@@ -46,7 +46,7 @@ mutation createPostMutation(
             name
             id
         }
-        category {
+        categories {
             id
             name
             logo

@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import ApolloClient from 'apollo-boost';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import Config from '@src/common/config';
@@ -38,8 +38,8 @@ if (!DeviceInfo.isEmulator()) {
     deviceHeaders.deviceId = DeviceInfo.getUniqueID(); // uniqueId  兼容
 }
 
-export function useClientBuilder(token: string) {
-    const createClient = useCallback(() => {
+export function useClientBuilder(userToken: string) {
+    const createClient = useCallback(token => {
         return new ApolloClient({
             uri: Config.ServerRoot + '/gql',
             request: async operation => {
@@ -63,7 +63,15 @@ export function useClientBuilder(token: string) {
             },
             cache: new InMemoryCache(),
         });
-    }, [token]);
+    }, []);
 
-    return useMemo(() => createClient(), [createClient]);
+    const [client, setClient] = useState(() => createClient(userToken));
+
+    useEffect(() => {
+        const client = createClient(userToken);
+        client.token = userToken;
+        setClient(client);
+    }, [userToken]);
+
+    return client;
 }

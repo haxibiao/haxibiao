@@ -16,6 +16,8 @@ export interface UserScheme {
 }
 
 class UserStore {
+    // launched ==> 从Storage获取用户数据完成，避免重复创建client
+    @observable launched: boolean = false;
     @observable me: UserScheme = {};
     @observable login: boolean = false;
     @observable firstInstall: boolean = true;
@@ -30,6 +32,7 @@ class UserStore {
         if (profile) {
             this.signIn(profile);
         }
+        this.launched = true;
     }
 
     @action.bound

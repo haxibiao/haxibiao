@@ -26,7 +26,7 @@ class VideoStatus extends Component {
                     <View style={styles.videoStatus}>
                         <TouchableWithoutFeedback onPress={replay}>
                             <View style={styles.error}>
-                                <Iconfont name="replay" size={PxDp(25)} color="#fff" />
+                                <Iconfont name="shuaxin1" size={PxDp(25)} color="#fff" />
                                 <Text style={styles.statusText}>好像迷路啦，请检查网络或者重试</Text>
                             </View>
                         </TouchableWithoutFeedback>
@@ -37,7 +37,7 @@ class VideoStatus extends Component {
                 return (
                     <View style={styles.videoStatus}>
                         <TouchableOpacity style={styles.playButton} onPress={continueToPlay}>
-                            <Iconfont name="paused" size={PxDp(25)} color="#fff" />
+                            <Iconfont name="zanting" size={PxDp(25)} color="#fff" />
                             <Text style={styles.continueText}>继续播放</Text>
                         </TouchableOpacity>
                         <Text style={styles.statusText}>您正在使用非WiFi网络，播放将产生流量费用</Text>
@@ -56,7 +56,7 @@ class VideoStatus extends Component {
                     <View style={styles.videoStatus}>
                         <TouchableWithoutFeedback onPress={replay}>
                             <View style={styles.replay}>
-                                <Iconfont name="replay" size={PxDp(25)} color="#fff" />
+                                <Iconfont name="shuaxin1" size={PxDp(25)} color="#fff" />
                                 <Text style={styles.refreshText}>重播</Text>
                             </View>
                         </TouchableWithoutFeedback>

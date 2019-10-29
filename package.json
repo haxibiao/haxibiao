@@ -66,6 +66,7 @@
         "react-native-video": "^5.0.0",
         "react-navigation": "^3.11.0",
         "react-navigation-hooks": "^1.0.1",
+        "rn-fetch-blob": "^0.11.2",
         "socket.io-client": "^2.3.0",
         "teaset": "^0.7.0"
     },

@@ -1,10 +1,17 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useCallback } from 'react';
 import { View, Image, TouchableWithoutFeedback } from 'react-native';
-import { observer, userStore, appStore } from '@src/store';
+import { observer, userStore, appStore, Keys, Storage } from '@src/store';
 
 export const BottomTabBar = observer(props => {
     const { navigation, onTabPress, renderIcon } = props;
     const { routes, index: currentIndex } = navigation.state;
+    const publishButtonPress = useCallback(() => {
+        navigation.navigate(userStore.login ? 'AskQuestion' : 'Login');
+        if (!appStore.createPostGuidance) {
+            appStore.createPostGuidance = true;
+            Storage.setItem(Keys.createPostGuidance, true);
+        }
+    }, [appStore.createPostGuidance, userStore.login]);
 
     const TabItems = routes.map((route, index) => {
         const scene = {
@@ -21,9 +28,7 @@ export const BottomTabBar = observer(props => {
 
     const PublicItem = useMemo(
         () => (
-            <TouchableWithoutFeedback
-                key="create"
-                onPress={() => navigation.navigate(userStore.login ? 'AskQuestion' : 'Login')}>
+            <TouchableWithoutFeedback key="create" onPress={publishButtonPress}>
                 <View style={styles.tabItem}>
                     <Image
                         source={require('@src/assets/images/publish.png')}
@@ -32,10 +37,21 @@ export const BottomTabBar = observer(props => {
                             height: PxDp(40),
                         }}
                     />
+                    {appStore.enableWallet && !appStore.createPostGuidance && (
+                        <Image
+                            source={require('@src/assets/images/create_post_guide.png')}
+                            style={{
+                                position: 'absolute',
+                                top: PxDp(-50),
+                                width: PxDp(100),
+                                height: (PxDp(100) * 154) / 311,
+                            }}
+                        />
+                    )}
                 </View>
             </TouchableWithoutFeedback>
         ),
-        [],
+        [appStore.enableWallet, appStore.createPostGuidance],
     );
 
     TabItems.splice(2, 0, PublicItem);

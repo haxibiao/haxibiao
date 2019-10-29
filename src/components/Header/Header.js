@@ -37,7 +37,7 @@ class Header extends React.Component {
                                 navigation.goBack();
                             }
                         }}>
-                        <Iconfont name="back-ios" size={23} color={lightBar ? '#fff' : Theme.primaryFontColor} />
+                        <Iconfont name="fanhui" size={23} color={lightBar ? '#fff' : Theme.primaryFontColor} />
                     </TouchableOpacity>
                 )}
                 {centerComponent ? (

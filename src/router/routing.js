@@ -24,24 +24,21 @@ import LikedArticlesScreen from '../screens/user/LikedArticlesScreen';
 // my
 import BrowsingHistoryScreen from '../screens/my/HistoryScreen';
 import CommonQuestionScreen from '../screens/my/CommonQuestionScreen';
-// import OpenArticlesScreen from '../screens/my/OpenArticlesScreen';
 import FavoritedArticlesScreen from '../screens/my/FavoritedArticlesScreen';
 import EditProfileScreen from '../screens/profile/HomeScreen';
-// import EditIntroduceScreen from '../screens/profile/IntroduceScreen';
-// import ResetPasswordScreen from '../screens/profile/ResetPasswordScreen';
-// import PasswordVerificationScreen from '../screens/profile/PasswordVerificationScreen';
 
-// article
+// content
 import ArticleDetailScreen from '../screens/article/DetailScreen';
 import CommentScreen from '../screens/comment/CommentScreen';
-
-// POST
 import PostDetailScreen from '../screens/post';
 
+// category
+import CategoryScreen from '../screens/category';
+
 //notification
+// import NewChatScreen from '../screens/chat/NewChatScreen';
 import ChatScreen from '../screens/chat';
 import ChatSettingScreen from '../screens/chat/ChatSetting';
-// import NewChatScreen from '../screens/chat/NewChatScreen';
 import CommentsScreen from '../screens/notification/CommentsScreen';
 import BeLikedScreen from '../screens/notification/BeLikedScreen';
 import FollowNotificationsScreen from '../screens/notification/FollowScreen';
@@ -125,16 +122,6 @@ export default {
         screen: EditProfileScreen,
         auth: true,
     },
-    // 简介编辑: {
-    //     screen: EditIntroduceScreen,
-    //     auth: true,
-    // },
-    // 重置密码: {
-    //     screen: ResetPasswordScreen,
-    // },
-    // 密码验证: {
-    //     screen: PasswordVerificationScreen,
-    // },
     AboutUs: {
         screen: AboutUsScreen,
     },
@@ -149,6 +136,9 @@ export default {
     },
     文章详情: {
         screen: ArticleDetailScreen,
+    },
+    Category: {
+        screen: CategoryScreen,
     },
     Comment: {
         screen: CommentScreen,
@@ -182,21 +172,10 @@ export default {
         screen: VerificationScreen,
         auth: true,
     },
-    // 私密作品: {
-    //     screen: DraftsScreen,
-    //     auth: true,
-    // },
-    // 我的发布: {
-    //     screen: OpenArticlesScreen,
-    //     auth: true,
-    // },
     我的收藏: {
         screen: FavoritedArticlesScreen,
         auth: true,
     },
-    // 推送通知: {
-    //     screen: NotificationSettingScreen,
-    // },
     浏览记录: {
         screen: BrowsingHistoryScreen,
     },

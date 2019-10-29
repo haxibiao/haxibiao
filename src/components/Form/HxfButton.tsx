@@ -130,16 +130,16 @@ const buttonLayout = {
 
 const buttonTitle = {
     mini: {
-        fontSize: Font(13),
+        fontSize: PxDp(13),
     },
     small: {
-        fontSize: Font(13),
+        fontSize: PxDp(13),
     },
     medium: {
-        fontSize: Font(15),
+        fontSize: PxDp(15),
     },
     default: {
-        fontSize: Font(16),
+        fontSize: PxDp(16),
     },
 };
 

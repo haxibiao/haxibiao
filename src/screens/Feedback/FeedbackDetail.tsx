@@ -112,7 +112,6 @@ const index = (props: Props) => {
                         return (
                             <CommentItem
                                 isQuestioner={isQuestioner}
-                                separator={true}
                                 comment={item}
                                 replyHandler={replyHandler}
                                 decreaseCountComments={decreaseCountComments}

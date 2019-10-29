@@ -52,11 +52,11 @@ const FeedbackItem: React.FC<Props> = observer((props: Props) => {
                             {created_at}
                         </Text>
                         <Row>
-                            <Iconfont name="hot" size={PxDp(14)} color={Theme.slateGray1} />
+                            <Iconfont name="remen1" size={PxDp(14)} color={Theme.slateGray1} />
                             <Text style={[styles.metaText, { marginRight: PxDp(10) }]} numberOfLines={1}>
                                 {hot}
                             </Text>
-                            <Iconfont name="comment" size={PxDp(14)} color={Theme.slateGray1} />
+                            <Iconfont name="liuyanfill" size={PxDp(14)} color={Theme.slateGray1} />
                             <Text style={styles.metaText} numberOfLines={1}>
                                 {count_comment || 0}
                             </Text>

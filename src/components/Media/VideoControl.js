@@ -41,12 +41,12 @@ class VideoControl extends Component {
                     activeOpacity={1}
                     onPress={isFullScreen ? onFullScreen : () => this.props.navigation.goBack()}
                     style={styles.headerControl}>
-                    <Iconfont name="left" size={PxDp(22)} color="#fff" />
+                    <Iconfont name="zuojiantou" size={PxDp(22)} color="#fff" />
                 </TouchableOpacity>
 
                 <TouchableWithoutFeedback style={styles.pauseMark} onPress={playButtonHandler}>
                     <View style={{ padding: PxDp(20) }}>
-                        <Iconfont name={paused ? 'play' : 'paused'} size={PxDp(40)} color="#fff" />
+                        <Iconfont name={paused ? 'bofang1' : 'zanting'} size={PxDp(40)} color="#fff" />
                     </View>
                 </TouchableWithoutFeedback>
                 <View style={styles.bottomControl}>
@@ -65,7 +65,7 @@ class VideoControl extends Component {
                     <Text style={styles.timeText}>{Helper.TimeFormat(duration)}</Text>
                     <TouchableOpacity activeOpacity={1} onPress={onFullScreen} style={styles.layoutButton}>
                         <Iconfont
-                            name={appStore.isFullScreen ? 'fullscreen' : 'exitFullscreen'}
+                            name={appStore.isFullScreen ? 'cancel-full-screen' : 'quanping'}
                             size={PxDp(20)}
                             color="#fff"
                         />

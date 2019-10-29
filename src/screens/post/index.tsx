@@ -9,12 +9,11 @@ import {
     KeyboardSpacer,
     ListFooter,
     StatusView,
+    PostItem,
 } from '@src/components';
 import { GQL, useQuery } from '@src/apollo';
 import { observer, userStore } from '@src/store';
 
-import PostContent from './components/PostContent';
-import PostBottom from './components/PostBottom';
 import CommentItem from '../comment/CommentItem';
 import CommentInput from '../comment/CommentInput';
 
@@ -101,10 +100,7 @@ const index = (props: Props) => {
                     style={styles.container}
                     contentContainerStyle={styles.contentContainerStyle}
                     keyboardShouldPersistTaps={'handled'}>
-                    <View style={styles.contentWrap}>
-                        <PostContent post={media} navigation={navigation} />
-                        <PostBottom post={media} navigation={navigation} />
-                    </View>
+                    <PostItem post={media} showComment={true} />
                     <FlatList
                         showsVerticalScrollIndicator={false}
                         scrollEnabled={false}
@@ -114,7 +110,6 @@ const index = (props: Props) => {
                             return (
                                 <CommentItem
                                     isQuestioner={isQuestioner}
-                                    separator={true}
                                     comment={item}
                                     replyHandler={replyHandler}
                                     decreaseCountComments={decreaseCountComments}

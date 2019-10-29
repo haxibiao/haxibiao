@@ -1,13 +1,37 @@
-import React, { Component } from 'react';
-import { StyleSheet, View, Text, Image, Animated, TouchableOpacity } from 'react-native';
-import { Avatar, Iconfont, Like } from '@src/components';
+import React, { Component, useCallback } from 'react';
+import { StyleSheet, View, Image, Animated, TouchableOpacity } from 'react-native';
+import { Avatar, Iconfont, Like, SafeText, MoreOperation } from '@src/components';
+import { useApolloClient, ApolloProvider } from '@src/apollo';
 import { useNavigation } from '@src/router';
 import { observer } from '@src/store';
 import VideoStore from '../VideoStore';
+import { Overlay } from 'teaset';
 
 export default observer(props => {
     const { media } = props;
     const navigation = useNavigation();
+    const client = useApolloClient();
+    const showMoreOperation = useCallback(() => {
+        let overlayRef;
+        const MoreOperationOverlay = (
+            <Overlay.PullView
+                style={{ flexDirection: 'column', justifyContent: 'flex-end' }}
+                containerStyle={{ backgroundColor: 'transparent' }}
+                animated={true}
+                ref={ref => (overlayRef = ref)}>
+                <ApolloProvider client={client}>
+                    <MoreOperation
+                        onPressIn={() => overlayRef.close()}
+                        target={media}
+                        downloadUrl={Helper.syncGetter('video.url', media)}
+                        downloadUrlTitle={Helper.syncGetter('body', media)}
+                        options={['下载', '不感兴趣', '举报']}
+                    />
+                </ApolloProvider>
+            </Overlay.PullView>
+        );
+        Overlay.show(MoreOperationOverlay);
+    }, [client, media]);
     return (
         <View style={styles.sideBar}>
             <View style={styles.itemWrap}>
@@ -23,21 +47,21 @@ export default observer(props => {
                 </TouchableOpacity>
             </View>
             <View style={styles.itemWrap}>
-                <Like media={media} />
+                <Like media={media} shadowText={true} />
             </View>
             <View style={styles.itemWrap}>
                 <TouchableOpacity onPress={VideoStore.showComment}>
                     <Image source={require('@src/assets/images/comment_item.png')} style={styles.imageStyle} />
-                    <Text style={styles.countText}>
+                    <SafeText shadowText={true} style={styles.countText}>
                         {Helper.NumberFormat(Helper.syncGetter('count_comments', media))}
-                    </Text>
+                    </SafeText>
                 </TouchableOpacity>
                 {media.type === 'issue' && media.answered_status === 0 && media.question_reward > 0 && (
                     <Image source={require('@src/assets/images/question_reward.png')} style={styles.questionReward} />
                 )}
             </View>
             <View style={styles.itemWrap}>
-                <TouchableOpacity onPress={VideoStore.showMoreOperation}>
+                <TouchableOpacity onPress={showMoreOperation}>
                     <Image source={require('@src/assets/images/more_item.png')} style={styles.imageStyle} />
                 </TouchableOpacity>
             </View>

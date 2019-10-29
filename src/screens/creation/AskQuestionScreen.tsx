@@ -29,11 +29,12 @@ const issueContentType = 'ISSUE';
 const PostContentType = 'POST';
 
 const AskQuestionScreen = props => {
+    const category = useMemo(() => props.navigation.getParam('category'), [props]);
     const user = useNavigationParam('user') || userStore.me;
     const navigation = useNavigation();
     const [gold, setGold] = useState(0);
     const [userGold, setUserGold] = useState(0);
-    const [categories, setCategories] = useState([]);
+    const [categories, setCategories] = useState(() => (category ? [category] : []));
     const [contentType, setContentType] = useState(PostContentType);
     const [formData, setFormData] = useState({ body: '', video_id: '', images: [], category_ids: [] });
     const [askQuestion, { data, loading }] = useMutation(GQL.createPostMutation, {
@@ -91,7 +92,11 @@ const AskQuestionScreen = props => {
 
     const selectCategory = useCallback(
         category => {
-            if (__.find(categories, category)) {
+            if (
+                __.find(categories, function(item) {
+                    return item.id === category.id;
+                })
+            ) {
                 Toast.show({ content: '该专题已经添加过了' });
             } else {
                 categories.push(category);
@@ -110,19 +115,23 @@ const AskQuestionScreen = props => {
     }, []);
 
     const addedCategories = useMemo(() => {
-        return categories.map((item, index) => {
+        return categories.map((category, index) => {
             return (
-                <View key={item.id} style={styles.categoryItem}>
-                    <Text style={styles.categoryName}>#{item.name}</Text>
+                <TouchFeedback
+                    activeOpacity={1}
+                    key={category.id}
+                    style={styles.categoryItem}
+                    onPress={() => navigation.navigate('Category', { category })}>
+                    <Text style={styles.categoryName}>#{category.name}</Text>
                     <TouchFeedback
                         style={styles.close}
                         onPress={() => {
                             categories.splice(index, 1);
                             setCategories([...categories]);
                         }}>
-                        <Iconfont name="chacha" size={PxDp(12)} color={Theme.primaryColor} />
+                        <Iconfont name="guanbi1" size={PxDp(12)} color={Theme.primaryColor} />
                     </TouchFeedback>
-                </View>
+                </TouchFeedback>
             );
         });
     }, [categories]);
@@ -154,7 +163,7 @@ const AskQuestionScreen = props => {
             submitting={loading}
             leftView={
                 <TouchFeedback onPress={() => navigation.goBack()}>
-                    <Iconfont name="chacha" size={PxDp(22)} color={Theme.primaryAuxiliaryColor} />
+                    <Iconfont name="guanbi1" size={PxDp(22)} color={Theme.primaryAuxiliaryColor} />
                 </TouchFeedback>
             }
             rightView={
@@ -213,7 +222,8 @@ const AskQuestionScreen = props => {
                                     <Text
                                         style={styles.radioText}
                                         onPress={() => navigation.navigate('CommonQuestion')}>
-                                        {`▎悬赏问答`} <Iconfont name="help" size={PxDp(16)} color={Theme.watermelon} />
+                                        {`▎悬赏问答`}{' '}
+                                        <Iconfont name="bangzhu" size={PxDp(16)} color={Theme.watermelon} />
                                     </Text>
                                 }
                                 mode="switch"

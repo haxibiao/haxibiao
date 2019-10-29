@@ -178,7 +178,7 @@ const CommentInput = React.forwardRef((props, ref) => {
     return (
         <View style={styles.inputContainer}>
             <View style={styles.textInputWrap}>
-                <Iconfont name="write" size={Font(16)} color={Theme.subTextColor} />
+                <Iconfont name="xie" size={Font(16)} color={Theme.subTextColor} />
                 <HxfTextInput
                     placeholder={replyByComment ? `回复 ${replyByComment.user.name}:` : '写评论...'}
                     style={styles.textInput}

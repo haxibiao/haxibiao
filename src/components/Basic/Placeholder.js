@@ -21,11 +21,11 @@ const render = {
             <View style={[styles.content, { backgroundColor: color }]} />
             <Row>
                 <View style={[styles.label, { backgroundColor: color }]} />
-                <Iconfont name="like" size={PxDp(20)} color={color} style={{ marginHorizontal: PxDp(10) }} />
+                <Iconfont name="xihuanfill" size={PxDp(20)} color={color} style={{ marginHorizontal: PxDp(10) }} />
                 <View style={[styles.label, { backgroundColor: color }]} />
-                <Iconfont name="comment" size={PxDp(20)} color={color} style={{ marginLeft: PxDp(10) }} />
+                <Iconfont name="liuyanfill" size={PxDp(20)} color={color} style={{ marginLeft: PxDp(10) }} />
                 <View style={{ flex: 1 }} />
-                <Iconfont name="more" size={PxDp(24)} color={color} />
+                <Iconfont name="qita1" size={PxDp(24)} color={color} />
             </Row>
         </View>
     ),
@@ -43,7 +43,7 @@ const render = {
                             ]}
                         />
                     </View>
-                    <Iconfont name="praise-fill" size={PxDp(24)} color={color} />
+                    <Iconfont name="zantongfill" size={PxDp(24)} color={color} />
                 </View>
                 <View style={[styles.paragraph, { flex: 0, backgroundColor: color }]} />
                 <View style={[styles.paragraph, { flex: 0, backgroundColor: color }]} />

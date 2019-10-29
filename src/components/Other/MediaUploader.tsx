@@ -192,7 +192,7 @@ const VideoUploadView = (props: Props) => {
                     style={[styles.uploadView, style]}>
                     <Image source={{ uri: path }} style={styles.imageItem} />
                     <TouchFeedback style={styles.close} onPress={() => removeImage(index)}>
-                        <Iconfont name="chacha" size={PxDp(12)} color="#fff" />
+                        <Iconfont name="guanbi1" size={PxDp(12)} color="#fff" />
                     </TouchFeedback>
                 </TouchFeedback>
             );
@@ -214,7 +214,7 @@ const VideoUploadView = (props: Props) => {
                     />
                     <View style={styles.playMark}>
                         <TouchFeedback style={styles.close} onPress={deleteVideo}>
-                            <Iconfont name="chacha" size={PxDp(12)} color="#fff" />
+                            <Iconfont name="guanbi1" size={PxDp(12)} color="#fff" />
                         </TouchFeedback>
                     </View>
                 </TouchFeedback>
@@ -226,7 +226,7 @@ const VideoUploadView = (props: Props) => {
                 {Album}
                 {images.length < maximum && (
                     <TouchFeedback activeOpacity={0.8} onPress={imagePickerHandler} style={[styles.uploadView, style]}>
-                        <Iconfont name="add" size={PxDp(30)} color={Theme.slateGray1} />
+                        <Iconfont name="iconfontadd" size={PxDp(30)} color={Theme.slateGray1} />
                     </TouchFeedback>
                 )}
             </View>
@@ -234,7 +234,7 @@ const VideoUploadView = (props: Props) => {
     }
     return (
         <TouchFeedback activeOpacity={0.8} onPress={onPressHandler} style={[styles.uploadView, style]}>
-            <Iconfont name="add" size={PxDp(30)} color={Theme.slateGray1} />
+            <Iconfont name="iconfontadd" size={PxDp(30)} color={Theme.slateGray1} />
         </TouchFeedback>
     );
 };

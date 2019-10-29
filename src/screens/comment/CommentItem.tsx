@@ -36,7 +36,8 @@ interface Comment {
 interface Props {
     disableLongPress?: boolean;
     isQuestioner?: boolean; // 是否是问答
-    separator: boolean; // 分割线
+    showSeparator?: boolean; // 分割线
+    separatorHeight?: number; // 分割线高度
     comment: Comment;
     replyHandler: (e: Comment) => any; // 回复选项callback
     showReplyComment?: boolean; // 是否显示回复的评论
@@ -47,7 +48,8 @@ const CommentItem = (props: Props) => {
     const {
         isQuestioner,
         disableLongPress,
-        separator,
+        showSeparator,
+        separatorHeight,
         comment,
         replyHandler,
         showReplyComment,
@@ -176,12 +178,14 @@ const CommentItem = (props: Props) => {
                     <SafeText style={styles.timeAgoText}>{comment.time_ago}</SafeText>
                 </View>
             </TouchFeedback>
-            {separator && <ItemSeparator height={PxDp(1)} />}
+            {showSeparator && <ItemSeparator height={separatorHeight} />}
         </Animated.View>
     );
 };
 
 CommentItem.defaultProps = {
+    separatorHeight: PxDp(1),
+    showSeparator: true,
     showReplyComment: true,
 };
 

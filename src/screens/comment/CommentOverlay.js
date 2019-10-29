@@ -99,7 +99,7 @@ class CommentOverlay extends Component {
                                     {Helper.syncGetter('count_comments', media) > 0 ? '条评论' : '评论'}
                                 </Text>
                                 <TouchFeedback style={styles.close} onPress={this.slideDown}>
-                                    <Iconfont name="chacha" size={PxDp(20)} color={Theme.defaultTextColor} />
+                                    <Iconfont name="guanbi1" size={PxDp(20)} color={Theme.defaultTextColor} />
                                 </TouchFeedback>
                             </View>
                             <Comments media={media} commentAbleId={media.id} commentAbleType="articles" />

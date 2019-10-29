@@ -14,9 +14,16 @@ class App {
     @observable modalIsShow: boolean = false;
     @observable enableAd: boolean = false; // 广告开关
     @observable enableWallet: boolean = false; // 钱包相关业务开关
+    @observable createPostGuidance: boolean = true; // 用户引导
 
     constructor() {
         NetInfo.addEventListener(this.handleConnectivityChange);
+        this.recall();
+    }
+
+    @action.bound
+    async recall() {
+        this.createPostGuidance = await Storage.getItem(Keys.createPostGuidance);
     }
 
     @action.bound

@@ -1,7 +1,7 @@
 'use strict';
 
-import React, {Component} from 'react';
-import {StyleSheet, View, Text, Animated, Easing} from 'react-native';
+import React, { Component } from 'react';
+import { StyleSheet, View, Text, Animated, Easing } from 'react-native';
 
 type positionValue = 'top' | 'center' | 'bottom';
 
@@ -50,7 +50,7 @@ class Toast extends Component<Props, State> {
         if (this.isShow) return;
         this.isShow = true;
         this.state.opacity.setValue(0);
-        this.setState({content, isShow: true});
+        this.setState({ content, isShow: true });
         Animated.sequence([
             Animated.timing(this.state.opacity, {
                 toValue: 1,
@@ -64,7 +64,7 @@ class Toast extends Component<Props, State> {
                 easing: Easing.linear,
             }),
         ]).start(() => {
-            this.setState({content: null, isShow: false});
+            this.setState({ content: null, isShow: false });
             this.isShow = false;
             if (typeof callback === 'function') {
                 callback();
@@ -73,23 +73,23 @@ class Toast extends Component<Props, State> {
     }
 
     render() {
-        const {isShow, opacity, content} = this.state;
-        const {style, textStyle} = this.props;
+        const { isShow, opacity, content } = this.state;
+        const { style, textStyle } = this.props;
         let position;
         switch (this.positionValue) {
             case 'top':
-                position = {top: PxDp(Theme.NAVBAR_HEIGHT + 100)};
+                position = { top: PxDp(Theme.NAVBAR_HEIGHT + 100) };
                 break;
             case 'center':
-                position = {top: PxDp(Device.HEIGHT - 120) / 2};
+                position = { top: PxDp(Device.HEIGHT - 120) / 2 };
                 break;
             case 'bottom':
-                position = {bottom: PxDp(Theme.HOME_INDICATOR_HEIGHT + 100)};
+                position = { bottom: PxDp(Theme.HOME_INDICATOR_HEIGHT + 100) };
                 break;
         }
         const ToastView = isShow ? (
             <View style={[styles.container, position]} pointerEvents="none">
-                <Animated.View style={[styles.toast, {opacity}, style]}>
+                <Animated.View style={[styles.toast, { opacity }, style]}>
                     {React.isValidElement(content) ? (
                         content
                     ) : (
@@ -120,7 +120,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     content: {
-        fontSize: Font(14),
+        fontSize: PxDp(14),
         lineHeight: PxDp(24),
         color: '#fff',
         textAlign: 'center',

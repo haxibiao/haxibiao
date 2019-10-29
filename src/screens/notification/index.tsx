@@ -8,50 +8,43 @@ import { exceptionCapture } from '@src/common';
 import Chats from './components/Chats';
 
 export default observer(props => {
-    const client = useApolloClient();
-    // const store = useContext(StoreContext);
     const [myUnreadNotify, setUnreadNotify] = useState({});
     const [chats, setChats] = useState([]);
     const login = Helper.syncGetter('login', userStore);
     const user = Helper.syncGetter('me', userStore);
     const userId = Helper.syncGetter('id', user);
 
-    const unreadsQuery = useCallback(() => {
-        console.log('userId', userId);
-        return client.query({
-            query: GQL.unreadsQuery,
-            fetchPolicy: 'network-only',
-        });
-    }, [userId]);
+    const { data: notifyData, refetch: refetchUnreadsQuery } = useQuery(GQL.unreadsQuery, {
+        fetchPolicy: 'network-only',
+    });
 
-    const chatsQuery = useCallback(() => {
-        return client.query({
-            query: GQL.chatsQuery,
-            variables: { user_id: userId },
-            fetchPolicy: 'network-only',
-        });
-    }, [userId]);
+    const { data: chatsData, refetch: refetchChatsQuery } = useQuery(GQL.chatsQuery, {
+        fetchPolicy: 'network-only',
+        variables: { user_id: userId },
+        skip: !userId,
+    });
 
-    const fetchUnreadQuery = useCallback(async () => {
-        const [error, result] = await exceptionCapture(unreadsQuery);
-        const newNotify = Helper.syncGetter('data.me', result);
-        if (error) {
-        } else {
+    useEffect(() => {
+        const newNotify = Helper.syncGetter('me', notifyData);
+        if (newNotify) {
             setUnreadNotify(newNotify);
-            console.log('newNotify', newNotify);
         }
-    }, [client]);
+    }, [notifyData]);
 
-    const fetchChatsQuery = useCallback(async () => {
-        const [error, result] = await exceptionCapture(chatsQuery);
-        console.log('notification result', error, result);
-        const newChats = Helper.syncGetter('data.chats.data', result);
-        if (error) {
-        } else {
-            console.log('newChats', newChats);
+    useEffect(() => {
+        const newChats = Helper.syncGetter('chats.data', chatsData);
+        if (newChats) {
             setChats(newChats);
         }
-    }, [client]);
+    }, [chatsData]);
+
+    // 退出登录，清除记录
+    useEffect(() => {
+        if (!userId) {
+            setUnreadNotify({});
+            setChats([]);
+        }
+    }, [userId]);
 
     const FooterView = useMemo(() => {
         if (chats.length < 1) {
@@ -68,21 +61,19 @@ export default observer(props => {
                 </View>
             );
         }
-    }, [login, chats]);
-
-    useEffect(() => {
-        // fetchUnreadQuery();
-        // fetchChatsQuery();
-    }, [client]);
+    }, [chats]);
 
     useEffect(() => {
         if (userId) {
-            props.navigation.addListener('didFocus', payload => {
-                fetchUnreadQuery();
-                fetchChatsQuery();
+            const navWillBlurListener = props.navigation.addListener('willFocus', payload => {
+                refetchUnreadsQuery();
+                refetchChatsQuery();
             });
+            return () => {
+                navWillBlurListener.remove();
+            };
         }
-    }, [userId]);
+    }, [userId, refetchUnreadsQuery, refetchChatsQuery]);
     return (
         <PageContainer isTopNavigator={true} title="消息">
             <ScrollView contentContainerStyle={styles.contentContainer}>

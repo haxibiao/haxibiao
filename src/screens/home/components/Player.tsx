@@ -2,6 +2,7 @@ import React, { useRef, useMemo, useState, useCallback, useEffect } from 'react'
 import { StyleSheet, View, TouchableWithoutFeedback } from 'react-native';
 import { useNavigation } from '@src/router';
 import { Iconfont } from '@src/components';
+import { useDoubleAction } from '@src/common';
 import { observer } from '@src/store';
 import VideoStore from '../VideoStore';
 import VideoLoading from './VideoLoading';
@@ -26,6 +27,15 @@ export default observer(props => {
     const togglePause = useCallback(() => {
         setPause(v => !v);
     }, []);
+
+    const giveALike = useCallback(() => {
+        if (TOKEN && !media.liked) {
+            media.liked ? media.count_likes-- : media.count_likes++;
+            media.liked = !media.liked;
+        }
+    }, [TOKEN, media]);
+    // 双击点赞、单击暂停视频
+    const onPress = useDoubleAction(giveALike, 200, togglePause);
 
     const videoEvents = useMemo((): object => {
         return {
@@ -80,7 +90,7 @@ export default observer(props => {
     }, [isIntoView]);
 
     return (
-        <TouchableWithoutFeedback onPress={togglePause}>
+        <TouchableWithoutFeedback onPress={onPress}>
             <View style={styles.playContainer}>
                 <Video
                     ref={videoRef}
@@ -103,7 +113,7 @@ export default observer(props => {
                     {...videoEvents}
                 />
 
-                {paused && <Iconfont name="play" size={PxDp(70)} color="rgba(255,255,255,0.8)" />}
+                {paused && <Iconfont name="bofang1" size={PxDp(70)} color="rgba(255,255,255,0.8)" />}
                 <View style={styles.bottom}>
                     <VideoLoading loading={loading} />
                     <View style={[styles.progress, { width: (progress / duration.current) * 100 + '%' }]} />

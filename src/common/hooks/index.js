@@ -1,0 +1,1 @@
+export { useDoubleAction } from './useDoubleAction';

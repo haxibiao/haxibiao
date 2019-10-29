@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
+import React, { useState, useCallback, useMemo } from 'react';
+import { StyleSheet, View, Image, TouchableOpacity } from 'react-native';
+import { SafeText } from '@src/components';
 import { observer, appStore } from '@src/store';
 import { ttad } from '@src/native';
+import { useNavigation } from '@src/router';
 import Player from './Player';
 import SideBar from './SideBar';
 import VideoStore from '../VideoStore';
 
 export default observer(props => {
     const { media, index } = props;
+    const navigation = useNavigation();
     const [adShow, setAdShow] = useState(true);
     if (media.isAdPosition && adShow && appStore.enableAd) {
         return (
@@ -23,6 +26,23 @@ export default observer(props => {
             </View>
         );
     }
+
+    const renderCategories = useMemo(() => {
+        if (Array.isArray(media.categories) && media.categories.length > 0) {
+            return media.categories.map(category => (
+                <SafeText
+                    shadowText={true}
+                    key={category.id}
+                    style={styles.categoryName}
+                    onPress={() => navigation.navigate('Category', { category })}>
+                    {`#${category.name} `}
+                </SafeText>
+            ));
+        } else {
+            return null;
+        }
+    }, []);
+
     return (
         <View style={{ height: appStore.viewportHeight }}>
             {media.cover && (
@@ -32,17 +52,20 @@ export default observer(props => {
                 </View>
             )}
             <Player media={media} index={index} />
-            <View style={styles.videoInfo}>
-                <View style={styles.left}>
-                    <View>
-                        <Text style={styles.name}>@{Helper.syncGetter('user.name', media)}</Text>
-                    </View>
-                    <View>
-                        <Text style={styles.body} numberOfLines={3}>
-                            {media.body}
-                        </Text>
-                    </View>
+            <View style={styles.videoContent}>
+                <View>
+                    <SafeText shadowText={true} style={styles.name}>
+                        @{Helper.syncGetter('user.name', media)}
+                    </SafeText>
                 </View>
+                <View>
+                    <SafeText shadowText={true} style={styles.body} numberOfLines={3}>
+                        {renderCategories}
+                        {media.body}
+                    </SafeText>
+                </View>
+            </View>
+            <View style={styles.videoSideBar}>
                 <SideBar media={media} />
             </View>
         </View>
@@ -65,6 +88,9 @@ const styles = StyleSheet.create({
         width: null,
         height: null,
     },
+    categoryName: {
+        fontWeight: 'bold',
+    },
     mask: {
         position: 'absolute',
         top: 0,
@@ -73,19 +99,16 @@ const styles = StyleSheet.create({
         bottom: 0,
         backgroundColor: 'rgba(0,0,0,0.1)',
     },
-    left: {
-        flex: 1,
-        justifyContent: 'flex-end',
-        paddingBottom: 10,
-        paddingRight: 40,
-    },
     name: { color: 'rgba(255,255,255,0.9)', fontSize: Font(16), fontWeight: 'bold' },
-    videoInfo: {
-        bottom: Theme.HOME_INDICATOR_HEIGHT + PxDp(76),
-        flexDirection: 'row',
-        left: 0,
-        paddingHorizontal: PxDp(Theme.itemSpace),
+    videoContent: {
         position: 'absolute',
-        right: 0,
+        bottom: Theme.HOME_INDICATOR_HEIGHT + PxDp(80),
+        left: PxDp(Theme.itemSpace),
+        right: PxDp(90),
+    },
+    videoSideBar: {
+        position: 'absolute',
+        bottom: Theme.HOME_INDICATOR_HEIGHT + PxDp(80),
+        right: PxDp(Theme.itemSpace),
     },
 });

@@ -11,7 +11,7 @@ class HeaderLeft extends Component {
             <View style={styles.headerLeft}>
                 {goBack && (
                     <TouchableOpacity activeOpacity={1} style={styles.goBack} onPress={() => navigation.goBack()}>
-                        <Iconfont name="back-ios" size={23} color={color} />
+                        <Iconfont name="fanhui" size={23} color={color} />
                     </TouchableOpacity>
                 )}
                 {children}

@@ -150,7 +150,7 @@ class NavigatorBar extends Component {
                         width: Theme.navBarContentHeight,
                         justifyContent: 'center',
                     }}>
-                    <Iconfont name="left" color={backButtonColor || Theme.navBarMenuColor} size={PxDp(22)} />
+                    <Iconfont name="zuojiantou" color={backButtonColor || Theme.navBarMenuColor} size={PxDp(22)} />
                 </TouchableOpacity>
             );
         }

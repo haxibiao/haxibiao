@@ -116,7 +116,7 @@ export default observer(props => {
                 </View>
                 <View style={styles.header}>
                     <TouchableOpacity style={{ padding: PxDp(5) }} onPress={() => navigation.pop()}>
-                        <Iconfont name="chacha" size={Font(24)} color={'#fff'} />
+                        <Iconfont name="guanbi1" size={Font(24)} color={'#fff'} />
                     </TouchableOpacity>
                     <TouchableOpacity style={{ padding: PxDp(5) }} onPress={() => toggleEntrance(!signIn)}>
                         <Text style={styles.linkText}>{signIn ? '去注册' : '去登录'}</Text>
@@ -141,7 +141,7 @@ export default observer(props => {
 
                                 {thumb == thumbType[1] && (
                                     <TouchableOpacity onPress={() => changeAccount('')}>
-                                        <Iconfont name={'chacha'} size={PxDp(20)} color={Theme.tintTextColor} />
+                                        <Iconfont name={'guanbi1'} size={PxDp(20)} color={Theme.tintTextColor} />
                                     </TouchableOpacity>
                                 )}
                             </View>
@@ -161,7 +161,7 @@ export default observer(props => {
 
                                     {thumb == thumbType[0] && (
                                         <TouchableOpacity onPress={() => changeName('')}>
-                                            <Iconfont name={'chacha'} size={PxDp(20)} color={Theme.tintTextColor} />
+                                            <Iconfont name={'guanbi1'} size={PxDp(20)} color={Theme.tintTextColor} />
                                         </TouchableOpacity>
                                     )}
                                 </View>
@@ -182,7 +182,7 @@ export default observer(props => {
                                 {thumb == thumbType[2] && (
                                     <TouchableOpacity onPress={() => setSecure(!secure)}>
                                         <Iconfont
-                                            name={secure ? 'privacy' : 'browse'}
+                                            name={secure ? 'icon' : 'liulan2'}
                                             size={secure ? PxDp(22) : PxDp(20)}
                                             color={Theme.tintTextColor}
                                         />
@@ -202,7 +202,7 @@ export default observer(props => {
                         <View style={styles.groupFooter}>
                             <TouchableOpacity onPress={onSilentLogin}>
                                 <Row>
-                                    <Iconfont name="phone" size={PxDp(15)} color="#fff" />
+                                    <Iconfont name="iphone" size={PxDp(15)} color="#fff" />
                                     <Text style={styles.grayText}>一键登录</Text>
                                 </Row>
                             </TouchableOpacity>

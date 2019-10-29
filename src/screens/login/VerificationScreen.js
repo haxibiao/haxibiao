@@ -39,8 +39,7 @@ class VerificationScreen extends Component {
                 });
                 const str = result.errors[0].message;
                 Toast.show({ content: str });
-                console.log("str",str);
-                
+                console.log('str', str);
             } else {
                 this.setState({
                     submitting: false,
@@ -78,7 +77,12 @@ class VerificationScreen extends Component {
                         />
                     </View>
 
-                    <HxfButton title="获取验证码" style={styles.button} onPress={this.sendVerificationCode} />
+                    <HxfButton
+                        title="获取验证码"
+                        gradient={true}
+                        style={styles.button}
+                        onPress={this.sendVerificationCode}
+                    />
                 </View>
             </PageContainer>
         );
@@ -87,7 +91,7 @@ class VerificationScreen extends Component {
 const styles = StyleSheet.create({
     button: {
         borderRadius: PxDp(5),
-        height: PxDp(35),
+        height: PxDp(40),
         marginHorizontal: PxDp(15),
         marginTop: PxDp(35),
     },

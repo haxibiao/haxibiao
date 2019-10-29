@@ -47,7 +47,6 @@ export default (props: any) => {
                                 keyExtractor={(item, index) => index.toString()}
                                 scrollEventThrottle={16}
                                 renderItem={(item: any) => <PostItem post={item.item} showSubmitStatus={true} />}
-                                ItemSeparatorComponent={() => <ItemSeparator />}
                                 ListEmptyComponent={
                                     <StatusView.EmptyView
                                         title="TA还没有作品"

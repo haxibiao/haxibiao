@@ -24,7 +24,7 @@ class Society extends Component {
                 </ScrollableTabView>
                 <View style={styles.backButton}>
                     <TouchFeedback activeOpacity={1} onPress={() => navigation.goBack()}>
-                        <Iconfont name="left" color={Theme.defaultTextColor} size={PxDp(21)} />
+                        <Iconfont name="zuojiantou" color={Theme.defaultTextColor} size={PxDp(21)} />
                     </TouchFeedback>
                 </View>
             </PageContainer>
