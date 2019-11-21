@@ -2,10 +2,11 @@
 var COS = require('cos-nodejs-sdk-v5');
 var appConfig = require('../../app.json');
 
+
 // 使用永久密钥创建实例
 var cos = new COS({
-    SecretId: 'AKIDPbXCbj5C1bz72i7F9oDMHxOaXEgsNX0E',
-    SecretKey: '70e2B4g27wWr1wf9ON8ev1rWzC9rKYXH',
+    SecretId: 'AKIDKZeYH6uMdqyxkxKyhFuQ0W5ThliVtWlq',
+    SecretKey: '61nNlyzqWxLbgaIpBMPM8lCWfeSAkEaq',
 });
 
 var env = 'staging';
