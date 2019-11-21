@@ -75,7 +75,8 @@ export default observer(props => {
                                     <Text style={styles.userName} numberOfLines={1}>
                                         {user.token ? userProfile.name : '登录/注册'}
                                     </Text>
-                                    <Text style={styles.introduction} numberOfLines={1}>
+                                    <Text style={styles.introduction} 
+                                    numberOfLines={2} >
                                         {user.token
                                             ? user.introduction || '这个人很懒，啥都没留下'
                                             : '欢迎来到' + Config.AppName}
@@ -287,6 +288,7 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: PxDp(14),
         marginTop: PxDp(10),
+        marginRight: PxDp(70),
     },
     itemType: {
         justifyContent: 'center',
@@ -351,7 +353,8 @@ const styles = StyleSheet.create({
         borderRadius: PxDp(33),
         borderWidth: PxDp(1),
         height: PxDp(66),
-        marginLeft: PxDp(20),
+        marginLeft: PxDp(-60),
+        
         width: PxDp(66),
     },
     userInfo: {

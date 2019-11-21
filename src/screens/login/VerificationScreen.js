@@ -68,6 +68,7 @@ class VerificationScreen extends Component {
                             placeholder="请输入手机号"
                             selectionColor={Theme.primaryColor}
                             maxLength={48}
+                            keyboardType="numeric"
                             style={styles.textInput}
                             onChangeText={value => {
                                 this.setState({

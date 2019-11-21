@@ -15,7 +15,7 @@ import { Overlay } from 'teaset';
 export default observer(props => {
     const store = useContext(StoreContext);
     const { userStore } = store;
-    const me = userStore.me;
+    const me = {...userStore.me};
     const client = useApolloClient();
     const navigation = useNavigation();
     const commentRef = useRef();
@@ -100,9 +100,12 @@ export default observer(props => {
 
     // 静默注册登录
 
+    console.log("来自storage的 userStore from store : ",userStore)
+    console.log("me from store : ",me)
     async function HandleSilentLogin() {
         // 如果 firstInstall 为 false 则用户主动注销过，不再进行静默登录
         const firstInstall = await Storage.getItem(Keys.firstInstall);
+        console.log("首页处理静默登录函数中获取的 firstInstall : ",firstInstall)
         if (firstInstall) {
             // 首次静默注册登录
             SilentSignIn();

@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useRef } from 'react';
-import { PullChooser } from '@src/components';
+import PullChooser from '../Popup/PullChooser';
 import { useApolloClient, useMutation, GQL } from '@src/apollo';
 
 const useReport = props => {

@@ -47,7 +47,12 @@ class Toast extends Component<Props, State> {
         const duration = option.duration || this.props.showDuration;
         const content = option.content;
         const callback = option.callback;
-        if (this.isShow) return;
+        if (this.isShow) {
+            setTimeout(() => {
+                this.show({ duration, content, callback });
+            }, 1900);
+            return;
+        }
         this.isShow = true;
         this.state.opacity.setValue(0);
         this.setState({ content, isShow: true });

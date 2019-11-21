@@ -39,9 +39,9 @@ query RecommendVideosQuery($page: Int, $count: Int!) {
     }
 }
 
-#推荐文章
-query articlesQuery($page: Int) {
-    articles(page: $page) {
+#动态广场
+query postsSquareQuery($page: Int) {
+    articles(page: $page, submit: SUBMITTED_SUBMIT, status: public) {
         paginatorInfo {
             hasMorePages
             currentPage

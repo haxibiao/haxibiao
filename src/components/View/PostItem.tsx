@@ -249,7 +249,7 @@ const PostItem: React.FC<Props> = observer((props: Props) => {
                             <TouchableOpacity
                                 activeOpacity={0.6}
                                 onPress={() => navigation.navigate('PostDetail', { post })}>
-                                <Comment width={22} height={22} />
+                                <Comment width={PxDp(23)} height={PxDp(23)} />
                             </TouchableOpacity>
                             {count_replies >= 0 && (
                                 <Text style={{ color: '#bfbfbf', fontSize: 14, marginStart: 15, marginEnd: 23 }}>

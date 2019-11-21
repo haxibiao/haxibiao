@@ -2,8 +2,8 @@ import React, { Component, useContext, useRef, useEffect } from 'react';
 import { StyleSheet, View, TouchableOpacity, Animated, Image, Text } from 'react-native';
 import { useBounceAnimation } from '@src/common';
 import { GQL, useMutation } from '@src/apollo';
-import { useNavigation } from '@src/router';
 import { observer } from '@src/store';
+import { useNavigation } from 'react-navigation-hooks';
 import Iconfont from '../Iconfont';
 import SafeText from '../Basic/SafeText';
 
@@ -75,7 +75,7 @@ const Like = observer((props: Props) => {
                 <TouchableOpacity onPress={toggleLike} style={containerStyle}>
                     <Iconfont size={iconSize} name="xihuanfill" color={media.liked ? Theme.watermelon : '#CCD5E0'} />
                     <SafeText style={textStyle} shadowText={shadowText}>
-                        {media.count_likes}
+                        {media.count_likes || 0}
                     </SafeText>
                 </TouchableOpacity>
             </Animated.View>

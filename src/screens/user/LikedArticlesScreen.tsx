@@ -1,94 +1,99 @@
-import React, { Component, useState } from 'react';
+import React, { Component, useState, useEffect, useMemo } from 'react';
 import { StyleSheet, View, FlatList, Text } from 'react-native';
-
 import {
-    PostItem,
-    PageContainer,
-    listFooter,
-    LoadingError,
-    SpinnerLoading,
-    StatusView,
-    OperationModal,
+	PostItem,
+	PageContainer,
+	StatusView,
+	SpinnerLoading,
+	Footer,
+	Placeholder,
+	CustomRefreshControl,
+	ItemSeparator,
 } from '@src/components';
-
-import { Query, GQL } from '@src/apollo';
+import { Query, GQL, useQuery } from '@src/apollo';
 import { userStore } from '@src/store';
+import { observable } from 'mobx';
 
-const LikedArticlesScreen = (props: any) => {
-    const { me } = userStore;
-    const [modalVisible, setModalVisible] = useState(false);
-    const { user = {} } = props.navigation.state.params;
-    let is_self = false;
-    if (user.id == me.id) {
-        is_self = true;
-    }
+export default (props: any) => {
+	const { me } = userStore;
+	const [observableArticles, setArticles] = useState([]);
 
-    function handleModal() {
-        setModalVisible(!modalVisible);
-    }
+	const { loading, error, data: userLikedArticlesQueryResult, refetch, fetchMore } = useQuery(
+		GQL.userLikedArticlesQuery,
+		{
+			variables: { user_id: me.id },
+			fetchPolicy: 'network-only',
+		},
+	);
+	const articles = useMemo(() => Helper.syncGetter('likes.data', userLikedArticlesQueryResult), [
+		userLikedArticlesQueryResult,
+	]);
 
-    return (
-        <PageContainer title="我的喜欢">
-            <View style={styles.container}>
-                <Query query={GQL.userLikedArticlesQuery} variables={{ user_id: me.id }} fetchPolicy="network-only">
-                    {({ loading, error, data, refetch, fetchMore }) => {
-                        if (error) return <LoadingError reload={() => refetch()} />;
-                        if (loading) return <SpinnerLoading />;
-                        let {
-                            data: items,
-                            paginatorInfo: { currentPage, hasMorePages },
-                        } = data.likes;
-                        if (items.length < 1) return <StatusView.EmptyView />;
+	const hasMorePages = useMemo(
+		() => Helper.syncGetter('likes.paginatorInfo.hasMorePages', userLikedArticlesQueryResult),
+		[userLikedArticlesQueryResult],
+	);
+	const currentPage = useMemo(
+		() => Helper.syncGetter('likes.paginatorInfo.currentPage', userLikedArticlesQueryResult),
+		[userLikedArticlesQueryResult],
+	);
 
-                        return (
-                            <FlatList
-                                data={items}
-                                keyExtractor={(item, index) => index.toString()}
-                                renderItem={(item: any) => {
-                                    let article = item.item.article;
-                                    return <PostItem post={article} />;
-                                }}
-                                onEndReached={() => {
-                                    if (hasMorePages) {
-                                        fetchMore({
-                                            variables: {
-                                                page: ++currentPage,
-                                            },
-                                            updateQuery: (prev: any, { fetchMoreResult: more }) => {
-                                                return {
-                                                    likes: {
-                                                        ...more.likes,
-                                                        data: [...prev.likes.data, ...more.likes.data],
-                                                    },
-                                                };
-                                            },
-                                        });
-                                    }
-                                }}
-                                ListFooterComponent={listFooter}
-                            />
-                        );
-                    }}
-                </Query>
-                {is_self && (
-                    <OperationModal
-                        operation={['取消喜欢']}
-                        visible={modalVisible}
-                        handleVisible={handleModal}
-                        handleOperation={(index: any) => {
-                            handleModal();
-                        }}
-                    />
-                )}
-            </View>
-        </PageContainer>
-    );
+	useEffect(() => {
+		if (Array.isArray(articles)) {
+			setArticles(observable(articles));
+		}
+	}, [articles]);
+
+	if (loading || !articles) return <SpinnerLoading />;
+
+	return (
+		<PageContainer title='我的喜欢'>
+			<View style={styles.container}>
+				<FlatList
+					contentContainerStyle={styles.contentContainer}
+					bounces={false}
+					data={observableArticles}
+					refreshing={loading}
+					refreshControl={<CustomRefreshControl onRefresh={refetch} />}
+					keyExtractor={(item, index) => index.toString()}
+					scrollEventThrottle={16}
+					renderItem={(item: any) => <PostItem post={item.item.article} />}
+					ListEmptyComponent={
+						<StatusView.EmptyView imageSource={require('@src/assets/images/default_empty.png')} />
+					}
+					onEndReached={() => {
+						if (hasMorePages) {
+							fetchMore({
+								variables: {
+									page: currentPage + 1,
+								},
+								updateQuery: (prev: any, { fetchMoreResult: more }) => {
+									if (more && more.likes) {
+										return {
+											likes: {
+												...more.likes,
+												data: [...prev.likes.data, ...more.likes.data],
+											},
+										};
+									}
+								},
+							});
+						}
+					}}
+					ListFooterComponent={() => (hasMorePages ? <Placeholder quantity={1} /> : null)}
+				/>
+			</View>
+		</PageContainer>
+	);
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
+	container: {
+		backgroundColor: Theme.skinColor,
+		flex: 1,
+	},
+	contentContainer: {
+		backgroundColor: '#fff',
+		flexGrow: 1,
+	},
 });
-
-export default LikedArticlesScreen;

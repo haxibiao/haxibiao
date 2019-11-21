@@ -17,7 +17,7 @@ import {
 } from 'react-native';
 import PropTypes from 'prop-types';
 import { withNavigation } from 'react-navigation';
-import { Iconfont } from '@src/components';
+import Iconfont from '../Iconfont';
 
 class NavigatorBar extends Component {
     static propTypes = {

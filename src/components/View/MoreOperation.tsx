@@ -1,9 +1,9 @@
 import React, { useMemo, useCallback } from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
-import { TouchFeedback } from '@src/components';
 import { GQL, useMutation } from '@src/apollo';
 import { download } from '@src/common';
 import useReport from './useReport';
+import TouchFeedback from '../Basic/TouchFeedback';
 
 const MoreOperation = props => {
     const { options, target, type, downloadUrl, downloadUrlTitle, onPressIn, deleteCallback } = props;

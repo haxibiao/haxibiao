@@ -40,6 +40,7 @@ export default function AccountSafety() {
                         onChangeText={onChangeNumber}
                         maxLength={11}
                         placeholder="请输入手机号"
+                        keyboardType="numeric"
                     />
                 </View>
                 <View style={styles.inputWrapper}>
@@ -49,6 +50,7 @@ export default function AccountSafety() {
                         onChangeText={onPasswordChange}
                         maxLength={16}
                         placeholder="请设置密码"
+                        secureTextEntry={true}
                     />
                 </View>
                 <View style={styles.btnWrap}>

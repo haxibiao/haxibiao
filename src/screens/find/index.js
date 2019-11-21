@@ -23,7 +23,7 @@ import Comment from '@src/assets/images/pinglun.svg';
 
 export default observer(props => {
     const store = useContext(StoreContext);
-    const { loading, error, data, fetchMore, refetch } = useQuery(GQL.articlesQuery, {
+    const { loading, error, data, fetchMore, refetch } = useQuery(GQL.postsSquareQuery, {
         variables: { page: currentPage },
     });
 

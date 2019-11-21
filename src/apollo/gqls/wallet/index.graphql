@@ -6,6 +6,7 @@ query userWithdrawQuery {
         name
         gold
         reward
+        exchangeRate
         wallet {
             id
             type

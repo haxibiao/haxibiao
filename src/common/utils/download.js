@@ -1,5 +1,5 @@
 import { Dimensions, Platform, StatusBar, PixelRatio } from 'react-native';
-import { ProgressOverlay } from '@src/components';
+import ProgressOverlay from '../../components/Popup/ProgressOverlay';
 import RNFetchBlob from 'rn-fetch-blob';
 
 export function download({ url, title, onSuccess, onFailed }) {

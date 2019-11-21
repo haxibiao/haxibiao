@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, TextInput, Text, TouchableOpacity, Dimensions } from 'react-native';
 import HxfModal from './HxfModal';
-import { Iconfont } from '@src/components';
+import Iconfont from '../Iconfont';
 
 const { width, height } = Dimensions.get('window');
 

@@ -29,6 +29,15 @@ class UserStore {
     @action.bound
     async recall() {
         const profile = await Storage.getItem(Keys.me);
+        const firstinstall = await Storage.getItem(Keys.firstInstall);
+        console.log("第一次下载字段 firstInstall from storage : ",firstinstall);
+        if(firstinstall == null){
+            Storage.setItem(Keys.firstInstall, true);
+        }else{
+            if(firstinstall !== true){
+                this.firstInstall = false;
+            }
+        }
         if (profile) {
             this.signIn(profile);
         }

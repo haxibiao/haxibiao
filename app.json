@@ -7,7 +7,7 @@
     "Spinner": "9CubeGrid",
     "AppSlogan": "互联网创业人的短视频社区",
     "Version": "2.2.0",
-    "Build": 1,
+    "Build": 12,
     "AppVersionNumber": 2.2,
     "SocketServer": "ws://socket.haxibiao.com:6001",
 

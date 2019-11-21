@@ -3,9 +3,8 @@
  */
 
 import { NavigationActions, withNavigation } from 'react-navigation';
-import routing from './routing';
+import routing from './privateRouting';
 export * from 'react-navigation-hooks';
-export { default as RootStackNavigator } from './RootStackNavigator';
 
 let rootNavigation: any = null;
 

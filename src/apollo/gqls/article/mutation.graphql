@@ -85,3 +85,10 @@ mutation deleteArticle($id: Int!) {
         id
     }
 }
+
+# 采集粘贴板视频
+mutation resolveDouyinVideo($share_link: String!) {
+    resolveDouyinVideo(share_link: $share_link) {
+        id
+    }
+}

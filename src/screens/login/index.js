@@ -132,6 +132,7 @@ export default observer(props => {
                                 <HxfTextInput
                                     placeholderTextColor={'rgba(255,255,255,0.4)'}
                                     autoCorrect={false}
+                                    keyboardType="numeric"
                                     placeholder={'请输入手机号'}
                                     style={styles.inputStyle}
                                     value={formData.account}
@@ -151,7 +152,7 @@ export default observer(props => {
                                 <View style={styles.inputWrap}>
                                     <HxfTextInput
                                         placeholderTextColor={'rgba(255,255,255,0.4)'}
-                                        autoCorrect={false}
+                                        autoCorrect={false}                                        
                                         placeholder={'请输入昵称'}
                                         style={styles.inputStyle}
                                         value={formData.name}

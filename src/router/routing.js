@@ -73,7 +73,6 @@ export default {
     },
     Wallet: {
         screen: Wallet,
-        auth: true,
     },
     WithdrawApply: {
         screen: WithdrawApply,
@@ -92,19 +91,15 @@ export default {
     },
     CommentNotification: {
         screen: CommentsScreen,
-        auth: true,
     },
     FollowNotification: {
         screen: FollowNotificationsScreen,
-        auth: true,
     },
     BeLikedNotification: {
         screen: BeLikedScreen,
-        auth: true,
     },
     OtherRemindNotification: {
         screen: OtherRemindScreen,
-        auth: true,
     },
     Works: {
         screen: WorksScreen,
@@ -120,7 +115,6 @@ export default {
     },
     编辑个人资料: {
         screen: EditProfileScreen,
-        auth: true,
     },
     AboutUs: {
         screen: AboutUsScreen,
@@ -148,33 +142,27 @@ export default {
     },
     Chat: {
         screen: ChatScreen,
-        auth: true,
     },
     ChatSetting: {
         screen: ChatSettingScreen,
     },
     // 新消息: {
     //     screen: NewChatScreen,
-    //     auth: true,
     // },
     User: {
         screen: UserHomeScreen,
     },
     喜欢: {
         screen: LikedArticlesScreen,
-        auth: true,
     },
     找回密码: {
         screen: RetrievePasswordScreen,
-        auth: true,
     },
     获取验证码: {
         screen: VerificationScreen,
-        auth: true,
     },
     我的收藏: {
         screen: FavoritedArticlesScreen,
-        auth: true,
     },
     浏览记录: {
         screen: BrowsingHistoryScreen,
@@ -187,7 +175,6 @@ export default {
     },
     Feedback: {
         screen: FeedbackScreen,
-        auth: true,
     },
     FeedbackDetail: {
         screen: FeedbackDetail,

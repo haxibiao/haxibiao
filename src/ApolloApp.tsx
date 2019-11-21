@@ -1,24 +1,52 @@
-import React, { useEffect, useContext } from 'react';
+import React, { useEffect, useContext, useCallback } from 'react';
+import { StyleSheet, Clipboard } from 'react-native';
 import { ApolloProvider, useClientBuilder } from '@src/apollo';
-import { RootStackNavigator, setRootNavigation } from '@src/router';
+import { setRootNavigation, middlewareNavigate } from '@src/router';
+import RootStackNavigator from '@src/router/RootStackNavigator';
 import StoreContext, { observer, appStore } from '@src/store';
 import { ApolloProvider as OldApolloProvider } from 'react-apollo';
-
-import {
-    SocketServer
-} from '@app/app.json';
+import { useCaptureVideo } from '@src/common';
+import { CaptureVideoSuccess } from '@src/components';
+import { SocketServer } from '@app/app.json';
 
 import Echo from 'laravel-echo';
 import Socketio from 'socket.io-client';
-
 import JPushModule from 'jpush-react-native';
+import { Overlay } from 'teaset';
 
 export default observer(() => {
     const store = useContext(StoreContext);
     const client = useClientBuilder(Helper.syncGetter('userStore.me.token', store));
     appStore.client = client;
 
-    const mountWebSocket = (user: { token: string | undefined; id: string }) => {
+    const onStart = useCallback(() => {
+        Toast.show({ content: '从粘贴板获取视频链接\n正在分享视频...' });
+    }, []);
+
+    const onFailed = useCallback(error => {
+        Toast.show({ content: error.message || '粘贴板视频上传失败' });
+    }, []);
+
+    const onSuccess = useCallback(post => {
+        Toast.show({ content: '视频上传成功' });
+        // const video = Helper.syncGetter('data.resolveDouyinVideo', post);
+        // let popViewRef;
+        // Overlay.show(
+        //     <Overlay.PopView modal={true} style={styles.overlay} ref={ref => (popViewRef = ref)}>
+        //         <CaptureVideoSuccess
+        //             video={video}
+        //             onPress={() => {
+        //                 middlewareNavigate('PostDetail', { post: video });
+        //                 popViewRef.close();
+        //             }}
+        //         />
+        //     </Overlay.PopView>,
+        // );
+    }, []);
+
+    useCaptureVideo({ client, onStart, onSuccess, onFailed });
+
+    const mountWebSocket = (user: { token: string | undefined, id: string }) => {
         console.log('mountWebSocket', user);
         if (user.token !== undefined) {
             // 构造laravel echo及Socket Client
@@ -78,4 +106,8 @@ export default observer(() => {
             </ApolloProvider>
         </OldApolloProvider>
     );
+});
+
+const styles = StyleSheet.create({
+    overlay: { alignItems: 'center', justifyContent: 'center' },
 });

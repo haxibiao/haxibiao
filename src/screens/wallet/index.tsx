@@ -214,17 +214,22 @@ export default observer(props => {
                     </View>
                 </View>
                 <View style={styles.rule}>
-                    <Text style={[styles.ruleText, styles.ruleTitle]}>提现说明</Text>
+                    <Text style={[styles.ruleText, { color: '#000', fontWeight: 'bold' }]}>
+                        {`今日汇率：${user.exchangeRate || '999'}${Config.goldAlias}/1元`}
+                    </Text>
+                    <Text style={[styles.ruleText, styles.ruleTitle]}>提现说明：</Text>
+
                     <Text style={styles.ruleText}>
                         {`1. 您可以通过首页刷视频等方式获取${Config.goldAlias}；只有当您绑定支付宝之后，才能开始提现。`}
                     </Text>
+
                     <Text style={styles.ruleText}>
-                        {`2. 每天凌晨 00:00-08:00 期间，系统会把您账户中的所有${Config.goldAlias}自动转为余额。`}
+                        {`2.每天的转换汇率与平台收益及您的平台活跃度相关，因此汇率会受到影响上下浮动；活跃度越高，汇率越高；您可以通过刷视频、点赞评论互动、邀请好友一起来${Config.AppName}等行为来提高活跃度。`}
                     </Text>
-                    <Text style={styles.ruleText}>3. 提现 3~5 天内到账。若遇高峰期，可能延迟到账，请您耐心等待。</Text>
                     <Text style={styles.ruleText}>
-                        {`4.每天的转换汇率与平台收益及您的平台活跃度相关，因此汇率会受到影响上下浮动；活跃度越高，汇率越高；您可以通过刷视频、点赞评论互动、邀请好友一起来${Config.AppName}等行为来提高活跃度。`}
+                        {`3. 每天凌晨 00:00-08:00 期间，系统会把您账户中的所有${Config.goldAlias}自动转为余额。`}
                     </Text>
+                    <Text style={styles.ruleText}>4. 提现 3~5 天内到账。若遇高峰期，可能延迟到账，请您耐心等待。</Text>
                     <Text style={styles.ruleText}>
                         5.
                         提现金额分为1元、3元、5元、10元四档，每次提现将扣除相应余额，剩余余额可以在下次满足最低提现额度时申请提现。
