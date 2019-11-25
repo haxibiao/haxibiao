@@ -5,8 +5,8 @@ var appConfig = require('../../app.json');
 
 // 使用永久密钥创建实例
 var cos = new COS({
-    SecretId: 'AKIDKZeYH6uMdqyxkxKyhFuQ0W5ThliVtWlq',
-    SecretKey: '61nNlyzqWxLbgaIpBMPM8lCWfeSAkEaq',
+    SecretId: 'AKIDPbXCbj5C1bz72i7F9oDMHxOaXEgsNX0E',
+    SecretKey: '70e2B4g27wWr1wf9ON8ev1rWzC9rKYXH',
 });
 
 var env = 'staging';
@@ -15,7 +15,7 @@ env = args[0];
 // 分片上传
 cos.sliceUploadFile(
     {
-        Bucket: appConfig.name + '-1254284941',
+        Bucket: appConfig.name + '-1251052432',
         Region: 'ap-guangzhou',
         Key: appConfig.name + '-' + env + '.apk',
         FilePath: './android/app/build/outputs/apk/' + env + '/app-' + env + '.apk',
