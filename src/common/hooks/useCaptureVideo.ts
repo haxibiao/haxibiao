@@ -41,12 +41,10 @@ export const useCaptureVideo = (props: Props) => {
                         onStart();
                     }
                     const [error, result] = await exceptionCapture(() => captureVideo(path));
-                    console.log('error, result================================');
-                    console.log(error, result);
-                    console.log('error, result===============================');
                     if (error && onFailed) {
                         onFailed(error);
                     } else if (result && onSuccess) {
+                        Clipboard.setString('');
                         onSuccess(result);
                     }
                 }

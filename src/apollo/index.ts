@@ -3,6 +3,7 @@ import ApolloClient from 'apollo-boost';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import Config from '@src/common/config';
 import DeviceInfo from 'react-native-device-info';
+import NetInfo from '@react-native-community/netinfo';
 
 export { GQL } from './gqls';
 export { Query, Mutation, compose, graphql, withApollo } from 'react-apollo';
@@ -29,7 +30,6 @@ deviceHeaders.referrer = Config.AppStore; // 应用商店来源
 deviceHeaders.version = Config.Version; // 手动修改的App版本号
 deviceHeaders.appid = Config.PackageName; // 手动修改的包名
 deviceHeaders.package = Config.PackageName; // 手动修改的包名
-
 if (!DeviceInfo.isEmulator()) {
     deviceHeaders.brand = DeviceInfo.getBrand(); // 设备品牌
     deviceHeaders.deviceCountry = DeviceInfo.getDeviceCountry(); // 国家地区
@@ -38,15 +38,21 @@ if (!DeviceInfo.isEmulator()) {
     deviceHeaders.deviceId = DeviceInfo.getUniqueID(); // uniqueId  兼容
 }
 
+let netInfo: any;
+
 export function useClientBuilder(userToken: string) {
     const createClient = useCallback(token => {
         return new ApolloClient({
             uri: Config.ServerRoot + '/gql',
             request: async operation => {
+                if (!netInfo) {
+                    netInfo = await NetInfo.fetch();
+                }
                 operation.setContext({
                     headers: {
                         token,
                         Authorization: token ? `Bearer ${token}` : '',
+                        network: netInfo.type,
                         ...deviceHeaders,
                     },
                 });

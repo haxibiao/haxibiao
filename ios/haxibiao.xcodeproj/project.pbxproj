@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* haxibiaoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* haxibiaoTests.m */; };
+		00E356F31AD99517003FC87E /* dianmogeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* dianmogeTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB11A68108700A75B9A /* LaunchScreen.xib */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
@@ -17,8 +17,8 @@
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2DCD954D1E0B4F2C00145EB5 /* haxibiaoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* haxibiaoTests.m */; };
-		354ACE44F24031FEDEC3ABEF /* libPods-haxibiao-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D7593A90D1CDA9F8B5230779 /* libPods-haxibiao-tvOS.a */; };
+		2DCD954D1E0B4F2C00145EB5 /* dianmogeTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* dianmogeTests.m */; };
+		354ACE44F24031FEDEC3ABEF /* libPods-dianmoge-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D7593A90D1CDA9F8B5230779 /* libPods-dianmoge-tvOS.a */; };
 		A7875F11233E074000503ECC /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = A7875ECA233E074000503ECC /* .gitignore */; };
 		A7875F12233E074000503ECC /* BUDSlotViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A7875ECD233E074000503ECC /* BUDSlotViewModel.m */; };
 		A7875F13233E074000503ECC /* BUDBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = A7875ED1233E074000503ECC /* BUDBase64.m */; };
@@ -53,10 +53,10 @@
 		A7875F30233E074000503ECC /* VideoUploader.m in Sources */ = {isa = PBXBuildFile; fileRef = A7875F0D233E074000503ECC /* VideoUploader.m */; };
 		A7875F31233E074000503ECC /* AdBoss.m in Sources */ = {isa = PBXBuildFile; fileRef = A7875F10233E074000503ECC /* AdBoss.m */; };
 		A7875F34233E0F8F00503ECC /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = A7875F33233E0F8F00503ECC /* libc++.tbd */; };
-		AC56F202FB1B36762582AAC1 /* libPods-haxibiao-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 28988192A2AA262CDEE78A21 /* libPods-haxibiao-tvOSTests.a */; };
+		AC56F202FB1B36762582AAC1 /* libPods-dianmoge-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 28988192A2AA262CDEE78A21 /* libPods-dianmoge-tvOSTests.a */; };
 		B70B0A192356FAC600228FC3 /* UserNotifications.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B70B0A182356FAC500228FC3 /* UserNotifications.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		C01770BE020EBAF568EE9D1E /* libPods-haxibiaoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE7886B87E20EF4E176705A4 /* libPods-haxibiaoTests.a */; };
-		E96458965865D5BE1DC0E387 /* libPods-haxibiao.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D313494CB476D39F9D26F4C /* libPods-haxibiao.a */; };
+		C01770BE020EBAF568EE9D1E /* libPods-dianmogeTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = EE7886B87E20EF4E176705A4 /* libPods-dianmogeTests.a */; };
+		E96458965865D5BE1DC0E387 /* libPods-dianmoge.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D313494CB476D39F9D26F4C /* libPods-dianmoge.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,37 +65,37 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = haxibiao;
+			remoteInfo = dianmoge;
 		};
 		2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
-			remoteInfo = "haxibiao-tvOS";
+			remoteInfo = "dianmoge-tvOS";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		00E356EE1AD99517003FC87E /* haxibiaoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = haxibiaoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* dianmogeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = dianmogeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* haxibiaoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = haxibiaoTests.m; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* haxibiao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = haxibiao.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = haxibiao/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = haxibiao/AppDelegate.m; sourceTree = "<group>"; };
+		00E356F21AD99517003FC87E /* dianmogeTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = dianmogeTests.m; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* dianmoge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dianmoge.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = dianmoge/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = dianmoge/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB21A68108700A75B9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = haxibiao/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = haxibiao/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = haxibiao/main.m; sourceTree = "<group>"; };
-		28988192A2AA262CDEE78A21 /* libPods-haxibiao-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-haxibiao-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2C4C3223234543640069BBEA /* haxibiao-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "haxibiao-Bridging-Header.h"; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = dianmoge/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = dianmoge/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = dianmoge/main.m; sourceTree = "<group>"; };
+		28988192A2AA262CDEE78A21 /* libPods-dianmoge-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-dianmoge-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C4C3223234543640069BBEA /* dianmoge-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "dianmoge-Bridging-Header.h"; sourceTree = "<group>"; };
 		2C4C3224234543650069BBEA /* fixlottie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = fixlottie.swift; sourceTree = "<group>"; };
-		2D02E47B1E0B4A5D006451C7 /* haxibiao-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "haxibiao-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D02E4901E0B4A5D006451C7 /* haxibiao-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "haxibiao-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		385D9B8256CBEB2020F2AC1A /* Pods-haxibiao.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-haxibiao.debug.xcconfig"; path = "Target Support Files/Pods-haxibiao/Pods-haxibiao.debug.xcconfig"; sourceTree = "<group>"; };
-		3D313494CB476D39F9D26F4C /* libPods-haxibiao.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-haxibiao.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A64776C2BCD6545AD496A14F /* Pods-haxibiao-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-haxibiao-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-haxibiao-tvOSTests/Pods-haxibiao-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		2D02E47B1E0B4A5D006451C7 /* dianmoge-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "dianmoge-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E4901E0B4A5D006451C7 /* dianmoge-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "dianmoge-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		385D9B8256CBEB2020F2AC1A /* Pods-dianmoge.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dianmoge.debug.xcconfig"; path = "Target Support Files/Pods-dianmoge/Pods-dianmoge.debug.xcconfig"; sourceTree = "<group>"; };
+		3D313494CB476D39F9D26F4C /* libPods-dianmoge.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-dianmoge.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A64776C2BCD6545AD496A14F /* Pods-dianmoge-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dianmoge-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-dianmoge-tvOSTests/Pods-dianmoge-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
 		A7875ECA233E074000503ECC /* .gitignore */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		A7875ECD233E074000503ECC /* BUDSlotViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BUDSlotViewModel.m; sourceTree = "<group>"; };
 		A7875ECE233E074000503ECC /* BUDDefs.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BUDDefs.h; sourceTree = "<group>"; };
@@ -158,18 +158,18 @@
 		A7875F32233E0D2000503ECC /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/LaunchScreen.strings"; sourceTree = "<group>"; };
 		A7875F33233E0F8F00503ECC /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		B70B0A182356FAC500228FC3 /* UserNotifications.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UserNotifications.framework; path = System/Library/Frameworks/UserNotifications.framework; sourceTree = SDKROOT; };
-		B70B0A1A2356FCD600228FC3 /* haxibiao.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = haxibiao.entitlements; path = haxibiao/haxibiao.entitlements; sourceTree = "<group>"; };
-		B70F3A7856A8E1CA4F7BCEF1 /* Pods-haxibiao-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-haxibiao-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-haxibiao-tvOS/Pods-haxibiao-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		C25B8A00624BE26161A2D3A3 /* Pods-haxibiao.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-haxibiao.release.xcconfig"; path = "Target Support Files/Pods-haxibiao/Pods-haxibiao.release.xcconfig"; sourceTree = "<group>"; };
+		B70B0A1A2356FCD600228FC3 /* dianmoge.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = dianmoge.entitlements; path = dianmoge/dianmoge.entitlements; sourceTree = "<group>"; };
+		B70F3A7856A8E1CA4F7BCEF1 /* Pods-dianmoge-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dianmoge-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-dianmoge-tvOS/Pods-dianmoge-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		C25B8A00624BE26161A2D3A3 /* Pods-dianmoge.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dianmoge.release.xcconfig"; path = "Target Support Files/Pods-dianmoge/Pods-dianmoge.release.xcconfig"; sourceTree = "<group>"; };
 		D00C12FEFD0243EC8B081DE3 /* iconfont.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = iconfont.ttf; path = ../src/components/Iconfont/fonts/iconfont.ttf; sourceTree = "<group>"; };
-		D3253EB9919D3E7670A19BC4 /* Pods-haxibiao-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-haxibiao-tvOS.release.xcconfig"; path = "Target Support Files/Pods-haxibiao-tvOS/Pods-haxibiao-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		D7593A90D1CDA9F8B5230779 /* libPods-haxibiao-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-haxibiao-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E7BD8E70289AE0A95537F43A /* Pods-haxibiao-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-haxibiao-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-haxibiao-tvOSTests/Pods-haxibiao-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		E99F0EE5E749B904D1253B38 /* Pods-haxibiaoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-haxibiaoTests.debug.xcconfig"; path = "Target Support Files/Pods-haxibiaoTests/Pods-haxibiaoTests.debug.xcconfig"; sourceTree = "<group>"; };
+		D3253EB9919D3E7670A19BC4 /* Pods-dianmoge-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dianmoge-tvOS.release.xcconfig"; path = "Target Support Files/Pods-dianmoge-tvOS/Pods-dianmoge-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		D7593A90D1CDA9F8B5230779 /* libPods-dianmoge-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-dianmoge-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7BD8E70289AE0A95537F43A /* Pods-dianmoge-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dianmoge-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-dianmoge-tvOSTests/Pods-dianmoge-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E99F0EE5E749B904D1253B38 /* Pods-dianmogeTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dianmogeTests.debug.xcconfig"; path = "Target Support Files/Pods-dianmogeTests/Pods-dianmogeTests.debug.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
-		EE7886B87E20EF4E176705A4 /* libPods-haxibiaoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-haxibiaoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		FE6AE12F268785E85EAC46EC /* Pods-haxibiaoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-haxibiaoTests.release.xcconfig"; path = "Target Support Files/Pods-haxibiaoTests/Pods-haxibiaoTests.release.xcconfig"; sourceTree = "<group>"; };
+		EE7886B87E20EF4E176705A4 /* libPods-dianmogeTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-dianmogeTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE6AE12F268785E85EAC46EC /* Pods-dianmogeTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-dianmogeTests.release.xcconfig"; path = "Target Support Files/Pods-dianmogeTests/Pods-dianmogeTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,7 +177,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C01770BE020EBAF568EE9D1E /* libPods-haxibiaoTests.a in Frameworks */,
+				C01770BE020EBAF568EE9D1E /* libPods-dianmogeTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,7 +187,7 @@
 			files = (
 				B70B0A192356FAC600228FC3 /* UserNotifications.framework in Frameworks */,
 				A7875F34233E0F8F00503ECC /* libc++.tbd in Frameworks */,
-				E96458965865D5BE1DC0E387 /* libPods-haxibiao.a in Frameworks */,
+				E96458965865D5BE1DC0E387 /* libPods-dianmoge.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -195,7 +195,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				354ACE44F24031FEDEC3ABEF /* libPods-haxibiao-tvOS.a in Frameworks */,
+				354ACE44F24031FEDEC3ABEF /* libPods-dianmoge-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -203,20 +203,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC56F202FB1B36762582AAC1 /* libPods-haxibiao-tvOSTests.a in Frameworks */,
+				AC56F202FB1B36762582AAC1 /* libPods-dianmoge-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* haxibiaoTests */ = {
+		00E356EF1AD99517003FC87E /* dianmogeTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* haxibiaoTests.m */,
+				00E356F21AD99517003FC87E /* dianmogeTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = haxibiaoTests;
+			path = dianmogeTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -227,10 +227,10 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* haxibiao */ = {
+		13B07FAE1A68108700A75B9A /* dianmoge */ = {
 			isa = PBXGroup;
 			children = (
-				B70B0A1A2356FCD600228FC3 /* haxibiao.entitlements */,
+				B70B0A1A2356FCD600228FC3 /* dianmoge.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -239,22 +239,22 @@
 				13B07FB11A68108700A75B9A /* LaunchScreen.xib */,
 				13B07FB71A68108700A75B9A /* main.m */,
 				2C4C3224234543650069BBEA /* fixlottie.swift */,
-				2C4C3223234543640069BBEA /* haxibiao-Bridging-Header.h */,
+				2C4C3223234543640069BBEA /* dianmoge-Bridging-Header.h */,
 			);
-			name = haxibiao;
+			name = dianmoge;
 			sourceTree = "<group>";
 		};
 		20EF13FB9DFAD2B5CB43C699 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				385D9B8256CBEB2020F2AC1A /* Pods-haxibiao.debug.xcconfig */,
-				C25B8A00624BE26161A2D3A3 /* Pods-haxibiao.release.xcconfig */,
-				B70F3A7856A8E1CA4F7BCEF1 /* Pods-haxibiao-tvOS.debug.xcconfig */,
-				D3253EB9919D3E7670A19BC4 /* Pods-haxibiao-tvOS.release.xcconfig */,
-				E7BD8E70289AE0A95537F43A /* Pods-haxibiao-tvOSTests.debug.xcconfig */,
-				A64776C2BCD6545AD496A14F /* Pods-haxibiao-tvOSTests.release.xcconfig */,
-				E99F0EE5E749B904D1253B38 /* Pods-haxibiaoTests.debug.xcconfig */,
-				FE6AE12F268785E85EAC46EC /* Pods-haxibiaoTests.release.xcconfig */,
+				385D9B8256CBEB2020F2AC1A /* Pods-dianmoge.debug.xcconfig */,
+				C25B8A00624BE26161A2D3A3 /* Pods-dianmoge.release.xcconfig */,
+				B70F3A7856A8E1CA4F7BCEF1 /* Pods-dianmoge-tvOS.debug.xcconfig */,
+				D3253EB9919D3E7670A19BC4 /* Pods-dianmoge-tvOS.release.xcconfig */,
+				E7BD8E70289AE0A95537F43A /* Pods-dianmoge-tvOSTests.debug.xcconfig */,
+				A64776C2BCD6545AD496A14F /* Pods-dianmoge-tvOSTests.release.xcconfig */,
+				E99F0EE5E749B904D1253B38 /* Pods-dianmogeTests.debug.xcconfig */,
+				FE6AE12F268785E85EAC46EC /* Pods-dianmogeTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -266,10 +266,10 @@
 				A7875F33233E0F8F00503ECC /* libc++.tbd */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				3D313494CB476D39F9D26F4C /* libPods-haxibiao.a */,
-				D7593A90D1CDA9F8B5230779 /* libPods-haxibiao-tvOS.a */,
-				28988192A2AA262CDEE78A21 /* libPods-haxibiao-tvOSTests.a */,
-				EE7886B87E20EF4E176705A4 /* libPods-haxibiaoTests.a */,
+				3D313494CB476D39F9D26F4C /* libPods-dianmoge.a */,
+				D7593A90D1CDA9F8B5230779 /* libPods-dianmoge-tvOS.a */,
+				28988192A2AA262CDEE78A21 /* libPods-dianmoge-tvOSTests.a */,
+				EE7886B87E20EF4E176705A4 /* libPods-dianmogeTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -285,9 +285,9 @@
 			isa = PBXGroup;
 			children = (
 				A7875EC9233E074000503ECC /* toolkits */,
-				13B07FAE1A68108700A75B9A /* haxibiao */,
+				13B07FAE1A68108700A75B9A /* dianmoge */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* haxibiaoTests */,
+				00E356EF1AD99517003FC87E /* dianmogeTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BAE27FD94CEA444098D77D63 /* Resources */,
@@ -301,10 +301,10 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* haxibiao.app */,
-				00E356EE1AD99517003FC87E /* haxibiaoTests.xctest */,
-				2D02E47B1E0B4A5D006451C7 /* haxibiao-tvOS.app */,
-				2D02E4901E0B4A5D006451C7 /* haxibiao-tvOSTests.xctest */,
+				13B07F961A680F5B00A75B9A /* dianmoge.app */,
+				00E356EE1AD99517003FC87E /* dianmogeTests.xctest */,
+				2D02E47B1E0B4A5D006451C7 /* dianmoge-tvOS.app */,
+				2D02E4901E0B4A5D006451C7 /* dianmoge-tvOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -483,9 +483,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* haxibiaoTests */ = {
+		00E356ED1AD99517003FC87E /* dianmogeTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "haxibiaoTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "dianmogeTests" */;
 			buildPhases = (
 				F06BBA640DD6F00B718C5274 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
@@ -497,14 +497,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = haxibiaoTests;
-			productName = haxibiaoTests;
-			productReference = 00E356EE1AD99517003FC87E /* haxibiaoTests.xctest */;
+			name = dianmogeTests;
+			productName = dianmogeTests;
+			productReference = 00E356EE1AD99517003FC87E /* dianmogeTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* haxibiao */ = {
+		13B07F861A680F5B00A75B9A /* dianmoge */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "haxibiao" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "dianmoge" */;
 			buildPhases = (
 				E061CBE2CBF8E431FA84D314 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
@@ -518,14 +518,14 @@
 			);
 			dependencies = (
 			);
-			name = haxibiao;
-			productName = haxibiao;
-			productReference = 13B07F961A680F5B00A75B9A /* haxibiao.app */;
+			name = dianmoge;
+			productName = dianmoge;
+			productReference = 13B07F961A680F5B00A75B9A /* dianmoge.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E47A1E0B4A5D006451C7 /* haxibiao-tvOS */ = {
+		2D02E47A1E0B4A5D006451C7 /* dianmoge-tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "haxibiao-tvOS" */;
+			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "dianmoge-tvOS" */;
 			buildPhases = (
 				E224E6EF02392142B55AD923 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
@@ -538,14 +538,14 @@
 			);
 			dependencies = (
 			);
-			name = "haxibiao-tvOS";
-			productName = "haxibiao-tvOS";
-			productReference = 2D02E47B1E0B4A5D006451C7 /* haxibiao-tvOS.app */;
+			name = "dianmoge-tvOS";
+			productName = "dianmoge-tvOS";
+			productReference = 2D02E47B1E0B4A5D006451C7 /* dianmoge-tvOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E48F1E0B4A5D006451C7 /* haxibiao-tvOSTests */ = {
+		2D02E48F1E0B4A5D006451C7 /* dianmoge-tvOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "haxibiao-tvOSTests" */;
+			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "dianmoge-tvOSTests" */;
 			buildPhases = (
 				7403BA95C42BAB2E68A93BB4 /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
@@ -557,9 +557,9 @@
 			dependencies = (
 				2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */,
 			);
-			name = "haxibiao-tvOSTests";
-			productName = "haxibiao-tvOSTests";
-			productReference = 2D02E4901E0B4A5D006451C7 /* haxibiao-tvOSTests.xctest */;
+			name = "dianmoge-tvOSTests";
+			productName = "dianmoge-tvOSTests";
+			productReference = 2D02E4901E0B4A5D006451C7 /* dianmoge-tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -593,7 +593,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "haxibiao" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "dianmoge" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -608,10 +608,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* haxibiao */,
-				00E356ED1AD99517003FC87E /* haxibiaoTests */,
-				2D02E47A1E0B4A5D006451C7 /* haxibiao-tvOS */,
-				2D02E48F1E0B4A5D006451C7 /* haxibiao-tvOSTests */,
+				13B07F861A680F5B00A75B9A /* dianmoge */,
+				00E356ED1AD99517003FC87E /* dianmogeTests */,
+				2D02E47A1E0B4A5D006451C7 /* dianmoge-tvOS */,
+				2D02E48F1E0B4A5D006451C7 /* dianmoge-tvOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -673,7 +673,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-haxibiao/Pods-haxibiao-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-dianmoge/Pods-dianmoge-resources.sh",
 				"${PODS_ROOT}/Bytedance-UnionAD/Bytedance-UnionAd/Frameworks/BUAdSDK.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/QBImagePickerController/QBImagePicker.bundle",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
@@ -718,7 +718,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-haxibiao/Pods-haxibiao-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-dianmoge/Pods-dianmoge-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
@@ -750,7 +750,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-haxibiao-tvOSTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-dianmoge-tvOSTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -772,7 +772,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-haxibiao-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-dianmoge-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -794,7 +794,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-haxibiao-tvOS-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-dianmoge-tvOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -816,7 +816,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-haxibiaoTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-dianmogeTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -868,7 +868,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* haxibiaoTests.m in Sources */,
+				00E356F31AD99517003FC87E /* dianmogeTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -927,7 +927,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DCD954D1E0B4F2C00145EB5 /* haxibiaoTests.m in Sources */,
+				2DCD954D1E0B4F2C00145EB5 /* dianmogeTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -936,12 +936,12 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* haxibiao */;
+			target = 13B07F861A680F5B00A75B9A /* dianmoge */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 		2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2D02E47A1E0B4A5D006451C7 /* haxibiao-tvOS */;
+			target = 2D02E47A1E0B4A5D006451C7 /* dianmoge-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -954,7 +954,7 @@
 				A7875F32233E0D2000503ECC /* zh-Hans */,
 			);
 			name = LaunchScreen.xib;
-			path = haxibiao;
+			path = dianmoge;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -962,7 +962,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E99F0EE5E749B904D1253B38 /* Pods-haxibiaoTests.debug.xcconfig */;
+			baseConfigurationReference = E99F0EE5E749B904D1253B38 /* Pods-dianmogeTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -973,7 +973,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = haxibiaoTests/Info.plist;
+				INFOPLIST_FILE = dianmogeTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -985,13 +985,13 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/haxibiao.app/haxibiao";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/dianmoge.app/dianmoge";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FE6AE12F268785E85EAC46EC /* Pods-haxibiaoTests.release.xcconfig */;
+			baseConfigurationReference = FE6AE12F268785E85EAC46EC /* Pods-dianmogeTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -999,7 +999,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = haxibiaoTests/Info.plist;
+				INFOPLIST_FILE = dianmogeTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -1011,35 +1011,35 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/haxibiao.app/haxibiao";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/dianmoge.app/dianmoge";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 385D9B8256CBEB2020F2AC1A /* Pods-haxibiao.debug.xcconfig */;
+			baseConfigurationReference = 385D9B8256CBEB2020F2AC1A /* Pods-dianmoge.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = haxibiao/haxibiao.entitlements;
+				CODE_SIGN_ENTITLEMENTS = dianmoge/dianmoge.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = 3W7L7CX92N;
-				INFOPLIST_FILE = haxibiao/Info.plist;
+				INFOPLIST_FILE = dianmoge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.1;
+				MARKETING_VERSION = 2.3;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.haxibiao;
-				PRODUCT_NAME = haxibiao;
-				PROVISIONING_PROFILE_SPECIFIER = haxibiao_test;
-				SWIFT_OBJC_BRIDGING_HEADER = "haxibiao-Bridging-Header.h";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dianmoge;
+				PRODUCT_NAME = dianmoge;
+				PROVISIONING_PROFILE_SPECIFIER = dianmoge_test;
+				SWIFT_OBJC_BRIDGING_HEADER = "dianmoge-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1048,28 +1048,28 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C25B8A00624BE26161A2D3A3 /* Pods-haxibiao.release.xcconfig */;
+			baseConfigurationReference = C25B8A00624BE26161A2D3A3 /* Pods-dianmoge.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = haxibiao/haxibiao.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_ENTITLEMENTS = dianmoge/dianmoge.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3W7L7CX92N;
-				INFOPLIST_FILE = haxibiao/Info.plist;
+				INFOPLIST_FILE = dianmoge/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				MARKETING_VERSION = 2.1;
+				MARKETING_VERSION = 2.3;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.haxibiao;
-				PRODUCT_NAME = haxibiao;
-				PROVISIONING_PROFILE_SPECIFIER = haxibiao_test;
-				SWIFT_OBJC_BRIDGING_HEADER = "haxibiao-Bridging-Header.h";
+				PRODUCT_BUNDLE_IDENTIFIER = com.dianmoge;
+				PRODUCT_NAME = dianmoge;
+				PROVISIONING_PROFILE_SPECIFIER = dianmoge;
+				SWIFT_OBJC_BRIDGING_HEADER = "dianmoge-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1077,7 +1077,7 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B70F3A7856A8E1CA4F7BCEF1 /* Pods-haxibiao-tvOS.debug.xcconfig */;
+			baseConfigurationReference = B70F3A7856A8E1CA4F7BCEF1 /* Pods-dianmoge-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1091,14 +1091,14 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "haxibiao-tvOS/Info.plist";
+				INFOPLIST_FILE = "dianmoge-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.haxibiao-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.dianmoge-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
@@ -1109,7 +1109,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D3253EB9919D3E7670A19BC4 /* Pods-haxibiao-tvOS.release.xcconfig */;
+			baseConfigurationReference = D3253EB9919D3E7670A19BC4 /* Pods-dianmoge-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1123,14 +1123,14 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "haxibiao-tvOS/Info.plist";
+				INFOPLIST_FILE = "dianmoge-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.haxibiao-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.dianmoge-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = appletvos;
@@ -1141,7 +1141,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E7BD8E70289AE0A95537F43A /* Pods-haxibiao-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = E7BD8E70289AE0A95537F43A /* Pods-dianmoge-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1151,24 +1151,24 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "haxibiao-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "dianmoge-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.haxibiao-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.dianmoge-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/haxibiao-tvOS.app/haxibiao-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/dianmoge-tvOS.app/dianmoge-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Debug;
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A64776C2BCD6545AD496A14F /* Pods-haxibiao-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = A64776C2BCD6545AD496A14F /* Pods-dianmoge-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1178,17 +1178,17 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "haxibiao-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "dianmoge-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.haxibiao-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.facebook.REACT.dianmoge-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/haxibiao-tvOS.app/haxibiao-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/dianmoge-tvOS.app/dianmoge-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Release;
@@ -1295,7 +1295,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "haxibiaoTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "dianmogeTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -1304,7 +1304,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "haxibiao" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "dianmoge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -1313,7 +1313,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "haxibiao-tvOS" */ = {
+		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "dianmoge-tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4971E0B4A5E006451C7 /* Debug */,
@@ -1322,7 +1322,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "haxibiao-tvOSTests" */ = {
+		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "dianmoge-tvOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4991E0B4A5E006451C7 /* Debug */,
@@ -1331,7 +1331,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "haxibiao" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "dianmoge" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,

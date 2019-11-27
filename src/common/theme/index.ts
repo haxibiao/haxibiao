@@ -1,12 +1,16 @@
-'use strict';
-
 import { Platform, Dimensions, StatusBar, PixelRatio } from 'react-native';
 import DeviceInfo from 'react-native-device-info';
 import color from './colors';
 
-const HAS_NOTCH: boolean = DeviceInfo.hasNotch();
-let HAS_HOME_INDICATOR: boolean = false;
-let HOME_INDICATOR_HEIGHT: number = 0;
+let HAS_NOTCH: boolean = DeviceInfo.hasNotch();
+let HAS_HOME_INDICATOR = false;
+let HOME_INDICATOR_HEIGHT = 0;
+
+const deviceID = DeviceInfo.getDeviceId();
+if (['iPhone12,1', 'iPhone12,3', 'iPhone12,5'].includes(deviceID)) {
+    HAS_NOTCH = true;
+    HOME_INDICATOR_HEIGHT = 26;
+}
 
 if (Platform.OS === 'ios' && HAS_NOTCH) {
     HAS_HOME_INDICATOR = true;
