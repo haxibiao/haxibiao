@@ -80,13 +80,41 @@ project.ext.react = [
     enableHermes: false,  // clean and rebuild if changing
 
     devDisabledInStaging: true,
+    devDisabledInXiaomi: true,
+    devDisabledInBaidu: true,
+    devDisabledInWandoujia:true,
+    devDisabledInOppo:true,
+    devDisabledInHuawei:true,
+    devDisabledInMeizu:true,
+    devDisabledInVivo:true,
+    devDisabledInQihoo:true,
+    devDisabledInTencent:true,
+    
     bundleInStaging: true,
+    bundleInXiaomi: true,
+    bundleInBaidu: true,
+    bundleInWandoujia:true,
+    bundleInOppo:true,
+    bundleInHuawei:true,
+    bundleInMeizu:true,
+    bundleInVivo:true,
+    bundleInQihoo:true,
+    bundleInTencent:true,
 ]
 
 project.ext.envConfigFiles = [
     debug: ".env",
     release: ".env.prod",
     staging: ".env.staging",
+    xiaomi: ".env.xiaomi",
+    baidu: ".env.baidu",
+    wandoujia:".env.wandoujia",
+    oppo:".env.oppo",
+    huawei:".env.huawei",
+    meizu:".env.meizu",
+    vivo:".env.vivo",
+    qihoo:".env.qihoo",
+    tencent:".env.tencent",
 ]
 
 
@@ -141,11 +169,14 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.haxibiao"
+        def appConfigJsonFile = file('../../app.json')
+        def appConfigJson = new groovy.json.JsonSlurper().parseText(appConfigJsonFile.text)
+
+        applicationId appConfigJson.AppID
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 12
-        versionName "2.2"
+        versionCode appConfigJson.Build
+        versionName appConfigJson.Version
         multiDexEnabled true
         manifestPlaceholders = [
                 JPUSH_APPKEY: "e2a41156f64a44a99af56d47", //在此替换你的APPKey
@@ -196,6 +227,78 @@ android {
             signingConfig signingConfigs.release
             buildConfigField "String", "CODEPUSH_KEY", '"' + rootProject.code_push_key_staging + '"'
         }  
+        xiaomi {
+            initWith release
+            minifyEnabled enableProguardInReleaseBuilds
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            matchingFallbacks = ['release']
+            signingConfig signingConfigs.release
+            buildConfigField "String", "CODEPUSH_KEY", '"' + rootProject.code_push_key_production + '"'
+        }
+        baidu {
+            initWith release
+            matchingFallbacks = ['release']
+            minifyEnabled enableProguardInReleaseBuilds
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
+            buildConfigField "String", "CODEPUSH_KEY", '"' + rootProject.code_push_key_production + '"'
+        }
+        wandoujia {
+            initWith release
+            matchingFallbacks = ['release']
+            minifyEnabled enableProguardInReleaseBuilds
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
+            buildConfigField "String", "CODEPUSH_KEY", '"' + rootProject.code_push_key_production + '"'
+        }
+        oppo {
+            initWith release
+            matchingFallbacks = ['release']
+            minifyEnabled enableProguardInReleaseBuilds
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
+            buildConfigField "String", "CODEPUSH_KEY", '"' + rootProject.code_push_key_production + '"'
+        }
+        huawei {
+            initWith release
+            matchingFallbacks = ['release']
+            minifyEnabled enableProguardInReleaseBuilds
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
+            buildConfigField "String", "CODEPUSH_KEY", '"' + rootProject.code_push_key_production + '"'
+        }
+        meizu {
+            initWith release
+            matchingFallbacks = ['release']
+            minifyEnabled enableProguardInReleaseBuilds
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
+            buildConfigField "String", "CODEPUSH_KEY", '"' + rootProject.code_push_key_production + '"'
+        }
+        vivo {
+            initWith release
+            matchingFallbacks = ['release']
+            minifyEnabled enableProguardInReleaseBuilds
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
+            buildConfigField "String", "CODEPUSH_KEY", '"' + rootProject.code_push_key_production + '"'
+        }
+        qihoo {
+            initWith release
+            matchingFallbacks = ['release']
+            minifyEnabled enableProguardInReleaseBuilds
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
+            buildConfigField "String", "CODEPUSH_KEY", '"' + rootProject.code_push_key_production + '"'
+        }
+        tencent {
+            initWith release
+            matchingFallbacks = ['release']
+            minifyEnabled enableProguardInReleaseBuilds
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
+            buildConfigField "String", "CODEPUSH_KEY", '"' + rootProject.code_push_key_production + '"'
+        }
         
     }
     // applicationVariants are e.g. debug, release
