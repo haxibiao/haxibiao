@@ -1,8 +1,8 @@
 platform :ios, '9.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-target 'haxibiao' do
-  # Pods for haxibiao
+target 'dianmoge' do
+  # Pods for dianmoge
   pod 'React', :path => '../node_modules/react-native/'
   pod 'React-Core', :path => '../node_modules/react-native/React'
   pod 'React-DevSupport', :path => '../node_modules/react-native/React'
@@ -28,7 +28,7 @@ target 'haxibiao' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec' 
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
-  pod 'Bytedance-UnionAD'
+  pod 'Bytedance-UnionAD', '~> 2.4.6.7'
 
   pod 'CodePush', :path => '../node_modules/react-native-code-push'
 
@@ -36,7 +36,7 @@ target 'haxibiao' do
 
   pod 'JPushRN', :path => '../node_modules/jpush-react-native'
 
-  target 'haxibiaoTests' do
+  target 'dianmogeTests' do
     inherit! :search_paths
     # Pods for testing
   end
@@ -44,10 +44,10 @@ target 'haxibiao' do
   use_native_modules!
 end
 
-target 'haxibiao-tvOS' do
-  # Pods for haxibiao-tvOS
+target 'dianmoge-tvOS' do
+  # Pods for dianmoge-tvOS
 
-  target 'haxibiao-tvOSTests' do
+  target 'dianmoge-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end
