@@ -1,6 +1,6 @@
 import React, { useContext, useState, useCallback, useEffect, useMemo } from 'react';
 import { ScrollView, StyleSheet, Text, View, Image, TouchableOpacity, StatusBar } from 'react-native';
-import { PageContainer, Avatar, Badge, Row, SafeText, StatusView } from '@src/components';
+import { PageContainer, Badge, Row, SafeText, StatusView } from '@src/components';
 import { GQL, useQuery, useLazyQuery, useApolloClient } from '@src/apollo';
 import { observer, userStore } from '@src/store';
 import { middlewareNavigate } from '@src/router';
@@ -82,9 +82,8 @@ export default observer(props => {
                         style={styles.notifyItem}
                         onPress={() => middlewareNavigate('CommentNotification', { user })}>
                         <View>
-                            <Avatar
-                                style={{ borderRadius: PxDp(5) }}
-                                size={PxDp(42)}
+                            <Image
+                                style={{ borderRadius: PxDp(5), width: PxDp(27), height: PxDp(27) }}
                                 source={require('@src/assets/images/notification_comment.png')}
                             />
                         </View>
@@ -99,9 +98,8 @@ export default observer(props => {
                         style={styles.notifyItem}
                         onPress={() => middlewareNavigate('BeLikedNotification', { user })}>
                         <View>
-                            <Avatar
-                                style={{ borderRadius: PxDp(5) }}
-                                size={PxDp(42)}
+                            <Image
+                                style={{ borderRadius: PxDp(5), width: PxDp(27), height: PxDp(27) }}
                                 source={require('@src/assets/images/notification_like.png')}
                             />
                         </View>
@@ -116,9 +114,8 @@ export default observer(props => {
                         style={styles.notifyItem}
                         onPress={() => middlewareNavigate('FollowNotification', { user })}>
                         <View>
-                            <Avatar
-                                style={{ borderRadius: PxDp(5) }}
-                                size={PxDp(42)}
+                            <Image
+                                style={{ borderRadius: PxDp(5), width: PxDp(27), height: PxDp(27) }}
                                 source={require('@src/assets/images/notification_following.png')}
                             />
                         </View>
@@ -133,9 +130,8 @@ export default observer(props => {
                         style={styles.notifyItem}
                         onPress={() => middlewareNavigate('OtherRemindNotification', { user })}>
                         <View>
-                            <Avatar
-                                style={{ borderRadius: PxDp(5) }}
-                                size={PxDp(42)}
+                            <Image
+                                style={{ borderRadius: PxDp(5), width: PxDp(27), height: PxDp(27) }}
                                 source={require('@src/assets/images/notification_other.png')}
                             />
                         </View>

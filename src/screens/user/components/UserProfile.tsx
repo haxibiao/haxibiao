@@ -89,7 +89,12 @@ export default observer(({ user, titleStyle, contentStyle }) => {
                 </View>
             </ImageBackground>
             <View style={styles.navBarStyle}>
-                <TouchableOpacity activeOpacity={1} onPress={navigation.goBack} style={styles.navBarButton}>
+                <TouchableOpacity
+                    activeOpacity={1}
+                    onPress={() => {
+                        navigation.goBack();
+                    }}
+                    style={styles.navBarButton}>
                     <Iconfont name="zuojiantou" color={'#fff'} size={PxDp(22)} />
                 </TouchableOpacity>
                 <Animated.View style={[styles.navBarTitle, titleStyle]}>
