@@ -39,6 +39,7 @@ class VideoStore {
     @observable public currentPage: number = 0;
     @observable public viewableItemIndex: number = -1;
     @observable public rewardProgress: number = 0;
+    @observable public getReward = [];
 
     @computed get currentItem(): Post {
         return this.dataSource[this.viewableItemIndex >= 0 ? this.viewableItemIndex : 0];
@@ -58,6 +59,12 @@ class VideoStore {
     @action.bound
     public pause() {
         this.videoPaused = true;
+    }
+
+    @action.bound
+    public addGetRewardId(id: any) {
+        this.getReward = this.getReward.concat(id);
+        console.log('this.getReward', this.getReward);
     }
 }
 

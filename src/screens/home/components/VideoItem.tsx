@@ -8,23 +8,42 @@ import Player from './Player';
 import SideBar from './SideBar';
 import VideoStore from '../VideoStore';
 
+import { GQL } from '@src/apollo';
+
 export default observer(props => {
     const { media, index } = props;
     const navigation = useNavigation();
     const [adShow, setAdShow] = useState(true);
+    let AdView: any;
+
     if (media.isAdPosition && adShow && appStore.enableAd) {
-        return (
-            <View style={{ height: appStore.viewportHeight }}>
-                <ttad.DrawFeedAd
-                    onError={(error: any) => {
-                        setAdShow(false);
-                    }}
-                    onAdClick={() => {
-                        Toast.show({ content: '+1用户行为贡献', duration: 1500 });
-                    }}
-                />
-            </View>
-        );
+        AdView = function() {
+            return (
+                <View style={{ height: appStore.viewportHeight }}>
+                    <ttad.DrawFeedAd
+                        onError={(error: any) => {
+                            // 广告 error 有几率导致闪退点
+                            setAdShow(false);
+                        }}
+                        onAdClick={() => {
+                            const drawFeedAdId = media.id.toString();
+
+                            if (VideoStore.getReward.indexOf(drawFeedAdId) === -1) {
+                                VideoStore.addGetRewardId(drawFeedAdId);
+                                appStore.client
+                                    .mutate({
+                                        mutation: GQL.clickVideoAD,
+                                    })
+                                    .then(data => {
+                                        const ad_amount = data.data.clickAD.amount || 0;
+                                        Toast.show({ content: `+${ad_amount} 用户行为贡献`, duration: 1500 });
+                                    });
+                            }
+                        }}
+                    />
+                </View>
+            );
+        };
     }
 
     const renderCategories = useMemo(() => {
@@ -44,31 +63,42 @@ export default observer(props => {
     }, []);
 
     return (
-        <View style={{ height: appStore.viewportHeight }}>
-            {media.cover && (
-                <View style={styles.cover}>
-                    <Image style={styles.curtain} source={{ uri: media.cover }} resizeMode="cover" blurRadius={4} />
-                    <View style={styles.mask} />
+        <>
+            {adShow && media.isAdPosition ? (
+                <AdView />
+            ) : (
+                <View style={{ height: appStore.viewportHeight }}>
+                    {media.cover && (
+                        <View style={styles.cover}>
+                            <Image
+                                style={styles.curtain}
+                                source={{ uri: media.cover }}
+                                resizeMode="cover"
+                                blurRadius={4}
+                            />
+                            <View style={styles.mask} />
+                        </View>
+                    )}
+                    <Player media={media} index={index} />
+                    <View style={styles.videoContent}>
+                        <View>
+                            <SafeText shadowText={true} style={styles.name}>
+                                @{Helper.syncGetter('user.name', media)}
+                            </SafeText>
+                        </View>
+                        <View>
+                            <SafeText shadowText={true} style={styles.body} numberOfLines={3}>
+                                {renderCategories}
+                                {media.body}
+                            </SafeText>
+                        </View>
+                    </View>
+                    <View style={styles.videoSideBar}>
+                        <SideBar media={media} />
+                    </View>
                 </View>
             )}
-            <Player media={media} index={index} />
-            <View style={styles.videoContent}>
-                <View>
-                    <SafeText shadowText={true} style={styles.name}>
-                        @{Helper.syncGetter('user.name', media)}
-                    </SafeText>
-                </View>
-                <View>
-                    <SafeText shadowText={true} style={styles.body} numberOfLines={3}>
-                        {renderCategories}
-                        {media.body}
-                    </SafeText>
-                </View>
-            </View>
-            <View style={styles.videoSideBar}>
-                <SideBar media={media} />
-            </View>
-        </View>
+        </>
     );
 });
 
