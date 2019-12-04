@@ -214,9 +214,35 @@ export default observer(props => {
 					</View>
 				</View>
 				<View style={styles.rule}>
+					
+					<Text style={[styles.ruleText, { color: '#000', fontWeight: 'bold' }]}>{`贡献值: ${user.contribute || 0}`}</Text>
 					<Text style={[styles.ruleText, { color: '#000', fontWeight: 'bold' }]}>
 						{`今日汇率：${user.exchangeRate || '999'}${Config.goldAlias}/1元`}
 					</Text>
+					
+
+					<Text style={[styles.ruleText, styles.ruleTitle]}>贡献值获取方式：</Text>
+
+					<View style={styles.ruleText}>
+
+						<Text style={styles.ruleText}>
+							1.发布作品被评论、被点赞。
+					</Text>
+						<Text style={styles.ruleText}>
+							2.发布采集视频。
+					</Text>
+						<Text style={styles.ruleText}>
+							3.发布有奖问答。
+					</Text>
+						<Text style={styles.ruleText}>
+							4.点击draw视频广告。
+					</Text>
+
+						<Text>5.提现所需贡献为提现金额*30</Text>
+
+					</View>
+
+
 					<Text style={[styles.ruleText, styles.ruleTitle]}>提现说明：</Text>
 
 					<Text style={styles.ruleText}>
@@ -237,7 +263,15 @@ export default observer(props => {
 					<Text style={styles.ruleText}>
 						{`6.若您通过非正常手段获取${Config.goldAlias}或余额（包括但不限于刷单、应用多开等操作、一人名下只能绑定一个支付宝，同一人不得使用多个账号提现），${Config.AppName}有权取消您的提现资格，并视情况严重程度，采取封禁等措施。`}
 					</Text>
+
+				
+
 				</View>
+
+				
+			
+			
+			
 			</ScrollView>
 			<View style={styles.fixWithdrawBtn}>
 				<HxfButton
@@ -402,4 +436,5 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-between',
 		alignItems: 'center',
 	},
+
 });
