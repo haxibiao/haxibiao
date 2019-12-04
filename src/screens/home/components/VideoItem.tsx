@@ -64,7 +64,7 @@ export default observer(props => {
 
     return (
         <>
-            {adShow && media.isAdPosition ? (
+            {appStore.enableAd && adShow && media.isAdPosition ? (
                 <AdView />
             ) : (
                 <View style={{ height: appStore.viewportHeight }}>
