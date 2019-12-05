@@ -31,10 +31,15 @@ export default observer(props => {
 		fetchPolicy: 'network-only',
 	});
 
+	const { data: result, refetch } = useQuery(GQL.userProfileQuery, {
+		variables: { id: user.id },
+	});
+	const userData = Helper.syncGetter('user', result) || {};
+
 	/**
 	 *  判断user 里的phone 是否存在,如果为null则提示用户去绑定手机号
 	 */
-	console.log('user from wallet : ', user);
+	console.log('user from wallet : ', userData);
 	useEffect(() => {
 		if (user.phone === null || !user.phone) {
 			PopOverlay({
@@ -50,6 +55,9 @@ export default observer(props => {
 	user = Object.assign({}, user, { ...me });
 	const myWallet =
 		useMemo(() => Helper.syncGetter('me.wallet', walletData), [walletData]) || user.wallet || walletAdapterData;
+
+	console.log("myWallet", myWallet);
+	
 
 	const [withdrawRequest, { error, data: withdrawData }] = useMutation(GQL.CreateWithdrawMutation, {
 		variables: {
@@ -215,9 +223,9 @@ export default observer(props => {
 				</View>
 				<View style={styles.rule}>
 					
-					<Text style={[styles.ruleText, { color: '#000', fontWeight: 'bold' }]}>{`贡献值: ${user.contribute || 0}`}</Text>
+					<Text style={[styles.ruleText, { color: '#000', fontWeight: 'bold' }]}>{`贡献值: ${userData.contribute || 0}`}</Text>
 					<Text style={[styles.ruleText, { color: '#000', fontWeight: 'bold' }]}>
-						{`今日汇率：${user.exchangeRate || '999'}${Config.goldAlias}/1元`}
+						{`今日汇率：${user.exchangeRate || '600'}${Config.goldAlias}/1元`}
 					</Text>
 					
 
@@ -227,18 +235,19 @@ export default observer(props => {
 
 						<Text style={styles.ruleText}>
 							1.发布作品被评论、被点赞。
-					</Text>
+						</Text>
 						<Text style={styles.ruleText}>
 							2.发布采集视频。
-					</Text>
+						</Text>
 						<Text style={styles.ruleText}>
 							3.发布有奖问答。
-					</Text>
+						</Text>
 						<Text style={styles.ruleText}>
 							4.点击draw视频广告。
-					</Text>
-
-						<Text>5.提现所需贡献为提现金额*30</Text>
+						</Text>
+						<Text style={styles.ruleText}>
+							5.提现所需贡献为提现金额*30
+						</Text>
 
 					</View>
 
@@ -257,20 +266,12 @@ export default observer(props => {
 					</Text>
 					<Text style={styles.ruleText}>4. 提现 3~5 天内到账。若遇高峰期，可能延迟到账，请您耐心等待。</Text>
 					<Text style={styles.ruleText}>
-						5.
-						提现金额分为1元、3元、5元、10元四档，每次提现将扣除相应余额，剩余余额可以在下次满足最低提现额度时申请提现。
+						5.提现金额分为1元、3元、5元、10元四档，每次提现将扣除相应余额，剩余余额可以在下次满足最低提现额度时申请提现。
 					</Text>
 					<Text style={styles.ruleText}>
 						{`6.若您通过非正常手段获取${Config.goldAlias}或余额（包括但不限于刷单、应用多开等操作、一人名下只能绑定一个支付宝，同一人不得使用多个账号提现），${Config.AppName}有权取消您的提现资格，并视情况严重程度，采取封禁等措施。`}
 					</Text>
-
-				
-
 				</View>
-
-				
-			
-			
 			
 			</ScrollView>
 			<View style={styles.fixWithdrawBtn}>

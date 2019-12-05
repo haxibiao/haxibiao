@@ -24,6 +24,7 @@ mutation signInMutation($account: String!, $password: String!) {
         count_followings
         count_favorites
         reward
+        contribute
     }
 }
 
@@ -53,6 +54,7 @@ mutation autoSignInMutation($UUID: String!, $PHONE: String) {
         count_followings
         count_favorites
         reward
+        contribute
     }
 }
 
@@ -83,6 +85,7 @@ mutation signUpMutation($account: String, $password: String!, $name: String) {
         count_followings
         count_favorites
         reward
+        contribute
     }
 }
 

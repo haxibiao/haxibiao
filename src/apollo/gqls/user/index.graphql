@@ -16,6 +16,7 @@ query userQuery($id: Int!) {
         age
         gender
         background
+        contribute
     }
 }
 
@@ -48,5 +49,6 @@ query userProfileQuery($id: Int!) {
             available_balance
             today_withdraw_left
         }
+        contribute
     }
 }
