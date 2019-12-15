@@ -4,9 +4,10 @@ import { GQL, useMutation } from '@src/apollo';
 import { download } from '@src/common';
 import useReport from './useReport';
 import TouchFeedback from '../Basic/TouchFeedback';
+import { useNavigation } from '@src/router';
 
 const MoreOperation = props => {
-    const { options, target, type, downloadUrl, downloadUrlTitle, onPressIn, deleteCallback } = props;
+    const { options, target, type, downloadUrl, downloadUrlTitle, onPressIn, deleteCallback, navigation } = props;
     const report = useReport({ target, type });
     const [deleteArticleMutation] = useMutation(GQL.deleteArticle, {
         variables: {
@@ -45,6 +46,13 @@ const MoreOperation = props => {
         Toast.show({ content: '操作成功，将减少此类型内容的推荐' });
     }, []);
 
+    const shield = useCallback(() => {
+        onPressIn();
+        Toast.show({ content: '拉黑成功，将减少此用户内容的推荐' });
+        navigation.goBack();
+        
+    }, []);
+
     const operation = useMemo(
         () => ({
             下载: {
@@ -62,6 +70,10 @@ const MoreOperation = props => {
             不感兴趣: {
                 image: require('@src/assets/images/more_dislike.png'),
                 callback: dislike,
+            },
+            拉黑: {
+                image: require('@src/assets/images/more_shield.png'),
+                callback: shield,
             },
         }),
         [reportArticle, deleteArticle, dislike],

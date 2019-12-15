@@ -1,0 +1,50 @@
+#import './mutation.graphql'
+
+# 获取全部任务列表
+query tasksQuery{
+  tasks(type:All){
+    id
+    name
+    details
+    type
+    submit_name
+    task_class
+    task_status
+    progress_details
+    reward_info{
+      gold
+      contribute
+    }
+    taskInfo{
+      method
+      router
+    }
+  }
+}
+
+# 喝水打卡任务列表
+query drinkWaterListQuery {
+  DrinkWaterTasks {
+    id
+    task_status
+    start_time
+    task_progress
+  }
+}
+
+# 睡觉打卡玩法获取
+query sleepTaskQuery {
+  SleepTask {
+    id
+    status
+    name
+    task_status
+    sleep_status
+    details
+    reward_info{
+      gold
+      contribute
+    }
+    start_at
+  }
+}

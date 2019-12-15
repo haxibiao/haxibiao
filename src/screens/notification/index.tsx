@@ -1,16 +1,17 @@
 import React, { useContext, useState, useCallback, useEffect, useMemo } from 'react';
 import { ScrollView, StyleSheet, Text, View, Image, TouchableOpacity, StatusBar } from 'react-native';
-import { PageContainer, Badge, Row, SafeText, StatusView } from '@src/components';
+import { PageContainer, Avatar, Badge, Row, SafeText, StatusView } from '@src/components';
 import { GQL, useQuery, useLazyQuery, useApolloClient } from '@src/apollo';
 import { observer, userStore } from '@src/store';
-import { middlewareNavigate } from '@src/router';
+import { useNavigation } from '@src/router';
 import { exceptionCapture } from '@src/common';
 import Chats from './components/Chats';
 
-export default observer(props => {
+export default observer((props: any) => {
+    const navigation = useNavigation();
     const [myUnreadNotify, setUnreadNotify] = useState({});
     const [chats, setChats] = useState([]);
-    const login = Helper.syncGetter('login', userStore);
+    const isLogin = Helper.syncGetter('login', userStore);
     const user = Helper.syncGetter('me', userStore);
     const userId = Helper.syncGetter('id', user);
 
@@ -74,16 +75,28 @@ export default observer(props => {
             };
         }
     }, [userId, refetchUnreadsQuery, refetchChatsQuery]);
+
+    const authNavigator = useCallback(
+        (route, params) => {
+            if (isLogin) {
+                navigation.navigate(route, params);
+            } else {
+                navigation.navigate('Login');
+            }
+        },
+        [isLogin],
+    );
+
     return (
         <PageContainer isTopNavigator={true} title="消息">
             <ScrollView contentContainerStyle={styles.contentContainer}>
                 <View style={styles.notifyType}>
                     <TouchableOpacity
                         style={styles.notifyItem}
-                        onPress={() => middlewareNavigate('CommentNotification', { user })}>
+                        onPress={() => authNavigator('CommentNotification', { user })}>
                         <View>
                             <Image
-                                style={{ borderRadius: PxDp(5), width: PxDp(27), height: PxDp(27) }}
+                                style={{ width: PxDp(42), height: PxDp(42), borderRadius: PxDp(5) }}
                                 source={require('@src/assets/images/notification_comment.png')}
                             />
                         </View>
@@ -96,10 +109,10 @@ export default observer(props => {
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.notifyItem}
-                        onPress={() => middlewareNavigate('BeLikedNotification', { user })}>
+                        onPress={() => authNavigator('BeLikedNotification', { user })}>
                         <View>
                             <Image
-                                style={{ borderRadius: PxDp(5), width: PxDp(27), height: PxDp(27) }}
+                                style={{ width: PxDp(42), height: PxDp(42), borderRadius: PxDp(5) }}
                                 source={require('@src/assets/images/notification_like.png')}
                             />
                         </View>
@@ -112,10 +125,10 @@ export default observer(props => {
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.notifyItem}
-                        onPress={() => middlewareNavigate('FollowNotification', { user })}>
+                        onPress={() => authNavigator('FollowNotification', { user })}>
                         <View>
                             <Image
-                                style={{ borderRadius: PxDp(5), width: PxDp(27), height: PxDp(27) }}
+                                style={{ width: PxDp(42), height: PxDp(42), borderRadius: PxDp(5) }}
                                 source={require('@src/assets/images/notification_following.png')}
                             />
                         </View>
@@ -128,10 +141,10 @@ export default observer(props => {
                     </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.notifyItem}
-                        onPress={() => middlewareNavigate('OtherRemindNotification', { user })}>
+                        onPress={() => authNavigator('OtherRemindNotification', { user })}>
                         <View>
                             <Image
-                                style={{ borderRadius: PxDp(5), width: PxDp(27), height: PxDp(27) }}
+                                style={{ width: PxDp(42), height: PxDp(42), borderRadius: PxDp(5) }}
                                 source={require('@src/assets/images/notification_other.png')}
                             />
                         </View>

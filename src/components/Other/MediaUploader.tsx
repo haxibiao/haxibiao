@@ -150,17 +150,18 @@ const VideoUploadView = (props: Props) => {
                 onStarted: uploadId => {
                     ProgressOverlay.show('正在上传...');
                 },
-                onProcess: progress => {
+                onProcess: (progress:number) => {
+                    // 设置上传进度回调方法
                     ProgressOverlay.progress(progress);
                 },
-                onCompleted: data => {
-                    const response = JSON.parse(data.responseBody);
-                    if (response.video_id) {
+                onCompleted: (data: any) => {
+                    // console.log("测试vod返回",data);
+                    if (data.video_id) {
                         ProgressOverlay.hide();
                         Toast.show({
                             content: '视频上传成功',
                         });
-                        onResponse(response);
+                        onResponse(data);
                     } else {
                         onUploadError();
                     }

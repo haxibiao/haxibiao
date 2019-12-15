@@ -11,6 +11,7 @@ const codeid = Platform.OS === 'ios' ? CodeIdDrawFeedIOS : CodeIdDrawFeed;
 interface Props {
     onError?: Function,
     onLoad?: Function,
+    onAdClick?: Function,
 }
 
 // 注意检查穿山甲运行时的Draw竖版信息流代码位id
@@ -24,13 +25,13 @@ const DrawFeedAd = (props: Props) => {
             <NativeDrawFeedAd
                 codeid={codeid}
                 style={{ ...styles.container }}
-                onError={e => {
+                onAdError={(e: any) => {
                     console.log('onError feed', e.nativeEvent);
                     setVisible(false);
                     onError && onError(e.nativeEvent);
                 }}
                 onAdClick={onAdClick}
-                onAdShow={e => {
+                onAdShow={(e:any) => {
                     console.log('onAdShow', e.nativeEvent);
                 }}
             />

@@ -89,7 +89,7 @@ class AccountSecurity extends Component {
                                 </View>
                             )
                         }
-                    />                    
+                    />
 
                     {appStore.enableWallet && (
                         <ListItem
@@ -98,17 +98,17 @@ class AccountSecurity extends Component {
                             leftComponent={<Text style={styles.itemText}>支付宝账号</Text>}
                             rightComponent={<Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />}
                             rightComponent={
-                            user.wallet ? (
-                                <View style={styles.rightWrap}>
-                                    <Text style={styles.rightText}>已绑定</Text>
-                                    <Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />
-                                </View>
-                            ) : (
-                                <View style={styles.rightWrap}>
-                                    <Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />
-                                </View>
-                            )
-                        }
+                                user.wallet ? (
+                                    <View style={styles.rightWrap}>
+                                        <Text style={styles.rightText}>已绑定</Text>
+                                        <Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />
+                                    </View>
+                                ) : (
+                                    <View style={styles.rightWrap}>
+                                        <Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />
+                                    </View>
+                                )
+                            }
                         />
                     )}
 
@@ -118,6 +118,14 @@ class AccountSecurity extends Component {
                         leftComponent={<Text style={styles.itemText}>修改密码</Text>}
                         rightComponent={<Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />}
                     />
+                    {/* <ListItem
+                        style={styles.listItem}
+                        onPress={() => {
+                            navigation.navigate('LogoutAccount');
+                        }}
+                        leftComponent={<Text style={styles.itemText}>注销账号</Text>}
+                        rightComponent={<Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />}
+                    /> */}
                 </View>
             </PageContainer>
         );

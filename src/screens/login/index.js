@@ -90,7 +90,7 @@ export default observer(props => {
         if (Device.UUID) {
             const [error, result] = await exceptionCapture(autoSignInMutation);
             if (error) {
-                Toast.show({ content: '一键登录失败，请手动登录', layout: 'top' });
+                Toast.show({ content: error.message, layout: 'top' });
             } else {
                 //登录成功,更新用户全局状态
                 const meInfo = Helper.syncGetter('data.autoSignIn', result);
@@ -152,7 +152,7 @@ export default observer(props => {
                                 <View style={styles.inputWrap}>
                                     <HxfTextInput
                                         placeholderTextColor={'rgba(255,255,255,0.4)'}
-                                        autoCorrect={false}                                        
+                                        autoCorrect={false}
                                         placeholder={'请输入昵称'}
                                         style={styles.inputStyle}
                                         value={formData.name}

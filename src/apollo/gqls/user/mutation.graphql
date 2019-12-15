@@ -166,3 +166,8 @@ mutation retrievePasswordMutation($code: String!, $phone: String, $newPassword: 
         phone
     }
 }
+
+#注销账号
+mutation destoryUserMutation {
+    destoryUser
+}

@@ -9,11 +9,13 @@ import { PageContainer, Iconfont, Row, HxfButton, PopOverlay } from '@src/compon
 import StoreContext, { observer } from '@src/store';
 import { middlewareNavigate, useNavigation, useNavigationParam } from '@src/router';
 import { GQL, useMutation, useQuery } from '@src/apollo';
+import { appStore } from '@src/store';
+import { Center } from 'src/components';
 
 const WithdrawalOptions = [1, 3, 5, 10];
 const BANNER_WIDTH = Device.WIDTH - PxDp(Theme.itemSpace * 2);
 
-export default observer(props => {
+export default observer((props: any) => {
     const store = useContext(StoreContext);
     let user = useNavigationParam('user') || store.userStore.me;
     const navigation = useNavigation();
@@ -95,8 +97,14 @@ export default observer(props => {
 
     useEffect(() => {
         if (error) {
+            // 设置点击过程为 false 
+            setIsWithdrawRequest(false);
+
             Toast.show({ content: error.message.replace('GraphQL error: ', '') || '提现失败' });
         } else if (withdrawData) {
+            // 设置点击过程为 false 
+            setIsWithdrawRequest(false);
+            
             navigation.navigate('WithdrawApply', {
                 amount,
                 created_at: Helper.syncGetter('data.createWithdraw.created_at', withdrawData),
@@ -105,25 +113,103 @@ export default observer(props => {
     }, [withdrawData, error]);
 
     const title = amount > 0 ? `申请提现${amount}元` : '申请提现';
+
+    // 提现请求状态
+    const [isWithdrawRequest, setIsWithdrawRequest] = useState(false);
+    const onWithdrawRequest = () => {
+
+        if (!isWithdrawRequest) {
+            // 请求判断贡献接口
+
+            appStore.client
+                .query({
+                    query: GQL.canWithdrawalsQuery,
+                    variables: {
+                        amount,
+                    },
+                })
+                .then((data: any) => {
+                    // console.log('Data', data);
+                    if (data.data.canWithdrawals <= 0) {
+                        // 判断贡献足够，跳转申请提现接口
+                        withdrawRequest();
+                    } else {
+                        setIsWithdrawRequest(false);
+
+                        // 贡献不足，提示用户
+                        PopOverlay({
+                            content: '提现失败！贡献值不足，去完成任务即可获得贡献值哦！',
+                            onConfirm: async () => {
+                                navigation.goBack();
+                                navigation.navigate('TaskScreen');
+                            },
+                        });
+                    }
+                })
+                .catch((err: any) => {
+                    // console.log('err', err);
+                    setIsWithdrawRequest(false);
+
+                    Toast.show({ content: '服务器繁忙！提现失败，请稍后重试！' });
+                });
+        } else {
+            console.log("点击中…………………………");
+            
+        }
+
+        // 如果已经发送请求就忽略重复点击
+        setIsWithdrawRequest(true);
+        
+    };
+
     return (
         <PageContainer title="提现">
             <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
                 <View style={styles.statistics}>
                     <ImageBackground source={require('@src/assets/images/wallet_bg.png')} style={styles.bannerImage}>
                         <View style={styles.banner}>
-                            <View style={styles.bannerTop}>
-                                <View>
-                                    <Text style={styles.boldBlackText2}>{Config.goldAlias}</Text>
+                            <View style={styles.bannerLeft}>
+                                <Row>
                                     <Text
                                         style={[
-                                            styles.boldBlackText3,
+                                            styles.boldBlackText2,
+                                            Device.Android && {
+                                                fontFamily: ' ',
+                                                marginRight: PxDp(10),
+                                            },
+                                        ]}>
+                                        {Config.goldAlias}
+                                    </Text>
+                                    <Text style={styles.blackText1}>{user.gold || 0}</Text>
+                                </Row>
+
+                                <Row>
+                                    <Text
+                                        style={[
+                                            styles.boldBlackText2,
                                             Device.Android && {
                                                 fontFamily: ' ',
                                             },
                                         ]}>
-                                        {user.gold || 0}
+                                        余额(元)
                                     </Text>
-                                </View>
+                                    <Text style={styles.blackText1}>{user.reward || 0}</Text>
+                                </Row>
+
+                                <Row>
+                                    <Text
+                                        style={[
+                                            styles.boldBlackText2,
+                                            Device.Android && {
+                                                fontFamily: ' ',
+                                            },
+                                        ]}>
+                                        总提现 (元)
+                                    </Text>
+                                    <Text style={styles.blackText1}>{myWallet.total_withdraw_amount}</Text>
+                                </Row>
+                            </View>
+                            <View style={styles.bannerRight}>
                                 <TouchableOpacity
                                     style={styles.withdrawLogBtn}
                                     onPress={() => {
@@ -133,31 +219,23 @@ export default observer(props => {
                                     }}>
                                     <Text style={styles.withdrawLogBtnText}>提现记录</Text>
                                 </TouchableOpacity>
-                            </View>
-                            <View style={styles.bannerBottom}>
                                 <Row>
+                                    {/* <Text
+                                        style={[
+                                            styles.ruleText,
+                                            { color: '#000', fontWeight: 'bold' },
+                                        ]}>{`贡献值: ${userData.contribute || 0}`}</Text> */}
                                     <Text
                                         style={[
-                                            styles.boldBlackText1,
+                                            styles.boldBlackText2,
                                             Device.Android && {
                                                 fontFamily: ' ',
+                                                marginLeft: PxDp(2),
                                             },
                                         ]}>
-                                        余额(元)
+                                        贡献值
                                     </Text>
-                                    <Text style={styles.blackText}>{user.reward || 0}</Text>
-                                </Row>
-                                <Row>
-                                    <Text
-                                        style={[
-                                            styles.boldBlackText1,
-                                            Device.Android && {
-                                                fontFamily: ' ',
-                                            },
-                                        ]}>
-                                        总提现(元)
-                                    </Text>
-                                    <Text style={styles.blackText}>{myWallet.total_withdraw_amount}</Text>
+                                    <Text style={styles.blackText1}>{userData.contribute || 0}</Text>
                                 </Row>
                             </View>
                         </View>
@@ -220,12 +298,15 @@ export default observer(props => {
                         })}
                     </View>
                 </View>
+
                 <View style={styles.rule}>
-                    <Text
-                        style={[
-                            styles.ruleText,
-                            { color: '#000', fontWeight: 'bold' },
-                        ]}>{`贡献值: ${userData.contribute || 0}`}</Text>
+                    <View>
+                        <Text
+                            style={[
+                                styles.ruleText,
+                                { color: '#000', fontWeight: 'bold' },
+                            ]}>{`欢迎加入QQ反馈群：${Config.qqGroup}`}</Text>
+                    </View>
                     <Text style={[styles.ruleText, { color: '#000', fontWeight: 'bold' }]}>
                         {`今日汇率：${user.exchangeRate || '600'}${Config.goldAlias}/1元`}
                     </Text>
@@ -237,28 +318,22 @@ export default observer(props => {
                     </Text>
 
                     <Text style={styles.ruleText}>
-                        {`2.每天的转换汇率与平台收益及您的平台活跃度相关，因此汇率会受到影响上下浮动；活跃度越高，汇率越高；您可以通过刷视频、点赞评论互动、邀请好友一起来${Config.AppName}等行为来提高活跃度。`}
-                    </Text>
-                    <Text style={styles.ruleText}>
-                        {`3. 每天凌晨 00:00-08:00 期间，系统会把您账户中的所有${Config.goldAlias}自动转为余额。`}
-                    </Text>
-                    <Text style={styles.ruleText}>4. 提现 3~5 天内到账。若遇高峰期，可能延迟到账，请您耐心等待。</Text>
-                    <Text style={styles.ruleText}>
-                        5.提现金额分为1元、3元、5元、10元四档，每次提现将扣除相应余额，剩余余额可以在下次满足最低提现额度时申请提现。
-                    </Text>
-                    <Text style={styles.ruleText}>
-                        {`6.若您通过非正常手段获取${Config.goldAlias}或余额（包括但不限于刷单、应用多开等操作、一人名下只能绑定一个支付宝，同一人不得使用多个账号提现），${Config.AppName}有权取消您的提现资格，并视情况严重程度，采取封禁等措施。`}
+                        2、贡献点获取方式：点击视频广告有机率获得贡献、每天前十次观看并点击激励视频有机率获得贡献值，点赞，评论，发布优质内容等方式都有机率获得贡献值。提现所需贡献值为：提现金额*30
                     </Text>
 
-                    <Text style={[styles.ruleText, styles.ruleTitle]}>贡献值获取方式：</Text>
-
-                    <View style={styles.ruleText}>
-                        <Text style={styles.ruleText}>1.发布作品被评论、被点赞。</Text>
-                        <Text style={styles.ruleText}>2.发布采集视频。</Text>
-                        <Text style={styles.ruleText}>3.发布有奖问答。</Text>
-                        <Text style={styles.ruleText}>4.点击视频详情以及下载。</Text>
-                        <Text style={styles.ruleText}>5.提现所需贡献为提现金额*30</Text>
-                    </View>
+                    <Text style={styles.ruleText}>
+                        {`3.每天的转换汇率与平台收益及您的平台活跃度相关，因此汇率会受到影响上下浮动；活跃度越高，汇率越高；您可以通过刷视频、点赞评论互动、邀请好友一起来${Config.AppName}等行为来提高活跃度。`}
+                    </Text>
+                    <Text style={styles.ruleText}>
+                        {`4. 每天凌晨 00:00-08:00 期间，系统会把您账户中的所有${Config.goldAlias}自动转为余额。`}
+                    </Text>
+                    <Text style={styles.ruleText}>5. 提现 3~5 天内到账。若遇高峰期，可能延迟到账，请您耐心等待。</Text>
+                    <Text style={styles.ruleText}>
+                        6.提现金额分为1元、3元、5元、10元四档，每次提现将扣除相应余额，剩余余额可以在下次满足最低提现额度时申请提现。
+                    </Text>
+                    <Text style={styles.ruleText}>
+                        {`7.若您通过非正常手段获取${Config.goldAlias}或余额（包括但不限于刷单、应用多开等操作、一人名下只能绑定一个支付宝，同一人不得使用多个账号提现），${Config.AppName}有权取消您的提现资格，并视情况严重程度，采取封禁等措施。`}
+                    </Text>
                 </View>
             </ScrollView>
             <View style={styles.fixWithdrawBtn}>
@@ -267,7 +342,7 @@ export default observer(props => {
                     gradient={true}
                     style={styles.withdrawBtn}
                     disabled={amount <= 0}
-                    onPress={withdrawRequest}
+                    onPress={onWithdrawRequest}
                 />
             </View>
         </PageContainer>
@@ -277,12 +352,12 @@ export default observer(props => {
 const styles = StyleSheet.create({
     banner: {
         flex: 1,
+        flexDirection: 'row',
         justifyContent: 'space-between',
+        alignItems: 'stretch',
         padding: PxDp(Theme.itemSpace),
     },
-    bannerBottom: {
-        alignItems: 'center',
-        flexDirection: 'row',
+    bannerRight: {
         justifyContent: 'space-between',
     },
     bannerImage: {
@@ -292,27 +367,34 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
         width: BANNER_WIDTH,
     },
-    bannerTop: {
-        alignItems: 'center',
-        flexDirection: 'row',
+    bannerLeft: {
         justifyContent: 'space-between',
     },
+
+    bannerLeftItem: {
+        flexDirection: 'row',
+    },
+
     bindAiLiPay: {
         color: Theme.link,
         fontSize: Font(14),
         textDecorationLine: 'underline',
     },
-    blackText: {
-        color: Theme.defaultTextColor,
-        fontSize: Font(16),
-        marginLeft: Font(6),
+
+    blackText1: {
+        color: '#000',
+        alignItems: 'center',
+        marginLeft: PxDp(5),
+        fontSize: Font(20),
     },
+
     boldBlackText1: {
         color: Theme.defaultTextColor,
-        // fontFamily: ' ',
+        alignItems: 'center',
         fontSize: Font(14),
         fontWeight: 'bold',
     },
+
     boldBlackText2: {
         color: Theme.defaultTextColor,
         fontSize: Font(16),
@@ -320,7 +402,6 @@ const styles = StyleSheet.create({
     },
     boldBlackText3: {
         color: Theme.defaultTextColor,
-        // fontFamily: ' ',
         fontSize: Font(30),
         fontWeight: 'bold',
     },

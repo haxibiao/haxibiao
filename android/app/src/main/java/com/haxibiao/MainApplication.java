@@ -15,6 +15,7 @@ import com.haxibiao.ad.AdPackage;
 import com.haxibiao.toolkits.ToolkitsPackage;
 import com.microsoft.codepush.react.CodePush;
 import cn.jpush.reactnativejpush.JPushPackage;
+import com.haxibiao.vodupload.VodUploadPackage;
 
 
 import java.util.List;
@@ -38,6 +39,7 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
       packages.add(new ToolkitsPackage());
       packages.add(new JPushPackage(true, true));
       packages.add(new AdPackage()); //广告模块
+      packages.add(new VodUploadPackage());
       return packages;
     }
 

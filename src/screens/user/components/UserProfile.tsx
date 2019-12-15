@@ -27,8 +27,9 @@ export default observer(({ user, titleStyle, contentStyle }) => {
                 <ApolloProvider client={client}>
                     <MoreOperation
                         onPressIn={() => overlayRef.close()}
+                        navigation={navigation}
                         target={user}
-                        options={['举报']}
+                        options={['举报','拉黑']}
                         type="user"
                         deleteCallback={() => startAnimation(1, 0)}
                     />
@@ -89,12 +90,7 @@ export default observer(({ user, titleStyle, contentStyle }) => {
                 </View>
             </ImageBackground>
             <View style={styles.navBarStyle}>
-                <TouchableOpacity
-                    activeOpacity={1}
-                    onPress={() => {
-                        navigation.goBack();
-                    }}
-                    style={styles.navBarButton}>
+                <TouchableOpacity activeOpacity={1} onPress={() => {navigation.goBack()}} style={styles.navBarButton}>
                     <Iconfont name="zuojiantou" color={'#fff'} size={PxDp(22)} />
                 </TouchableOpacity>
                 <Animated.View style={[styles.navBarTitle, titleStyle]}>

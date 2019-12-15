@@ -2,6 +2,7 @@ import { Platform } from 'react-native';
 // import DeviceInfo from 'react-native-device-info';
 import Config from 'react-native-config';
 import {
+    name as Name,
     AppID,
     DisplayName as AppName,
     AppSlogan,
@@ -11,7 +12,9 @@ import {
     Version,
     AppVersionNumber,
     AndroidOnline,
-    iOSOnline
+    iOSOnline,
+    goldAlias,
+    qqGroup,
 } from '@app/app.json';
 
 let AppStore = Config && Config.APP_STORE ? Config.APP_STORE : 'haxibiao'; //应用商店名称
@@ -23,6 +26,7 @@ let AppStore = Config && Config.APP_STORE ? Config.APP_STORE : 'haxibiao'; //应
 export default {
     ServerRoot,
     UploadServer,
+    Name,
     AppName,
     AppVersion: `${Version}.${Build}`,
     AppID,
@@ -33,6 +37,6 @@ export default {
     AppVersionNumber,
     AndroidOnline,
     iOSOnline,
-    goldAlias: '智慧点',
-    qqGroup: '692035916',
+    goldAlias: goldAlias || '金币',
+    qqGroup: qqGroup || '692035916',
 };

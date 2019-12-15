@@ -16,7 +16,7 @@ import { observable } from 'mobx';
 
 export default (props: any) => {
 	const { me } = userStore;
-	const [observableArticles, setArticles] = useState([]);
+	const [observableArticles, setArticles] = useState(null);
 
 	const { loading, error, data: userLikedArticlesQueryResult, refetch, fetchMore } = useQuery(
 		GQL.userLikedArticlesQuery,
@@ -44,7 +44,11 @@ export default (props: any) => {
 		}
 	}, [articles]);
 
-	if (loading || !articles) return <SpinnerLoading />;
+	if (loading || !observableArticles  ) return <SpinnerLoading />;
+	console.log("loading",loading);
+	console.log("!observableArticles",observableArticles);
+	
+	
 
 	return (
 		<PageContainer title='我的喜欢'>

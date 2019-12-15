@@ -6,8 +6,8 @@ include ':app'
 
 
 include ':toolkits'
-// project(':toolkits').projectDir = new File('/data/android/toolkits')
-project(':toolkits').projectDir = new File('../node_modules/@hxf/toolkits_npm')
+project(':toolkits').projectDir = new File('/data/android/toolkits')
+// project(':toolkits').projectDir = new File('../node_modules/@hxf/toolkits_npm')
 
 include ':app', ':react-native-code-push'
 project(':react-native-code-push').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-code-push/android/app')

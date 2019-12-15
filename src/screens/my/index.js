@@ -1,4 +1,4 @@
-import React, { Component, useContext, useCallback, useEffect, useMemo } from 'react';
+import React, { Component, useContext, useCallback, useEffect, useMemo, useState } from 'react';
 import {
     StyleSheet,
     View,
@@ -13,6 +13,7 @@ import {
 import { PageContainer, Iconfont, Row, Avatar, Badge } from '@src/components';
 import StoreContext, { observer, appStore } from '@src/store';
 import { middlewareNavigate, useNavigation } from '@src/router';
+import { userStore } from '@src/store';
 import { GQL, useQuery } from '@src/apollo';
 
 import JPushModule from 'jpush-react-native';
@@ -20,7 +21,10 @@ import JPushModule from 'jpush-react-native';
 export default observer(props => {
     const navigation = useNavigation();
     const store = useContext(StoreContext);
+    const [taskAD, setTaskAD] = useState(true);
     const user = Helper.syncGetter('userStore.me', store);
+    const { login } = userStore;
+    const isLogin = user.token && login ? true : false;
     const { data: result, refetch } = useQuery(GQL.userProfileQuery, {
         variables: { id: user.id },
     });
@@ -33,15 +37,16 @@ export default observer(props => {
         count_followings: userData.count_followings,
         count_followers: userData.count_followers,
     });
+
     const authNavigator = useCallback(
         (route, params) => {
-            if (user.token) {
+            if (isLogin) {
                 navigation.navigate(route, params);
             } else {
                 navigation.navigate('Login');
             }
         },
-        [user],
+        [isLogin],
     );
 
     useEffect(() => {
@@ -73,10 +78,10 @@ export default observer(props => {
                             <View style={styles.userInfo}>
                                 <View>
                                     <Text style={styles.userName} numberOfLines={1}>
-                                        {user.token ? userProfile.name : '登录/注册'}
+                                        {isLogin ? userProfile.name : '登录/注册'}
                                     </Text>
                                     <Text style={styles.introduction} numberOfLines={2}>
-                                        {user.token
+                                        {isLogin
                                             ? user.introduction || '这个人很懒，啥都没留下'
                                             : '欢迎来到' + Config.AppName}
                                     </Text>
@@ -147,8 +152,8 @@ export default observer(props => {
                 </View>
 
                 {appStore.enableWallet && (
-                    <TouchableWithoutFeedback onPress={() => middlewareNavigate('Wallet', { user: userProfile })}>
-                        <View style={styles.wallet}>
+                    <View style={styles.wallet}>
+                        <TouchableWithoutFeedback onPress={() => authNavigator('TaskScreen')}>
                             <View style={styles.walletItem}>
                                 <Image
                                     source={require('@src/assets/images/icon_wallet_dmb.png')}
@@ -163,7 +168,9 @@ export default observer(props => {
                                     </Text>
                                 </View>
                             </View>
-                            <View style={styles.middleLine} />
+                        </TouchableWithoutFeedback>
+                        <View style={styles.middleLine} />
+                        <TouchableWithoutFeedback onPress={() => authNavigator('Wallet', { user: userProfile })}>
                             <View style={styles.walletItem}>
                                 <Image
                                     source={require('@src/assets/images/icon_wallet_rmb.png')}
@@ -178,12 +185,38 @@ export default observer(props => {
                                     </Text>
                                 </View>
                             </View>
+                        </TouchableWithoutFeedback>
+                    </View>
+                )}
+
+                {isLogin && taskAD && appStore.enableWallet && (
+                    <View style={{ marginBottom: PxDp(10) }}>
+                        <TouchableOpacity onPress={() => navigation.navigate('TaskScreen')}>
+                            <Image
+                                style={{
+                                    width: '84%',
+                                    height: PxDp(75),
+                                    resizeMode: 'stretch',
+                                    marginHorizontal: '8%',
+                                }}
+                                source={require('@src/assets/images/task_sleep_main.png')}
+                            />
+                        </TouchableOpacity>
+
+                        <View style={{ flex: 1, alignItems: 'flex-end', position: 'absolute', top: 0, right: 20 }}>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    // 关闭任务入口
+                                    setTaskAD(false);
+                                }}>
+                                <Iconfont name="guanbi1" size={PxDp(19)} color={Theme.subTextColor} />
+                            </TouchableOpacity>
                         </View>
-                    </TouchableWithoutFeedback>
+                    </View>
                 )}
 
                 <View style={styles.columnItemsWrap}>
-                    <TouchableOpacity style={styles.columnItem} onPress={() => middlewareNavigate('喜欢', { user })}>
+                    <TouchableOpacity style={styles.columnItem} onPress={() => authNavigator('喜欢', { user })}>
                         <Row>
                             <View style={styles.columnIconWrap}>
                                 <Image
@@ -198,7 +231,7 @@ export default observer(props => {
                     <TouchableOpacity
                         style={styles.columnItem}
                         onPress={() => {
-                            middlewareNavigate('我的收藏');
+                            authNavigator('我的收藏');
                         }}>
                         <Row>
                             <View style={styles.columnIconWrap}>
@@ -211,7 +244,7 @@ export default observer(props => {
                         </Row>
                         <Iconfont name="right" size={PxDp(15)} color={Theme.secondaryTextColor} />
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.columnItem} onPress={() => middlewareNavigate('浏览记录')}>
+                    <TouchableOpacity style={styles.columnItem} onPress={() => authNavigator('浏览记录')}>
                         <Row>
                             <View style={styles.columnIconWrap}>
                                 <Image
@@ -223,7 +256,7 @@ export default observer(props => {
                         </Row>
                         <Iconfont name="right" size={PxDp(15)} color={Theme.secondaryTextColor} />
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.columnItem} onPress={() => middlewareNavigate('Feedback')}>
+                    <TouchableOpacity style={styles.columnItem} onPress={() => authNavigator('Feedback')}>
                         <Row>
                             <View style={styles.columnIconWrap}>
                                 <Image
@@ -277,6 +310,7 @@ const styles = StyleSheet.create({
         borderRadius: PxDp(6),
         marginHorizontal: PxDp(Theme.itemSpace),
         overflow: 'hidden',
+        marginBottom: PxDp(10),
     },
     container: {
         backgroundColor: Theme.groundColour,

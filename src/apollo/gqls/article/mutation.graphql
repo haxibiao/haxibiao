@@ -18,6 +18,7 @@ mutation createPostMutation(
     $body: String!
     $images: [String!]
     $video_id: Int
+    $qcvod_fileid: String
     $category_ids: [Int!]
     $type: ContenType!
     $issueInput: IssueInfo
@@ -26,6 +27,7 @@ mutation createPostMutation(
         body: $body
         images: $images
         video_id: $video_id
+        qcvod_fileid: $qcvod_fileid
         category_ids: $category_ids
         type: $type
         issueInput: $issueInput

@@ -44,7 +44,7 @@ class UpdateOverlay {
                                 onPress={() => {
                                     NativeModules.DownloadApk.downloading(
                                         versionData.apk,
-                                        'dianmoge.apk',
+                                        'haxibiao.apk',
                                         Config.DisplayName,
                                     );
                                     UpdateOverlay.hide();

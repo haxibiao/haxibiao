@@ -40,7 +40,7 @@ const AskQuestionScreen = props => {
     const [askQuestion, { data, loading }] = useMutation(GQL.createPostMutation, {
         variables: {
             body: formData.body,
-            video_id: formData.video_id,
+            qcvod_fileid: formData.video_id,
             images: formData.images,
             category_ids: categories.map(category => category.id),
             type: contentType,

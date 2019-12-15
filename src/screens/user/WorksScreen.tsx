@@ -15,7 +15,7 @@ import { observable } from 'mobx';
 
 export default (props: any) => {
     const user = props.navigation.getParam('user', {});
-    const [observableArticles, setArticles] = useState([]);
+    const [observableArticles, setArticles] = useState(null);
 
     const { loading, error, data: myArticlesQueryResult, refetch, fetchMore } = useQuery(GQL.myArticlesQuery, {
         variables: { user_id: user.id },
@@ -37,7 +37,7 @@ export default (props: any) => {
         }
     }, [articles]);
 
-    if (loading || !articles) return <SpinnerLoading />;
+    if (loading || !observableArticles ) return <SpinnerLoading />;
 
     return (
         <PageContainer title="个人作品">

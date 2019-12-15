@@ -6,10 +6,13 @@
     "UploadServer": "https://haxibiao.com",
     "Spinner": "9CubeGrid",
     "AppSlogan": "互联网创业人的短视频社区",
-    "Version": "2.5.1",
-    "Build": 25,
-    "AppVersionNumber": 2.5,
+    "Version": "2.6.0",
+    "Build": 26,
+    "AppVersionNumber": 2.6,
     "SocketServer": "ws://socket.haxibiao.com:6001",
+
+    "goldAlias": "金币",
+    "qqGroup": "692035916",
 
     "CodeIdBanner": "916582063",
     "CodeIdBannerIOS": "916582063",

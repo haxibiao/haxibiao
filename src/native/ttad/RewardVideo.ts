@@ -1,5 +1,8 @@
 import { NativeModules, DeviceEventEmitter, Platform } from 'react-native';
-import { CodeIdRewardVideo, CodeIdRewardVideoIOS } from '@app/app.json';
+import {
+    CodeIdRewardVideo,
+    CodeIdRewardVideoIOS
+} from '@app/app.json';
 
 const codeid = Platform.OS === 'ios' ? CodeIdRewardVideoIOS : CodeIdRewardVideo;
 
@@ -10,6 +13,7 @@ const adArgs = {
     rewardamount: 6,
     uid: Date.now(),
 };
+
 
 const module = NativeModules.RewardVideo;
 

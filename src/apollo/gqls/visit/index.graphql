@@ -1,17 +1,18 @@
 # 浏览记录
 query visitsQuery($filter: VisitFilter!, $page: Int, $user_id: Int!) {
-    visits(user_id: $user_id, filter: $filter, page: $page, visited_type: "articles") {
+    visits(user_id: $user_id, page: $page, visited_type: ARTICLE) {
         paginatorInfo {
             hasMorePages
             currentPage
         }
         data {
-            time_ago
+            id
             type
+            time_ago
             article {
                 id
                 title
-                description
+                cover
             }
         }
     }

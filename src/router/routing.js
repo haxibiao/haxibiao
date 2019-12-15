@@ -53,10 +53,18 @@ import AccountSafety from '../screens/settings/AccountSafety';
 import ModifyPassword from '../screens/settings/ModifyPassword';
 import AccountSecurity from '../screens/settings/AccountSecurity';
 import ModifyAliPay from '../screens/settings/ModifyAliPay';
+import LogoutAccount from '../screens/settings/LogoutAccount';
+import CancellationAgreement from '../screens/settings/CancellationAgreement';
+import PhoneVerification from '../screens/settings/PhoneVerification';
 
 // feedback
 import FeedbackScreen from '../screens/Feedback';
 import FeedbackDetail from '../screens/Feedback/FeedbackDetail';
+
+// Task
+import TaskScreen from '../screens/task';
+import TaskSleepScreen from '../screens/task/sleep';
+import TaskDrinkWaterScreen from '../screens/task/drinkWater';
 
 export default {
     主页: {
@@ -181,5 +189,24 @@ export default {
     },
     ModifyAliPay: {
         screen: ModifyAliPay,
+    },
+    LogoutAccount: {
+        screen: LogoutAccount,
+    },
+
+    CancellationAgreement: {
+        screen: CancellationAgreement,
+    },
+    TaskScreen: {
+        screen: TaskScreen,
+    },
+    TaskDrinkWaterScreen: {
+        screen: TaskDrinkWaterScreen,
+    },
+    TaskSleepScreen: {
+        screen: TaskSleepScreen,
+    },
+    PhoneVerification: {
+        screen: PhoneVerification,
     },
 };

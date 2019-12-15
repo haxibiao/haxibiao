@@ -15,7 +15,7 @@ import { Overlay } from 'teaset';
 export default observer(props => {
     const store = useContext(StoreContext);
     const { userStore } = store;
-    const me = { ...userStore.me };
+    const me = {...userStore.me};
     const client = useApolloClient();
     const navigation = useNavigation();
     const commentRef = useRef();
@@ -49,7 +49,7 @@ export default observer(props => {
     }, [client, TOKEN]);
 
     const fetchData = useCallback(async () => {
-        if (!VideoStore.isLoadMore) {
+        if(!VideoStore.isLoadMore) {
             VideoStore.isLoadMore = true;
             const [error, result] = await Helper.exceptionCapture(VideosQuery);
             const videoSource = Helper.syncGetter('data.recommendVideos.data', result);
@@ -98,6 +98,9 @@ export default observer(props => {
         if (userStore.launched) {
             fetchData();
         }
+        return () => {
+            VideoStore.reset();
+        };
     }, [userStore.launched]);
 
     // 静默注册登录
@@ -107,7 +110,7 @@ export default observer(props => {
     async function HandleSilentLogin() {
         // 如果 firstInstall 为 false 则用户主动注销过，不再进行静默登录
         const firstInstall = await Storage.getItem(Keys.firstInstall);
-        console.log('首页处理静默登录函数中获取的 firstInstall : ', firstInstall);
+        console.log("首页处理静默登录函数中获取的 firstInstall : ",firstInstall)
         if (firstInstall) {
             // 首次静默注册登录
             SilentSignIn();
@@ -154,6 +157,7 @@ export default observer(props => {
         }
     }
 
+
     return (
         <View style={styles.container} onLayout={onLayout}>
             <FlatList
@@ -165,7 +169,7 @@ export default observer(props => {
                 keyboardShouldPersistTaps="always"
                 pagingEnabled={true}
                 removeClippedSubviews={true}
-                keyExtractor={(item, index) => (item.id ? item.id.toString() : index.toString())}
+                keyExtractor={(item, index) => item.id ? item.id.toString() : index.toString()}
                 renderItem={({ item, index }) => <VideoItem media={item} index={index} />}
                 getItemLayout={(data, index) => ({
                     length: appStore.viewportHeight,

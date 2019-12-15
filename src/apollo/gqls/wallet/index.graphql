@@ -69,3 +69,8 @@ query userWithdraws($wallet_id: Int!, $page: Int) {
         }
     }
 }
+
+# 判断贡献是否足够
+query canWithdrawalsQuery($amount: Float!){
+  canWithdrawals(amount:$amount)
+}

@@ -46,6 +46,20 @@ class VideoStore {
     }
 
     @action.bound
+    public reset() {
+        this.dataSource = [];
+        this.isLoading = true;
+        this.isError = false;
+        this.isFinish = false;
+        this.isRefreshing = false;
+        this.isLoadMore = false;
+        this.videoPaused = false;
+        this.viewableItemIndex = -1;
+        this.rewardProgress = 0;
+        this.getReward = [];
+    }
+
+    @action.bound
     public addSource(source: Post[]) {
         this.currentPage++;
         this.dataSource = this.dataSource.concat(source);
@@ -66,6 +80,7 @@ class VideoStore {
         this.getReward = this.getReward.concat(id);
         console.log('this.getReward', this.getReward);
     }
+    
 }
 
 export default new VideoStore();

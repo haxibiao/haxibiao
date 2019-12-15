@@ -6,6 +6,8 @@
  */
 
 import ttad from './ttad';
+import txad from "./txad";
 import VideoUploader from './VideoUploader';
+import VodUploader from "./VodUploader";
 
-export { ttad, VideoUploader };
+export { ttad, txad, VideoUploader, VodUploader };

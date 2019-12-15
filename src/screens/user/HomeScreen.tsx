@@ -22,7 +22,7 @@ const animatedReferenceValue = Device.WIDTH * 0.75 - PxDp(Theme.NAVBAR_HEIGHT + 
 
 export default observer((props: any) => {
 	const user = props.navigation.getParam('user', {});
-	const [observableArticles, setArticles] = useState([]);
+	const [observableArticles, setArticles] = useState(null);
 
 	const { data: userQueryResult } = useQuery(GQL.userQuery, {
 		variables: { id: user.id },
@@ -87,7 +87,8 @@ export default observer((props: any) => {
 		extrapolate: 'clamp',
 	});
 
-	if (loading || !userData || !articles) return <SpinnerLoading />;
+
+	if (loading || !userData || !observableArticles  ) return <SpinnerLoading />;
 
 	return (
 		<PageContainer contentViewStyle={{ marginTop: 0 }} error={error}>
