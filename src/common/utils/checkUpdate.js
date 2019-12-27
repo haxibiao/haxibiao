@@ -29,8 +29,7 @@ function selectUpdate(localVersion, serverVersion, versionData, viewedVersion) {
 
 function manualUpdate(versionData) {
     const localVersion = Config.AppVersionNumber; // 本地版本
-    const serverVersion = numberVersion(versionData.version); // 线上版本
-
+    const serverVersion = numberVersion(versionData.version || '1.0'); // 线上版本
     if (localVersion < serverVersion) {
         UpdateOverlay.show(versionData, serverVersion);
     } else {
@@ -44,7 +43,7 @@ async function autoUpdate(versionData) {
     // viewedVersion 观测当前版本用户是否已查看过更新日志
 
     const localVersion = Config.AppVersionNumber; // 本地版本
-    const serverVersion = numberVersion(versionData.version); // 线上版本
+    const serverVersion = numberVersion(versionData.version || '1.0'); // 线上版本
 
     console.log('localVersion', localVersion, serverVersion, versionData);
 
@@ -75,11 +74,11 @@ export function checkUpdate(type: String) {
     })
         .then(response => response.json())
         .then(data => {
-            console.log('data', data);
+            // console.log('data', data[0]);
             if (type === 'autoCheck') {
-                autoUpdate(data[0]);
+                autoUpdate(data[0] || {});
             } else {
-                manualUpdate(data[0]);
+                manualUpdate(data[0] || {});
             }
         })
         .catch(err => {

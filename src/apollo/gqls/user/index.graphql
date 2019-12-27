@@ -43,12 +43,22 @@ query userProfileQuery($id: Int!) {
             id
             type
             balance
-            # pay_account
-            # real_name   部分用户出现赃数据报错暂时注释
+            pay_account
+            real_name
             total_withdraw_amount
             available_balance
             today_withdraw_left
+            bind_platforms {
+                alipay
+                wechat
+            }
+            platforms {
+                alipay
+                wechat
+            }
         }
         contribute
+        is_bind_dongdezhuan
+        exchangeRate
     }
 }

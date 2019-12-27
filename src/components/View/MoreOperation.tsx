@@ -1,14 +1,30 @@
-import React, { useMemo, useCallback } from 'react';
-import { StyleSheet, View, Text, Image } from 'react-native';
-import { GQL, useMutation } from '@src/apollo';
-import { download } from '@src/common';
+import React, { useRef, useMemo, useCallback } from 'react';
+import { StyleSheet, View, Text, Image, Clipboard, ScrollView, Linking } from 'react-native';
+import { GQL, useMutation, useClientBuilder } from '@src/apollo';
+import { download, exceptionCapture, syncGetter } from '@src/common';
+import { userStore } from '@src/store';
+import { Share } from '@src/native';
+import * as WeChat from 'react-native-wechat';
 import useReport from './useReport';
 import TouchFeedback from '../Basic/TouchFeedback';
-import { useNavigation } from '@src/router';
 
 const MoreOperation = props => {
-    const { options, target, type, downloadUrl, downloadUrlTitle, onPressIn, deleteCallback, navigation } = props;
+    const shareLink = useRef();
+    const client = useClientBuilder(syncGetter('me.token', userStore));
+    const {
+        options,
+        target,
+        type,
+        downloadUrl,
+        downloadUrlTitle,
+        onPressIn,
+        deleteCallback,
+        navigation,
+        showShare,
+        shares,
+    } = props;
     const report = useReport({ target, type });
+
     const [deleteArticleMutation] = useMutation(GQL.deleteArticle, {
         variables: {
             id: target.id,
@@ -31,6 +47,34 @@ const MoreOperation = props => {
         deleteArticleMutation();
     }, [deleteArticleMutation]);
 
+    const fetchShareLink = useCallback(async () => {
+        if (shareLink.current) {
+            return shareLink.current;
+        }
+        const [error, result] = await exceptionCapture(() =>
+            client.query({
+                query: GQL.shareQuery,
+                variables: {
+                    id: target.id,
+                },
+            }),
+        );
+        if (error) {
+            Toast.show({ content: error.message });
+            return null;
+        } else if (syncGetter('data.sharePost', result)) {
+            shareLink.current = syncGetter('data.sharePost', result);
+            return shareLink.current;
+        }
+    }, []);
+
+    const copyLink = useCallback(async () => {
+        onPressIn();
+        const link = await fetchShareLink();
+        Clipboard.setString(link);
+        Toast.show({ content: '复制成功，快去分享给好友吧！' });
+    }, []);
+
     const reportArticle = useCallback(() => {
         onPressIn();
         report();
@@ -43,46 +87,85 @@ const MoreOperation = props => {
 
     const dislike = useCallback(() => {
         onPressIn();
-        Toast.show({ content: '操作成功，将减少此类型内容的推荐' });
-    }, []);
+        if (TOKEN) {
+            client
+                .mutate({
+                    mutation: GQL.addArticleBlockMutation,
+                    variables: {
+                        id: target.id,
+                    },
+                })
+                .then(result => {
+                    Toast.show({ content: '操作成功，将减少此类型内容的推荐！' });
+                })
+                .catch(error => {
+                    //查询接口，服务器返回错误后
+                    Toast.show({ content: error.message.replace('GraphQL error: ', '') });
+                });
+        } else {
+            navigation.navigate('Login');
+        }
+    }, [target]);
 
     const shield = useCallback(() => {
         onPressIn();
-        Toast.show({ content: '拉黑成功，将减少此用户内容的推荐' });
-        navigation.goBack();
-        
+        if (TOKEN) {
+            client
+                .mutate({
+                    mutation: GQL.addUserBlockMutation,
+                    variables: {
+                        id: target.id,
+                    },
+                })
+                .then(result => {
+                    Toast.show({ content: '拉黑成功，将减少此用户内容的推荐！' });
+                })
+                .catch(error => {
+                    //查询接口，服务器返回错误后
+                    Toast.show({ content: error.message });
+                });
+        } else {
+            navigation.navigate('Login');
+        }
     }, []);
 
     const operation = useMemo(
         () => ({
             下载: {
-                image: require('@src/assets/images/more_video_download.png'),
+                image: require('@app/assets/images/more_video_download.png'),
                 callback: downloadVideo,
             },
+            复制链接: {
+                image: require('@app/assets/images/more_links.png'),
+                callback: copyLink,
+            },
             举报: {
-                image: require('@src/assets/images/more_report.png'),
+                image: require('@app/assets/images/more_report.png'),
                 callback: reportArticle,
             },
             删除: {
-                image: require('@src/assets/images/more_delete.png'),
+                image: require('@app/assets/images/more_delete.png'),
                 callback: deleteArticle,
             },
             不感兴趣: {
-                image: require('@src/assets/images/more_dislike.png'),
+                image: require('@app/assets/images/more_dislike.png'),
                 callback: dislike,
             },
             拉黑: {
-                image: require('@src/assets/images/more_shield.png'),
+                image: require('@app/assets/images/more_shield.png'),
                 callback: shield,
             },
         }),
-        [reportArticle, deleteArticle, dislike],
+        [reportArticle, deleteArticle, dislike, downloadVideo, copyLink, shield],
     );
 
     const optionsView = useMemo(() => {
         return options.map((option, index) => {
             return (
-                <TouchFeedback style={styles.optionItem} key={index} onPress={operation[option].callback}>
+                <TouchFeedback
+                    style={[styles.optionItem, options.length < 5 && { width: Device.WIDTH / 4 }]}
+                    key={index}
+                    onPress={operation[option].callback}>
                     <Image style={styles.optionIcon} source={operation[option].image} />
                     <Text style={styles.optionName}>{option}</Text>
                 </TouchFeedback>
@@ -90,9 +173,134 @@ const MoreOperation = props => {
         });
     }, [options]);
 
+    const shareToWechat = useCallback(async () => {
+        onPressIn();
+        const link = await fetchShareLink();
+        try {
+            await WeChat.shareToSession({
+                type: 'video',
+                title: target.body,
+                videoUrl: 'https://dianmoge.com/share/post/' + target.id,
+            });
+        } catch (e) {
+            Toast.show({ content: '未安装微信或当前微信版本较低' });
+        }
+    }, []);
+
+    const shareToTimeline = useCallback(async () => {
+        onPressIn();
+        const link = await fetchShareLink();
+        try {
+            await WeChat.shareToTimeline({
+                type: 'text',
+                description: link,
+            });
+        } catch (e) {
+            Toast.show({ content: '未安装微信或当前微信版本较低' });
+        }
+    }, []);
+
+    const shareToQQ = useCallback(async () => {
+        onPressIn();
+        // const baseurl = new Buffer("https://dianmoge.com/share/post/"+ target.id).toString('base64');
+        // const baseimage = new Buffer("https://dianmoge.com/logo/dianmoge.com.small.png").toString('base64');
+        // const basetitle = new Buffer("这个视频好好看分享给你").toString('base64');
+        // const basedesc = new Buffer(target.body).toString('base64');
+        // const openUrl = "mqqapi://share/to_fri?file_type=news&src_type=web&version=1&generalpastboard=1&share_id=1107845270&url="+ baseurl +"&previewimageUrl=" + baseimage + "&image_url=" + baseimage + "&title=" + basetitle + "&description=" + basedesc + "&callback_type=scheme&thirdAppDisplayName=UVE=&app_name=UVE=&cflag=0&shareType=0";
+        // Linking.openURL(openUrl);
+        const link = await fetchShareLink();
+        const callback = await Share.shareTextToQQ(link);
+
+        if (!callback) {
+            Toast.show({
+                content: '请先安装QQ客户端',
+            });
+        }
+    }, []);
+
+    const shareToWeiBo = useCallback(async () => {
+        onPressIn();
+        const link = await fetchShareLink();
+        Clipboard.setString(link);
+        const callback = await Share.shareToSinaFriends(link);
+
+        if (!callback) {
+            Toast.show({
+                content: '请先安装微博客户端',
+            });
+        }
+    }, []);
+
+    const shareToQQZone = useCallback(async () => {
+        onPressIn();
+        const link = await fetchShareLink();
+        Clipboard.setString(link);
+        const callback = await Share.shareImageToQQZone(link);
+
+        if (!callback) {
+            Toast.show({
+                content: '请先安装QQ空间客户端',
+            });
+        }
+    }, []);
+
+    const share = useMemo(
+        () => ({
+            微信: {
+                image: require('@app/assets/images/share_wx.png'),
+                callback: shareToWechat,
+            },
+            QQ好友: {
+                image: require('@app/assets/images/share_qq.png'),
+                callback: shareToQQ,
+            },
+            微博: {
+                image: require('@app/assets/images/share_wb.png'),
+                callback: shareToWeiBo,
+            },
+            朋友圈: {
+                image: require('@app/assets/images/share_pyq.png'),
+                callback: shareToTimeline,
+            },
+            QQ空间: {
+                image: require('@app/assets/images/share_qqz.png'),
+                callback: shareToQQZone,
+            },
+        }),
+        [],
+    );
+
+    const shareView = useMemo(() => {
+        return shares.map((option: any, index: any) => {
+            return (
+                <TouchFeedback
+                    style={[styles.optionItem, shares.length < 5 && { width: Device.WIDTH / 4 }]}
+                    key={index}
+                    onPress={share[option].callback}>
+                    <Image style={styles.optionIcon} source={share[option].image} />
+                    <Text style={styles.optionName}>{option}</Text>
+                </TouchFeedback>
+            );
+        });
+    }, [shares]);
+
     return (
         <View style={styles.optionsContainer}>
-            <View style={styles.body}>{optionsView}</View>
+            {showShare && (
+                <>
+                    <View style={[styles.body, { marginTop: PxDp(10) }]}>
+                        <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                            {shareView}
+                        </ScrollView>
+                    </View>
+                    <View style={styles.dividingLine} />
+                </>
+            )}
+            <View style={styles.body}>
+                <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                    {optionsView}
+                </ScrollView>
+            </View>
             <TouchFeedback style={styles.footer} onPress={onPressIn}>
                 <Text style={styles.footerText}>取消</Text>
             </TouchFeedback>
@@ -103,6 +311,8 @@ const MoreOperation = props => {
 MoreOperation.defaultProps = {
     options: ['不感兴趣', '举报'],
     type: 'articles',
+    shares: ['微信', 'QQ好友', '微博', '朋友圈', 'QQ空间'],
+    showShare: false,
 };
 
 const styles = StyleSheet.create({
@@ -114,7 +324,7 @@ const styles = StyleSheet.create({
         overflow: 'hidden',
     },
     body: {
-        paddingVertical: PxDp(Theme.itemSpace),
+        paddingVertical: PxDp(5),
         flexDirection: 'row',
         alignItems: 'center',
     },
@@ -130,8 +340,10 @@ const styles = StyleSheet.create({
         fontSize: PxDp(15),
     },
     optionItem: {
-        flex: 1,
-        paddingVertical: PxDp(10),
+        maxWidth: Device.WIDTH * 0.25,
+        minWidth: Device.WIDTH * 0.22,
+        padding: PxDp(12),
+        justifyContent: 'center',
         alignItems: 'center',
     },
     optionIcon: {
@@ -142,6 +354,11 @@ const styles = StyleSheet.create({
         marginTop: PxDp(10),
         color: Theme.subTextColor,
         fontSize: PxDp(13),
+    },
+    dividingLine: {
+        borderBottomWidth: PxDp(0.2),
+        borderColor: Theme.borderColor,
+        marginHorizontal: PxDp(25),
     },
 });
 

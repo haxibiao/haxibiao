@@ -21,11 +21,13 @@ export default observer(props => {
                 ref={ref => (overlayRef = ref)}>
                 <ApolloProvider client={client}>
                     <MoreOperation
+                        navigation={navigation}
                         onPressIn={() => overlayRef.close()}
                         target={media}
+                        showShare={true}
                         downloadUrl={Helper.syncGetter('video.url', media)}
                         downloadUrlTitle={Helper.syncGetter('body', media)}
-                        options={['下载', '不感兴趣', '举报']}
+                        options={['下载', '不感兴趣', '举报', '复制链接']}
                     />
                 </ApolloProvider>
             </Overlay.PullView>
@@ -51,18 +53,18 @@ export default observer(props => {
             </View>
             <View style={styles.itemWrap}>
                 <TouchableOpacity onPress={VideoStore.showComment}>
-                    <Image source={require('@src/assets/images/comment_item.png')} style={styles.imageStyle} />
+                    <Image source={require('@app/assets/images/comment_item.png')} style={styles.imageStyle} />
                     <SafeText shadowText={true} style={styles.countText}>
                         {Helper.NumberFormat(Helper.syncGetter('count_comments', media))}
                     </SafeText>
                 </TouchableOpacity>
                 {media.type === 'issue' && media.answered_status === 0 && media.question_reward > 0 && (
-                    <Image source={require('@src/assets/images/question_reward.png')} style={styles.questionReward} />
+                    <Image source={require('@app/assets/images/question_reward.png')} style={styles.questionReward} />
                 )}
             </View>
             <View style={styles.itemWrap}>
                 <TouchableOpacity onPress={showMoreOperation}>
-                    <Image source={require('@src/assets/images/more_item.png')} style={styles.imageStyle} />
+                    <Image source={require('@app/assets/images/more_item.png')} style={styles.imageStyle} />
                 </TouchableOpacity>
             </View>
         </View>

@@ -8,7 +8,7 @@ import { app } from 'store';
 
 const CaptureVideoStart = props => {
     return (
-        <ImageBackground style={styles.overlayImage} source={require('@src/assets/images/participation_profit.png')}>
+        <ImageBackground style={styles.overlayImage} source={require('@app/assets/images/participation_profit.png')}>
             <View style={styles.overlayContent}>
                 <View style={styles.title}>
                     <Text style={styles.text2}>从您的粘贴板获取视频分享链接</Text>

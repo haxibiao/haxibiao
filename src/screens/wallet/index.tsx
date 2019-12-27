@@ -3,20 +3,43 @@
  * created by wangyukun made in 2019-03-18 11:45:13
  */
 
-import React, { Component, useCallback, useContext, useState, useRef, useMemo, useEffect } from 'react';
+import React, { Component, useCallback, useContext, useState, useRef, useMemo, useEffect, Fragment } from 'react';
 import { StyleSheet, View, Text, ScrollView, TouchableOpacity, ImageBackground, Image } from 'react-native';
-import { PageContainer, Iconfont, Row, HxfButton, PopOverlay } from '@src/components';
+import { PageContainer, Iconfont, Row, HxfButton, PopOverlay, TouchFeedback } from '@src/components';
 import StoreContext, { observer } from '@src/store';
 import { middlewareNavigate, useNavigation, useNavigationParam } from '@src/router';
 import { GQL, useMutation, useQuery } from '@src/apollo';
 import { appStore } from '@src/store';
-import { Center } from 'src/components';
+import { bindWechat } from '@src/common';
 
 const WithdrawalOptions = [1, 3, 5, 10];
+const WithdrawalPlatforms = [
+    {
+        type: 'ALIPAY',
+        name: '支付宝',
+        icon: require('@app/assets/images/alipay.png'),
+    },
+    {
+        type: 'WECHAT',
+        name: '微信',
+        icon: require('@app/assets/images/wechat.png'),
+    },
+    {
+        type: 'DONGDEZHUAN',
+        name: '懂得赚',
+        icon: require('@app/assets/images/dongdezhuan.png'),
+    },
+];
 const BANNER_WIDTH = Device.WIDTH - PxDp(Theme.itemSpace * 2);
 
 export default observer((props: any) => {
     const store = useContext(StoreContext);
+    // 提现请求状态
+    const [isWithdrawRequest, setIsWithdrawRequest] = useState(false);
+    const [submitting, setSubmitting] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [withdrawType, setWithdrawType] = useState('ALIPAY');
+
     let user = useNavigationParam('user') || store.userStore.me;
     const navigation = useNavigation();
     const [amount, setAmount] = useState(0);
@@ -29,46 +52,45 @@ export default observer((props: any) => {
         today_withdraw_left: 0,
         available_balance: 0,
     }).current;
-    const { data: walletData } = useQuery(GQL.userWithdrawQuery, {
+    // const { data: walletData } = useQuery(GQL.userWithdrawQuery, {
+    //     fetchPolicy: 'network-only',
+    // });
+
+    const { data: walletData } = useQuery(GQL.userProfileQuery, {
+        variables: { id: user.id },
         fetchPolicy: 'network-only',
     });
-
-    const { data: result, refetch } = useQuery(GQL.userProfileQuery, {
-        variables: { id: user.id },
-    });
-    const userData = Helper.syncGetter('user', result) || {};
+    const userData = Helper.syncGetter('user', walletData) || {};
 
     /**
      *  判断user 里的phone 是否存在,如果为null则提示用户去绑定手机号
      */
-    console.log('user from wallet : ', userData);
-    useEffect(() => {
-        if (user.phone === null || !user.phone) {
-            PopOverlay({
-                content: '请先给该账号绑定手机号、否则可能无法正常提现、是否现在前往?',
-                onConfirm: async () => {
-                    navigation.navigate('账号安全');
-                },
-            });
-        }
-    }, []);
+    // console.log('user from wallet : ', userData);
+    // useEffect(() => {
+    //     if (user.phone === null || !user.phone) {
+    //         PopOverlay({
+    //             content: '请先给该账号绑定手机号、否则可能无法正常提现、是否现在前往?',
+    //             onConfirm: async () => {
+    //                 navigation.navigate('账号安全');
+    //             },
+    //         });
+    //     }
+    // }, []);
 
-    const me = Helper.syncGetter('me', walletData) || {};
-    user = Object.assign({}, user, { ...me });
+    // const me = Helper.syncGetter('me', walletData) || {};
+    user = Object.assign({}, user, { ...userData });
     const myWallet =
         useMemo(() => Helper.syncGetter('me.wallet', walletData), [walletData]) || user.wallet || walletAdapterData;
 
-    console.log('myWallet', myWallet);
+    console.log('withdrawType', withdrawType);
 
     const [withdrawRequest, { error, data: withdrawData }] = useMutation(GQL.CreateWithdrawMutation, {
         variables: {
             amount,
+            platform: withdrawType,
         },
         errorPolicy: 'all',
         refetchQueries: () => [
-            {
-                query: GQL.userWithdrawQuery,
-            },
             {
                 query: GQL.userProfileQuery,
                 variables: { id: user.id },
@@ -88,7 +110,7 @@ export default observer((props: any) => {
                         Toast.show({ content: `今日提现额度已用完哦` });
                     }
                 } else {
-                    Toast.show({ content: `请先绑定支付宝账号` });
+                    Toast.show({ content: `请先绑定提现信息` });
                 }
             }
         },
@@ -97,29 +119,32 @@ export default observer((props: any) => {
 
     useEffect(() => {
         if (error) {
-            // 设置点击过程为 false 
+            // 设置点击过程为 false
             setIsWithdrawRequest(false);
+            setSubmitting(false);
 
             Toast.show({ content: error.message.replace('GraphQL error: ', '') || '提现失败' });
         } else if (withdrawData) {
-            // 设置点击过程为 false 
+            // 设置点击过程为 false
             setIsWithdrawRequest(false);
-            
-            navigation.navigate('WithdrawApply', {
-                amount,
-                created_at: Helper.syncGetter('data.createWithdraw.created_at', withdrawData),
-            });
+
+            setTimeout(function() {
+                setSubmitting(false);
+
+                navigation.navigate('WithdrawApply', {
+                    amount,
+                    created_at: Helper.syncGetter('data.createWithdraw.created_at', withdrawData),
+                });
+            }, 3500);
         }
     }, [withdrawData, error]);
 
     const title = amount > 0 ? `申请提现${amount}元` : '申请提现';
 
-    // 提现请求状态
-    const [isWithdrawRequest, setIsWithdrawRequest] = useState(false);
     const onWithdrawRequest = () => {
-
         if (!isWithdrawRequest) {
             // 请求判断贡献接口
+            setSubmitting(true);
 
             appStore.client
                 .query({
@@ -135,6 +160,7 @@ export default observer((props: any) => {
                         withdrawRequest();
                     } else {
                         setIsWithdrawRequest(false);
+                        setSubmitting(false);
 
                         // 贡献不足，提示用户
                         PopOverlay({
@@ -148,41 +174,121 @@ export default observer((props: any) => {
                 })
                 .catch((err: any) => {
                     // console.log('err', err);
+
                     setIsWithdrawRequest(false);
+                    setSubmitting(false);
 
                     Toast.show({ content: '服务器繁忙！提现失败，请稍后重试！' });
                 });
         } else {
-            console.log("点击中…………………………");
-            
+            console.log('点击中…………………………');
         }
 
         // 如果已经发送请求就忽略重复点击
         setIsWithdrawRequest(true);
-        
     };
 
+    const navigationAction = () => {
+        navigation.navigate('AccountSecurity', { user });
+    };
+
+    const renderBindTips = () => {
+        console.log('renderBindTips  user :', user);
+
+        if (withdrawType === 'ALIPAY' && Helper.syncGetter('wallet.platforms.alipay', user)) {
+            return (
+                <TouchableOpacity onPress={navigationAction}>
+                    <Text
+                        style={{
+                            color: '#363636',
+                            fontSize: Font(14),
+                            textDecorationLine: 'underline',
+                        }}>{`已绑定`}</Text>
+                </TouchableOpacity>
+            );
+        }
+        if ((withdrawType === 'WECHAT' && Helper.syncGetter('wallet.bind_platforms.wechat', user)) || Device.IOS) {
+            return (
+                <TouchableOpacity onPress={navigationAction}>
+                    <Text
+                        style={{
+                            color: '#363636',
+                            fontSize: Font(14),
+                            textDecorationLine: 'underline',
+                        }}>{`已绑定`}</Text>
+                </TouchableOpacity>
+            );
+        }
+        if (withdrawType === 'DONGDEZHUAN' && Helper.syncGetter('is_bind_dongdezhuan', user)) {
+            return (
+                <TouchableOpacity onPress={navigationAction}>
+                    <Text
+                        style={{
+                            color: '#363636',
+                            fontSize: Font(14),
+                            textDecorationLine: 'underline',
+                        }}>{`已绑定`}</Text>
+                </TouchableOpacity>
+            );
+        }
+
+        let platformName = '支付宝';
+        let bindPlatform = () => {
+            setSubmitting(true);
+            bindWechat({
+                onSuccess: () => {
+                    setSubmitting(false);
+                    Toast.show({
+                        content: '绑定成功',
+                    });
+                },
+                onFailed: (error: { message: any }[]) => {
+                    setSubmitting(false);
+                },
+            });
+        };
+
+        switch (withdrawType) {
+            case 'WECHAT':
+                platformName = '微信';
+                break;
+            case 'ALIPAY':
+                bindPlatform = () => {
+                    navigation.navigate('ModifyAliPay');
+                };
+                platformName = '支付宝';
+                break;
+            case 'DONGDEZHUAN':
+                platformName = '懂得赚';
+                bindPlatform = () => {
+                    navigation.navigate('BindDongdezhuan');
+                };
+                break;
+            default:
+                break;
+        }
+
+        return (
+            <TouchableOpacity onPress={bindPlatform}>
+                <Row>
+                    <Image source={require('@app/assets/images/broad_tips.png')} style={styles.broadTipsImage} />
+                    <Text style={styles.bindPlatform}>{`去绑定${platformName}`}</Text>
+                </Row>
+            </TouchableOpacity>
+        );
+    };
+
+    if (loading && walletData) {
+        setLoading(!loading);
+    }
+
     return (
-        <PageContainer title="提现">
+        <PageContainer title="提现" loading={loading} submitting={submitting} submitTips={'请求中…'}>
             <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
                 <View style={styles.statistics}>
-                    <ImageBackground source={require('@src/assets/images/wallet_bg.png')} style={styles.bannerImage}>
+                    <ImageBackground source={require('@app/assets/images/wallet_bg.png')} style={styles.bannerImage}>
                         <View style={styles.banner}>
                             <View style={styles.bannerLeft}>
-                                <Row>
-                                    <Text
-                                        style={[
-                                            styles.boldBlackText2,
-                                            Device.Android && {
-                                                fontFamily: ' ',
-                                                marginRight: PxDp(10),
-                                            },
-                                        ]}>
-                                        {Config.goldAlias}
-                                    </Text>
-                                    <Text style={styles.blackText1}>{user.gold || 0}</Text>
-                                </Row>
-
                                 <Row>
                                     <Text
                                         style={[
@@ -220,11 +326,6 @@ export default observer((props: any) => {
                                     <Text style={styles.withdrawLogBtnText}>提现记录</Text>
                                 </TouchableOpacity>
                                 <Row>
-                                    {/* <Text
-                                        style={[
-                                            styles.ruleText,
-                                            { color: '#000', fontWeight: 'bold' },
-                                        ]}>{`贡献值: ${userData.contribute || 0}`}</Text> */}
                                     <Text
                                         style={[
                                             styles.boldBlackText2,
@@ -241,38 +342,36 @@ export default observer((props: any) => {
                         </View>
                     </ImageBackground>
                 </View>
+
+                <View style={styles.withdrawTop}>
+                    <Text style={styles.withdrawTitle}>提现到</Text>
+                    {renderBindTips()}
+                </View>
+                <View style={{ paddingHorizontal: PxDp(Theme.itemSpace) }}>
+                    <Row style={{ flexWrap: 'wrap', justifyContent: 'space-between' }}>
+                        {WithdrawalPlatforms.map((data, index) => {
+                            if (Device.IOS && data.type === 'WECHAT') return null;
+                            return (
+                                <Fragment key={index}>
+                                    <TouchFeedback
+                                        style={[
+                                            styles.withdrawType,
+                                            withdrawType === data.type && { borderColor: Theme.primaryColor },
+                                        ]}
+                                        onPress={() => {
+                                            setWithdrawType(data.type);
+                                        }}>
+                                        <Image source={data.icon} style={styles.withdrawTypeText} />
+                                        <Text>{data.name}</Text>
+                                    </TouchFeedback>
+                                </Fragment>
+                            );
+                        })}
+                    </Row>
+                </View>
+
                 <View style={styles.withdrawTop}>
                     <Text style={styles.withdrawTitle}>提现金额</Text>
-                    {!myWallet.id ? (
-                        <TouchableOpacity
-                            onPress={() => {
-                                navigation.navigate('ModifyAliPay');
-                            }}>
-                            <Row>
-                                <Image
-                                    source={require('@src/assets/images/broad_tips.png')}
-                                    style={styles.broadTipsImage}
-                                />
-                                <Text style={styles.bindAiLiPay}>请先绑定支付宝</Text>
-                            </Row>
-                        </TouchableOpacity>
-                    ) : (
-                        <TouchableOpacity
-                            onPress={() =>
-                                navigation.navigate('ModifyAliPay', {
-                                    pay_account: myWallet.pay_account,
-                                    real_name: myWallet.real_name,
-                                })
-                            }>
-                            <Row>
-                                <Image
-                                    source={require('@src/assets/images/broad_tips.png')}
-                                    style={styles.broadTipsImage}
-                                />
-                                <Text style={styles.bindAiLiPay}>修改支付宝信息</Text>
-                            </Row>
-                        </TouchableOpacity>
-                    )}
                 </View>
                 <View style={styles.withdrawOptionsWrap}>
                     <View style={styles.withdrawOptions}>
@@ -293,6 +392,9 @@ export default observer((props: any) => {
                                         ]}>
                                         {value}元
                                     </Text>
+                                    <Text style={[{ marginTop: 5, fontSize: 10 }, selected && { color: '#fff' }]}>
+                                        {value * 60} 贡献值
+                                    </Text>
                                 </TouchableOpacity>
                             );
                         })}
@@ -307,9 +409,9 @@ export default observer((props: any) => {
                                 { color: '#000', fontWeight: 'bold' },
                             ]}>{`欢迎加入QQ反馈群：${Config.qqGroup}`}</Text>
                     </View>
-                    <Text style={[styles.ruleText, { color: '#000', fontWeight: 'bold' }]}>
+                    {/* <Text style={[styles.ruleText, { color: '#000', fontWeight: 'bold' }]}>
                         {`今日汇率：${user.exchangeRate || '600'}${Config.goldAlias}/1元`}
-                    </Text>
+                    </Text> */}
 
                     <Text style={[styles.ruleText, styles.ruleTitle]}>提现说明：</Text>
 
@@ -318,7 +420,7 @@ export default observer((props: any) => {
                     </Text>
 
                     <Text style={styles.ruleText}>
-                        2、贡献点获取方式：点击视频广告有机率获得贡献、每天前十次观看并点击激励视频有机率获得贡献值，点赞，评论，发布优质内容等方式都有机率获得贡献值。提现所需贡献值为：提现金额*30
+                        2、贡献点获取方式：点击视频广告有机率获得贡献、每天前十次观看并点击激励视频有机率获得贡献值，点赞，评论，发布优质内容等方式都有机率获得贡献值。提现所需贡献值为：提现金额*60
                     </Text>
 
                     <Text style={styles.ruleText}>
@@ -375,7 +477,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
 
-    bindAiLiPay: {
+    bindPlatform: {
         color: Theme.link,
         fontSize: Font(14),
         textDecorationLine: 'underline',
@@ -479,6 +581,22 @@ const styles = StyleSheet.create({
         color: '#fff',
         fontSize: Font(14),
         fontWeight: 'bold',
+    },
+    withdrawType: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        marginTop: PxDp(10),
+        width: (Device.WIDTH - 40) / 2,
+        height: PxDp(50),
+        justifyContent: 'center',
+        borderColor: Theme.borderColor,
+        borderWidth: PxDp(0.5),
+        borderRadius: PxDp(5),
+    },
+    withdrawTypeText: {
+        width: PxDp(24),
+        height: PxDp(24),
+        marginRight: PxDp(5),
     },
     withdrawOptions: {
         flexDirection: 'row',

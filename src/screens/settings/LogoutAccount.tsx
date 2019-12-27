@@ -9,15 +9,15 @@ const LogoutAccount = props => {
     return (
         <PageContainer title="注销账号" white>
             <View style={styles.container}>
-                <Avatar style={styles.caveat} size={PxDp(55)} source={require('@src/assets/images/logout.png')} />
+                <Avatar style={styles.caveat} size={PxDp(55)} source={require('@app/assets/images/logout.png')} />
 
                 <Text style={{ fontSize: Font(22), color: '#000000' }}>将现在的账号注销</Text>
 
                 <Text style={{ margin: 15 }}>注意，注销账号后以下信息将被清空且无法找回</Text>
 
                 <View style={styles.information}>
-                    <Text style={styles.textStyle}>1.哈希表将再也无法使用此账号</Text>
-                    <Text style={styles.textStyle}>2.金币以及余额将被清零</Text>
+                    <Text style={styles.textStyle}>1.点墨阁将再也无法使用此账号</Text>
+                    <Text style={styles.textStyle}>2.智慧点以及余额将被清零</Text>
                     <Text style={styles.textStyle}>3.交易记录将被清零</Text>
                     <Text style={styles.description}>
                         请确保所有交易已完结且无纠结，账户删除后的历史交易可能产生的资金等将视作自动放弃

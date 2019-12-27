@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef, useCallback, useMemo, useContext } 
 import { StyleSheet, View, FlatList, StatusBar, Image, ImageBackground, Text } from 'react-native';
 import { GQL, useQuery, useApolloClient } from '@src/apollo';
 import StoreContext, { observer, appStore } from '@src/store';
+import { SpinnerLoading } from '@src/components';
 
 import VideoItem from './components/VideoItem';
 import Footer from './components/Footer';
@@ -15,7 +16,7 @@ import { Overlay } from 'teaset';
 export default observer(props => {
     const store = useContext(StoreContext);
     const { userStore } = store;
-    const me = {...userStore.me};
+    const me = { ...userStore.me };
     const client = useApolloClient();
     const navigation = useNavigation();
     const commentRef = useRef();
@@ -49,7 +50,7 @@ export default observer(props => {
     }, [client, TOKEN]);
 
     const fetchData = useCallback(async () => {
-        if(!VideoStore.isLoadMore) {
+        if (!VideoStore.isLoadMore) {
             VideoStore.isLoadMore = true;
             const [error, result] = await Helper.exceptionCapture(VideosQuery);
             const videoSource = Helper.syncGetter('data.recommendVideos.data', result);
@@ -110,7 +111,7 @@ export default observer(props => {
     async function HandleSilentLogin() {
         // 如果 firstInstall 为 false 则用户主动注销过，不再进行静默登录
         const firstInstall = await Storage.getItem(Keys.firstInstall);
-        console.log("首页处理静默登录函数中获取的 firstInstall : ",firstInstall)
+        console.log('首页处理静默登录函数中获取的 firstInstall : ', firstInstall);
         if (firstInstall) {
             // 首次静默注册登录
             SilentSignIn();
@@ -157,42 +158,46 @@ export default observer(props => {
         }
     }
 
-
     return (
         <View style={styles.container} onLayout={onLayout}>
-            <FlatList
-                data={VideoStore.dataSource}
-                contentContainerStyle={{ flexGrow: 1 }}
-                bounces={false}
-                scrollsToTop={false}
-                showsVerticalScrollIndicator={false}
-                keyboardShouldPersistTaps="always"
-                pagingEnabled={true}
-                removeClippedSubviews={true}
-                keyExtractor={(item, index) => item.id ? item.id.toString() : index.toString()}
-                renderItem={({ item, index }) => <VideoItem media={item} index={index} />}
-                getItemLayout={(data, index) => ({
-                    length: appStore.viewportHeight,
-                    offset: appStore.viewportHeight * index,
-                    index,
-                })}
-                ListEmptyComponent={
-                    <View style={styles.cover}>
-                        <Image style={styles.curtain} source={require('@src/assets/images/curtain.png')} />
-                    </View>
-                }
-                ListFooterComponent={<Footer />}
-                onMomentumScrollEnd={onMomentumScrollEnd}
-                onViewableItemsChanged={getVisibleRows}
-                viewabilityConfig={config.current}
-            />
+            {VideoStore.dataSource.length !== 0 ? (
+                <FlatList
+                    data={VideoStore.dataSource}
+                    contentContainerStyle={{ flexGrow: 1 }}
+                    bounces={false}
+                    scrollsToTop={false}
+                    showsVerticalScrollIndicator={false}
+                    keyboardShouldPersistTaps="always"
+                    pagingEnabled={true}
+                    removeClippedSubviews={true}
+                    keyExtractor={(item, index) => (item.id ? item.id.toString() : index.toString())}
+                    renderItem={({ item, index }) => <VideoItem media={item} index={index} />}
+                    getItemLayout={(data, index) => ({
+                        length: appStore.viewportHeight,
+                        offset: appStore.viewportHeight * index,
+                        index,
+                    })}
+                    ListEmptyComponent={
+                        <View style={styles.cover}>
+                            <Image style={styles.curtain} source={require('@app/assets/images/curtain.png')} />
+                        </View>
+                    }
+                    ListFooterComponent={<Footer />}
+                    onMomentumScrollEnd={onMomentumScrollEnd}
+                    onViewableItemsChanged={getVisibleRows}
+                    viewabilityConfig={config.current}
+                />
+            ) : (
+                <SpinnerLoading />
+            )}
+
             {appStore.enableWallet && (
                 <View style={styles.rewardProgress}>
                     {me.id ? (
                         <View />
                     ) : (
                         <ImageBackground
-                            source={require('@src/assets/images/chat_left.png')}
+                            source={require('@app/assets/images/chat_left.png')}
                             style={styles.overlayTip}
                             resizeMode={'stretch'}>
                             <Text style={styles.overlayTipText}>登录后看视频赚钱、边看边赚</Text>
@@ -226,7 +231,7 @@ const styles = StyleSheet.create({
     rewardProgress: {
         position: 'absolute',
         right: PxDp(Theme.itemSpace),
-        bottom: PxDp(400 + Theme.HOME_INDICATOR_HEIGHT),
+        bottom: PxDp(350 + Theme.BOTTOM_HEIGHT),
     },
     overlayTip: {
         position: 'absolute',

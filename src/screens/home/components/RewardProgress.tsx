@@ -11,8 +11,9 @@ const RewardProgress = observer(props => {
     const store = useContext(StoreContext);
     const navigation = useNavigation();
     const firstReward = useRef(true);
-    const progress = (VideoStore.rewardProgress / VideoStore.rewardLimit) * 100;
     const userId = useMemo(() => store.userStore.me.id, [store.userStore.me]);
+    const progress = (VideoStore.rewardProgress / VideoStore.rewardLimit) * 100;
+    const rewardAble = progress >= 100;
 
     const [rewardGold, setReward] = useState();
     const [imageAnimation, startImageAnimation] = useBounceAnimation({ value: 0, toValue: 1 });
@@ -50,10 +51,10 @@ const RewardProgress = observer(props => {
                 Toast.show({ content: '登录领取奖励哦' });
             }
         }
-        if (Math.abs(progress) >= 100) {
+        if (rewardAble) {
             fetchReward();
         }
-    }, [progress]);
+    }, [rewardAble]);
 
     const imageScale = imageAnimation.interpolate({
         inputRange: [0, 0.5, 1],
@@ -85,7 +86,7 @@ const RewardProgress = observer(props => {
                     ]}>
                     {rewardGold}
                 </Animated.Text>
-                <Image source={require('@src/assets/images/video_reward_progress.png')} style={styles.rewardImage} />
+                <Image source={require('@app/assets/images/video_reward_progress.png')} style={styles.rewardImage} />
                 {progress > 0 && (
                     <Progress.Circle
                         progress={progress / 100}

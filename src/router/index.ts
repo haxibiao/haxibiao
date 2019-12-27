@@ -24,7 +24,8 @@ export const middlewareNavigate = (routeName: string, params?: object, action?: 
         params,
         action,
     });
-    if (router[routeName] && router[routeName].auth && !TOKEN) {
+
+    if (router[routeName] && !TOKEN) {
         rootNavigation.dispatch(authAction);
     } else {
         rootNavigation.dispatch(navigateAction);

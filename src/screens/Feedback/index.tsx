@@ -15,21 +15,21 @@ function Feedback(props: Props) {
 
     return (
         <PageContainer
-            autoKeyboardInsets={false}
-            hiddenNavBar={true}
-            contentViewStyle={{ marginTop: Theme.statusBarHeight }}>
+            title={'反馈中心'}
+            // contentViewStyle={{ paddingTop: Theme.statusBarHeight }}
+            white>
             <ScrollableTabView
                 renderTabBar={props => (
-                    <ScrollTabBar {...props} tabUnderlineWidth={PxDp(50)} underLineColor={Theme.primaryColor} />
+                    <ScrollTabBar {...props} tabUnderlineWidth={PxDp(30)} />
                 )}>
                 <CreateFeedback navigation={navigation} tabLabel="提交反馈" />
                 <FeedbackHistory navigation={navigation} tabLabel="反馈记录" />
             </ScrollableTabView>
-            <View style={styles.back}>
+            {/* <View style={styles.back}>
                 <TouchFeedback activeOpacity={1} onPress={() => navigation.goBack()}>
                     <Iconfont name="zuojiantou" color={Theme.defaultTextColor} size={PxDp(21)} />
                 </TouchFeedback>
-            </View>
+            </View> */}
         </PageContainer>
     );
 }

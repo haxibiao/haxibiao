@@ -63,7 +63,7 @@ export default (props: any) => {
 					scrollEventThrottle={16}
 					renderItem={(item: any) => <PostItem post={item.item.article} />}
 					ListEmptyComponent={
-						<StatusView.EmptyView imageSource={require('@src/assets/images/default_empty.png')} />
+						<StatusView.EmptyView imageSource={require('@app/assets/images/default_empty.png')} />
 					}
 					onEndReached={() => {
 						if (hasMorePages) {

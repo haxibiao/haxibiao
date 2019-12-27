@@ -2,12 +2,13 @@ import React, { useState, useCallback, useMemo } from 'react';
 import { StyleSheet, View, Image, TouchableOpacity, Text } from 'react-native';
 import { SafeText } from '@src/components';
 import { observer, appStore } from '@src/store';
-import { ttad } from '@src/native';
+import { ad } from '@src/native';
 import { useNavigation } from '@src/router';
 import Player from './Player';
 import SideBar from './SideBar';
 import VideoStore from '../VideoStore';
 import AdRewardProgress from './AdRewardProgress';
+import LinearGradient from 'react-native-linear-gradient';
 
 import { GQL } from '@src/apollo';
 
@@ -15,19 +16,18 @@ export default observer((props: any) => {
     const { media, index } = props;
     const navigation = useNavigation();
     const [adShow, setAdShow] = useState(true);
-    
+
     AdRewardProgress(media.isAdPosition && index === VideoStore.viewableItemIndex);
 
     const renderCategories = useMemo(() => {
         if (Array.isArray(media.categories) && media.categories.length > 0) {
             return media.categories.map((category: any) => (
-                <SafeText
-                    shadowText={true}
+                <Text
                     key={category.id}
                     style={styles.categoryName}
                     onPress={() => navigation.navigate('Category', { category })}>
                     {`#${category.name} `}
-                </SafeText>
+                </Text>
             ));
         } else {
             return null;
@@ -37,13 +37,12 @@ export default observer((props: any) => {
     if (media.isAdPosition && adShow && appStore.enableAd) {
         return (
             <View style={{ height: appStore.viewportHeight }}>
-                <ttad.DrawFeedAd
+                <ad.DrawFeedAd
                     onError={(error: any) => {
                         // 广告 error 有几率导致闪退点
                         setAdShow(false);
                     }}
                     onAdClick={() => {
-
                         const drawFeedAdId = media.id.toString();
 
                         if (VideoStore.getReward.indexOf(drawFeedAdId) === -1) {
@@ -53,13 +52,13 @@ export default observer((props: any) => {
                                     mutation: GQL.clickVideoAD,
                                 })
                                 .then((data: any) => {
-                                    const ad_amount = data.data.clickAD.amount || 0;
-                                    Toast.show({ content: `+${ad_amount} 用户行为贡献`, duration: 1500 });
+                                    const { amount, message } = Helper.syncGetter('data.clickAD', data);
+                                    Toast.show({ content: message || `+${amount || 0} 用户行为贡献`, duration: 1500 });
                                 });
                         }
                     }}
                 />
-                { (VideoStore.getReward.length < 1) && (
+                {VideoStore.getReward.length < 1 && (
                     <View
                         style={{
                             bottom: Theme.HOME_INDICATOR_HEIGHT + PxDp(75),
@@ -69,7 +68,7 @@ export default observer((props: any) => {
                             alignItems: 'center',
                         }}>
                         <Image
-                            source={require('@src/assets/images/click_tips.png')}
+                            source={require('@app/assets/images/click_tips.png')}
                             style={{ width: (20 * 208) / 118, height: 20 }}
                         />
                         <Text
@@ -95,17 +94,22 @@ export default observer((props: any) => {
                 </View>
             )}
             <Player media={media} index={index} />
+            <LinearGradient
+                style={styles.shadowContainer}
+                pointerEvents={'none'}
+                start={{ x: 0, y: 1 }}
+                end={{ x: 0, y: 0 }}
+                colors={['rgba(000,000,000,0.5)', 'rgba(000,000,000,0.2)', 'rgba(000,000,000,0.0)']}
+            />
             <View style={styles.videoContent}>
                 <View>
-                    <SafeText shadowText={true} style={styles.name}>
-                        @{Helper.syncGetter('user.name', media)}
-                    </SafeText>
+                    <Text style={styles.name}>@{Helper.syncGetter('user.name', media)}</Text>
                 </View>
                 <View>
-                    <SafeText shadowText={true} style={styles.body} numberOfLines={3}>
+                    <Text style={styles.body} numberOfLines={3}>
                         {renderCategories}
                         {media.body}
-                    </SafeText>
+                    </Text>
                 </View>
             </View>
             <View style={styles.videoSideBar}>
@@ -145,13 +149,22 @@ const styles = StyleSheet.create({
     name: { color: 'rgba(255,255,255,0.9)', fontSize: Font(16), fontWeight: 'bold' },
     videoContent: {
         position: 'absolute',
-        bottom: Theme.HOME_INDICATOR_HEIGHT + PxDp(80),
+        bottom: PxDp(Theme.BOTTOM_HEIGHT + 20),
         left: PxDp(Theme.itemSpace),
         right: PxDp(90),
     },
     videoSideBar: {
         position: 'absolute',
-        bottom: Theme.HOME_INDICATOR_HEIGHT + PxDp(80),
+        bottom: PxDp(Theme.BOTTOM_HEIGHT + 20),
         right: PxDp(Theme.itemSpace),
+    },
+    shadowContainer: {
+        position: 'absolute',
+        top: Device.HEIGHT / 2,
+        bottom: 0,
+        padding: PxDp(4),
+        width: '100%',
+        justifyContent: 'flex-end',
+        alignItems: 'flex-start',
     },
 });

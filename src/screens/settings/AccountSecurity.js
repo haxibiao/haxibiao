@@ -5,11 +5,24 @@ import { PageContainer, TouchFeedback, Iconfont, Avatar, ListItem, PopOverlay } 
 import { userStore, appStore } from '@src/store';
 import { observer } from 'mobx-react';
 
+import { bindWechat } from '@src/common';
+
 @observer
 class AccountSecurity extends Component {
+    constructor(props) {
+        super(props);
+        const user = props.navigation.getParam('user');
+        this.state = {
+            is_bind_wechat: Helper.syncGetter('wallet.bind_platforms.wechat', user) || false,
+            is_bind_alipay: Helper.syncGetter('wallet.platforms.alipay', user) || false,
+            is_bind_dongdezhuan: Helper.syncGetter('is_bind_dongdezhuan', user) || false,
+            me: user,
+        };
+    }
+
     alipay = async () => {
         const { navigation } = this.props;
-        let { me: user } = userStore;
+        const user = navigation.getParam('user');
         console.log('wallet', user.wallet);
 
         if (!user.phone) {
@@ -31,7 +44,7 @@ class AccountSecurity extends Component {
 
     modifyPassword = async () => {
         const { navigation } = this.props;
-        let { me: user } = userStore;
+        const user = navigation.getParam('user');
 
         if (!user.phone) {
             PopOverlay({
@@ -47,16 +60,48 @@ class AccountSecurity extends Component {
 
     account = async () => {
         const { navigation } = this.props;
-        let { me: user } = userStore;
+        const user = navigation.getParam('user');
         if (!user.phone) {
             navigation.navigate('账号安全');
         }
     };
 
+    handlerBindWechat = () => {
+        if (this.state.is_bind_wechat) {
+            Toast.show({
+                content: '已绑定微信',
+            });
+        } else {
+            bindWechat({
+                onSuccess: this.onSuccess,
+            });
+        }
+    };
+
+    onSuccess = () => {
+        Toast.show({
+            content: '绑定成功',
+        });
+
+        this.setState({
+            is_bind_wechat: true,
+        });
+    };
+
+    handlerBindDongdezhuan = () => {
+        if (this.state.is_bind_dongdezhuan) {
+            Toast.show({
+                content: '已绑定懂得赚',
+            });
+        } else {
+            this.props.navigation.navigate('BindDongdezhuan');
+        }
+    };
+
     render() {
         const { navigation } = this.props;
-        let { me: user } = userStore;
-        console.log('user', user);
+        const user = navigation.getParam('user') || userStore.me;
+        const { is_bind_wechat, is_bind_alipay, is_bind_dongdezhuan } = this.state;
 
         return (
             <PageContainer title="账号安全" white loading={!user}>
@@ -105,12 +150,43 @@ class AccountSecurity extends Component {
                                     </View>
                                 ) : (
                                     <View style={styles.rightWrap}>
+                                        <Text style={styles.linkText}>未绑定</Text>
                                         <Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />
                                     </View>
                                 )
                             }
                         />
                     )}
+
+                    {!Device.IOS && (
+                        <ListItem
+                            onPress={this.handlerBindWechat}
+                            style={styles.listItem}
+                            leftComponent={<Text style={styles.itemText}>微信账号</Text>}
+                            rightComponent={
+                                <View style={styles.rightWrap}>
+                                    <Text style={is_bind_wechat ? styles.rightText : styles.linkText}>
+                                        {is_bind_wechat ? '已绑定' : '去绑定'}
+                                    </Text>
+                                    <Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />
+                                </View>
+                            }
+                        />
+                    )}
+
+                    <ListItem
+                        onPress={this.handlerBindDongdezhuan}
+                        style={styles.listItem}
+                        leftComponent={<Text style={styles.itemText}>懂得赚账号</Text>}
+                        rightComponent={
+                            <View style={styles.rightWrap}>
+                                <Text style={is_bind_dongdezhuan ? styles.rightText : styles.linkText}>
+                                    {is_bind_dongdezhuan ? '已绑定' : '去绑定'}
+                                </Text>
+                                <Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />
+                            </View>
+                        }
+                    />
 
                     <ListItem
                         style={styles.listItem}

@@ -3,11 +3,14 @@ import { StyleSheet, ScrollView, Image, View, Text, TextInput, TouchableOpacity,
 import { PageContainer, HxfButton, Iconfont, KeyboardSpacer, MediaUploader, HxfTextInput } from '@src/components';
 import { observer, userStore } from '@src/store';
 import { GQL, useMutation } from '@src/apollo';
+import { useNavigation } from '@src/router';
+//  onPress={() => navigation.navigate('TaskScreen')}
 
 const contentGap = PxDp(20);
 const MediaItemWidth = (Device.WIDTH - PxDp(60)) / 3;
-
+let result = {};
 export default observer(props => {
+    const navigation = useNavigation();
     const [formData, setFormData] = useState({ content: '', images: [] });
     const [createFeedback, { data, loading }] = useMutation(GQL.createFeedbackMutation, {
         variables: {
@@ -23,7 +26,12 @@ export default observer(props => {
             Toast.show({
                 content: '发布成功',
             });
-            setFormData({ content: '', images: [] });
+            console.log('data', mutationResult);
+            // navigation.navigate('FeedbackHistory');
+            navigation.navigate('FeedbackDetail', {
+                feedback: mutationResult.createFeedback,
+            });
+            // setFormData({ content: '', images: [] });
             // navigation.replace('PostDetail', {
             //     post: mutationResult.createContent,
             // });

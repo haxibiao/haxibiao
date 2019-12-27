@@ -16,7 +16,7 @@ class UpdateOverlay {
                         </View>
                         <View style={styles.center}>
                             <Text style={styles.centerTitle}>建议在WLAN环境下进行升级</Text>
-                            <Text style={styles.centerTitle}>版本：{versionData.version}</Text>
+                            <Text style={styles.centerTitle}>版本：{serverVersion}</Text>
                             <Text style={styles.centerTitle}>大小：{versionData.size}</Text>
                             <Text style={styles.centerTitle}>更新说明：</Text>
                             <Text style={styles.centerInfo}>{versionData.description}</Text>
@@ -42,12 +42,20 @@ class UpdateOverlay {
                                         : { borderLeftColor: Theme.lightBorder, borderLeftWidth: 0.5 },
                                 ]}
                                 onPress={() => {
-                                    NativeModules.DownloadApk.downloading(
-                                        versionData.apk,
-                                        'haxibiao.apk',
-                                        Config.DisplayName,
-                                    );
-                                    UpdateOverlay.hide();
+                                    if(versionData.apk) {
+                                        NativeModules.DownloadApk.downloading(
+                                            versionData.apk || '',
+                                            'dianmoge.apk',
+                                            Config.DisplayName,
+                                        );
+                                        // UpdateOverlay.hide();
+                                    } else {
+                                        UpdateOverlay.hide();
+                                        Toast.show({
+                                            content: '更新失败，请稍后重试！',
+                                            layout:'bottom',
+                                        });
+                                    }
                                 }}>
                                 <Text style={[styles.operationText, { color: Theme.primaryColor }]}>立即更新</Text>
                             </TouchableOpacity>

@@ -11,7 +11,7 @@ export default function WithdrawApply(props) {
     return (
         <PageContainer title="提现申请">
             <View style={styles.container}>
-                <Image source={require('../../assets/images/money.png')} style={styles.image} resizeMode="contain" />
+                <Image source={require('@app/assets/images/money.png')} style={styles.image} resizeMode="contain" />
                 <View style={styles.content}>
                     <Text style={styles.header}>提现申请已提交</Text>
                     <View style={styles.center}>
@@ -29,7 +29,7 @@ export default function WithdrawApply(props) {
                             justifyContent: 'center',
                             alignItems: 'center',
                         }}>
-                        <Text style={styles.text}>预计3~5个工作日内到账支付宝</Text>
+                        <Text style={styles.text}>预计3~5个工作日内到账</Text>
                     </View>
                     <HxfButton
                         title="知道了"

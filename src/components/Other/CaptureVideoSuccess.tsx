@@ -14,7 +14,7 @@ const CaptureVideoSuccess = props => {
             <View style={styles.overlayWrap}>
                 <ImageBackground
                     style={styles.overlayImage}
-                    source={require('@src/assets/images/capture_video_cover.png')}>
+                    source={require('@app/assets/images/capture_video_cover.png')}>
                     <View style={styles.overlayContent}>
                         <Text style={styles.title}>上传成功</Text>
                         <PlaceholderImage source={video.cover} style={styles.videoCover} videoMark={true} />

@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
         backgroundColor: Theme.primaryColor,
     },
     container: {
-        backgroundColor: Theme.white,
+        backgroundColor: Theme.white || '#FFF',
         flex: 1,
     },
     inputWrap: {

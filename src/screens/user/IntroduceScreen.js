@@ -121,7 +121,7 @@ class IntroduceScreen extends Component {
                   // 		<TouchableOpacity>
                   // 			<Image
                   // 				style={{ width: 32, height: 32, resizeMode: "contain" }}
-                  // 				source={require("../../assets/images/pengyouquan.png")}
+                  // 				source={require("@app/assets/images/pengyouquan.png")}
                   // 			/>
                   // 		</TouchableOpacity>
                   // 		<TouchableOpacity onPress={this.toggleModalVisible}>

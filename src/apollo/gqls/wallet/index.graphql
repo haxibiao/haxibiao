@@ -18,8 +18,10 @@ query userWithdrawQuery {
             today_withdraw_left
         }
     }
+    exchangeRate
 }
 
+# 金币明细
 query goldsHistoryQuery($user_id: Int!, $page: Int) {
     golds(user_id: $user_id, page: $page, orderBy: { field: "id", order: DESC }) {
         paginatorInfo {
@@ -36,7 +38,7 @@ query goldsHistoryQuery($user_id: Int!, $page: Int) {
     }
 }
 
-#提现详情
+# 提现详情
 query withdrawDetailQuery($id: Int!) {
     withdraw(id: $id) {
         id
@@ -47,10 +49,11 @@ query withdrawDetailQuery($id: Int!) {
         to_account
         to_platform
         created_at
+        biz_no
     }
 }
 
-#提现记录
+# 提现记录
 query userWithdraws($wallet_id: Int!, $page: Int) {
     withdraws(wallet_id: $wallet_id, page: $page, count: 10, orderBy: { field: "id", order: DESC }) {
         paginatorInfo {
@@ -69,6 +72,25 @@ query userWithdraws($wallet_id: Int!, $page: Int) {
         }
     }
 }
+
+# 贡献明细
+query userContributesQuery($user_id: Int!,$page: Int){
+  contributes(user_id:$user_id ,page: $page){
+    paginatorInfo {
+      currentPage
+      hasMorePages
+    }
+    data {
+      id
+      balance
+      amount
+      remark
+      created_at
+      time_ago
+    }
+  }
+}
+
 
 # 判断贡献是否足够
 query canWithdrawalsQuery($amount: Float!){

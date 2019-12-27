@@ -4,6 +4,7 @@
 query tasksQuery{
   tasks(type:All){
     id
+    icon
     name
     details
     type
@@ -21,6 +22,77 @@ query tasksQuery{
     }
   }
 }
+
+# 获取新人任务列表
+query userTasksQuery{
+  tasks(type:NEW_USER_TASK){
+    id
+    icon
+    name
+    details
+    type
+    submit_name
+    task_class
+    task_status
+    progress_details
+    reward_info{
+      gold
+      contribute
+    }
+    taskInfo{
+      method
+      router
+    }
+  }
+}
+
+# 获取每日任务列表
+query dailyTasksQuery{
+  tasks(type:DAILY_TASK){
+    id
+    icon
+    name
+    details
+    type
+    submit_name
+    task_class
+    task_status
+    progress_details
+    reward_info{
+      gold
+      contribute
+    }
+    taskInfo{
+      method
+      router
+    }
+  }
+}
+
+
+# 获取精彩任务列表
+query customTasksQuery{
+  tasks(type:CUSTOM_TASK){
+    id
+    icon
+    name
+    details
+    type
+    submit_name
+    task_class
+    task_status
+    progress_details
+    reward_info{
+      gold
+      contribute
+    }
+    taskInfo{
+      method
+      router
+    }
+  }
+}
+
 
 # 喝水打卡任务列表
 query drinkWaterListQuery {
@@ -47,4 +119,9 @@ query sleepTaskQuery {
     }
     start_at
   }
+}
+
+# 获取激励视频活动页面规则
+query rewardVideoQuery{
+  queryDetail
 }

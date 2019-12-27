@@ -1,73 +1,104 @@
-import React, { Component } from 'react';
-import { StyleSheet, View, TouchableOpacity, FlatList, Text } from 'react-native';
-import ScrollableTabView from 'react-native-scrollable-tab-view';
-
-import { PageContainer, ContentEnd, ScrollTabBar, LoadingError, StatusView, SpinnerLoading } from '@src/components';
-
-import { Query, GQL } from '@src/apollo';
+import React, { Component, useState, useEffect, useMemo } from 'react';
+import { StyleSheet, View, FlatList, Text } from 'react-native';
+import {
+	PostItem,
+	PageContainer,
+	StatusView,
+	SpinnerLoading,
+	Footer,
+	Placeholder,
+	CustomRefreshControl,
+	ItemSeparator,
+} from '@src/components';
+import { Query, GQL, useQuery } from '@src/apollo';
 import { userStore } from '@src/store';
+import { observable } from 'mobx';
 
-const HistoryScreen = (props: any) => {
-    const { me } = userStore;
+export default (props: any) => {
+	const { me } = userStore;
+	const [observableArticles, setArticles] = useState(null);
 
-    const _historyItem = (item: any, index: any) => {
-        let { navigation } = props;
-        let title = item.article.title;
-        let description = item.article.description;
+	const { loading, error, data: userVisitsQueryResult, refetch, fetchMore } = useQuery(
+		GQL.userVisitsQuery,
+		{
+			variables: { user_id: me.id },
+			fetchPolicy: 'network-only',
+		},
+	);
+	const articles = useMemo(() => Helper.syncGetter('visits.data', userVisitsQueryResult), [
+		userVisitsQueryResult,
+	]);
 
-        return (
-            <TouchableOpacity
-                style={styles.historyItem}
-                onPress={() => navigation.navigate('文章详情', { article: item.article.id })}>
-                <View style={{ flex: 1, marginRight: 20 }}>
-                    <Text style={styles.title} numberOfLines={3}>
-                        {title ? title : description}
-                    </Text>
-                </View>
-                <Text style={styles.timeAgo}>{item.time_ago}</Text>
-            </TouchableOpacity>
-        );
-    };
-
-    return (
-        <PageContainer title="浏览记录">
-            <View style={styles.container}>
-                <ScrollableTabView renderTabBar={(props:any) => <ScrollTabBar {...props} tabUnderlineWidth={PxDp(50)} />}>
-                    <View tabLabel="今日" style={{ flex: 1 }}>
-                        <StatusView.EmptyView />
-                    </View>
-                    <View tabLabel="更早" style={{ flex: 1 }}>
-                        <StatusView.EmptyView />
-                    </View>
-                </ScrollableTabView>
-            </View>
-        </PageContainer>
+	const hasMorePages = useMemo(
+		() => Helper.syncGetter('visits.paginatorInfo.hasMorePages', userVisitsQueryResult),
+		[userVisitsQueryResult],
+	);
+	const currentPage = useMemo(
+		() => Helper.syncGetter('visits.paginatorInfo.currentPage', userVisitsQueryResult),
+		[userVisitsQueryResult],
     );
+    
+    console.log("浏览记录：",userVisitsQueryResult);
+    
+
+	useEffect(() => {
+		if (Array.isArray(articles)) {
+			setArticles(observable(articles));
+		}
+	}, [articles]);
+
+	if (loading || !observableArticles  ) return <SpinnerLoading />;
+	// console.log("loading",loading);
+	// console.log("!observableArticles",observableArticles);	
+
+	return (
+		<PageContainer title='浏览记录'>
+			<View style={styles.container}>
+				<FlatList
+					contentContainerStyle={styles.contentContainer}
+					bounces={false}
+					data={observableArticles}
+					refreshing={loading}
+					refreshControl={<CustomRefreshControl onRefresh={refetch} />}
+					keyExtractor={(item, index) => index.toString()}
+					scrollEventThrottle={16}
+					renderItem={(item: any) => <PostItem post={item.item.article} />}
+					ListEmptyComponent={
+						<StatusView.EmptyView imageSource={require('@app/assets/images/default_empty.png')} />
+					}
+					onEndReached={() => {
+						if (hasMorePages) {
+							fetchMore({
+								variables: {
+									page: currentPage + 1,
+								},
+								updateQuery: (prev: any, { fetchMoreResult: more }) => {
+									if (more && more.visits) {
+										return {
+											visits: {
+												...more.visits,
+												data: [...prev.visits.data, ...more.visits.data],
+											},
+										};
+									}
+								},
+							});
+						}
+					}}
+					ListFooterComponent={() => (hasMorePages ? <Placeholder quantity={1} /> : null)}
+				/>
+			</View>
+		</PageContainer>
+	);
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: Theme.skinColor,
-    },
-    historyItem: {
-        height: 100,
-        paddingHorizontal: 15,
-        borderBottomWidth: 10,
-        borderBottomColor: '#FAFAFA',
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-    },
-    title: {
-        fontSize: 16,
-        lineHeight: 22,
-        color: Theme.primaryFontColor,
-    },
-    timeAgo: {
-        fontSize: 13,
-        color: Theme.lightFontColor,
-    },
+	container: {
+		backgroundColor: Theme.skinColor,
+		flex: 1,
+	},
+	contentContainer: {
+		backgroundColor: '#fff',
+		flexGrow: 1,
+	},
 });
-
-export default HistoryScreen;

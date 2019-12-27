@@ -48,13 +48,13 @@ class IntegralDetail extends Component {
                                 onEndReachedThreshold={0.1}
                                 onEndReached={() => {
                                     if (!this.state.fetching && hasMorePages) {
-                                        this.setState({ fetching: true });
+                                        // this.setState({ fetching: true });
                                         fetchMore({
                                             variables: {
                                                 page: ++currentPage,
                                             },
                                             updateQuery: (prev, { fetchMoreResult: more }) => {
-                                                this.setState({ fetching: false });
+                                                // this.setState({ fetching: false });
                                                 return {
                                                     golds: {
                                                         ...more.golds,

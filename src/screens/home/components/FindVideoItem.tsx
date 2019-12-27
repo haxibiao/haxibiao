@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import { observer } from '@src/store';
-import { ttad } from '@src/native';
+import { ad } from '@src/native';
 import Player from './Player';
 import SideBar from './SideBar';
 import VideoStore from '../VideoStore';
@@ -12,7 +12,7 @@ export default observer(props => {
     // if (media.isAdPosition && adShow) {
     //     return (
     //         <View style={{ height: VideoStore.viewportHeight }}>
-    //             <ttad.DrawFeedAd
+    //             <ad.DrawFeedAd
     //                 onError={(error: any) => {
     //                     setAdShow(false);
     //                 }}
@@ -32,7 +32,7 @@ export default observer(props => {
                         style={styles.curtain}
                         source={{ uri: video.info.covers[0] }}
                         resizeMode="cover"
-                        // blurRadius={4}
+                    // blurRadius={4}
                     />
                     <View style={styles.mask} />
                 </View>

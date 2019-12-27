@@ -1,4 +1,7 @@
-import MainTabNavigator from './MainTabNavigator';
+import SplashGuide from './SplashGuide';
+
+
+import MainTabNavigator from '@app/layout/MainTabNavigator.js';
 import AskQuestion from '../screens/creation/AskQuestionScreen';
 import SelectCategory from '../screens/creation/SelectCategoryScreen';
 
@@ -37,6 +40,7 @@ import CategoryScreen from '../screens/category';
 
 //notification
 // import NewChatScreen from '../screens/chat/NewChatScreen';
+import NotificationPage from '../screens/notification/NotificationPage';
 import ChatScreen from '../screens/chat';
 import ChatSettingScreen from '../screens/chat/ChatSetting';
 import CommentsScreen from '../screens/notification/CommentsScreen';
@@ -56,6 +60,7 @@ import ModifyAliPay from '../screens/settings/ModifyAliPay';
 import LogoutAccount from '../screens/settings/LogoutAccount';
 import CancellationAgreement from '../screens/settings/CancellationAgreement';
 import PhoneVerification from '../screens/settings/PhoneVerification';
+import BindDongdezhuan from '../screens/settings/BindDongdezhuan';
 
 // feedback
 import FeedbackScreen from '../screens/Feedback';
@@ -65,8 +70,13 @@ import FeedbackDetail from '../screens/Feedback/FeedbackDetail';
 import TaskScreen from '../screens/task';
 import TaskSleepScreen from '../screens/task/sleep';
 import TaskDrinkWaterScreen from '../screens/task/drinkWater';
+import Praise from '../screens/task/Praise';
+import TaskRewardVideo from '../screens/task/rewardVideo';
 
 export default {
+    SplashGuide: {
+        screen: SplashGuide,
+    },
     主页: {
         screen: MainTabNavigator,
     },
@@ -96,6 +106,9 @@ export default {
     },
     BindAlipay: {
         screen: BindAlipay,
+    },
+    BindDongdezhuan: {
+        screen: BindDongdezhuan,
     },
     CommentNotification: {
         screen: CommentsScreen,
@@ -206,7 +219,16 @@ export default {
     TaskSleepScreen: {
         screen: TaskSleepScreen,
     },
+    TaskRewardVideo: {
+        screen: TaskRewardVideo,
+    },
+    Praise: {
+        screen: Praise,
+    },
     PhoneVerification: {
         screen: PhoneVerification,
+    },
+    NotificationPage: {
+        screen: NotificationPage,
     },
 };

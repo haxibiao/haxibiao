@@ -17,8 +17,8 @@ class GenderLabel extends Component {
         const { user, imageStyle, fontSize } = this.props;
         const source =
             user.gender === '男'
-                ? require('@src/assets/images/icon_boy.png')
-                : require('@src/assets/images/icon_girl.png');
+                ? require('@app/assets/images/icon_boy.png')
+                : require('@app/assets/images/icon_girl.png');
         return (
             <ImageBackground source={source} style={[styles.image, imageStyle]}>
                 <View style={{ flex: 1 }}></View>

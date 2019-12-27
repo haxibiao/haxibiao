@@ -5,6 +5,7 @@ import ScrollableTabView from 'react-native-scrollable-tab-view';
 import { PageContainer,ScrollTabBar } from '@src/components';
 import WithdrawLog from './components/WithdrawLog';
 import IncomeAndExpenditure from './components/IncomeAndExpenditure';
+import ContributionLog from "./components/ContributionLog";
 
 
 class WithdrawHistory extends Component {
@@ -16,10 +17,11 @@ class WithdrawHistory extends Component {
             renderTabBar={props => <ScrollTabBar {...props} tabUnderlineWidth={PxDp(30)} />}
           >
             <WithdrawLog navigation={navigation} tabLabel="提现" />
+            <ContributionLog  navigation={navigation} tabLabel="贡献" />
             <IncomeAndExpenditure navigation={navigation} tabLabel="明细" />
-
+          
           </ScrollableTabView>
-       
+
       </PageContainer>
     );
   }

@@ -35,7 +35,7 @@ const Love = () => {
 	return (
 		<Animated.Image
 			style={[styles.love, { opacity, transform: [{ scale }, { translateY }] }]}
-			source={require('@src/assets/images/ic_liked.png')}
+			source={require('@app/assets/images/ic_liked.png')}
 		/>
 	);
 };

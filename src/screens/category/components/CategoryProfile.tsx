@@ -32,7 +32,7 @@ export default observer(({ category, titleStyle, nameStyle }) => {
     // }, [client, category]);
     return (
         <View style={styles.profileContainer}>
-            <ImageBackground source={require('@src/assets/images/category_default_bg.png')} style={styles.categoryBg}>
+            <ImageBackground source={require('@app/assets/images/category_default_bg.png')} style={styles.categoryBg}>
                 <View style={styles.mask} />
                 <View style={styles.content}>
                     <Animated.View

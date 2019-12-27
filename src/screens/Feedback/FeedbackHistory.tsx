@@ -59,9 +59,9 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        paddingBottom: Theme.HOME_INDICATOR_HEIGHT + PxDp(56),
+        paddingBottom: PxDp(Theme.BOTTOM_HEIGHT),
     },
-    ttAd: {
+    ad: {
         minHeight: PxDp(200),
         justifyContent: 'center',
         alignItems: 'center',

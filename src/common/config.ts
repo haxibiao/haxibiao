@@ -15,6 +15,8 @@ import {
     iOSOnline,
     goldAlias,
     qqGroup,
+    appStoreUrl,
+    WechatAppId,
 } from '@app/app.json';
 
 let AppStore = Config && Config.APP_STORE ? Config.APP_STORE : 'haxibiao'; //应用商店名称
@@ -39,4 +41,6 @@ export default {
     iOSOnline,
     goldAlias: goldAlias || '金币',
     qqGroup: qqGroup || '692035916',
+    iosAppStoreUrl: appStoreUrl || 'itms-apps://itunes.apple.com/app/id1434767781',
+    WechatAppId,
 };

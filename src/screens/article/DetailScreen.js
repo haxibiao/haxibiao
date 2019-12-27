@@ -14,7 +14,7 @@ import {
 } from '@src/components';
 import { Query, GQL } from '@src/apollo';
 import { userStore } from '@src/store';
-import { ttad } from '@src/native';
+import { ad } from '@src/native';
 
 const IMG_WIDTH = Device.WIDTH - 30;
 

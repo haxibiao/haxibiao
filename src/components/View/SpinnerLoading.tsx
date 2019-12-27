@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, ActivityIndicator } from 'react-native';
 import LottieView from 'lottie-react-native';
 
-const animation = require('../../assets/lottie_configs/loadinganimation.json');
+const animation = require('../../common/loadinganimation.json');
 
 export interface Props{
     size: number,

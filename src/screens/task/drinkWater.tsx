@@ -4,7 +4,7 @@ import { StyleSheet, View, Text, Image, TouchableOpacity, FlatList } from 'react
 import WaterCup from './components/WaterCup';
 import { PageContainer, Row, SpinnerLoading } from '@src/components';
 
-import { ttad } from '../../native';
+import { ad } from '../../native';
 
 import { appStore, userStore } from '@src/store';
 import { Query, useQuery, GQL } from '@src/apollo';
@@ -54,8 +54,8 @@ const DrinkButton = (props: Props) => {
     };
 
     const replacementCard = () => {
-        ttad.RewardVideo.loadAd().then(() => {
-            ttad.RewardVideo.startAd().then(result => {
+        ad.RewardVideo.loadAd().then(() => {
+            ad.RewardVideo.startAd().then(result => {
                 if (JSON.parse(result).ad_click) {
                     // 点击了激励视频
                     checkIn();

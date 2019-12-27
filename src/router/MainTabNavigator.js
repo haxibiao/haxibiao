@@ -9,6 +9,8 @@ import MyHomeScreen from '@src/screens/my';
 
 import { BottomTabBar } from './BottomTabBar';
 
+import WalletTab from '@src/screens/wallet/WalletTab.tsx';
+
 const routerConfig = {
     首页: {
         screen: HomeScreen,
@@ -18,9 +20,9 @@ const routerConfig = {
         screen: FindScreen,
         navigationOptions: () => TabOptions('发现'),
     },
-    通知: {
-        screen: NotificationScreen,
-        navigationOptions: () => TabOptions('通知'),
+    资产: {
+        screen: WalletTab,
+        navigationOptions: () => TabOptions('资产'),
     },
     个人: {
         screen: MyHomeScreen,
@@ -84,23 +86,28 @@ const TabOptions = routeName => {
         switch (routeName) {
             case '首页':
                 source = focused
-                    ? require('@src/assets/images/init-main-focus.png')
-                    : require('@src/assets/images/init-main.png');
+                    ? require('@app/assets/images/init-main-focus.png')
+                    : require('@app/assets/images/init-main.png');
                 break;
             case '发现':
                 source = focused
-                    ? require('@src/assets/images/init-discover-focus.png')
-                    : require('@src/assets/images/init-discover.png');
+                    ? require('@app/assets/images/init-discover-focus.png')
+                    : require('@app/assets/images/init-discover.png');
                 break;
             case '通知':
                 source = focused
-                    ? require('@src/assets/images/init-notification-focus.png')
-                    : require('@src/assets/images/init-notification.png');
+                    ? require('@app/assets/images/init-notification-focus.png')
+                    : require('@app/assets/images/init-notification.png');
+                break;
+            case '资产':
+                source = focused
+                    ? require('@app/assets/images/init-wallet-focus.png')
+                    : require('@app/assets/images/init-wallet.png');
                 break;
             case '个人':
                 source = focused
-                    ? require('@src/assets/images/init-personal-focus.png')
-                    : require('@src/assets/images/init-personal.png');
+                    ? require('@app/assets/images/init-personal-focus.png')
+                    : require('@app/assets/images/init-personal.png');
                 break;
         }
         return <Image source={source} style={{ width: PxDp(42), height: PxDp(42) }} />;

@@ -31,7 +31,7 @@ export const BottomTabBar = observer(props => {
             <TouchableWithoutFeedback key="create" onPress={publishButtonPress}>
                 <View style={styles.tabItem}>
                     <Image
-                        source={require('@src/assets/images/publish.png')}
+                        source={require('@app/assets/images/publish.png')}
                         style={{
                             width: PxDp(40),
                             height: PxDp(40),
@@ -39,7 +39,7 @@ export const BottomTabBar = observer(props => {
                     />
                     {appStore.enableWallet && !appStore.createPostGuidance && (
                         <Image
-                            source={require('@src/assets/images/create_post_guide.png')}
+                            source={require('@app/assets/images/create_post_guide.png')}
                             style={{
                                 position: 'absolute',
                                 top: PxDp(-50),

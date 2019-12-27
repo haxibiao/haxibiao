@@ -42,9 +42,8 @@ const CommentInput = React.forwardRef((props, ref) => {
         [inputRef],
     );
 
-    const updateCommentsQuery = useCallback(
+    const updateCommentsQuery = useCallback(    
         (cache, { data: { addComment } }) => {
-            Toast.show({ content: '回复成功' });
             onChangeText('');
             const prev = cache.readQuery({
                 query: GQL.commentsQuery,
@@ -156,6 +155,7 @@ const CommentInput = React.forwardRef((props, ref) => {
     const addCommentHandler = useCallback(() => {
         Keyboard.dismiss();
         if (TOKEN) {
+            Toast.show({ content: '回复成功' });
             addCommentMutation();
         } else {
             navigation.navigate('Login');

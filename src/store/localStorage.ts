@@ -11,6 +11,7 @@ interface ItemKeys {
     firstInstall: string;
     viewedVersion: any;
     createPostGuidance: string;
+    ShowSplash: string;
 }
 
 const Keys: ItemKeys = {
@@ -20,6 +21,7 @@ const Keys: ItemKeys = {
     firstInstall: 'firstInstall',
     viewedVersion: 'viewedVersion',
     createPostGuidance: 'createPostGuidance',
+    ShowSplash: 'ShowSplash'
 };
 
 async function removeItem(key: keyof ItemKeys) {

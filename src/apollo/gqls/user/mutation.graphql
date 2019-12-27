@@ -25,6 +25,7 @@ mutation signInMutation($account: String!, $password: String!) {
         count_favorites
         reward
         contribute
+        exchangeRate
     }
 }
 
@@ -55,6 +56,7 @@ mutation autoSignInMutation($UUID: String!, $PHONE: String) {
         count_favorites
         reward
         contribute
+        exchangeRate
     }
 }
 
@@ -86,6 +88,7 @@ mutation signUpMutation($account: String, $password: String!, $name: String) {
         count_favorites
         reward
         contribute
+        exchangeRate
     }
 }
 
@@ -170,4 +173,11 @@ mutation retrievePasswordMutation($code: String!, $phone: String, $newPassword: 
 #注销账号
 mutation destoryUserMutation {
     destoryUser
+}
+
+#拉黑用户
+mutation addUserBlockMutation($id: Int! ) {
+  addUserBlock(id: $id){
+    id
+  }
 }

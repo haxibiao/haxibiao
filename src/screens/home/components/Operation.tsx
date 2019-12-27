@@ -1,12 +1,14 @@
 import React, { useMemo, useCallback } from 'react';
 import { StyleSheet, View, Text, Image, TouchableWithoutFeedback } from 'react-native';
-import { GQL, useMutation } from '@src/apollo';
+import { GQL, useMutation,useClientBuilder } from '@src/apollo';
 import { download } from '@src/common';
 import { TouchFeedback } from '@src/components';
+import { userStore } from '@src/store';
 import useReport from '@src/components/View/useReport';
 
 const MoreOperation = props => {
-    const { options, target, type, downloadUrl, downloadUrlTitle, onPressIn, deleteCallback } = props;
+    const { options, target, type, downloadUrl, downloadUrlTitle, onPressIn, deleteCallback,navigation } = props;
+    const client = useClientBuilder(Helper.syncGetter('me.token', userStore));
     const report = useReport({ target, type });
     const [deleteArticleMutation] = useMutation(GQL.deleteArticle, {
         variables: {
@@ -42,25 +44,39 @@ const MoreOperation = props => {
 
     const dislike = useCallback(() => {
         onPressIn();
-        Toast.show({ content: '操作成功，将减少此类型内容的推荐' });
-    }, []);
+        if (TOKEN) {
+            client.mutate({
+                mutation: GQL.addArticleBlockMutation,
+                variables: {
+                    id: target.id,
+                },
+            }).then(result => {
+                Toast.show({ content: '操作成功，将减少此类型内容的推荐！' });
+            }).catch(error => {
+                //查询接口，服务器返回错误后
+                Toast.show({ content: error.message });
+            })
+        } else {
+            navigation.navigate('Login');
+        }
+    }, [target]);
 
     const operation = useMemo(
         () => ({
             下载: {
-                image: require('@src/assets/images/more_video_download.png'),
+                image: require('@app/assets/images/more_video_download.png'),
                 callback: downloadVideo,
             },
             举报: {
-                image: require('@src/assets/images/more_report.png'),
+                image: require('@app/assets/images/more_report.png'),
                 callback: reportArticle,
             },
             删除: {
-                image: require('@src/assets/images/more_delete.png'),
+                image: require('@app/assets/images/more_delete.png'),
                 callback: deleteArticle,
             },
             不感兴趣: {
-                image: require('@src/assets/images/more_dislike.png'),
+                image: require('@app/assets/images/more_dislike.png'),
                 callback: dislike,
             },
         }),

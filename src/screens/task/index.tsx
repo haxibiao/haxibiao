@@ -4,7 +4,7 @@ import { StyleSheet, View, Text, Image, TouchableOpacity, Linking, TouchableWith
 import WaterCup from './components/WaterCup';
 import { PageContainer, Row, SpinnerLoading } from '@src/components';
 
-import { ttad } from '@src/native';
+import { ad } from '@src/native';
 
 import { appStore, userStore } from '@src/store';
 import { Query, useQuery, useMutation, GQL } from '@src/apollo';
@@ -26,6 +26,7 @@ const TaskItme = (props: Props) => {
     const setModule = props.setModule;
     const {
         id,
+        icon,
         name,
         details,
         submit_name,
@@ -36,15 +37,18 @@ const TaskItme = (props: Props) => {
         taskInfo,
     } = props.taskData;
 
+    // 任务图标获取
+    const task_img = icon ? { uri: icon } : require('@app/assets/images/icon_wallet_rmb.png');
+
     // 请求激励视频任务奖励接口，触发点击广告
     const [onClickRewardVideo] = useMutation(GQL.ADRewardVideoMutation, {
         variables: {
             is_click: true,
         },
-        onCompleted: (data:any) => {
+        onCompleted: (data: any) => {
             setModule(data.playADVideo);
         },
-        onError: (error:any) => {
+        onError: (error: any) => {
             Toast.show({ content: '服务器响应失败！', duration: 1000 });
         },
     });
@@ -54,10 +58,10 @@ const TaskItme = (props: Props) => {
         variables: {
             is_click: false,
         },
-        onCompleted: (data:any) => {
+        onCompleted: (data: any) => {
             setModule(data.playADVideo);
         },
-        onError: (error:any) => {
+        onError: (error: any) => {
             Toast.show({ content: '服务器响应失败！', duration: 1000 });
         },
     });
@@ -75,7 +79,7 @@ const TaskItme = (props: Props) => {
                 break;
             case 2:
                 // 自定义任务
-                toComplete( taskInfo ? taskInfo.router : 'null');
+                toComplete(taskInfo ? taskInfo.router : 'null');
                 break;
             default:
                 Toast.show({ content: '请检查更新 APP ，目前版本不支持该任务类型！' });
@@ -164,12 +168,8 @@ const TaskItme = (props: Props) => {
             case 'GoDrinkWater':
                 navigation.navigate('TaskDrinkWaterScreen');
                 break;
-            case 'ToComment':
-                Linking.openURL(
-                    Device.IOS
-                        ? 'itms-apps://itunes.apple.com/app/id1434767781'
-                        : 'market://details?id=' + Config.AppID,
-                );
+            case 'ToPraise':
+                navigation.navigate('Praise');
                 break;
             case 'MotivationalVideo':
                 MotivationalVideo();
@@ -206,8 +206,8 @@ const TaskItme = (props: Props) => {
     // 看激励视频
     const MotivationalVideo = () => {
         // setModule({ message: '观看视频并点击！', gold: 666, contribute: 999 });
-        ttad.RewardVideo.loadAd().then(() => {
-            ttad.RewardVideo.startAd().then((result: any) => {
+        ad.RewardVideo.loadAd().then(() => {
+            ad.RewardVideo.startAd().then((result: any) => {
 
                 if (JSON.parse(result).ad_click) {
                     // 点击了激励视频
@@ -223,17 +223,17 @@ const TaskItme = (props: Props) => {
     };
 
     return (
-        <Row style={{ paddingHorizontal: 20, paddingVertical: 5, marginBottom: 5 }}>
-            <View style={{ backgroundColor: '#EEE', borderRadius: 10 }}>
+        <Row style={{ paddingHorizontal: 20, paddingVertical: 5, marginBottom: 10 }}>
+            <View style={{ backgroundColor: '#EEE6', borderRadius: 10 }}>
                 <Image
-                    source={require('@src/assets/images/icon_wallet_rmb.png')}
+                    source={task_img}
                     style={{ height: PxDp(40), width: PxDp(50), marginHorizontal: 10 }}
                 />
                 <View
                     style={{
                         justifyContent: 'center',
                         alignItems: 'center',
-                        backgroundColor: '#CCC',
+                        backgroundColor: '#CCC6',
                         borderBottomStartRadius: 10,
                         borderBottomEndRadius: 10,
                         paddingVertical: 2,
@@ -279,20 +279,20 @@ const TaskItme = (props: Props) => {
                     <Text style={{ color: '#000', fontWeight: 'bold' }}>{submit_name}</Text>
                 </TouchableOpacity>
             ) : (
-                <TouchableOpacity
-                    disabled={true}
-                    style={{
-                        width: PxDp(80),
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        borderRadius: 100,
-                        backgroundColor: '#F6DB4A55',
-                        paddingVertical: PxDp(10),
-                        paddingHorizontal: PxDp(15),
-                    }}>
-                    <Text style={{ color: '#000', fontWeight: 'bold' }}>{submit_name}</Text>
-                </TouchableOpacity>
-            )}
+                        <TouchableOpacity
+                            disabled={true}
+                            style={{
+                                width: PxDp(80),
+                                justifyContent: 'center',
+                                alignItems: 'center',
+                                borderRadius: 100,
+                                backgroundColor: '#F6DB4A55',
+                                paddingVertical: PxDp(10),
+                                paddingHorizontal: PxDp(15),
+                            }}>
+                            <Text style={{ color: '#000', fontWeight: 'bold' }}>{submit_name}</Text>
+                        </TouchableOpacity>
+                    )}
         </Row>
     );
 };
@@ -330,7 +330,7 @@ export default (props: any) => {
                             <View style={styles.SuccessModule}>
                                 <Row>
                                     <Image
-                                        source={require('@src/assets/images/icon_wallet_rmb.png')}
+                                        source={require('@app/assets/images/icon_wallet_rmb.png')}
                                         style={{ width: PxDp(50), height: PxDp(50) }}
                                     />
                                     <View style={styles.SuccessModuleTextBack}>
@@ -344,7 +344,7 @@ export default (props: any) => {
                                 </Row>
 
                                 <Row style={styles.SuccessModuleButtonBack}>
-                                    <TouchableOpacity style={styles.SuccessModuleButton} onPress={()=>{
+                                    <TouchableOpacity style={styles.SuccessModuleButton} onPress={() => {
                                         // console.log("测试",userStore.me.wallet.id);
                                         navigation.goBack();
                                         navigation.navigate('WithdrawHistory', {
@@ -372,8 +372,8 @@ export default (props: any) => {
                     )}
                 </>
             ) : (
-                <SpinnerLoading />
-            )}
+                    <SpinnerLoading />
+                )}
         </>
     );
 };

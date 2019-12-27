@@ -43,7 +43,7 @@ class FollowButton extends Component<Props> {
         if (followed) {
             title = '已关注';
             textColor = activeColor;
-            backgroundColor = Theme.groundColour;
+            backgroundColor = '#888888';
         } else {
             title = '关注';
             textColor = tintColor;

@@ -51,6 +51,13 @@ mutation drinkWaterRewardMutation {
   }
 }
 
+# 睡觉打卡奖励接口
+mutation sleepRewardMutation($id: Int!) {
+  SleepReward(task_id: $id) {
+    id
+  }
+}
+
 # 看激励视频上报接口
 mutation ADRewardVideoMutation($is_click:Boolean!){
   playADVideo(is_click: $is_click) {
@@ -58,4 +65,9 @@ mutation ADRewardVideoMutation($is_click:Boolean!){
     gold
     contribute
   }
+}
+
+# 应用商店好评任务接口
+mutation highPraiseTaskMutation($id: ID,$content: String){
+  highPraiseTask(id: $id, content: $content) 
 }

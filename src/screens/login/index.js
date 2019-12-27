@@ -112,7 +112,7 @@ export default observer(props => {
         <PageContainer autoKeyboardInsets={false} submitting={submitting} submitTips={'loading'} hiddenNavBar>
             <View style={styles.container}>
                 <View style={styles.registerCoverContainer}>
-                    <Image source={require('@src/assets/images/login_cover.png')} style={styles.registerCover} />
+                    <Image source={require('@app/assets/images/login_cover.png')} style={styles.registerCover} />
                 </View>
                 <View style={styles.header}>
                     <TouchableOpacity style={{ padding: PxDp(5) }} onPress={() => navigation.pop()}>
@@ -124,7 +124,7 @@ export default observer(props => {
                 </View>
                 <View style={styles.formContainer}>
                     <Center>
-                        <Image source={require('@src/assets/images/dmg_logo_white.png')} style={styles.logo} />
+                        <Image source={require('@app/assets/images/dmg_logo_white.png')} style={styles.logo} />
                     </Center>
                     <View>
                         <View style={styles.fieldGroup}>
@@ -233,7 +233,7 @@ export default observer(props => {
 
 const styles = StyleSheet.create({
     container: {
-        height: Device.HEIGHT,
+        flex: 1,
         justifyContent: 'space-between',
         backgroundColor: '#fff',
     },
@@ -248,8 +248,9 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        width: null,
-        height: null,
+        width: '100%',
+        height: '100%',
+        backgroundColor: '#6661'
     },
     header: {
         position: 'absolute',

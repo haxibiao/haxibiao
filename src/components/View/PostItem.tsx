@@ -19,8 +19,8 @@ import GridImage from './GridImage';
 import Like from './Like';
 import MoreOperation from './MoreOperation';
 
-import Gift from '@src/assets/images/gift_svg.svg';
-import Comment from '@src/assets/images/pinglun.svg';
+import Gift from '@app/assets/images/gift_svg.svg';
+import Comment from '@app/assets/images/pinglun.svg';
 
 import StoreContext, { observer, useObservable, appStore, userStore } from '@src/store';
 import { useApolloClient, ApolloProvider } from '@src/apollo';
@@ -156,9 +156,11 @@ const PostItem: React.FC<Props> = observer((props: Props) => {
                 ref={ref => (overlayRef = ref)}>
                 <ApolloProvider client={client}>
                     <MoreOperation
+                        navigation={navigation}
                         onPressIn={() => overlayRef.close()}
                         target={post}
-                        options={isSelf ? ['删除'] : ['不感兴趣', '举报']}
+                        showShare={true}
+                        options={isSelf ? ['删除', '复制链接'] : ['不感兴趣', '举报', '复制链接']}
                         deleteCallback={() => startAnimation(1, 0)}
                     />
                 </ApolloProvider>

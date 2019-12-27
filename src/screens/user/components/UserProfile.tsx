@@ -40,7 +40,7 @@ export default observer(({ user, titleStyle, contentStyle }) => {
     }, [client, user]);
     return (
         <View style={styles.profileContainer}>
-            <ImageBackground source={require('@src/assets/images/blue_purple.png')} style={styles.userProfileBg}>
+            <ImageBackground source={require('@app/assets/images/blue_purple.png')} style={styles.userProfileBg}>
                 <View style={styles.mask} />
                 <View style={styles.content}>
                     <Animated.View style={[styles.contentTop, contentStyle]}>

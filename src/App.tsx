@@ -5,52 +5,63 @@ import { Toast } from './components';
 import codePush from 'react-native-code-push';
 import SplashScreen from 'react-native-splash-screen';
 
-import { ttad } from './native';
+import { ad } from './native';
 
 import { Provider } from 'mobx-react';
 import StoreContext, * as store from './store';
 import ApolloApp from './ApolloApp';
 
 import JPushModule from 'jpush-react-native';
+import * as WeChat from 'react-native-wechat';
 
 import { checkUpdate } from '@src/common';
 
+import { WechatAppId } from '@app/app.json';
+
 function App() {
     const appLunch = useRef(true);
+
+    //启动前，初始化Ad
+    ad.AdManager.init();
 
     useEffect(() => {
         global.Toast = this.toast;
         if (appLunch.current) {
             Orientation.lockToPortrait();
             SplashScreen.hide();
-            if (Config.AppStore !== 'huawei') {
-                ttad.Splash.loadSplashAd();
-            }
             appLunch.current = false;
         }
 
         fetchConfig();
 
         checkUpdate('autoCheck');
+
+        WeChat.registerApp(WechatAppId);
     }, []);
 
     const fetchConfig = () => {
-        //获取广告开启配置
+        //获取APP的开启配置(广告和钱包)
         const { appStore } = store;
 
-        const name = Config.AppStore === 'huawei' ? 'huawei' : Platform.OS;
-        fetch(Config.ServerRoot + '/api/app-config?' + Date.now(), {
+        //华为有单独的开关能力，这个逻辑后端就可以出好，前端统一传os和store回去即可
+        fetch(Config.ServerRoot + '/api/app-config?os=' + Platform.OS + '&store=' + Config.AppStore, {
             headers: {
-                name,
+                os: Platform.OS,
+                store: Config.AppStore,
             },
         })
             .then(response => response.json())
             .then(result => {
-                console.log('result', result);
+                //1.先store保存APP 配置信息(含ad appid,codeid等)
+                console.log('ad result', result);
                 appStore.setConfig(result);
 
-                if (Config.AppStore === 'huawei' && result.ad === 'on') {
-                    ttad.Splash.loadSplashAd();
+                //2.再init AD(后端加载了更多需要的SDK)
+                ad.AdManager.init();
+
+                //3.开屏
+                if (appStore.enableAd) {
+                    ad.Splash.loadSplashAd();
                 }
             })
             .catch(err => {

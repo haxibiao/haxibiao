@@ -25,7 +25,7 @@ const WithdrawDetail = props => {
                     let withdraw = data.withdraw;
 
                     return (
-                        <View style={{ backgroundColor: Theme.white }}>
+                        <View style={{ backgroundColor: Theme.white || '#FFF' }}>
                             <View style={{ paddingHorizontal: PxDp(15) }}>
                                 <View style={styles.header}>
                                     <Avatar size={38} source={userStore.me.avatar} />
@@ -55,6 +55,10 @@ const WithdrawDetail = props => {
                                     )}
                                 </View>
                                 <View style={styles.row}>
+                                    <Text style={styles.textLeft}>提现平台 </Text>
+                                    <Text style={styles.textRight}>{item.platform} </Text>
+                                </View>
+                                <View style={styles.row}>
                                     <Text style={styles.textLeft}>提现单号 </Text>
                                     <Text style={styles.textRight}>
                                         {withdraw.status === 1 ? withdraw.biz_no : '无'}
@@ -65,16 +69,18 @@ const WithdrawDetail = props => {
                                     <Text style={styles.textRight}>{`${Config.goldAlias}提现`} </Text>
                                 </View>
 
-                                <View
-                                    style={[
-                                        styles.row,
-                                        {
-                                            paddingBottom: PxDp(15),
-                                        },
-                                    ]}>
-                                    <Text style={styles.textLeft}>收款账户</Text>
-                                    <Text style={styles.textRight}> {withdraw.to_account}</Text>
-                                </View>
+                                {withdraw.to_platform == 'Alipay' && (
+                                    <View
+                                        style={[
+                                            styles.row,
+                                            {
+                                                paddingBottom: PxDp(15),
+                                            },
+                                        ]}>
+                                        <Text style={styles.textLeft}>收款账户</Text>
+                                        <Text style={styles.textRight}> {withdraw.to_account}</Text>
+                                    </View>
+                                )}
                                 <View style={styles.borderRow}>
                                     <Text style={styles.textLeft}>提现时间</Text>
                                     <Text style={styles.textRight}>{withdraw.created_at}</Text>
@@ -88,7 +94,7 @@ const WithdrawDetail = props => {
                                         paddingHorizontal: PxDp(15),
                                     },
                                 ]}>
-                                <Text style={styles.textLeft}>支付宝订单号</Text>
+                                <Text style={styles.textLeft}>订单号</Text>
                                 <View style={{ flex: 1, marginLeft: 20 }}>
                                     <Text style={styles.text}>{withdraw.status === 1 ? withdraw.trade_no : '无'}</Text>
                                 </View>

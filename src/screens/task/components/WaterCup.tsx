@@ -71,7 +71,7 @@ export default (props: any) => {
                             transform: [{ translateX: moveOne }],
                         }}>
                         <Image
-                            source={require('@src/assets/images/wavetwo.png')}
+                            source={require('@app/assets/images/wavetwo.png')}
                             style={{ width: '100%', height: '100%' }}
                             resizeMode={'contain'}
                         />
@@ -86,7 +86,7 @@ export default (props: any) => {
                             right: -200,
                         }}>
                         <Image
-                            source={require('@src/assets/images/wavetwo.png')}
+                            source={require('@app/assets/images/wavetwo.png')}
                             style={{ width: '100%', height: '100%' }}
                             resizeMode={'contain'}
                         />

@@ -191,7 +191,7 @@ const EditProfileScreen = (props: any) => {
                                     source={
                                         user.background
                                             ? { uri: user.background }
-                                            : require('@src/assets/images/blue_purple.png')
+                                            : require('@app/assets/images/blue_purple.png')
                                     }
                                     style={{ width: 60, height: 40, borderRadius: 5 }}
                                 />
@@ -224,7 +224,7 @@ const EditProfileScreen = (props: any) => {
 
                     <TouchableOpacity
                         onPress={() => {
-                            navigation.navigate('AccountSecurity');
+                            navigation.navigate('AccountSecurity',{user});
                         }}>
                         <SettingItem
                             itemName="账号绑定"

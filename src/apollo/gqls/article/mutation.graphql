@@ -97,9 +97,26 @@ mutation resolveDouyinVideo($share_link: String!) {
 
 # 点击视频流广告
 mutation clickVideoAD {
-  clickAD{
+  clickAD {
     id
     created_at
     amount
+    message
   }
 }
+
+# 点击动态广场信息流广告
+mutation clickFeedAD {
+  clickFeedAD2 {
+    amount
+    message
+  }
+}
+
+# 不感兴趣
+mutation addArticleBlockMutation($id: Int! ) {
+  addArticleBlock(id: $id){
+    id
+  }
+}
+

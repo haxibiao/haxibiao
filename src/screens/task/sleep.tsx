@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 
 import { PageContainer, SpinnerLoading } from '@src/components';
 
-import { ttad } from '../../native';
+import { ad } from '../../native';
 
 import { appStore } from '@src/store';
 import { Query, useQuery, GQL } from '@src/apollo';
@@ -21,14 +21,15 @@ const testData = {
 };
 
 export default (props: any) => {
-    const { data, refetch } = useQuery(GQL.sleepTaskQuery,{fetchPolicy: 'network-only'});
-    let sleepData = Helper.syncGetter('SleepTask', data);
+    const { data, refetch } = useQuery(GQL.sleepTaskQuery, { fetchPolicy: 'network-only' });
+    const sleepData = Helper.syncGetter('SleepTask', data);
+    const id = Helper.syncGetter('id', sleepData);
 
-    console.log('睡觉打卡', data);
+    // console.log('睡觉打卡', id);
 
     const goTask = () => {
-        ttad.RewardVideo.loadAd().then(() => {
-            ttad.RewardVideo.startAd().then(result => {
+        ad.RewardVideo.loadAd().then(() => {
+            ad.RewardVideo.startAd().then(result => {
                 if (JSON.parse(result).ad_click) {
                     // 点击了激励视频
                     getReward();
@@ -48,7 +49,10 @@ export default (props: any) => {
     const getReward = () => {
         appStore.client
             .mutate({
-                mutation: GQL.drinkWaterRewardMutation,
+                mutation: GQL.sleepRewardMutation,
+                variables: {
+                    id,
+                },
             })
             .then((data: any) => {
                 // 获取奖励
@@ -113,8 +117,8 @@ export default (props: any) => {
                     </View>
                 </PageContainer>
             ) : (
-                <SpinnerLoading />
-            )}
+                    <SpinnerLoading />
+                )}
         </>
     );
 };

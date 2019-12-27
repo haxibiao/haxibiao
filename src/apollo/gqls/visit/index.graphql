@@ -1,18 +1,53 @@
 # 浏览记录
-query visitsQuery($filter: VisitFilter!, $page: Int, $user_id: Int!) {
-    visits(user_id: $user_id, page: $page, visited_type: ARTICLE) {
+query userVisitsQuery($user_id: Int!, $page: Int) {
+    visits(user_id: $user_id, page: $page) {
         paginatorInfo {
-            hasMorePages
             currentPage
+            hasMorePages
         }
         data {
-            id
-            type
-            time_ago
             article {
                 id
-                title
+                type
+                body
+                description
+                time_ago
                 cover
+                hits
+                count_likes
+                count_replies
+                count_tips
+                liked
+                answered_status
+                question_reward
+                user {
+                    avatar
+                    name
+                    id
+                }
+                category {
+                    id
+                    name
+                    logo
+                }
+                images {
+                    id
+                    url
+                    width
+                    height
+                }
+                video {
+                    id
+                    url
+                    duration
+                    info {
+                        width
+                        height
+                        rotate
+                        covers
+                    }
+                    cover_url
+                }
             }
         }
     }

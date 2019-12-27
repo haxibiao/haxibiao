@@ -4,12 +4,16 @@
  */
 
 import React, { Component } from 'react';
-import { StyleSheet, View, TouchableOpacity, Text } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Text, Image } from 'react-native';
 
+import { Row } from 'components';
 
 function WithdrawLogItem(props) {
     const { style, navigation, item } = props;
-    let statusText, color;
+    let statusText,
+        color,
+        imageUrl,
+        size = 40;
     switch (item.status) {
         case -1:
             statusText = '提现失败';
@@ -24,6 +28,27 @@ function WithdrawLogItem(props) {
             color = Theme.correctColor;
             break;
     }
+
+    switch (item.to_platform) {
+        case 'Alipay':
+            imageUrl = require('@app/assets/images/alipay.png');
+            item.platform = '支付宝';
+            break;
+        case 'Wechat':
+            imageUrl = require('@app/assets/images/wechat.png');
+            item.platform = '微信';
+            break;
+        case 'dongdezhuan':
+            imageUrl = require('@app/assets/images/dongdezhuan.png');
+            item.platform = '懂得赚';
+            imageUrl = require('@app/assets/images/alipay.png');
+            break;
+        default:
+            imageUrl = require('@app/assets/images/alipay.png');
+            size = 46;
+            break;
+    }
+
     return (
         <TouchableOpacity
             style={[styles.item, style]}
@@ -34,28 +59,52 @@ function WithdrawLogItem(props) {
                     item: item,
                 })
             }>
-            <View>
-                <Text style={{ fontSize: Font(15), color: Theme.defaultTextColor }}>{statusText}</Text>
-                <Text style={{ fontSize: Font(12), color: Theme.subTextColor, paddingTop: Font(10) }}>
-                    {item.created_at}
-                </Text>
-            </View>
-            <View>
-                <Text style={{ fontSize: Font(20), color }}>￥{item.amount.toFixed(0)}.00</Text>
-            </View>
+            <Image source={imageUrl} style={{ width: size, height: size, marginVertical: PxDp(15) }} />
+            <Row style={styles.content}>
+                <View style={{ width: (Device.WIDTH * 4) / 7 }}>
+                    <Text style={styles.statusText}>{statusText}</Text>
+                    {item.status == -1 && (
+                        <Text
+                            style={{ fontSize: 12, color: Theme.themeRed }}
+                            numberOfLines={1}>{`${item.remark}`}</Text>
+                    )}
+                    <Text style={styles.time}>{item.created_at}</Text>
+                </View>
+                <View>
+                    <Text style={{ fontSize: PxDp(20), color }}>￥{item.amount}</Text>
+                </View>
+            </Row>
         </TouchableOpacity>
     );
 }
 
 const styles = StyleSheet.create({
-    item: {
-        alignItems: 'center',
-        borderBottomColor:"#F0F0F0",
+    content: {
+        alignItems: 'flex-start',
+        borderBottomColor: '#f0f0f0',
         borderBottomWidth: 0.5,
+        paddingVertical: 15,
+    },
+    image: {
+        height: 40,
+        marginVertical: PxDp(15),
+        width: 40,
+    },
+    item: {
+        alignItems: 'flex-start',
         flexDirection: 'row',
         justifyContent: 'space-between',
         paddingHorizontal: 15,
-        paddingVertical: 10,
+    },
+    statusText: {
+        color: Theme.defaultTextColor,
+        fontSize: PxDp(16),
+        lineHeight: PxDp(22),
+    },
+    time: {
+        color: Theme.subTextColor,
+        fontSize: PxDp(12),
+        lineHeight: PxDp(22),
     },
 });
 

@@ -44,16 +44,16 @@ class AboutUs extends Component {
                                 <View style={{ paddingHorizontal: PxDp(20) }}>
                                     <Text style={styles.sectionTitle}>联系我们</Text>
                                     {/*<Text style={{ fontSize: 13, color: Theme.subTextColor, marginTop: 15 }}>QQ交流群: 4337413</Text>*/}
-                                    <Text style={styles.officialText}>官网地址： haxibiao.com</Text>
-                                    <Text style={styles.officialText}>商务合作： db@haxibiao.com</Text>
-                                    <Text style={styles.officialText}>新浪微博： 哈希表</Text>
+                                    <Text style={styles.officialText}>官网地址： dianmoge.com</Text>
+                                    <Text style={styles.officialText}>商务合作： db@dianmoge.com</Text>
+                                    <Text style={styles.officialText}>新浪微博： 点墨阁</Text>
                                     <Text style={styles.officialText}>官方QQ群： 735220029</Text>
                                 </View>
                             </View>
                         </View>
                         <View style={styles.copyright}>
                             <Text>近邻乐(深圳)有限责任公司</Text>
-                            <Text>www.haxibiao.com</Text>
+                            <Text>www.dianmoge.com</Text>
                         </View>
                     </View>
                 </ScrollView>
@@ -65,7 +65,7 @@ class AboutUs extends Component {
 const styles = StyleSheet.create({
     container: {
         flexGrow: 1,
-        backgroundColor: Theme.white,
+        backgroundColor: Theme.white || '#FFF',
         paddingBottom: Theme.HOME_INDICATOR_HEIGHT || PxDp(15),
     },
     AppVersion: { color: Theme.defaultTextColor, fontSize: PxDp(15), margin: PxDp(20) },

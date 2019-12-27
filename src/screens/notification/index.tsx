@@ -52,7 +52,7 @@ export default observer((props: any) => {
             return (
                 <StatusView.EmptyView
                     title="若不寻人聊，只能待佳音"
-                    imageSource={require('@src/assets/images/default_chat.png')}
+                    imageSource={require('@app/assets/images/default_chat.png')}
                 />
             );
         } else {
@@ -97,7 +97,7 @@ export default observer((props: any) => {
                         <View>
                             <Image
                                 style={{ width: PxDp(42), height: PxDp(42), borderRadius: PxDp(5) }}
-                                source={require('@src/assets/images/notification_comment.png')}
+                                source={require('@app/assets/images/notification_comment.png')}
                             />
                         </View>
                         <View style={styles.itemContent}>
@@ -113,7 +113,7 @@ export default observer((props: any) => {
                         <View>
                             <Image
                                 style={{ width: PxDp(42), height: PxDp(42), borderRadius: PxDp(5) }}
-                                source={require('@src/assets/images/notification_like.png')}
+                                source={require('@app/assets/images/notification_like.png')}
                             />
                         </View>
                         <View style={styles.itemContent}>
@@ -129,7 +129,7 @@ export default observer((props: any) => {
                         <View>
                             <Image
                                 style={{ width: PxDp(42), height: PxDp(42), borderRadius: PxDp(5) }}
-                                source={require('@src/assets/images/notification_following.png')}
+                                source={require('@app/assets/images/notification_following.png')}
                             />
                         </View>
                         <View style={styles.itemContent}>
@@ -145,7 +145,7 @@ export default observer((props: any) => {
                         <View>
                             <Image
                                 style={{ width: PxDp(42), height: PxDp(42), borderRadius: PxDp(5) }}
-                                source={require('@src/assets/images/notification_other.png')}
+                                source={require('@app/assets/images/notification_other.png')}
                             />
                         </View>
                         <View style={styles.itemContent}>
@@ -165,19 +165,19 @@ export default observer((props: any) => {
 
 /* <StatusView.EmptyView
     title="若不寻人聊，只能待佳音"
-    imageSource={require('@src/assets/images/default_chat.png')}
+    imageSource={require('@app/assets/images/default_chat.png')}
 /> */
 
 /* <StatusView.EmptyView
     title="加入我们，认识更多小伙伴吧"
-    imageSource={require('@src/assets/images/default_chat.png')}
+    imageSource={require('@app/assets/images/default_chat.png')}
 />; */
 
 const styles = StyleSheet.create({
     contentContainer: {
         backgroundColor: Theme.groundColour,
         flexGrow: 1,
-        paddingBottom: Theme.HOME_INDICATOR_HEIGHT + PxDp(56),
+        paddingBottom: PxDp(Theme.BOTTOM_HEIGHT),
     },
     footerView: {
         alignItems: 'center',

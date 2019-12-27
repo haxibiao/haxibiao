@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
         marginTop: PxDp(35),
     },
     container: {
-        backgroundColor: Theme.white,
+        backgroundColor: Theme.white || '#FFF',
         flex: 1,
         paddingHorizontal: PxDp(20),
     },

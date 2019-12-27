@@ -36,7 +36,7 @@ class WithdrawLog extends Component {
                             data: items,
                             paginatorInfo: { currentPage, hasMorePages },
                         } = data.withdraws;
-
+                        console.log('data', data);
                         if (items.length < 1) return <StatusView.EmptyView />;
                         return (
                             <FlatList

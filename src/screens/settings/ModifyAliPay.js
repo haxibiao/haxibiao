@@ -103,7 +103,7 @@ class EditProfileScreen extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: Theme.white,
+        backgroundColor: Theme.white || '#FFF',
     },
     header: {
         paddingHorizontal: PxDp(25),

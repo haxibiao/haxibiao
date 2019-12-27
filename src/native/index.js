@@ -5,9 +5,12 @@
  * @Last Modified time: 2019-08-16 14:40:47
  */
 
-import ttad from './ttad';
-import txad from "./txad";
+import ad from './ad';
+import txad from './txad';
 import VideoUploader from './VideoUploader';
-import VodUploader from "./VodUploader";
+import VodUploader from './VodUploader';
+import WeChat from './WeChat';
+import Share from './Share';
+import AppUtil from './AppUtil';
 
-export { ttad, txad, VideoUploader, VodUploader };
+export { ad, txad, VideoUploader, VodUploader, WeChat, Share, AppUtil };

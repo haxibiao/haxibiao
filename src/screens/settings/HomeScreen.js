@@ -7,18 +7,19 @@ import { checkUpdate } from '@src/common';
 
 class index extends Component {
     constructor(props) {
+        const user = props.navigation.getParam('user');
         super(props);
         this.state = {
             storageSize: (Math.random(1, 10) * 10).toFixed(1) + 'M',
             logoutConfirm: false,
+            me: user,
         };
     }
 
     signOut = async () => {
         const { navigation } = this.props;
+        const { me } = this.state;
 
-        let me = { ...userStore.me };
-        console.log('login me : ', me);
         if (!this.state.logoutConfirm) {
             if (me.phone === null || me.phone === undefined) {
                 PopOverlay({
@@ -54,7 +55,7 @@ class index extends Component {
     render() {
         const { navigation } = this.props;
         const { login } = userStore;
-        const { storageSize } = this.state;
+        const { storageSize, me } = this.state;
         return (
             <PageContainer title="设置" white>
                 <ScrollView
@@ -69,7 +70,7 @@ class index extends Component {
                         <View>
                             <ItemSeparator />
                             <ListItem
-                                onPress={() => navigation.navigate('AccountSecurity')}
+                                onPress={() => navigation.navigate('AccountSecurity', { user: me })}
                                 style={styles.listItem}
                                 leftComponent={<Text style={styles.itemText}> 账号安全 </Text>}
                                 rightComponent={<Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />}

@@ -21,7 +21,7 @@ import JPushModule from 'jpush-react-native';
 export default observer(props => {
     const navigation = useNavigation();
     const store = useContext(StoreContext);
-    const [taskAD, setTaskAD] = useState(true);
+    const [taskAD, setTaskAD] = useState(false);
     const user = Helper.syncGetter('userStore.me', store);
     const { login } = userStore;
     const isLogin = user.token && login ? true : false;
@@ -29,14 +29,12 @@ export default observer(props => {
         variables: { id: user.id },
     });
     const userData = Helper.syncGetter('user', result) || {};
-    const userProfile = Object.assign({}, userData, {
-        ...user,
-        reward: userData.reward,
-        gold: userData.gold,
-        count_articles: userData.count_articles,
-        count_followings: userData.count_followings,
-        count_followers: userData.count_followers,
+
+    const userProfile = Object.assign({}, user, {
+        ...userData,
     });
+
+    console.log('userProfile', userProfile);
 
     const authNavigator = useCallback(
         (route, params) => {
@@ -72,7 +70,7 @@ export default observer(props => {
                             <View style={styles.personTopBg}>
                                 <Image
                                     style={styles.personTopBgImage}
-                                    source={require('@src/assets/images/person_top_bg.jpg')}
+                                    source={require('@app/assets/images/person_top_bg.jpg')}
                                 />
                             </View>
                             <View style={styles.userInfo}>
@@ -87,7 +85,7 @@ export default observer(props => {
                                     </Text>
                                 </View>
                                 <Avatar
-                                    source={userProfile.avatar || require('@src/assets/images/default_avatar.png')}
+                                    source={userProfile.avatar || require('@app/assets/images/default_avatar.png')}
                                     style={styles.userAvatar}
                                 />
                             </View>
@@ -156,7 +154,7 @@ export default observer(props => {
                         <TouchableWithoutFeedback onPress={() => authNavigator('TaskScreen')}>
                             <View style={styles.walletItem}>
                                 <Image
-                                    source={require('@src/assets/images/icon_wallet_dmb.png')}
+                                    source={require('@app/assets/images/icon_wallet_dmb.png')}
                                     style={styles.walletItemIcon}
                                 />
                                 <View>
@@ -173,7 +171,7 @@ export default observer(props => {
                         <TouchableWithoutFeedback onPress={() => authNavigator('Wallet', { user: userProfile })}>
                             <View style={styles.walletItem}>
                                 <Image
-                                    source={require('@src/assets/images/icon_wallet_rmb.png')}
+                                    source={require('@app/assets/images/icon_wallet_rmb.png')}
                                     style={styles.walletItemIcon}
                                 />
                                 <View>
@@ -199,7 +197,7 @@ export default observer(props => {
                                     resizeMode: 'stretch',
                                     marginHorizontal: '8%',
                                 }}
-                                source={require('@src/assets/images/task_sleep_main.png')}
+                                source={require('@app/assets/images/task_sleep_main.png')}
                             />
                         </TouchableOpacity>
 
@@ -216,19 +214,35 @@ export default observer(props => {
                 )}
 
                 <View style={styles.columnItemsWrap}>
+                    <TouchableOpacity
+                        style={styles.columnItem}
+                        onPress={() => {
+                            authNavigator('NotificationPage');
+                        }}>
+                        <Row>
+                            <View style={styles.columnIconWrap}>
+                                <Image
+                                    style={styles.columnIcon}
+                                    source={require('@app/assets/images/ic_mine_chat.png')}
+                                />
+                            </View>
+                            <Text style={styles.itemTypeText}>我的消息</Text>
+                        </Row>
+                        <Iconfont name="right" size={PxDp(15)} color={Theme.secondaryTextColor} />
+                    </TouchableOpacity>
                     <TouchableOpacity style={styles.columnItem} onPress={() => authNavigator('喜欢', { user })}>
                         <Row>
                             <View style={styles.columnIconWrap}>
                                 <Image
                                     style={styles.columnIcon}
-                                    source={require('@src/assets/images/ic_mine_like.png')}
+                                    source={require('@app/assets/images/ic_mine_like.png')}
                                 />
                             </View>
                             <Text style={styles.itemTypeText}>我的喜欢</Text>
                         </Row>
                         <Iconfont name="right" size={PxDp(15)} color={Theme.secondaryTextColor} />
                     </TouchableOpacity>
-                    <TouchableOpacity
+                    {/* <TouchableOpacity
                         style={styles.columnItem}
                         onPress={() => {
                             authNavigator('我的收藏');
@@ -237,19 +251,19 @@ export default observer(props => {
                             <View style={styles.columnIconWrap}>
                                 <Image
                                     style={styles.columnIcon}
-                                    source={require('@src/assets/images/ic_mine_collect.png')}
+                                    source={require('@app/assets/images/ic_mine_collect.png')}
                                 />
                             </View>
                             <Text style={styles.itemTypeText}>我的收藏</Text>
                         </Row>
                         <Iconfont name="right" size={PxDp(15)} color={Theme.secondaryTextColor} />
-                    </TouchableOpacity>
+                    </TouchableOpacity> */}
                     <TouchableOpacity style={styles.columnItem} onPress={() => authNavigator('浏览记录')}>
                         <Row>
                             <View style={styles.columnIconWrap}>
                                 <Image
                                     style={styles.columnIcon}
-                                    source={require('@src/assets/images/ic_mine_history.png')}
+                                    source={require('@app/assets/images/ic_mine_history.png')}
                                 />
                             </View>
                             <Text style={styles.itemTypeText}>浏览记录</Text>
@@ -261,19 +275,21 @@ export default observer(props => {
                             <View style={styles.columnIconWrap}>
                                 <Image
                                     style={styles.columnIcon}
-                                    source={require('@src/assets/images/ic_mine_feedback.png')}
+                                    source={require('@app/assets/images/ic_mine_feedback.png')}
                                 />
                             </View>
                             <Text style={styles.itemTypeText}>意见反馈</Text>
                         </Row>
                         <Iconfont name="right" size={PxDp(15)} color={Theme.secondaryTextColor} />
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.columnItem} onPress={() => middlewareNavigate('Setting')}>
+                    <TouchableOpacity
+                        style={styles.columnItem}
+                        onPress={() => middlewareNavigate('Setting', { user: userProfile })}>
                         <Row>
                             <View style={styles.columnIconWrap}>
                                 <Image
                                     style={styles.columnIcon}
-                                    source={require('@src/assets/images/ic_mine_setting.png')}
+                                    source={require('@app/assets/images/ic_mine_setting.png')}
                                 />
                             </View>
                             <Text style={styles.itemTypeText}>设置</Text>
@@ -315,7 +331,7 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: Theme.groundColour,
         flex: 1,
-        marginBottom: Theme.HOME_INDICATOR_HEIGHT + PxDp(56),
+        marginBottom: PxDp(Theme.BOTTOM_HEIGHT),
     },
     introduction: {
         color: '#fff',

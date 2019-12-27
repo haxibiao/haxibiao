@@ -155,7 +155,7 @@ const CommentItem = (props: Props) => {
             <TouchFeedback style={styles.comment} onPress={() => replyHandler(comment)} onLongPress={onLongPress}>
                 {comment.is_accept && (
                     <View style={styles.acceptAnswer}>
-                        <Image style={styles.acceptImage} source={require('@src/assets/images/accept_answer.png')} />
+                        <Image style={styles.acceptImage} source={require('@app/assets/images/accept_answer.png')} />
                     </View>
                 )}
                 <TouchFeedback

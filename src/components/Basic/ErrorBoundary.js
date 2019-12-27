@@ -29,7 +29,7 @@ class ErrorBoundary extends React.Component {
             // You can render any custom fallback UI
             return (
                 <View style={styles.container}>
-                    <Image style={styles.image} source={require('@src/assets/images/default_error.png')} />
+                    <Image style={styles.image} source={require('@app/assets/images/default_error.png')} />
                     <Text style={styles.title}>糟糕，出错了。我们会尽快修复！</Text>
                 </View>
             );
