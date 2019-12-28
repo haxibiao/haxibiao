@@ -112,7 +112,7 @@ export default (props: any) => {
                             </Text>
                         </TouchableOpacity>
                         <Text style={{ color: '#FFF', marginTop: 20, fontSize: 16 }}>
-                            {sleepData.details || is_night ? '晚上 8 点可以打睡觉卡' : '早上 8 点可以打起床卡'}
+                            {sleepData.details || is_night ? '每个小时可以打睡觉卡一次' : '睡觉至少15分钟才可以打起床卡'}
                         </Text>
                     </View>
                 </PageContainer>

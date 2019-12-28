@@ -31,6 +31,7 @@ nohup.out
 .project
 local.properties
 *.iml
+*.hprof
 .classpath
 .settings
 android/app/release

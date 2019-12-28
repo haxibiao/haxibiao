@@ -179,8 +179,8 @@ const MoreOperation = props => {
         try {
             await WeChat.shareToSession({
                 type: 'video',
-                title: target.body,
-                videoUrl: 'https://dianmoge.com/share/post/' + target.id,
+                title: target.body || '我发现一个很好看的小视频，分享给你',
+                videoUrl: 'https://' + Config.Name + '.com/share/post/' + target.id,
             });
         } catch (e) {
             Toast.show({ content: '未安装微信或当前微信版本较低' });
@@ -202,8 +202,8 @@ const MoreOperation = props => {
 
     const shareToQQ = useCallback(async () => {
         onPressIn();
-        // const baseurl = new Buffer("https://dianmoge.com/share/post/"+ target.id).toString('base64');
-        // const baseimage = new Buffer("https://dianmoge.com/logo/dianmoge.com.small.png").toString('base64');
+        // const baseurl = new Buffer(Config.ServerRoot + "/share/post/"+ target.id).toString('base64');
+        // const baseimage = new Buffer(Config.ServerRoot + "/logo/ " + Config.Name + " .com.small.png").toString('base64');
         // const basetitle = new Buffer("这个视频好好看分享给你").toString('base64');
         // const basedesc = new Buffer(target.body).toString('base64');
         // const openUrl = "mqqapi://share/to_fri?file_type=news&src_type=web&version=1&generalpastboard=1&share_id=1107845270&url="+ baseurl +"&previewimageUrl=" + baseimage + "&image_url=" + baseimage + "&title=" + basetitle + "&description=" + basedesc + "&callback_type=scheme&thirdAppDisplayName=UVE=&app_name=UVE=&cflag=0&shareType=0";
