@@ -34,6 +34,7 @@ export const init = () => {
     if (tt_appid) {
         appid = tt_appid;
         AdManager.init({
+            appid,
             tt_appid,
             tx_appid,
             bd_appid,
@@ -68,6 +69,6 @@ export const loadFeedAd = () => {
     if (!codeid)
         codeid = Platform.OS === 'ios' ? CodeIdFeedIOS : CodeIdFeed;
     return AdManager.loadFeedAd({ codeid, provider: feed_provider });
-}
+};
 
 export default { init, loadFeedAd };

@@ -5,10 +5,20 @@ import service from 'service';
 const module = NativeModules.CheckApk;
 
 export const CheckApkExist = (packageName: any, callback: Function) => {
+    if (Platform.OS === 'ios') {
+        return new Promise((resolve, reject) => {
+            return resolve(true);
+        });
+    }
     return module.isPackageInstalled(packageName, callback);
 };
 
 export const OpenApk = (packageName: any) => {
+    if (Platform.OS === 'ios') {
+        return new Promise((resolve, reject) => {
+            return resolve(true);
+        });
+    }
     return module.openApk(packageName);
 };
 

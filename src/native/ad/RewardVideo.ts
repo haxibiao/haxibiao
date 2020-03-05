@@ -40,9 +40,6 @@ export const loadAd = (props?: Props) => {
         return moduleFullVideo.loadAd({ codeid: codeidFull });
     }
 
-    // 刷新一遍AD配置
-    fetchAdConfig();
-
     // 后端加载的配置
     const { codeid_reward_video, reward_video_provider } = appStore;
     if (codeid_reward_video !== '') {
@@ -76,31 +73,6 @@ export const startAd = () => {
     return module.startAd({ provider: reward_video_provider, codeid });
 };
 
-const fetchAdConfig = () => {
-    const { token } = userStore.me;
-    const uri =
-        Config.ServerRoot + '/api/ad-config?api_token=' + token + '&os=' + Platform.OS + '&store=' + Config.AppStore;
-    console.log('adconfig uri:', uri);
-    fetch(uri, {
-        headers: {
-            os: Platform.OS,
-            store: Config.AppStore,
-        },
-    })
-        .then(response => response.json())
-        .then(result => {
-            // 1.保存AD配置(appid,codeid等)
-            console.log('ad config', result);
-            appStore.setConfig(result);
-
-            // 2.再init一遍(允许这时候切换AD配置)
-            AdManager.init();
-        })
-        .catch(err => {
-            console.log('fetchAdConfig err', err);
-        });
-};
-
 export const checkResult = (result: any): boolean => {
     const errMsg = result.toString();
     if (errMsg) {
@@ -128,4 +100,4 @@ export const checkResult = (result: any): boolean => {
     return true;
 };
 
-export default { loadAllAd, loadAd, startAd, fetchAdConfig, checkResult };
+export default { loadAllAd, loadAd, startAd, checkResult };

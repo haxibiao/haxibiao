@@ -379,7 +379,7 @@ class ChatStore {
 
         var data = new FormData();
         data.append('file', {
-            uri: ISIOS ? audioMessage.audioFilePath : 'file://' + audioMessage.audioFilePath,
+            uri: Device.IOS ? audioMessage.audioFilePath : 'file://' + audioMessage.audioFilePath,
             name: 'test.aac',
             type: 'audio/aac',
         });

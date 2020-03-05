@@ -40,10 +40,6 @@ function App() {
     }, []);
 
     const fetchConfig = () => {
-        //获取APP的开启配置(广告和钱包)
-        const { appStore } = store;
-
-        //华为有单独的开关能力，这个逻辑后端就可以出好，前端统一传os和store回去即可
         fetch(Config.ServerRoot + '/api/app-config?os=' + Platform.OS + '&store=' + Config.AppStore, {
             headers: {
                 os: Platform.OS,
@@ -51,19 +47,14 @@ function App() {
             },
         })
             .then(response => response.json())
-            .then(result => {
-                //1.先store保存APP 配置信息(含ad appid,codeid等)
-                console.log('ad result', result);
-                appStore.setConfig(result);
+            .then(config => {
 
-                //2.再init AD(后端加载了更多需要的SDK)
-                ad.AdManager.init();
-
-                //3.开屏
-                if (appStore.enableAd) {
-                    //给后续需要展示的第一个弹层Feed预加载
+                //广告开关
+                if (config.ad) {
+                    //Ad预加载
                     ad.AdManager.loadFeedAd();
                     ad.RewardVideo.loadAllAd();
+                    //开屏
                     ad.Splash.loadSplashAd();
                 }
             })

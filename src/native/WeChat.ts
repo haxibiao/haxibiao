@@ -4,8 +4,7 @@
  * @Last Modified by:   Gaoxuan
  * @Last Modified time: 2019-08-16 15:59:52
  */
-import { NativeModules, Alert, Platform } from 'react-native';
-const ISIOS = Platform.OS === 'ios';
+import { NativeModules, Alert } from 'react-native';
 import * as WeChat from 'react-native-wechat';
 
 import { bindWechat } from '@src/common';
@@ -28,11 +27,11 @@ const WXLogin = () => {
                     Alert.alert('登录授权发生错误：', err.message, [{ text: '确定' }]);
                 });
         } else {
-            ISIOS
+            Device.IOS
                 ? Alert.alert('没有安装微信', '是否安装微信？', [
-                      { text: '取消' },
-                      { text: '确定', onPress: () => this.installWechat() },
-                  ])
+                    { text: '取消' },
+                    { text: '确定', onPress: () => this.installWechat() },
+                ])
                 : Alert.alert('没有安装微信', '请先安装微信客户端在进行登录', [{ text: '确定' }]);
         }
     });

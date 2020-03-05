@@ -1,8 +1,8 @@
 import { observable, action, computed } from 'mobx';
 import NetInfo from '@react-native-community/netinfo';
 import { act } from 'react-test-renderer';
-
 import { Keys, Storage } from './localStorage';
+import AppJson from '@app/app.json';
 
 class App {
     @observable viewportHeight: number = Device.HEIGHT;
@@ -12,30 +12,28 @@ class App {
     @observable client: Record<string, any> = {};
     @observable echo: Record<string, any> = {};
     @observable modalIsShow: boolean = false;
-    @observable tt_appid: string = ''; // 头条APPID
-    @observable tx_appid: string = ''; // 腾讯APPID
-    @observable bd_appid: string = ''; // 百度APPID
+    @observable tt_appid: string = Device.IOS ? AppJson.tt_appid_ios : AppJson.tt_appid; // 头条APPID
+    @observable tx_appid: string = Device.IOS ? AppJson.tx_appid_ios : AppJson.tx_appid; // 腾讯APPID
+    @observable bd_appid: string = Device.IOS ? AppJson.bd_appid_ios : AppJson.bd_appid; // 百度APPID
 
-    @observable splash_provider: string = ''; // 开屏类型
-    @observable feed_provider: string = ''; // 信息流类型
-    @observable reward_video_provider: string = ''; // 激励视频类型
+    @observable splash_provider: string = AppJson.splash_provider;
+    @observable feed_provider: string = AppJson.feed_provider;
+    @observable reward_video_provider: string = AppJson.reward_video_provider;
 
-    @observable codeid_splash: string = ''; // 开屏
-    @observable codeid_splash_toutiao: string = ''; // 开屏
-    @observable codeid_splash_tencent: string = ''; // 开屏
-    @observable codeid_splash_baidu: string = ''; // 开屏
+    @observable codeid_splash: string = Device.IOS ? AppJson.codeid_splash_ios : AppJson.codeid_splash;
+    @observable codeid_splash_tencent: string = AppJson.codeid_splash_tencent;
+    @observable codeid_splash_baidu: string = AppJson.codeid_splash_baidu;
 
-    @observable codeid_feed: string = ''; // 信息流
-    @observable codeid_feed_toutiao: string = ''; // 信息流
-    @observable codeid_feed_tencent: string = ''; // 信息流
-    @observable codeid_feed_baidu: string = ''; // 信息流
+    @observable codeid_feed: string = Device.IOS ? AppJson.codeid_feed_ios : AppJson.codeid_feed;
+    @observable codeid_feed_tencent: string = AppJson.codeid_feed_tencent;
+    @observable codeid_feed_baidu: string = AppJson.codeid_feed_baidu;
 
-    @observable codeid_reward_video: string = ''; // 激励视频
-    @observable codeid_reward_video_toutiao: string = ''; // 激励视频
-    @observable codeid_reward_video_tencent: string = ''; // 激励视频
+    @observable codeid_reward_video: string = Device.IOS ? AppJson.codeid_reward_video_ios : AppJson.codeid_reward_video;
+    @observable codeid_reward_video_tencent: string = AppJson.codeid_reward_video_tencent; // 激励视频
 
-    @observable codeid_draw_video: string = ''; // 竖屏视频
-    @observable codeid_full_video: string = ''; // 全屏视频
+    @observable codeid_draw_video: string = Device.IOS ? AppJson.codeid_draw_video_ios : AppJson.codeid_draw_video;
+    @observable codeid_full_video: string = AppJson.codeid_full_video;
+
     @observable rewardCount: number = 0; // 激励视频的次数
 
     @observable enableAd: boolean = false; // 广告开关
@@ -56,8 +54,8 @@ class App {
         // 现在默认关闭
         // this.createPostGuidance = await Storage.getItem(Keys.createPostGuidance);
         this.createUserAgreement = await Storage.getItem(Keys.createUserAgreement) || false;
-        console.log('是否阅读用户：',this.createUserAgreement);
-        
+        console.log('是否阅读用户：', this.createUserAgreement);
+
     }
 
     @action.bound
@@ -74,34 +72,6 @@ class App {
     @action.bound
     setRewardCount(count: number) {
         this.rewardCount = count;
-    }
-
-    @action.bound
-    setConfig(config: any) {
-        this.enableAd = config.ad !== 'off';
-        this.enableWallet = config.wallet !== 'off';
-
-        // 广告 APPID
-        this.tt_appid = config.tt_appid ? config.tt_appid : '';
-        this.tx_appid = config.tx_appid ? config.tx_appid : '';
-        this.bd_appid = config.bd_appid ? config.bd_appid : '';
-
-        // 广告 各种广告当前联盟配置
-        this.splash_provider = config.splash_provider ? config.splash_provider : '';
-        this.feed_provider = config.feed_provider ? config.feed_provider : '';
-        this.reward_video_provider = config.reward_video_provider ? config.reward_video_provider : '';
-
-        // 广告 代码位配置
-        this.codeid_splash = config.codeid_splash ? config.codeid_splash : '';
-        this.codeid_splash_tencent = config.codeid_splash_tencent ? config.codeid_splash_tencent : '';
-        this.codeid_splash_baidu = config.codeid_splash_baidu ? config.codeid_splash_baidu : '';
-        this.codeid_feed = config.codeid_feed ? config.codeid_feed : '';
-        this.codeid_feed_tencent = config.codeid_feed_tencent ? config.codeid_feed_tencent : '';
-        this.codeid_feed_baidu = config.codeid_feed_baidu ? config.codeid_feed_baidu : '';
-        this.codeid_draw_video = config.codeid_draw_video ? config.codeid_draw_video : '';
-        this.codeid_reward_video = config.codeid_reward_video ? config.codeid_reward_video : '';
-        this.codeid_reward_video_tencent = config.codeid_reward_video_tencent ? config.codeid_reward_video_tencent : '';
-        this.codeid_full_video = config.codeid_full_video ? config.codeid_full_video : '';
     }
 
     // 记录已查看的版本更新提示
@@ -123,8 +93,8 @@ class App {
         return this.intervalForAdvert - (new Date().getTime() - this.timeForLastAdvert);
     }
 
-    @action.bound 
-    setAdDuration(duration:number) {
+    @action.bound
+    setAdDuration(duration: number) {
         this.intervalForAdvert = duration;
     }
 }

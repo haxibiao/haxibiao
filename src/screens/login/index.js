@@ -134,8 +134,7 @@ export default observer(props => {
                                 <HxfTextInput
                                     placeholderTextColor={'rgba(255,255,255,0.4)'}
                                     autoCorrect={false}
-                                    keyboardType="numeric"
-                                    placeholder={'请输入账号'}
+                                    placeholder={'请输入公司邮箱'}
                                     style={styles.inputStyle}
                                     value={formData.account}
                                     onChangeText={changeAccount}

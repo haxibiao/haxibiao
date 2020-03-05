@@ -17,19 +17,21 @@
     "qqGroup": "692035916",
     "WechatAppId": "wxf79f886d16c1e588",
 
-    "TTAppIDIOS": "5031407",
-    "CodeIdBannerIOS": "917576007",
-    "CodeIdFeedIOS": "931407994",
-    "CodeIdSplashIOS": "831407678",
-    "CodeIdDrawFeedIOS": "931407500",
-    "CodeIdFullVideoIOS": "943671864",
-    "CodeIdRewardVideoIOS": "916582412",
+    "splash_provider": "头条",
+    "feed_provider": "头条",
+    "reward_video_provider": "头条",
 
-    "TTAppID": "5017576",
-    "CodeIdBanner": "917576007",
-    "CodeIdFeed": "917576575",
-    "CodeIdSplash": "817576238",
-    "CodeIdDrawFeed": "917576134",
-    "CodeIdFullVideo": "943671834",
-    "CodeIdRewardVideo": "917576640"
+    "tt_appid_ios": "5016582",
+    "codeid_splash_ios": "816582039",
+    "codeid_feed_ios": "916582486",
+    "codeid_draw_video_ios": "916582757",
+    "codeid_full_video_ios": "943671864",
+    "codeid_reward_video_ios": "916582412",
+
+    "tt_appid": "5016582",
+    "codeid_splash": "816582039",
+    "codeid_feed": "916582486",
+    "codeid_draw_video": "916582757",
+    "codeid_full_video": "943671834",
+    "codeid_reward_video": "916582412"
 }
