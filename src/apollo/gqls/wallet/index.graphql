@@ -17,8 +17,8 @@ query userWithdrawQuery {
             available_balance
             today_withdraw_left
         }
+        exchangeRate
     }
-    exchangeRate
 }
 
 # 金币明细
@@ -74,25 +74,36 @@ query userWithdraws($wallet_id: Int!, $page: Int) {
 }
 
 # 贡献明细
-query userContributesQuery($user_id: Int!,$page: Int){
-  contributes(user_id:$user_id ,page: $page){
-    paginatorInfo {
-      currentPage
-      hasMorePages
+query userContributesQuery($user_id: Int!, $page: Int) {
+    contributes(user_id: $user_id, page: $page) {
+        paginatorInfo {
+            currentPage
+            hasMorePages
+        }
+        data {
+            id
+            balance
+            amount
+            remark
+            created_at
+            time_ago
+        }
     }
-    data {
-      id
-      balance
-      amount
-      remark
-      created_at
-      time_ago
-    }
-  }
 }
 
-
 # 判断贡献是否足够
-query canWithdrawalsQuery($amount: Float!){
-  canWithdrawals(amount:$amount)
+query canWithdrawalsQuery($amount: Float!) {
+    canWithdrawals(amount: $amount)
+}
+
+# 提现金额
+query getWithdrawAmountList {
+    getWithdrawAmountList {
+        amount
+        description
+        tips
+        fontColor
+        bgColor
+        highWithdrawCardsRate
+    }
 }

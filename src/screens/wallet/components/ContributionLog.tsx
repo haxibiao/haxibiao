@@ -25,7 +25,7 @@ const ContributionLog = (props: any) => {
                     } = data.contributes;
 
                     if (items.length < 1) return <StatusView.EmptyView />;
-                    console.log("贡献明细：",items);
+                    console.log(`${Config.limitAlias}明细：`,items);
                     
                     return (
                         <FlatList

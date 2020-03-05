@@ -53,6 +53,8 @@ PODS:
   - Picker/Core (4.3.7):
     - React
   - QBImagePickerController (3.4.0)
+  - RCTWeChat (1.9.12):
+    - React
   - React (0.60.5):
     - React-Core (= 0.60.5)
     - React-DevSupport (= 0.60.5)
@@ -176,6 +178,7 @@ DEPENDENCIES:
   - lottie-ios (from `../node_modules/lottie-ios`)
   - lottie-react-native (from `../node_modules/lottie-react-native`)
   - Picker (from `../node_modules/react-native-picker`)
+  - RCTWeChat (from `../node_modules/react-native-wechat`)
   - React (from `../node_modules/react-native/`)
   - React-ART (from `../node_modules/react-native/Libraries/ART`)
   - React-Core (from `../node_modules/react-native/React`)
@@ -250,6 +253,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/lottie-react-native"
   Picker:
     :path: "../node_modules/react-native-picker"
+  RCTWeChat:
+    :path: "../node_modules/react-native-wechat"
   React:
     :path: "../node_modules/react-native/"
   React-ART:
@@ -338,6 +343,7 @@ SPEC CHECKSUMS:
   lottie-react-native: 2a1a82bb326ae51331a5520de0cf706733c6db69
   Picker: 37554355aef82a532ea95b71b6eeba66bc86182b
   QBImagePickerController: d54cf93db6decf26baf6ed3472f336ef35cae022
+  RCTWeChat: edb02d76aaf9b2e698e515e3c57bf143a290d9d7
   React: 53c53c4d99097af47cf60594b8706b4e3321e722
   React-ART: 662252e1a2f87f7d4e56150403040b4cd725c0f9
   React-Core: ba421f6b4f4cbe2fb17c0b6fc675f87622e78a64

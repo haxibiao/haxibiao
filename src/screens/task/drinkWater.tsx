@@ -15,12 +15,22 @@ interface Props {
     waterData: any;
     update: any;
 }
+const width = Device.WIDTH;
+const height = Device.HEIGHT;
+
+const date = new Date();
+const hour = date.getHours().toString();
+const year = date.getFullYear().toString();
+const month = (date.getMonth() + 1).toString();
+const day = date.getDate().toString();
 
 const DrinkButton = (props: Props) => {
     const { id, task_status, start_time, task_progress } = props.waterData;
-
-    const back_color = task_status === 3 ? '#20b39c' : task_status === 1 ? '#eb6866' : '#eb686699';
-    const sub_text = task_status === 3 ? '完成' : task_status === 1 ? '打卡' : task_status === -1 ? '补卡' : '未到';
+    const back_color = task_status === 3 ? '#89E46D' : task_status === 1 ? '#4B7DC9' : '#4B7DC9';
+    const cap_img =
+        task_status === 3 ? require('@app/assets/images/captwo.png') : require('@app/assets/images/capone.png');
+    const sub_text =
+        task_status === 3 ? '✔' : task_status === 1 ? '打卡' : task_status === -1 ? '补喝' : start_time + '后';
 
     const checkIn = () => {
         appStore.client
@@ -55,19 +65,24 @@ const DrinkButton = (props: Props) => {
 
     const replacementCard = () => {
         ad.RewardVideo.loadAd().then(() => {
-            ad.RewardVideo.startAd().then(result => {
-                if (JSON.parse(result).ad_click) {
-                    // 点击了激励视频
-                    checkIn();
-                    Toast.show({ content: '补卡成功！', duration: 1500 });
-                } else if (JSON.parse(result).video_play) {
-                    // 广告播放完成
-                    checkIn();
-                    Toast.show({ content: '补卡成功！', duration: 1500 });
-                } else {
-                    Toast.show({ content: '视频未看完，补卡失败！', duration: 1500 });
-                }
-            });
+            ad.RewardVideo.startAd().then(
+                (result: any) => {
+                    if (JSON.parse(result).ad_click) {
+                        // 点击了激励视频
+                        checkIn();
+                        Toast.show({ content: '补卡成功！', duration: 1500 });
+                    } else if (JSON.parse(result).video_play) {
+                        // 广告播放完成
+                        checkIn();
+                        Toast.show({ content: '补卡成功！', duration: 1500 });
+                    } else {
+                        Toast.show({ content: '视频未看完，补卡失败！', duration: 1500 });
+                    }
+                },
+                (error: any) => {
+                    ad.RewardVideo.checkResult(error);
+                },
+            );
         });
     };
 
@@ -83,14 +98,30 @@ const DrinkButton = (props: Props) => {
                 }
             }}>
             <Text style={styles.buttonText}>{sub_text}</Text>
-            <Text style={styles.buttonTextSub}>{start_time}</Text>
+            <Image
+                style={{
+                    width: PxDp(25),
+                    height: PxDp(33),
+                    position: 'absolute',
+                    bottom: -1,
+                    right: -28,
+                }}
+                source={cap_img}
+            />
+            {/* <Text style={styles.buttonTextSub}>{start_time}</Text> */}
         </TouchableOpacity>
     );
 };
 
 export default (props: any) => {
+    const time = year + '年' + month + '月' + day + '日';
     const [value, setValue] = useState(0);
-    const { data, refetch } = useQuery(GQL.drinkWaterListQuery,{fetchPolicy: 'network-only'});
+    const { data, refetch } = useQuery(GQL.drinkWaterListQuery, { fetchPolicy: 'network-only' });
+    const back_img =
+        hour > 6 || hour < 18 ? require('@app/assets/images/he_back.png') : require('@app/assets/images/he_back.png');
+    const top_img =
+        (hour > 6) & (hour < 18) ? require('@app/assets/images/taiyang.png') : require('@app/assets/images/heyue.png');
+    const hi_text = (hour > 6) & (hour < 18) ? (hour < 12 ? 'HI,上午好' : 'HI,下午好') : 'HI,晚上好';
     let listData = Helper.syncGetter('DrinkWaterTasks', data);
     // console.log("userStore from store : ",userStore.me)
 
@@ -111,19 +142,36 @@ export default (props: any) => {
                 <PageContainer hiddenNavBar={true}>
                     <Image
                         style={{
-                            width: '100%',
-                            height: '100%',
+                            backgroundColor: '#0001',
                             position: 'absolute',
                             top: 0,
                             right: 0,
                             bottom: 0,
                             left: 0,
                         }}
-                        source={{
-                            uri: 'http://cos.haxibiao.com/storage/image/1575186475WmfxdUOXpJAHxqkk.png',
-                        }}
+                        source={back_img}
                     />
-
+                    <Image
+                        style={{
+                            width: height * 0.23,
+                            height: height * 0.23,
+                            position: 'absolute',
+                            top: 0,
+                            right: 0,
+                            resizeMode: 'stretch',
+                        }}
+                        source={top_img}
+                    />
+                    <View
+                        style={{
+                            width: 300,
+                            position: 'absolute',
+                            top: 80,
+                            left: 20,
+                        }}>
+                        <Text style={{ fontSize: 40, color: '#FFFFFF', marginBottom: 10 }}>{hi_text}</Text>
+                        <Text style={{ fontSize: 20, color: '#F8F8F8' }}>{time}</Text>
+                    </View>
                     <Row
                         style={{
                             flex: 1,
@@ -132,11 +180,10 @@ export default (props: any) => {
                             alignItems: 'center',
                             paddingHorizontal: 25,
                         }}>
-                        <View style={{ flex: 0.8, justifyContent: 'center', alignItems: 'center' }}>
+                        <View style={{ flex: 0.5, justifyContent: 'center', alignItems: 'center' }}>
                             <Text
                                 style={{
                                     fontSize: 40,
-                                    marginBottom: 10,
                                     textAlign: 'center',
                                     justifyContent: 'center',
                                     alignContent: 'center',
@@ -147,7 +194,7 @@ export default (props: any) => {
                             <WaterCup value={value} />
                         </View>
 
-                        <View style={{ flex: 0.2, paddingTop: 100 }}>
+                        <View style={{ flex: 0.5, marginTop: height * 0.25 }}>
                             <FlatList
                                 data={listData}
                                 keyExtractor={(item, index) => item.id.toString() || index.toString()}
@@ -155,6 +202,41 @@ export default (props: any) => {
                             />
                         </View>
                     </Row>
+                    {/* <Image
+                        style={{
+                            width: 80,
+                            height:541,
+                            position: 'absolute',
+                            top: 175,
+                            right: -10,
+                            resizeMode : 'stretch',
+                        }}
+                    
+                        source={require('@app/assets/images/chizi.png')}
+                    /> */}
+                    <Image
+                        style={{
+                            width: 100,
+                            height: height * 0.78,
+                            position: 'absolute',
+                            top: height * 0.19,
+                            right: -15,
+                            resizeMode: 'stretch',
+                        }}
+                        source={require('@app/assets/images/chizi.png')}
+                    />
+
+                    <Text
+                        style={{
+                            fontSize: 16,
+                            color: '#FZE9FF',
+                            position: 'absolute',
+                            bottom: 30,
+                            left: 20,
+                            right: 20,
+                        }}>
+                        每天八杯水，健康好生活。
+                    </Text>
                 </PageContainer>
             ) : (
                 <SpinnerLoading />
@@ -165,21 +247,18 @@ export default (props: any) => {
 
 const styles = StyleSheet.create({
     button: {
-        marginVertical: 5,
-        paddingVertical: 5,
-        borderRadius: 10,
+        marginRight: PxDp(60),
+        marginLeft: 15,
+        marginVertical: height * 0.02,
+        paddingVertical: height * 0.007,
+        borderRadius: 30,
         justifyContent: 'center',
         alignItems: 'center',
     },
     buttonText: {
-        color: '#fdc625',
+        color: '#EFF3FA',
         textAlign: 'center',
-        fontSize: 20,
+        fontSize: height * 0.02,
         fontWeight: 'bold',
-    },
-    buttonTextSub: {
-        fontSize: 12,
-        color: '#FFF',
-        paddingTop: 2,
     },
 });

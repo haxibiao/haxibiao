@@ -150,7 +150,7 @@ class NavigatorBar extends Component {
                         width: Theme.navBarContentHeight,
                         justifyContent: 'center',
                     }}>
-                    <Iconfont name="zuojiantou" color={backButtonColor || Theme.navBarMenuColor} size={PxDp(22)} />
+                    <Iconfont name="zuojiantou" color={'#333'} size={PxDp(22)} />
                 </TouchableOpacity>
             );
         }
@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
         shadowRadius: 1,
     },
     titleText: {
-        color: Theme.navBarTitleColor,
+        color: '#666',
         flex: 1,
         fontSize: PxDp(19),
         textAlign: 'center',

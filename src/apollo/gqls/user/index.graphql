@@ -24,11 +24,13 @@ query userQuery($id: Int!) {
 query userProfileQuery($id: Int!) {
     user(id: $id) {
         id
+        uuid
         name
         avatar
         balance
         gold
         phone
+        title_phone
         birthday_msg
         gender
         age
@@ -58,7 +60,96 @@ query userProfileQuery($id: Int!) {
             }
         }
         contribute
+        today_contribute
         is_bind_dongdezhuan
+        dongdezhuanUser {
+            id
+            name
+            account
+            ad_duration
+        }
         exchangeRate
+        force_alert
+        doubleHighWithdrawCardsCount
+        fiveTimesHighWithdrawCardsCount
+        tenTimesHighWithdrawCardsCount
+        threeYuanWithdrawBadgesCount
+        fiveYuanWithdrawBadgesCount
+        tenYuanWithdrawBadgesCount
+    }
+}
+
+# 黑名单列表
+query showUserBlockQuery($user_id: Int!) {
+    showUserBlock(user_id: $user_id, count: 5, page: 1) {
+        paginatorInfo {
+            currentPage
+            hasMorePages
+        }
+        data {
+            id
+            name
+            avatar
+            count_articles
+            count_likes
+            introduction
+            followed_status
+        }
+    }
+}
+
+# 我的收藏
+query userFavoritedArticlesQuery($user_id: Int!, $page: Int) {
+    favorites(user_id: $user_id, page: $page) {
+        paginatorInfo {
+            currentPage
+            hasMorePages
+        }
+        data {
+            article {
+                id
+                type
+                body
+                description
+                time_ago
+                cover
+                hits
+                count_likes
+                count_replies
+                count_tips
+                liked
+                favorited
+                answered_status
+                question_reward
+                user {
+                    avatar
+                    name
+                    id
+                }
+                category {
+                    id
+                    name
+                    logo
+                }
+                images {
+                    id
+                    url
+                    width
+                    height
+                }
+                video {
+                    id
+                    url
+                    duration
+                    info {
+                        width
+                        height
+                        rotate
+                        covers
+                    }
+                    cover_url
+                }
+            }
+        }
     }
 }

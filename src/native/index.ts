@@ -6,11 +6,10 @@
  */
 
 import ad from './ad';
-import txad from './txad';
 import VideoUploader from './VideoUploader';
 import VodUploader from './VodUploader';
 import WeChat from './WeChat';
 import Share from './Share';
 import AppUtil from './AppUtil';
 
-export { ad, txad, VideoUploader, VodUploader, WeChat, Share, AppUtil };
+export { ad, VideoUploader, VodUploader, WeChat, Share, AppUtil };

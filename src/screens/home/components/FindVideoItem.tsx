@@ -17,7 +17,7 @@ export default observer(props => {
     //                     setAdShow(false);
     //                 }}
     //                 onAdClick={() => {
-    //                     Toast.show({ content: '+1用户行为贡献', duration: 1500 });
+    //                     Toast.show({ content: `+1用户行为${Config.limitAlias}`, duration: 1500 });
     //                 }}
     //             />
     //         </View>

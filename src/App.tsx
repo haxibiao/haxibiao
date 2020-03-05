@@ -61,6 +61,9 @@ function App() {
 
                 //3.开屏
                 if (appStore.enableAd) {
+                    //给后续需要展示的第一个弹层Feed预加载
+                    ad.AdManager.loadFeedAd();
+                    ad.RewardVideo.loadAllAd();
                     ad.Splash.loadSplashAd();
                 }
             })

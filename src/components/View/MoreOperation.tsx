@@ -99,7 +99,7 @@ const MoreOperation = props => {
                     Toast.show({ content: '操作成功，将减少此类型内容的推荐！' });
                 })
                 .catch(error => {
-                    //查询接口，服务器返回错误后
+                    // 查询接口，服务器返回错误后
                     Toast.show({ content: error.message.replace('GraphQL error: ', '') });
                 });
         } else {
@@ -116,11 +116,22 @@ const MoreOperation = props => {
                     variables: {
                         id: target.id,
                     },
+                    refetchQueries: () => [
+                        {
+                            query: GQL.postsSquareQuery,
+                            variables: { page: 0 },
+                        },
+                        {
+                            query: GQL.RecommendVideosQuery,
+                            variables: { page: 0, count: 5 },
+                        },
+                    ],
                 })
-                .then(result => {
-                    Toast.show({ content: '拉黑成功，将减少此用户内容的推荐！' });
+                .then((result: any) => {
+                    navigation.goBack();
+                    Toast.show({ content: '拉黑成功，下拉刷新将减少此用户内容的推荐！' });
                 })
-                .catch(error => {
+                .catch((error: any) => {
                     //查询接口，服务器返回错误后
                     Toast.show({ content: error.message });
                 });
@@ -128,6 +139,60 @@ const MoreOperation = props => {
             navigation.navigate('Login');
         }
     }, []);
+
+    const favorite = useCallback(() => {
+        onPressIn();
+        if (TOKEN) {
+            target.favorited = !target.favorited;
+            client
+                .mutate({
+                    mutation: GQL.toggleFavoritedMutation,
+                    variables: {
+                        id: target.id,
+                    },
+                })
+                .then((result: any) => {
+                    Toast.show({ content: '收藏成功！'});
+                })
+                .catch((error: any) => {
+                    target.favorited = !target.favorited;
+                    // 查询接口，服务器返回错误后
+                    Toast.show({ content: error.message.replace('GraphQL error: ', '') });
+                });
+        } else {
+            navigation.navigate('Login');
+        }
+    }, [target]);
+    
+    const onFavorite = useCallback(() => {
+        onPressIn();
+        if (TOKEN) {
+            target.favorited = !target.favorited;
+            client
+                .mutate({
+                    mutation: GQL.toggleFavoritedMutation,
+                    variables: {
+                        id: target.id,
+                    },
+                    refetchQueries: () => [
+                        {
+                            query: GQL.postsSquareQuery,
+                            variables: { user_id: userStore.me.id },
+                        },
+                    ],
+                })
+                .then((result: any) => {
+                    Toast.show({ content: '取消收藏成功！' });
+                })
+                .catch((error: any) => {
+                    target.favorited = !target.favorited;
+                    // 查询接口，服务器返回错误后
+                    Toast.show({ content: error.message.replace('GraphQL error: ', '') });
+                });
+        } else {
+            navigation.navigate('Login');
+        }
+    }, [target]);
 
     const operation = useMemo(
         () => ({
@@ -155,12 +220,23 @@ const MoreOperation = props => {
                 image: require('@app/assets/images/more_shield.png'),
                 callback: shield,
             },
+            收藏: {
+                image: require('@app/assets/images/more_favorite.png'),
+                callback: favorite,
+            },
+            取消收藏: {
+                image: require('@app/assets/images/more_favorite.png'),
+                callback: onFavorite,
+            },
         }),
         [reportArticle, deleteArticle, dislike, downloadVideo, copyLink, shield],
     );
 
     const optionsView = useMemo(() => {
         return options.map((option, index) => {
+            if (option === '下载' && !downloadUrl) {
+                return;
+            }
             return (
                 <TouchFeedback
                     style={[styles.optionItem, options.length < 5 && { width: Device.WIDTH / 4 }]}
@@ -180,7 +256,7 @@ const MoreOperation = props => {
             await WeChat.shareToSession({
                 type: 'video',
                 title: target.body || '我发现一个很好看的小视频，分享给你',
-                videoUrl: 'https://' + Config.Name + '.com/share/post/' + target.id,
+                videoUrl: Config.ServerRoot + '/s/p/' + target.id + '?user_id=' + userStore.me.id,
             });
         } catch (e) {
             Toast.show({ content: '未安装微信或当前微信版本较低' });

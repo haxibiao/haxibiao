@@ -67,7 +67,7 @@ export default (props: any) => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: Theme.skinColor,
+        backgroundColor: '#FFF',
         flex: 1,
     },
 });

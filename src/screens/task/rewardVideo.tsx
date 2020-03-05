@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 
 import { PageContainer, SpinnerLoading, HxfModal, Row } from '@src/components';
@@ -6,105 +6,55 @@ import { PageContainer, SpinnerLoading, HxfModal, Row } from '@src/components';
 import { ad } from '@src/native';
 import { Overlay } from 'teaset';
 
+import { useCountDown } from '@src/common';
 import { useNavigation } from '@src/router';
-import { appStore } from '@src/store';
+import { appStore, userStore } from '@src/store';
 import { Query, useQuery, GQL, useMutation } from '@src/apollo';
 
+import RewardPopup from './components/RewardPopup';
+
 export default (props: any) => {
+    const awaitingTime = useRef(appStore.adWaitingTime);
+    const navigation = useNavigation();
+    const countDown = useCountDown({
+        expirationTime: awaitingTime.current,
+    });
+
+    useEffect(() => {
+        if (countDown.isEnd) {
+            awaitingTime.current = appStore.adWaitingTime;
+        }
+    }, [appStore.timeForLastAdvert]);
+
     const { data, refetch } = useQuery(GQL.rewardVideoQuery, { fetchPolicy: 'network-only' });
     const ruleText = Helper.syncGetter('queryDetail', data);
 
-    const navigation = useNavigation();
-
-    let overlayRef: any;
-    const overlayView = (sucReward: any) => (
-        <Overlay.View
-            visible={false}
-            style={{ justifyContent: 'center', alignItems: 'center' }}
-            ref={(ref: any) => {
-                overlayRef = ref;
-            }}>
-            <View style={styles.SuccessModule}>
-                <Row>
-                    <Image
-                        source={require('@app/assets/images/icon_wallet_rmb.png')}
-                        style={{ width: PxDp(50), height: PxDp(50) }}
-                    />
-                    <View style={styles.SuccessModuleTextBack}>
-                        <Text numberOfLines={1}>{sucReward.message || '完成任务获得奖励！'}</Text>
-                        <Text numberOfLines={1}>
-                            {(sucReward.gold ? Config.goldAlias + ' +' + sucReward.gold : '') +
-                                (sucReward.gold && sucReward.contribute ? '，' : '') +
-                                (sucReward.contribute ? '贡献值 +' + sucReward.contribute : '')}
-                        </Text>
-                    </View>
-                </Row>
-
-                <View>
-                    <ad.FeedAd
-                        adWidth={Device.WIDTH * 0.75}
-                        visibleHandler={true}
-                        visible={true}
-                        onClick={() => {
-                            overlayRef.close();
-                            appStore.client
-                                .mutate({
-                                    mutation: GQL.clickFeedAD,
-                                })
-                                .then((data: any) => {
-                                    const { amount, message } = Helper.syncGetter('data.clickFeedAD2', data);
-                                    Toast.show({
-                                        content: message || `+${amount || 0} 用户行为贡献`,
-                                        duration: 1500,
-                                    });
-                                });
-                        }}
-                    />
-                </View>
-
-                <Row style={styles.SuccessModuleButtonBack}>
-                    <TouchableOpacity
-                        style={styles.SuccessModuleButton}
-                        onPress={() => {
-                            // console.log("测试",userStore.me.wallet.id);
-                            overlayRef.close();
-                            navigation.navigate('WithdrawHistory', {
-                                wallet_id: Helper.syncGetter('wallet.id', 0),
-                            });
-                        }}>
-                        <Text style={styles.SuccessModuleButtonTitle}>我的账单</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.SuccessModuleButton}
-                        onPress={() => {
-                            overlayRef.close();
-                        }}>
-                        <Text style={styles.SuccessModuleButtonTitle}>关闭浮层</Text>
-                    </TouchableOpacity>
-                </Row>
-            </View>
-        </Overlay.View>
-    );
-
-    function setModule(reward: any) {
-        Overlay.show(overlayView(reward || { message: null, gold: null, contribute: null }));
+    function setModule(mReward: any) {
+        const reward = mReward || { message: null, gold: null, contribute: null };
+        RewardPopup({ reward, navigation });
     }
 
     // 看激励视频
     const MotivationalVideo = () => {
         // setModule({ message: '观看视频并点击！', gold: 666, contribute: 999 });
         ad.RewardVideo.loadAd().then(() => {
-            ad.RewardVideo.startAd().then((result: any) => {
-                if (JSON.parse(result).ad_click) {
-                    // 点击了激励视频
-                    onClickRewardVideo();
-                } else if (JSON.parse(result).video_play) {
-                    // 广告播放完成
-                    onRewardVideo();
-                } else {
-                    Toast.show({ content: '视频未看完，任务失败！', duration: 1500 });
-                }
-            });
+            ad.RewardVideo.startAd().then(
+                (result: any) => {
+                    let json = JSON.parse(result);
+                    if (json.ad_click) {
+                        // 点击了激励视频
+                        onClickRewardVideo();
+                    } else if (json.video_play) {
+                        // 广告播放完成
+                        onRewardVideo();
+                    } else {
+                        Toast.show({ content: '视频未看完，任务失败！', duration: 1500 });
+                    }
+                },
+                (error: any) => {
+                    ad.RewardVideo.checkResult(error);
+                },
+            );
         });
     };
 
@@ -113,11 +63,18 @@ export default (props: any) => {
         variables: {
             is_click: true,
         },
+        refetchQueries: () => [
+            {
+                query: GQL.userProfileQuery,
+                variables: { id: userStore.me.id },
+            },
+        ],
         onCompleted: (data: any) => {
+            recordTime = Date.now();
             setModule(data.playADVideo);
         },
         onError: (error: any) => {
-            Toast.show({ content: '服务器响应失败！', duration: 1000 });
+            Toast.show({ content: '服务器响应失败！' + error, duration: 1000 });
         },
     });
 
@@ -126,7 +83,14 @@ export default (props: any) => {
         variables: {
             is_click: false,
         },
+        refetchQueries: () => [
+            {
+                query: GQL.userProfileQuery,
+                variables: { id: userStore.me.id },
+            },
+        ],
         onCompleted: (data: any) => {
+            recordTime = Date.now();
             setModule(data.playADVideo);
         },
         onError: (error: any) => {
@@ -138,8 +102,7 @@ export default (props: any) => {
         <PageContainer hiddenNavBar={true}>
             <Image
                 style={{
-                    width: '100%',
-                    height: '100%',
+                    backgroundColor: '#0001',
                     position: 'absolute',
                     top: 0,
                     right: 0,
@@ -162,21 +125,24 @@ export default (props: any) => {
                     style={{ color: '#666', marginTop: 20, fontSize: 16, marginBottom: 30, paddingHorizontal: 20 }}
                     numberOfLines={7}>
                     {ruleText ||
-                        `贡献值获取方式：\n1.完成早晚两次睡觉打卡可获得2点贡献奖励\n2.完成看视频任务并下载可获得3点贡献值奖励\n3.在首页刷视频时点击广告可以获得1点贡献值奖励\n4.在动态广场看到广告时点击可获得1点贡献值奖励`}
+                        `${Config.limitAlias}获取方式：\n1.每小时看完睡觉和起床视频(+2${Config.limitAlias})\n2.看视频任务(限30次)(需下载)(+3${Config.limitAlias})\n3.刷视频时，查看视频广告(+1${Config.limitAlias})\n4.动态广场，查看广告动态(+1${Config.limitAlias})`}
                 </Text>
                 <TouchableOpacity
                     style={{
                         justifyContent: 'center',
                         alignItems: 'center',
-                        borderRadius: 100,
-                        backgroundColor: Theme.secondaryColor,
-                        paddingVertical: PxDp(15),
-                        paddingHorizontal: PxDp(30),
+                        borderRadius: PxDp(22),
+                        backgroundColor: countDown.isEnd ? Theme.secondaryColor : '#969696',
+                        width: PxDp(140),
+                        height: PxDp(44),
                     }}
+                    disabled={!countDown.isEnd}
                     onPress={() => {
                         MotivationalVideo();
                     }}>
-                    <Text style={{ color: '#FFF', fontWeight: 'bold' }}>立即观看视频，获取奖励</Text>
+                    <Text style={{ color: '#FFF', fontSize: PxDp(15), fontWeight: 'bold' }}>
+                        {countDown.isEnd ? '立即获取奖励' : `还需等待 ${countDown.minutes}:${countDown.seconds}`}
+                    </Text>
                 </TouchableOpacity>
             </View>
         </PageContainer>
@@ -238,5 +204,11 @@ const styles = StyleSheet.create({
     },
     SuccessModuleButtonTitle: {
         fontWeight: 'bold',
+    },
+    countDown: {
+        color: Theme.watermelon,
+        fontSize: PxDp(20),
+        fontWeight: 'bold',
+        marginTop: PxDp(10),
     },
 });

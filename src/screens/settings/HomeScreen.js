@@ -83,6 +83,13 @@ class index extends Component {
                                 rightComponent={<Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />}
                             />
                             <ItemSeparator />
+                            <ListItem
+                                onPress={() => navigation.navigate('UserBlockScreen')}
+                                style={styles.listItem}
+                                leftComponent={<Text style={styles.itemText}> 黑名单 </Text>}
+                                rightComponent={<Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />}
+                            />
+                            <ItemSeparator />
                         </View>
                     )}
                     <ListItem

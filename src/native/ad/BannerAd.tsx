@@ -6,7 +6,7 @@ import {
     CodeIdBannerIOS
 } from '@app/app.json';
 import { appStore as APP } from '@src/store';
-let { BannerProvider } = APP;
+let { banner_provider } = APP;
 const codeid = Platform.OS === 'ios' ? CodeIdBannerIOS : CodeIdBanner;
 
 type Props = {
@@ -22,7 +22,7 @@ const BannerAd = (props: Props) => {
     return (
         visible && (
             <NativeBannerAd
-                provider={BannerProvider}
+                provider={banner_provider}
                 codeid={codeid}
                 adWidth={adWidth}
                 style={{ ...styles.container, height }}

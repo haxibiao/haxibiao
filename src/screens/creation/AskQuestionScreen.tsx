@@ -21,6 +21,7 @@ import { GQL, useMutation } from '@src/apollo';
 import Video from 'react-native-video';
 import { Overlay } from 'teaset';
 import { useQuery } from 'src/apollo';
+import { observable } from 'mobx';
 
 const GoldsOption = [30, 60, 120, 300, 600, 900];
 const contentGap = PxDp(20);
@@ -58,7 +59,7 @@ const AskQuestionScreen = props => {
                 content: '发布成功',
             });
             navigation.replace('PostDetail', {
-                post: mutationResult.createContent,
+                post: observable(mutationResult.createContent),
             });
         },
     });

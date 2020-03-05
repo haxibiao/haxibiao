@@ -27,7 +27,7 @@ export default observer(props => {
                         showShare={true}
                         downloadUrl={Helper.syncGetter('video.url', media)}
                         downloadUrlTitle={Helper.syncGetter('body', media)}
-                        options={['下载', '不感兴趣', '举报', '复制链接']}
+                        options={['下载', '不感兴趣',  '复制链接', media.favorited ? '取消收藏': '收藏','举报']}
                     />
                 </ApolloProvider>
             </Overlay.PullView>

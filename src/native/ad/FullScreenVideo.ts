@@ -3,29 +3,28 @@ import {
     CodeIdFullVideo,
     CodeIdFullVideoIOS
 } from '@app/app.json';
-import { appStore as APP } from '@src/store';
+import { appStore } from '@src/store';
 
 //全屏视频
 
 let codeid = '';
 
 //后端加载的配置
-let { codeidRewardVideo, RewardVideoProvider } = APP;
-if (codeidRewardVideo != '') {
-    codeid = codeidRewardVideo;
+let { codeid_full_video } = appStore;
+if (codeid_full_video != '') {
+    codeid = codeid_full_video;
 }
-
 if (codeid === '') {
     //默认最后的情况用json里的
     codeid = Platform.OS === 'ios' ? CodeIdFullVideoIOS : CodeIdFullVideo;
 }
 
 const module = NativeModules.FullScreenVideo;
-export const loadFullScreenVideoAd = (): Promise<string> => {
-    return module.loadAd({ provider: RewardVideoProvider, codeid });
+export const loadAd = (): Promise<string> => {
+    return module.loadAd({ codeid });
 };
-export const startFullScreenVideoAd = () => {
-    return module.startAd({ provider: RewardVideoProvider, codeid });
+export const startAd = () => {
+    return module.startAd({ codeid });
 };
 
-export default { loadFullScreenVideoAd, startFullScreenVideoAd };
+export default { loadAd, startAd };

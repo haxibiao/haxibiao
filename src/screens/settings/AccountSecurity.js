@@ -12,10 +12,12 @@ class AccountSecurity extends Component {
     constructor(props) {
         super(props);
         const user = props.navigation.getParam('user');
+        console.log('user', user);
         this.state = {
             is_bind_wechat: Helper.syncGetter('wallet.bind_platforms.wechat', user) || false,
             is_bind_alipay: Helper.syncGetter('wallet.platforms.alipay', user) || false,
             is_bind_dongdezhuan: Helper.syncGetter('is_bind_dongdezhuan', user) || false,
+            dongdezhuanUser: Helper.syncGetter('dongdezhuanUser', user) || false,
             me: user,
         };
     }
@@ -101,7 +103,7 @@ class AccountSecurity extends Component {
     render() {
         const { navigation } = this.props;
         const user = navigation.getParam('user') || userStore.me;
-        const { is_bind_wechat, is_bind_alipay, is_bind_dongdezhuan } = this.state;
+        const { is_bind_wechat, is_bind_alipay, is_bind_dongdezhuan, dongdezhuanUser } = this.state;
 
         return (
             <PageContainer title="账号安全" white loading={!user}>
@@ -118,13 +120,33 @@ class AccountSecurity extends Component {
                     </View>
 
                     <ListItem
+                        style={styles.listItem}
+                        leftComponent={<Text style={styles.itemText}>{Config.AppName}账号</Text>}
+                        rightComponent={
+                            <View style={styles.rightWrap}>
+                                <Text style={styles.rightText}>{user.id}</Text>
+                            </View>
+                        }
+                    />
+
+                    <ListItem
+                        style={styles.listItem}
+                        leftComponent={<Text style={styles.itemText}>身份标识</Text>}
+                        rightComponent={
+                            <View style={styles.rightWrap}>
+                                <Text style={styles.rightText}>{user.uuid || '未知身份'}</Text>
+                            </View>
+                        }
+                    />
+
+                    <ListItem
                         onPress={this.account}
                         style={styles.listItem}
                         leftComponent={<Text style={styles.itemText}>手机账号</Text>}
                         rightComponent={
                             user.phone ? (
                                 <View style={styles.rightWrap}>
-                                    <Text style={styles.rightText}>{user.phone}</Text>
+                                    <Text style={styles.rightText}>{user.title_phone}</Text>
                                     <Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />
                                 </View>
                             ) : (
@@ -143,7 +165,7 @@ class AccountSecurity extends Component {
                             leftComponent={<Text style={styles.itemText}>支付宝账号</Text>}
                             rightComponent={<Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />}
                             rightComponent={
-                                user.wallet ? (
+                                is_bind_alipay ? (
                                     <View style={styles.rightWrap}>
                                         <Text style={styles.rightText}>已绑定</Text>
                                         <Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />
@@ -181,7 +203,7 @@ class AccountSecurity extends Component {
                         rightComponent={
                             <View style={styles.rightWrap}>
                                 <Text style={is_bind_dongdezhuan ? styles.rightText : styles.linkText}>
-                                    {is_bind_dongdezhuan ? '已绑定' : '去绑定'}
+                                    {is_bind_dongdezhuan ? `已绑定(${dongdezhuanUser.name})` : '去绑定'}
                                 </Text>
                                 <Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />
                             </View>
@@ -268,8 +290,12 @@ const styles = StyleSheet.create({
         marginTop: 15,
     },
     panelLeft: {
+        paddingTop: 20,
+        paddingBottom: 20,
         alignItems: 'center',
         flexDirection: 'row',
+        borderBottomWidth: 1,
+        borderColor: '#6661',
     },
     rightText: {
         color: Theme.subTextColor,

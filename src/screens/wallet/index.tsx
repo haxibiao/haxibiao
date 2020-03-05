@@ -4,15 +4,78 @@
  */
 
 import React, { Component, useCallback, useContext, useState, useRef, useMemo, useEffect, Fragment } from 'react';
-import { StyleSheet, View, Text, ScrollView, TouchableOpacity, ImageBackground, Image } from 'react-native';
+import { StyleSheet, Platform, View, Text, ScrollView, TouchableOpacity, ImageBackground, Image } from 'react-native';
 import { PageContainer, Iconfont, Row, HxfButton, PopOverlay, TouchFeedback } from '@src/components';
 import StoreContext, { observer } from '@src/store';
 import { middlewareNavigate, useNavigation, useNavigationParam } from '@src/router';
 import { GQL, useMutation, useQuery } from '@src/apollo';
 import { appStore } from '@src/store';
-import { bindWechat } from '@src/common';
+import { bindWechat, syncGetter } from '@src/common';
 
-const WithdrawalOptions = [1, 3, 5, 10];
+import DownloadApkIntro from './components/DownloadApkIntro';
+
+const withdrawAmountList = [
+    {
+        tips: '秒到账',
+        amount: 1,
+        description: '新人福利',
+        fontColor: '#FFA200',
+        bgColor: Theme.themeRed,
+        highWithdrawCardsRate: null,
+    },
+    {
+        tips: '限量抢',
+        amount: 3,
+        description: `108日${Config.limitAlias}`,
+        fontColor: Theme.subTextColor,
+        bgColor: Theme.primaryColor,
+        highWithdrawCardsRate: 0,
+    },
+    {
+        tips: '限量抢',
+        amount: 5,
+        description: `180日${Config.limitAlias}`,
+        fontColor: Theme.subTextColor,
+        bgColor: Theme.primaryColor,
+        highWithdrawCardsRate: 0,
+    },
+    {
+        tips: '限量抢',
+        amount: 10,
+        description: `360日${Config.limitAlias}`,
+        fontColor: Theme.subTextColor,
+        bgColor: Theme.primaryColor,
+        highWithdrawCardsRate: 0,
+    },
+];
+
+const withdrawAmountBadgeList = [
+    {
+        tips: '提现令牌',
+        amount: 3,
+        description: `108日${Config.limitAlias}`,
+        fontColor: Theme.subTextColor,
+        bgColor: Theme.primaryColor,
+        threeYuanWithdrawBadgesCount: 0,
+    },
+    {
+        tips: '提现令牌',
+        amount: 5,
+        description: `180日${Config.limitAlias}`,
+        fontColor: Theme.subTextColor,
+        bgColor: Theme.primaryColor,
+        fiveYuanWithdrawBadgesCount: 0,
+    },
+    {
+        tips: '提现令牌',
+        amount: 10,
+        description: `360日${Config.limitAlias}`,
+        fontColor: Theme.subTextColor,
+        bgColor: Theme.primaryColor,
+        tenYuanWithdrawBadgesCount: 0,
+    },
+];
+
 const WithdrawalPlatforms = [
     {
         type: 'ALIPAY',
@@ -30,63 +93,64 @@ const WithdrawalPlatforms = [
         icon: require('@app/assets/images/dongdezhuan.png'),
     },
 ];
+
+const walletAdapterData = {
+    id: null,
+    pay_account: '',
+    real_name: '',
+    reward: 0,
+    total_withdraw_amount: 0,
+    today_withdraw_left: 0,
+    available_balance: 0,
+};
+
 const BANNER_WIDTH = Device.WIDTH - PxDp(Theme.itemSpace * 2);
 
 export default observer((props: any) => {
+    const navigation = useNavigation();
     const store = useContext(StoreContext);
+    const me = store.userStore.me;
     // 提现请求状态
     const [isWithdrawRequest, setIsWithdrawRequest] = useState(false);
     const [submitting, setSubmitting] = useState(false);
     const [loading, setLoading] = useState(true);
     const [withdrawType, setWithdrawType] = useState('ALIPAY');
-
-    let user = useNavigationParam('user') || store.userStore.me;
-    const navigation = useNavigation();
+    const [useWithdrawBadges, setWithdrawBadges] = useState(false);
+    const [withdrawList, setWithdrawList] = useState(withdrawAmountList);
     const [amount, setAmount] = useState(0);
-    const walletAdapterData = useRef({
-        id: null,
-        pay_account: '',
-        real_name: '',
-        reward: 0,
-        total_withdraw_amount: 0,
-        today_withdraw_left: 0,
-        available_balance: 0,
-    }).current;
-    // const { data: walletData } = useQuery(GQL.userWithdrawQuery, {
-    //     fetchPolicy: 'network-only',
-    // });
 
-    const { data: walletData } = useQuery(GQL.userProfileQuery, {
-        variables: { id: user.id },
+    const { data: userProfileData } = useQuery(GQL.userProfileQuery, {
+        variables: { id: me.id },
         fetchPolicy: 'network-only',
     });
-    const userData = Helper.syncGetter('user', walletData) || {};
 
-    /**
-     *  判断user 里的phone 是否存在,如果为null则提示用户去绑定手机号
-     */
-    // console.log('user from wallet : ', userData);
-    // useEffect(() => {
-    //     if (user.phone === null || !user.phone) {
-    //         PopOverlay({
-    //             content: '请先给该账号绑定手机号、否则可能无法正常提现、是否现在前往?',
-    //             onConfirm: async () => {
-    //                 navigation.navigate('账号安全');
-    //             },
-    //         });
-    //     }
-    // }, []);
+    const getWithdrawAmountListQuery = useQuery(GQL.getWithdrawAmountList);
 
-    // const me = Helper.syncGetter('me', walletData) || {};
-    user = Object.assign({}, user, { ...userData });
-    const myWallet =
-        useMemo(() => Helper.syncGetter('me.wallet', walletData), [walletData]) || user.wallet || walletAdapterData;
+    const user = useMemo(() => Object.assign({}, me, syncGetter('user', userProfileData) || {}), [me, userProfileData]);
 
-    console.log('withdrawType', withdrawType);
+    const withdrawBadges = useMemo(
+        () => [user.threeYuanWithdrawBadgesCount, user.fiveYuanWithdrawBadgesCount, user.tenYuanWithdrawBadgesCount],
+        [user],
+    );
+
+    const myWallet = useMemo(() => syncGetter('wallet', user) || walletAdapterData, [user]);
+
+    useEffect(() => {
+        if (loading && userProfileData) {
+            setLoading(false);
+        }
+    }, [loading, userProfileData]);
+
+    useEffect(() => {
+        if (getWithdrawAmountListQuery.data && getWithdrawAmountListQuery.data.getWithdrawAmountList) {
+            setWithdrawList(syncGetter('data.getWithdrawAmountList', getWithdrawAmountListQuery));
+        }
+    }, [getWithdrawAmountListQuery.loading, getWithdrawAmountListQuery.refetch]);
 
     const [withdrawRequest, { error, data: withdrawData }] = useMutation(GQL.CreateWithdrawMutation, {
         variables: {
             amount,
+            useWithdrawBadges,
             platform: withdrawType,
         },
         errorPolicy: 'all',
@@ -99,12 +163,17 @@ export default observer((props: any) => {
     });
 
     const setWithdrawAmount = useCallback(
-        value => {
+        (value, useBadge) => {
             if (user.reward < value) {
                 Toast.show({ content: `您的提现余额不足` });
             } else {
                 if (myWallet.id) {
                     if (myWallet.today_withdraw_left >= value) {
+                        if (useBadge) {
+                            setWithdrawBadges(true);
+                        } else {
+                            setWithdrawBadges(false);
+                        }
                         setAmount(value);
                     } else {
                         Toast.show({ content: `今日提现额度已用完哦` });
@@ -128,74 +197,42 @@ export default observer((props: any) => {
             // 设置点击过程为 false
             setIsWithdrawRequest(false);
 
-            setTimeout(function() {
+            setTimeout(function () {
                 setSubmitting(false);
 
                 navigation.navigate('WithdrawApply', {
                     amount,
-                    created_at: Helper.syncGetter('data.createWithdraw.created_at', withdrawData),
+                    created_at: syncGetter('data.createWithdraw.created_at', withdrawData),
                 });
             }, 3500);
         }
     }, [withdrawData, error]);
 
-    const title = amount > 0 ? `申请提现${amount}元` : '申请提现';
-
-    const onWithdrawRequest = () => {
-        if (!isWithdrawRequest) {
-            // 请求判断贡献接口
-            setSubmitting(true);
-
-            appStore.client
-                .query({
-                    query: GQL.canWithdrawalsQuery,
-                    variables: {
-                        amount,
-                    },
-                })
-                .then((data: any) => {
-                    // console.log('Data', data);
-                    if (data.data.canWithdrawals <= 0) {
-                        // 判断贡献足够，跳转申请提现接口
-                        withdrawRequest();
-                    } else {
-                        setIsWithdrawRequest(false);
-                        setSubmitting(false);
-
-                        // 贡献不足，提示用户
-                        PopOverlay({
-                            content: '提现失败！贡献值不足，去完成任务即可获得贡献值哦！',
-                            onConfirm: async () => {
-                                navigation.goBack();
-                                navigation.navigate('TaskScreen');
-                            },
-                        });
-                    }
-                })
-                .catch((err: any) => {
-                    // console.log('err', err);
-
-                    setIsWithdrawRequest(false);
-                    setSubmitting(false);
-
-                    Toast.show({ content: '服务器繁忙！提现失败，请稍后重试！' });
-                });
+    const checkWithdrawAmount = useCallback(() => {
+        console.warn('====================================');
+        console.warn('withdrawType', withdrawType);
+        console.warn('====================================');
+        if (user.force_alert && (withdrawType === 'ALIPAY' || withdrawType === 'WECHAT')) {
+            setSubmitting(false);
+            DownloadApkIntro.show();
         } else {
-            console.log('点击中…………………………');
+            withdrawRequest();
         }
+    }, [user, withdrawType, withdrawRequest]);
 
-        // 如果已经发送请求就忽略重复点击
-        setIsWithdrawRequest(true);
-    };
+    const onWithdrawRequest = useCallback(() => {
+        // 设置点击状态
+        setSubmitting(true);
+        // 跳转申请提现接口
+        checkWithdrawAmount();
+    }, [checkWithdrawAmount]);
 
     const navigationAction = () => {
         navigation.navigate('AccountSecurity', { user });
     };
 
     const renderBindTips = () => {
-        console.log('renderBindTips  user :', user);
-
-        if (withdrawType === 'ALIPAY' && Helper.syncGetter('wallet.platforms.alipay', user)) {
+        if (withdrawType === 'ALIPAY' && syncGetter('wallet.platforms.alipay', user)) {
             return (
                 <TouchableOpacity onPress={navigationAction}>
                     <Text
@@ -207,7 +244,7 @@ export default observer((props: any) => {
                 </TouchableOpacity>
             );
         }
-        if ((withdrawType === 'WECHAT' && Helper.syncGetter('wallet.bind_platforms.wechat', user)) || Device.IOS) {
+        if ((withdrawType === 'WECHAT' && syncGetter('wallet.bind_platforms.wechat', user)) || Device.IOS) {
             return (
                 <TouchableOpacity onPress={navigationAction}>
                     <Text
@@ -219,7 +256,7 @@ export default observer((props: any) => {
                 </TouchableOpacity>
             );
         }
-        if (withdrawType === 'DONGDEZHUAN' && Helper.syncGetter('is_bind_dongdezhuan', user)) {
+        if (withdrawType === 'DONGDEZHUAN' && syncGetter('is_bind_dongdezhuan', user)) {
             return (
                 <TouchableOpacity onPress={navigationAction}>
                     <Text
@@ -278,9 +315,18 @@ export default observer((props: any) => {
         );
     };
 
-    if (loading && walletData) {
-        setLoading(!loading);
+    //提现令牌说明
+
+    const TokenDescription = async () => {
+        PopOverlay({
+            title: '高额提现令牌',
+            content: '高额提现令牌可以在懂得赚商城中通过钻石购买，一个令牌只能够使用一次',
+            leftContent: '恍然大悟',
+            rightContent: '原来是这样',
+        });
     }
+
+
 
     return (
         <PageContainer title="提现" loading={loading} submitting={submitting} submitTips={'请求中…'}>
@@ -334,9 +380,22 @@ export default observer((props: any) => {
                                                 marginLeft: PxDp(2),
                                             },
                                         ]}>
-                                        贡献值
+                                        {`日${Config.limitAlias}`}
                                     </Text>
-                                    <Text style={styles.blackText1}>{userData.contribute || 0}</Text>
+                                    <Text style={styles.blackText1}>{user.today_contribute || 0}</Text>
+                                </Row>
+                                <Row>
+                                    <Text
+                                        style={[
+                                            styles.boldBlackText2,
+                                            Device.Android && {
+                                                fontFamily: ' ',
+                                                marginLeft: PxDp(2),
+                                            },
+                                        ]}>
+                                        {`总${Config.limitAlias}`}
+                                    </Text>
+                                    <Text style={styles.blackText1}>{user.contribute || 0}</Text>
                                 </Row>
                             </View>
                         </View>
@@ -375,26 +434,81 @@ export default observer((props: any) => {
                 </View>
                 <View style={styles.withdrawOptionsWrap}>
                     <View style={styles.withdrawOptions}>
-                        {WithdrawalOptions.map((value, index) => {
-                            const selected = value === amount;
+                        {withdrawList.map((data, index) => {
+                            const selected = data.amount === amount && !useWithdrawBadges;
                             return (
                                 <TouchableOpacity
                                     style={[styles.valueItem, selected && styles.selectedItem]}
                                     key={index}
-                                    onPress={() => setWithdrawAmount(value)}>
+                                    onPress={() => setWithdrawAmount(data.amount)}>
+                                    <Text style={[styles.moneyText, selected && { color: '#202020' }]}>
+                                        {data.amount}元
+                                    </Text>
+                                    <Text style={{ marginTop: 5, fontSize: 10 }}>{data.description}</Text>
+                                    <View style={styles.valueItemLabel}>
+                                        <Text style={styles.valueItemLabelText}>
+                                            {data.tips}
+                                            {data.highWithdrawCardsRate > 0 ? `倍率×${data.highWithdrawCardsRate}` : ''}
+                                        </Text>
+                                    </View>
+                                </TouchableOpacity>
+                            );
+                        })}
+                    </View>
+                </View>
+
+                <View style={{
+                    margin: PxDp(Theme.itemSpace),
+                    marginBottom: 0,
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                }}>
+                    <Text style={styles.withdrawTitle}>高额提现令牌</Text>
+                    <TouchableOpacity onPress={TokenDescription}>
+                        <Image source={require('@app/assets/images/tokenDescription.png')} style={{ width: PxDp(18), height: PxDp(18),marginLeft:PxDp(5), }} />
+                    </TouchableOpacity>
+
+                </View>
+                <View style={styles.withdrawOptionsWrap}>
+                    <View style={styles.withdrawOptions}>
+                        {withdrawAmountBadgeList.map((data, index) => {
+                            const selected = data.amount === amount && useWithdrawBadges;
+                            return (
+                                <TouchableOpacity
+                                    style={[styles.valueItem, selected && styles.selectedBadgeItem]}
+                                    key={index}
+                                    onPress={() => setWithdrawAmount(data.amount, 'withdrawBadge')}>
+                                    <Image
+                                        style={styles.withdrawBadgeImage}
+                                        source={require('@app/assets/images/withdrawBadge.png')}
+                                    />
                                     <Text
-                                        style={[
-                                            styles.moneyText,
-                                            selected && { color: '#fff' },
-                                            Device.Android && {
-                                                fontFamily: ' ',
-                                            },
-                                        ]}>
-                                        {value}元
+                                        style={{
+                                            marginTop: PxDp(6),
+                                            fontSize: PxDp(14),
+                                            color: Theme.defaultTextColor,
+                                        }}>
+                                        <Text
+                                            style={{
+                                                fontWeight: 'bold',
+                                            }}>
+                                            {data.amount}
+                                        </Text>
+                                        {`元提现令牌 × `}
+                                        <Text
+                                            style={{
+                                                fontWeight: 'bold',
+                                            }}>
+                                            {withdrawBadges[index] || 0}
+                                        </Text>
                                     </Text>
-                                    <Text style={[{ marginTop: 5, fontSize: 10 }, selected && { color: '#fff' }]}>
-                                        {value * 60} 贡献值
-                                    </Text>
+                                    <View style={styles.selectedBadgeItemLabel}>
+                                        <Iconfont
+                                            name={selected ? 'radiobuttonchecked' : 'radiobuttonunchecked'}
+                                            color={selected ? Theme.watermelon : Theme.borderColor}
+                                            size={PxDp(20)}
+                                        />
+                                    </View>
                                 </TouchableOpacity>
                             );
                         })}
@@ -416,31 +530,35 @@ export default observer((props: any) => {
                     <Text style={[styles.ruleText, styles.ruleTitle]}>提现说明：</Text>
 
                     <Text style={styles.ruleText}>
-                        {`1. 您可以通过首页刷视频等方式获取${Config.goldAlias}；只有当您绑定支付宝之后，才能开始提现。`}
+                        {`1、您可以通过首页刷视频等方式获取${Config.goldAlias}；只有当您绑定懂得赚（官方专属钱包，提现秒到账不限时不限量）或支付宝或微信之后，才能开始提现。`}
                     </Text>
 
                     <Text style={styles.ruleText}>
-                        2、贡献点获取方式：点击视频广告有机率获得贡献、每天前十次观看并点击激励视频有机率获得贡献值，点赞，评论，发布优质内容等方式都有机率获得贡献值。提现所需贡献值为：提现金额*60
+                        2、懂得赚是点墨阁、答题赚钱、答妹等时下热门赚钱APP的官方专属钱包，多款赚钱APP收益一键提现，不限时不限量秒提现，汇聚百款赚钱软件评测攻略，是千万网赚用户必备的赚钱提现法宝。
                     </Text>
 
                     <Text style={styles.ruleText}>
-                        {`3.每天的转换汇率与平台收益及您的平台活跃度相关，因此汇率会受到影响上下浮动；活跃度越高，汇率越高；您可以通过刷视频、点赞评论互动、邀请好友一起来${Config.AppName}等行为来提高活跃度。`}
+                        {`3、${Config.limitAlias}获取方式：点击视频广告有机率获得${Config.limitAlias}、每天前十次观看并点击激励视频有机率获得${Config.limitAlias}，点赞，评论，发布优质内容等方式都有机率获得${Config.limitAlias}。提现所需${Config.limitAlias}为：提现金额*60`}
+                    </Text>
+
+                    <Text style={styles.ruleText}>
+                        {`4、每天的转换汇率与平台收益及您的平台活跃度相关，因此汇率会受到影响上下浮动；活跃度越高，汇率越高；您可以通过刷视频、点赞评论互动、邀请好友一起来${Config.AppName}等行为来提高活跃度。`}
                     </Text>
                     <Text style={styles.ruleText}>
-                        {`4. 每天凌晨 00:00-08:00 期间，系统会把您账户中的所有${Config.goldAlias}自动转为余额。`}
+                        {`5、每天凌晨 00:00-08:00 期间，系统会把您账户中的所有${Config.goldAlias}自动转为余额。`}
                     </Text>
-                    <Text style={styles.ruleText}>5. 提现 3~5 天内到账。若遇高峰期，可能延迟到账，请您耐心等待。</Text>
+                    <Text style={styles.ruleText}>6、提现 3~5 天内到账。若遇高峰期，可能延迟到账，请您耐心等待。</Text>
                     <Text style={styles.ruleText}>
-                        6.提现金额分为1元、3元、5元、10元四档，每次提现将扣除相应余额，剩余余额可以在下次满足最低提现额度时申请提现。
+                        7、提现金额分为1元、3元、5元、10元四档，每次提现将扣除相应余额，剩余余额可以在下次满足最低提现额度时申请提现。
                     </Text>
                     <Text style={styles.ruleText}>
-                        {`7.若您通过非正常手段获取${Config.goldAlias}或余额（包括但不限于刷单、应用多开等操作、一人名下只能绑定一个支付宝，同一人不得使用多个账号提现），${Config.AppName}有权取消您的提现资格，并视情况严重程度，采取封禁等措施。`}
+                        {`8、若您通过非正常手段获取${Config.goldAlias}或余额（包括但不限于刷单、应用多开等操作、一人名下只能绑定一个支付宝，同一人不得使用多个账号提现），${Config.AppName}有权取消您的提现资格，并视情况严重程度，采取封禁等措施。`}
                     </Text>
                 </View>
             </ScrollView>
             <View style={styles.fixWithdrawBtn}>
                 <HxfButton
-                    title={title}
+                    title={amount > 0 ? `申请提现${amount}元` : '申请提现'}
                     gradient={true}
                     style={styles.withdrawBtn}
                     disabled={amount <= 0}
@@ -450,6 +568,8 @@ export default observer((props: any) => {
         </PageContainer>
     );
 });
+
+const valueItemWidth = (Device.WIDTH - PxDp(Theme.itemSpace * 3)) / 2;
 
 const styles = StyleSheet.create({
     banner: {
@@ -527,6 +647,12 @@ const styles = StyleSheet.create({
         color: Theme.subTextColor,
         fontSize: Font(16),
         fontWeight: 'bold',
+        ...Platform.select({
+            ios: {},
+            android: {
+                fontFamily: ' ',
+            },
+        }),
     },
     rule: {
         backgroundColor: '#fff',
@@ -544,20 +670,50 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     selectedItem: {
-        backgroundColor: Theme.secondaryColor,
+        borderColor: Theme.secondaryColor,
+    },
+    selectedBadgeItem: {
+        borderColor: Theme.watermelon,
     },
     statistics: {
         margin: PxDp(Theme.itemSpace),
     },
     valueItem: {
         alignItems: 'center',
-        backgroundColor: Theme.groundColour,
-        borderRadius: PxDp(4),
-        height: PxDp(50),
+        backgroundColor: '#fff',
+        borderWidth: PxDp(1),
+        borderRadius: PxDp(5),
+        borderColor: Theme.borderColor,
+        paddingTop: PxDp(14),
+        paddingBottom: PxDp(10),
         justifyContent: 'center',
         marginRight: PxDp(Theme.itemSpace),
         marginTop: PxDp(Theme.itemSpace),
-        width: (Device.WIDTH - PxDp(Theme.itemSpace * 3)) / 2,
+        width: valueItemWidth,
+    },
+    withdrawBadgeImage: {
+        height: (valueItemWidth * 0.55 * 275) / 300,
+        resizeMode: 'contain',
+        width: valueItemWidth * 0.55,
+    },
+    valueItemLabel: {
+        position: 'absolute',
+        right: -PxDp(1),
+        top: -PxDp(1),
+        borderTopRightRadius: PxDp(5),
+        borderBottomLeftRadius: PxDp(5),
+        backgroundColor: Theme.secondaryColor,
+        paddingHorizontal: PxDp(5),
+    },
+    selectedBadgeItemLabel: {
+        position: 'absolute',
+        left: PxDp(5),
+        top: PxDp(4),
+    },
+    valueItemLabelText: {
+        color: '#fff',
+        fontSize: PxDp(10),
+        lineHeight: PxDp(18),
     },
     whiteText: {
         color: '#fff',

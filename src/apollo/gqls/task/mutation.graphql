@@ -47,6 +47,12 @@ mutation drinkWaterRewardMutation {
   DrinkWaterReward{
     id
   	content
+    task {
+      reward_info {
+        gold
+        contribute
+      }
+    }
     status
   }
 }
@@ -55,6 +61,13 @@ mutation drinkWaterRewardMutation {
 mutation sleepRewardMutation($id: Int!) {
   SleepReward(task_id: $id) {
     id
+    content
+    task {
+      reward_info {
+        gold
+        contribute
+      }
+    }
   }
 }
 

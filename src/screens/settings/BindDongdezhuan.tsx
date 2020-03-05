@@ -1,9 +1,10 @@
 import React, { Component, useState } from 'react';
-import { StyleSheet, Text, ScrollView, View, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, ScrollView, View, TextInput, TouchableOpacity, PermissionsAndroid } from 'react-native';
 import { PageContainer, TouchFeedback, Iconfont, HxfButton, HxfTextInput } from '@src/components';
 import { userStore } from '@src/store';
 import { GQL, useQuery, useMutation } from '@src/apollo';
 import { useNavigation } from '@src/router';
+import { downloadApk } from '@src/common';
 
 export default function BindDongdezhuan() {
     const navigation = useNavigation();
@@ -69,6 +70,17 @@ export default function BindDongdezhuan() {
                         onPress={bindDongdezhuan}
                     />
                 </View>
+                <TouchFeedback
+                    onPress={() => downloadApk()}
+                    style={{
+                        alignItems: 'flex-end',
+                        marginTop: PxDp(10),
+                        marginHorizontal: PxDp(Theme.itemSpace * 2),
+                    }}>
+                    <Text style={{ color: Theme.link, fontSize: PxDp(13), textDecorationLine: 'underline' }}>
+                        下载懂得赚
+                    </Text>
+                </TouchFeedback>
             </View>
         </PageContainer>
     );
@@ -90,7 +102,7 @@ const styles = StyleSheet.create({
         height: 43,
         marginTop: 50,
         marginStart: 26,
-        marginBottom: 28,
+        marginBottom: 46,
     },
     inputStyle: {
         fontSize: PxDp(16),

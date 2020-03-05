@@ -1,18 +1,18 @@
-import React, { useEffect, useContext, useCallback } from 'react';
-import { StyleSheet, Clipboard } from 'react-native';
+import React, { useEffect, useContext, useCallback, useState } from 'react';
+import { StyleSheet, Clipboard, Text, View, TouchableOpacity } from 'react-native';
 import { ApolloProvider, useClientBuilder } from '@src/apollo';
 import { setRootNavigation, middlewareNavigate } from '@src/router';
 import RootStackNavigator from '@src/router/RootStackNavigator';
 import StoreContext, { observer, appStore } from '@src/store';
 import { ApolloProvider as OldApolloProvider } from 'react-apollo';
 import { useCaptureVideo } from '@src/common';
-import { CaptureVideoSuccess } from '@src/components';
-import { SocketServer } from '@app/app.json';
+import { SocketServer, name } from '@app/app.json';
 
 import Echo from 'laravel-echo';
 import Socketio from 'socket.io-client';
 import JPushModule from 'jpush-react-native';
-import { Overlay } from 'teaset';
+
+import { UserAgreementOverlay } from '@src/components';
 
 export default observer(() => {
     const store = useContext(StoreContext);
@@ -46,7 +46,7 @@ export default observer(() => {
 
     useCaptureVideo({ client, onStart, onSuccess, onFailed });
 
-    const mountWebSocket = (user: { token: string | undefined, id: string }) => {
+    const mountWebSocket = (user: { token: string | undefined; id: string }) => {
         console.log('mountWebSocket', user);
         if (user.token !== undefined) {
             // 构造laravel echo及Socket Client
@@ -80,6 +80,7 @@ export default observer(() => {
         }
     };
 
+
     // 本地推送通知
     const sendLocalNotification = (data: any) => {
         console.log('socket got data', data);
@@ -96,14 +97,27 @@ export default observer(() => {
 
     let user = Helper.syncGetter('userStore.me', store);
     console.log('now user is ', user);
+
     useEffect(() => {
         mountWebSocket(user);
     }, [user]);
+
+    useEffect(() => {
+        // 判断是否阅读用户协议
+        console.log('是否阅读：', appStore.createUserAgreement);
+        if (!appStore.createUserAgreement) {
+            UserAgreementOverlay(true);
+        }
+    }, [appStore.createUserAgreement]);
+
     return (
         <OldApolloProvider client={client}>
             <ApolloProvider client={client}>
-                <RootStackNavigator ref={setRootNavigation} />
+                <RootStackNavigator ref={setRootNavigation} uriPrefix={`${name}://`} />
             </ApolloProvider>
+            <Text style={{ fontSize: PxDp(5), color: '#666', position: 'absolute', bottom: 5, right: 5 }}>
+                {user.id}
+            </Text>
         </OldApolloProvider>
     );
 });

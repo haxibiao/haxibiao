@@ -58,7 +58,7 @@ class WheelPicker {
 
     _createDateData() {
         let date = [];
-        for (let i = 1970; i < 2020; i++) {
+        for (let i = 1970; i < 2021; i++) {
             let month = [];
             for (let j = 1; j < 13; j++) {
                 let day = [];

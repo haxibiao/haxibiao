@@ -1,5 +1,5 @@
 import React, { useContext, useState, useCallback, useEffect, useMemo, useRef, Fragment } from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList, StatusBar,Platform } from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList, StatusBar, Platform } from 'react-native';
 import {
     PageContainer,
     Placeholder,
@@ -15,8 +15,8 @@ import {
 import Swiper from 'react-native-swiper';
 import { GQL, useQuery, useLazyQuery } from '@src/apollo';
 import StoreContext, { observer, appStore } from '@src/store';
-import { middlewareNavigate ,useNavigation} from '@src/router';
-import { exceptionCapture } from '@src/common';
+import { middlewareNavigate, useNavigation } from '@src/router';
+import { exceptionCapture, useDetainment } from '@src/common';
 import { observable } from 'mobx';
 import ad from '@src/native/ad';
 import Comment from '@app/assets/images/pinglun.svg';
@@ -26,23 +26,23 @@ const sw = Device.WIDTH;
 const rech = 280;
 
 const recommend_datas = [
-    { url : "http://cos.haxibiao.com/images/kanshipin.png",
-    dest: "TaskRewardVideo"
-},{
-    url: "http://cos.haxibiao.com/images/shuijiaozhunqian.png",
-    dest: "TaskDrinkWaterScreen"
-},
-{
-    url: "http://cos.haxibiao.com/images/shuijiaozhunqian2.png",
-    dest: "TaskSleepScreen"
-}
-
+    { url: 'http://cos.haxibiao.com/images/kanshipin.png', dest: 'TaskRewardVideo' },
+    {
+        url: 'http://cos.haxibiao.com/images/shuijiaozhunqian.png',
+        dest: 'TaskDrinkWater',
+    },
+    {
+        url: 'http://cos.haxibiao.com/images/shuijiaozhunqian2.png',
+        dest: 'TaskSleep',
+    },
 ];
 
-export default observer(props => {
+export default observer((props: any) => {
     const navigation = useNavigation();
+    useDetainment(navigation);
     const swiperRef = useRef<any>(null);
     const store = useContext(StoreContext);
+    let currentPage = 0;
     const { loading, error, data, fetchMore, refetch } = useQuery(GQL.postsSquareQuery, {
         variables: { page: currentPage },
     });
@@ -50,7 +50,7 @@ export default observer(props => {
     const [adVisible, setAdVisible] = useState(true);
 
     let articles = useMemo(() => Helper.syncGetter('articles.data', data), [data]);
-    const currentPage = useMemo(() => Helper.syncGetter('articles.paginatorInfo.currentPage', data), [data]);
+    currentPage = useMemo(() => Helper.syncGetter('articles.paginatorInfo.currentPage', data), [data]);
     const hasMorePages = useMemo(() => Helper.syncGetter('articles.paginatorInfo.hasMorePages', data), [data]);
     const fetchMoreArticles = useCallback(() => {
         if (hasMorePages) {
@@ -58,7 +58,7 @@ export default observer(props => {
                 variables: {
                     page: currentPage + 1,
                 },
-                updateQuery: (prev, { fetchMoreResult }) => {
+                updateQuery: (prev: any, { fetchMoreResult }) => {
                     if (!fetchMoreResult) return prev;
                     return Object.assign({}, prev, {
                         articles: Object.assign({}, fetchMoreResult.articles, {
@@ -95,26 +95,31 @@ export default observer(props => {
                     autoplayTimeout={6}
                     showsPagination={true}
                     removeClippedSubviews={false}
-                    dotStyle={{ backgroundColor: 'rgba(255,255,255,.3)', width: 18, height: 3,...Platform.select({
-                        android : {
-                            marginBottom:12,
-                        },
-                        ios: {
-                            marginBottom:14,
-                        }
-                    }) }}
+                    dotStyle={{
+                        backgroundColor: 'rgba(255,255,255,.3)',
+                        width: 18,
+                        height: 3,
+                        ...Platform.select({
+                            android: {
+                                marginBottom: 12,
+                            },
+                            ios: {
+                                marginBottom: 14,
+                            },
+                        }),
+                    }}
                     activeDotStyle={{
                         backgroundColor: 'rgba(255,255,255,.9)',
                         width: 18,
                         height: 3,
                         ...Platform.select({
-                            android : {
-                                marginBottom:12,
+                            android: {
+                                marginBottom: 12,
                             },
                             ios: {
-                                marginBottom:14,
-                            }
-                        })
+                                marginBottom: 14,
+                            },
+                        }),
                     }}>
                     {recommend_datas.map(item => {
                         return (
@@ -123,17 +128,17 @@ export default observer(props => {
                                     <Text style={styles.title}>这是标题</Text>
                                     <Text style={styles.description}>这里是APP介绍信息</Text>
                                 </View> */}
-                                <View style={styles.recommendItemTextWrapper}/>
+                                <View style={styles.recommendItemTextWrapper} />
 
                                 <View style={styles.recommendItem}>
                                     <TouchableOpacity
                                         activeOpacity={0.8}
                                         onPress={() => {
                                             //TODO: 轮播图点击跳转事件
-                                            navigation.navigate(item.dest)
+                                            navigation.navigate(item.dest);
                                         }}>
                                         <Image
-                                            source={{uri: item.url}}
+                                            source={{ uri: item.url }}
                                             style={{ height: rech * 0.72, width: sw * 0.9, borderRadius: 12 }}
                                             resizeMode={'cover'}
                                         />
@@ -167,7 +172,7 @@ export default observer(props => {
                                             <View style={styles.headerWrapper}>
                                                 <TouchableOpacity style={styles.userInfo}>
                                                     <Avatar
-                                                        source={`http://cos.haxibiao.com/storage/avatar/avatar-${avatarId}.jpg`}
+                                                        source={`http://cos.dianmoge.com/storage/avatar/avatar-${avatarId}.jpg`}
                                                         size={PxDp(38)}
                                                     />
                                                     <View style={styles.info}>
@@ -182,6 +187,7 @@ export default observer(props => {
                                                 <ad.FeedAd
                                                     visible={adVisible}
                                                     visibleHandler={setAdVisible}
+                                                    useCache={false}
                                                     adWidth={Device.WIDTH}
                                                     onClick={() => {
                                                         if (isFeedADList.indexOf(index) === -1) {
@@ -191,11 +197,18 @@ export default observer(props => {
                                                                     mutation: GQL.clickFeedAD,
                                                                 })
                                                                 .then(data => {
-                                                                    console.log("点击广告", data);
-                                                                    
-                                                                    const { amount, message } = Helper.syncGetter('data.clickFeedAD2', data);
+                                                                    console.log('点击广告', data);
+
+                                                                    const { amount, message } = Helper.syncGetter(
+                                                                        'data.clickFeedAD2',
+                                                                        data,
+                                                                    );
                                                                     Toast.show({
-                                                                        content: message || `+${amount || 0} 用户行为贡献`,
+                                                                        content:
+                                                                            message ||
+                                                                            `+${amount || 0} 用户行为${
+                                                                                Config.limitAlias
+                                                                            }`,
                                                                         duration: 1500,
                                                                     });
                                                                 });
@@ -251,7 +264,7 @@ export default observer(props => {
                     ListFooterComponent={() =>
                         hasMorePages ? <Placeholder quantity={1} /> : <Footer finished={true} />
                     }
-                    ListHeaderComponent={_renderRecommend}
+                    // ListHeaderComponent={_renderRecommend}
                 />
             </View>
         </PageContainer>
@@ -280,10 +293,10 @@ const styles = StyleSheet.create({
     },
     recommendItemWrapper: {
         flex: 1,
-        justifyContent:'space-between',
-        alignItems:'flex-start',
+        justifyContent: 'space-between',
+        alignItems: 'flex-start',
         overflow: 'hidden',
-        paddingBottom:15,
+        paddingBottom: 15,
     },
     recommendItemTextWrapper: {
         flexDirection: 'column',

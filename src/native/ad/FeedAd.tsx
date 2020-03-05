@@ -2,15 +2,10 @@ import React, { useState } from 'react';
 import { StyleSheet, requireNativeComponent, Platform } from 'react-native';
 const NativeFeedAd = requireNativeComponent('FeedAd');
 import { CodeIdFeed, CodeIdFeedIOS } from '@app/app.json';
-import { appStore as APP } from '@src/store';
-let { FeedProvider } = APP;
-
-const codeid = Platform.OS === 'ios' ? CodeIdFeedIOS : CodeIdFeed;
-
-// 注意检查穿山甲运行时的Draw竖版信息流代码位id
-// const codeid = Platform.OS === 'android' ? '917576575' : '931407994';
+import { appStore } from '@src/store';
 
 interface Props {
+    useCache: boolean,
     adWidth: number;
     onError?: Function;
     onLoad?: Function;
@@ -20,15 +15,21 @@ interface Props {
 }
 
 const FeedAd = (props: Props) => {
-    const { adWidth = Device.WIDTH - PxDp(30), onError, onLoad, onClick } = props;
+    let { codeid_feed, feed_provider } = appStore;
+    if (codeid_feed == '') {
+        codeid_feed = Platform.OS === 'ios' ? CodeIdFeedIOS : CodeIdFeed;
+    }
+
+    const { useCache = true, adWidth = Device.WIDTH - PxDp(30), onError, onLoad, onClick } = props;
     // let [visible, setVisible] = useState(true);
     const { visible, visibleHandler } = props; // 状态交友父组件来控制，使得广告显示状态在父组件中可以实时监听
     const [height, setHeight] = useState(0); // 默认高度
     if (!visible) return null;
     return (
         <NativeFeedAd
-            provider={FeedProvider}
-            codeid={codeid}
+            provider={feed_provider}
+            codeid={codeid_feed}
+            useCache={useCache}
             adWidth={adWidth}
             style={{ width: adWidth, height }}
             onError={(e: any) => {

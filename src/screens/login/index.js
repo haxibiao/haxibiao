@@ -19,6 +19,7 @@ export default observer(props => {
         variables: {
             account: formData.account,
             password: formData.password,
+            uuid: Device.UUID,
         },
     });
     const [signUpMutation, { data: signUpData }] = useMutation(GQL.signUpMutation, {
@@ -26,6 +27,7 @@ export default observer(props => {
             name: formData.name,
             account: formData.account,
             password: formData.password,
+            uuid: Device.UUID,
         },
     });
     const [autoSignInMutation, { data: autoSignInData }] = useMutation(GQL.autoSignInMutation, {

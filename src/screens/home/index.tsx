@@ -3,6 +3,7 @@ import { StyleSheet, View, FlatList, StatusBar, Image, ImageBackground, Text } f
 import { GQL, useQuery, useApolloClient } from '@src/apollo';
 import StoreContext, { observer, appStore } from '@src/store';
 import { SpinnerLoading } from '@src/components';
+import { useDetainment } from '@src/common';
 
 import VideoItem from './components/VideoItem';
 import Footer from './components/Footer';
@@ -19,6 +20,7 @@ export default observer(props => {
     const me = { ...userStore.me };
     const client = useApolloClient();
     const navigation = useNavigation();
+    useDetainment(navigation, true);
     const commentRef = useRef();
     const config = useRef({
         waitForInteraction: true,

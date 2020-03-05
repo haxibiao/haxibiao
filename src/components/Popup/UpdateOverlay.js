@@ -42,10 +42,10 @@ class UpdateOverlay {
                                         : { borderLeftColor: Theme.lightBorder, borderLeftWidth: 0.5 },
                                 ]}
                                 onPress={() => {
-                                    if (versionData.apk) {
+                                    if(versionData.apk) {
                                         NativeModules.DownloadApk.downloading(
                                             versionData.apk || '',
-                                            'haxibiao.apk',
+                                            'dianmoge.apk',
                                             Config.DisplayName,
                                         );
                                         // UpdateOverlay.hide();
@@ -53,7 +53,7 @@ class UpdateOverlay {
                                         UpdateOverlay.hide();
                                         Toast.show({
                                             content: '更新失败，请稍后重试！',
-                                            layout: 'bottom',
+                                            layout:'bottom',
                                         });
                                     }
                                 }}>

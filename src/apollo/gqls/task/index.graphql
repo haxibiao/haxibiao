@@ -110,10 +110,11 @@ query sleepTaskQuery {
     id
     status
     name
+    background_img
     task_status
     sleep_status
     details
-    reward_info{
+    reward_info {
       gold
       contribute
     }

@@ -10,16 +10,33 @@ export default function GuideSplash(props) {
     var status = false;
 
     const resetAction = StackActions.reset({
-        index:0,
-        actions: [NavigationActions.navigate({routeName: '主页'})]
+        index: 0,
+        actions: [NavigationActions.navigate({ routeName: '主页' })],
     });
 
+    const handlerAction = (routeName: any) => {
+        if (routeName) {
+            const handlerScheme = StackActions.reset({
+                index: 1,
+                actions: [
+                    NavigationActions.navigate({ routeName: '主页' }),
+                    NavigationActions.navigate({ routeName: routeName }),
+                ],
+            });
+            navigation.dispatch(handlerScheme);
+        } else {
+            navigation.dispatch(resetAction);
+        }
+    };
+
     async function getStatus() {
+        console.log('GuideSplash navigation', navigation);
+        const routeName = navigation.getParam('route');
         status = await Storage.getItem(Keys.ShowSplash);
         console.log('status ', status);
         if (status) {
             //navigate to home
-            navigation.dispatch(resetAction)
+            handlerAction(routeName);
         } else {
             //first install , launch splash guide
             setGuide(true);
@@ -33,7 +50,11 @@ export default function GuideSplash(props) {
     return (
         <>
             {!guide ? (
-                <Image source={{uri: "launch_screen"}} style={{width:Device.WIDTH,height:Device.HEIGHT}} resizeMode={"cover"}/>
+                <Image
+                    source={{ uri: 'launch_screen' }}
+                    style={{ width: Device.WIDTH, height: Device.HEIGHT }}
+                    resizeMode={'cover'}
+                />
             ) : (
                 <View style={styles.body}>
                     <Swiper
@@ -47,28 +68,29 @@ export default function GuideSplash(props) {
                         <ImageBackground
                             source={require('@app/assets/images/guidesplash0.png')}
                             style={{ height: '100%', width: '100%', justifyContent: 'flex-end', alignItems: 'center' }}
-                            resizeMode={'cover'}>
-                        </ImageBackground>
+                            resizeMode={'cover'}></ImageBackground>
                         <ImageBackground
                             source={require('@app/assets/images/guidesplash1.png')}
                             style={{ height: '100%', width: '100%', justifyContent: 'flex-end', alignItems: 'center' }}
-                            resizeMode={'cover'}>
-                        </ImageBackground>
+                            resizeMode={'cover'}></ImageBackground>
                         <ImageBackground
                             source={require('@app/assets/images/guidesplash2.png')}
                             style={{ height: '100%', width: '100%', justifyContent: 'flex-end', alignItems: 'center' }}
-                            resizeMode={'cover'}>
-                        </ImageBackground>
+                            resizeMode={'cover'}></ImageBackground>
                         <View style={{ width: Device.WIDTH, height: Device.HEIGHT }}>
                             <ImageBackground
                                 source={require('@app/assets/images/guidesplash3.png')}
-                                style={{ height: '100%', width: '100%', justifyContent: 'flex-end', alignItems: 'center' }}
-                                resizeMode={'cover'}>
-                            </ImageBackground>
+                                style={{
+                                    height: '100%',
+                                    width: '100%',
+                                    justifyContent: 'flex-end',
+                                    alignItems: 'center',
+                                }}
+                                resizeMode={'cover'}></ImageBackground>
                             <TouchableOpacity
                                 activeOpacity={0.8}
                                 onPress={() => {
-                                    navigation.dispatch(resetAction)
+                                    navigation.dispatch(resetAction);
                                 }}
                                 style={styles.enterBtn}>
                                 <View style={styles.enterWrapper}>
@@ -88,7 +110,7 @@ const styles = StyleSheet.create({
     body: {
         ...StyleSheet.absoluteFill,
     },
-    desc:{
+    desc: {
         marginBottom: Theme.HOME_INDICATOR_HEIGHT + Device.WIDTH * 0.22,
         alignItems: 'center',
     },
@@ -114,7 +136,7 @@ const styles = StyleSheet.create({
         borderRadius: 14,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor:'#ffffff',
+        backgroundColor: '#ffffff',
     },
     enterBtn: {
         width: 60,
@@ -122,6 +144,6 @@ const styles = StyleSheet.create({
         borderRadius: 19,
         position: 'absolute',
         right: 15,
-        top: Theme.HOME_INDICATOR_HEIGHT + 40
+        top: Theme.HOME_INDICATOR_HEIGHT + 40,
     },
 });

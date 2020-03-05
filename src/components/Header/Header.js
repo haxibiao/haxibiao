@@ -59,7 +59,7 @@ class Header extends React.Component {
 const styles = StyleSheet.create({
     header: {
         alignItems: 'center',
-        backgroundColor: Theme.skinColor,
+        backgroundColor: Theme.skinColor || "#FFF",
         borderBottomColor: Theme.lightBorderColor,
         borderBottomWidth: 1,
         flexDirection: 'row',

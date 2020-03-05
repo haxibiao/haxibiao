@@ -1,7 +1,6 @@
 import SplashGuide from './SplashGuide';
 
-
-import MainTabNavigator from '@app/layout/MainTabNavigator.js';
+import MainTabNavigator from './MainTabNavigator.js';
 import AskQuestion from '../screens/creation/AskQuestionScreen';
 import SelectCategory from '../screens/creation/SelectCategoryScreen';
 
@@ -23,6 +22,8 @@ import UserHomeScreen from '../screens/user/HomeScreen';
 import SocietyScreen from '../screens/user/Society';
 import WorksScreen from '../screens/user/WorksScreen';
 import LikedArticlesScreen from '../screens/user/LikedArticlesScreen';
+
+import UserBlockScreen from '@src/screens/user/UserBlock';
 
 // my
 import BrowsingHistoryScreen from '../screens/my/HistoryScreen';
@@ -69,22 +70,29 @@ import FeedbackDetail from '../screens/Feedback/FeedbackDetail';
 // Task
 import TaskScreen from '../screens/task';
 import TaskSleepScreen from '../screens/task/sleep';
-import TaskDrinkWaterScreen from '../screens/task/drinkWater';
+import TaskDrinkWaterScreen from '../screens/task/drinkWaters';
 import Praise from '../screens/task/Praise';
+import SpiderVideo from '../screens/task/SpiderVideoTask';
 import TaskRewardVideo from '../screens/task/rewardVideo';
+import TaskNewUserBook from '../screens/task/newuser';
 
 export default {
     SplashGuide: {
         screen: SplashGuide,
+        path: 'splash/:route',
     },
     主页: {
         screen: MainTabNavigator,
+        path: 'mainTab/:route',
     },
     Login: {
         screen: LoginScreen,
     },
     AskQuestion: {
         screen: AskQuestion,
+    },
+    SpiderVideo: {
+        screen: SpiderVideo,
     },
     SelectCategory: {
         screen: SelectCategory,
@@ -133,6 +141,7 @@ export default {
     },
     Setting: {
         screen: SettingsScreen,
+        path: 'setting/:route',
     },
     编辑个人资料: {
         screen: EditProfileScreen,
@@ -213,14 +222,17 @@ export default {
     TaskScreen: {
         screen: TaskScreen,
     },
-    TaskDrinkWaterScreen: {
+    TaskDrinkWater: {
         screen: TaskDrinkWaterScreen,
+        path: 'task/TaskDrinkWater',
     },
-    TaskSleepScreen: {
+    TaskSleep: {
         screen: TaskSleepScreen,
+        path: 'task/TaskSleep',
     },
     TaskRewardVideo: {
         screen: TaskRewardVideo,
+        path: 'task/TaskRewardVideo',
     },
     Praise: {
         screen: Praise,
@@ -230,5 +242,11 @@ export default {
     },
     NotificationPage: {
         screen: NotificationPage,
+    },
+    TaskNewUserBook: {
+        screen: TaskNewUserBook,
+    },
+    UserBlockScreen: {
+        screen: UserBlockScreen,
     },
 };

@@ -1,9 +1,9 @@
-import {Animated, Easing} from 'react-native';
-import {createAppContainer, createStackNavigator} from 'react-navigation';
+import { Animated, Easing } from 'react-native';
+import { createAppContainer, createStackNavigator } from 'react-navigation';
 import routing from './routing';
 
 let AppRouter = createStackNavigator(routing, {
-    initialRouteName: 'SplashGuide',
+    initialRouteName: '主页',
     // 使用自定义导航，所以要隐藏默认导航
     defaultNavigationOptions: () => ({
         header: null,
@@ -16,8 +16,8 @@ let AppRouter = createStackNavigator(routing, {
             timing: Animated.timing,
         },
         screenInterpolator: sceneProps => {
-            const {layout, position, scene} = sceneProps;
-            const {index} = scene;
+            const { layout, position, scene } = sceneProps;
+            const { index } = scene;
 
             const width = layout.initWidth;
             const translateX = position.interpolate({
@@ -30,7 +30,7 @@ let AppRouter = createStackNavigator(routing, {
                 outputRange: [0, 1, 1],
             });
 
-            return {opacity, transform: [{translateX}]};
+            return { opacity, transform: [{ translateX }] };
         },
     }),
     cardOverlayEnabled: true,

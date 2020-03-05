@@ -15,10 +15,12 @@ class WithdrawHistory extends Component {
       <PageContainer title="我的账单" white>
            <ScrollableTabView
             renderTabBar={props => <ScrollTabBar {...props} tabUnderlineWidth={PxDp(30)} />}
+            initialPage={navigation.getParam('tabPage') || 0}
+            prerenderingSiblingsNumber={navigation.getParam('tabPage') || 0}
           >
             <WithdrawLog navigation={navigation} tabLabel="提现" />
-            <ContributionLog  navigation={navigation} tabLabel="贡献" />
-            <IncomeAndExpenditure navigation={navigation} tabLabel="明细" />
+            <ContributionLog  navigation={navigation} tabLabel={Config.limitAlias} />
+            <IncomeAndExpenditure navigation={navigation} tabLabel="明细" />            
           
           </ScrollableTabView>
 

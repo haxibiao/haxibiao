@@ -1,11 +1,13 @@
 # 登录功能
-mutation signInMutation($account: String!, $password: String!) {
-    signIn(account: $account, password: $password) {
+mutation signInMutation($account: String!, $password: String!, $uuid: String) {
+    signIn(account: $account, password: $password, uuid: $uuid) {
         id
         name
         avatar
         token
         balance
+        uuid
+        title_phone
         gold
         wallet {
             id
@@ -26,6 +28,12 @@ mutation signInMutation($account: String!, $password: String!) {
         reward
         contribute
         exchangeRate
+        doubleHighWithdrawCardsCount
+        fiveTimesHighWithdrawCardsCount
+        tenTimesHighWithdrawCardsCount
+        threeYuanWithdrawBadgesCount
+        fiveYuanWithdrawBadgesCount
+        tenYuanWithdrawBadgesCount
     }
 }
 
@@ -57,13 +65,19 @@ mutation autoSignInMutation($UUID: String!, $PHONE: String) {
         reward
         contribute
         exchangeRate
+        doubleHighWithdrawCardsCount
+        fiveTimesHighWithdrawCardsCount
+        tenTimesHighWithdrawCardsCount
+        threeYuanWithdrawBadgesCount
+        fiveYuanWithdrawBadgesCount
+        tenYuanWithdrawBadgesCount
     }
 }
 
 # 注册功能
 # 为了统一接口后端会优先用account，但是老版本email是必传的，所以这里email默认给个值，后端会忽略掉
-mutation signUpMutation($account: String, $password: String!, $name: String) {
-    signUp(email: "123", account: $account, password: $password, name: $name) {
+mutation signUpMutation($account: String, $password: String!, $name: String, $uuid: String) {
+    signUp(email: "123", account: $account, password: $password, name: $name, uuid: $uuid) {
         id
         name
         avatar
@@ -89,6 +103,12 @@ mutation signUpMutation($account: String, $password: String!, $name: String) {
         reward
         contribute
         exchangeRate
+        doubleHighWithdrawCardsCount
+        fiveTimesHighWithdrawCardsCount
+        tenTimesHighWithdrawCardsCount
+        threeYuanWithdrawBadgesCount
+        fiveYuanWithdrawBadgesCount
+        tenYuanWithdrawBadgesCount
     }
 }
 
@@ -176,8 +196,13 @@ mutation destoryUserMutation {
 }
 
 #拉黑用户
-mutation addUserBlockMutation($id: Int! ) {
-  addUserBlock(id: $id){
-    id
-  }
+mutation addUserBlockMutation($id: Int!) {
+    addUserBlock(id: $id) {
+        id
+    }
+}
+
+# 取消拉黑用户
+mutation removeUserBlockMutation($id: Int!) {
+    removeUserBlock(id: $id)
 }

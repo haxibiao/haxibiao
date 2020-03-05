@@ -8,3 +8,5 @@ export * from './videoUpload';
 export * from './checkUpdate';
 export * from './download';
 export * from './bindWechat';
+export * from './downloadApk';
+export * from './track';

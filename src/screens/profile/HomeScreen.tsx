@@ -5,7 +5,7 @@ import Toast from 'react-native-root-toast';
 
 import { Avatar, PageContainer, SettingItem, WriteModal, Iconfont, WheelPicker } from '@src/components';
 
-import { Mutation, GQL, useApolloClient } from '@src/apollo';
+import { Mutation, GQL, useApolloClient,useQuery } from '@src/apollo';
 
 import { observer } from 'mobx-react';
 import { userStore } from '@src/store';
@@ -19,7 +19,14 @@ const EditProfileScreen = (props: any) => {
     let nickname = '';
     let nickintroduction = '';
     let { me: user } = userStore;
-    let qianM = user.introduction || '这个人不是很勤快的亚子，啥也没留下…';
+    const qianM = user.introduction || '这个人不是很勤快的亚子，啥也没留下…';
+
+    const { data: walletData } = useQuery(GQL.userProfileQuery, {
+        variables: { id: user.id },
+        fetchPolicy: 'network-only',
+    });
+    const userData = Helper.syncGetter('user', walletData) || {};
+    user = Object.assign({}, user, { ...userData });
 
     const [nameModalVisible, setNameModalVisible] = useState(false),
         [qianModalVisible, setQianModalVisible] = useState(false),
@@ -224,7 +231,7 @@ const EditProfileScreen = (props: any) => {
 
                     <TouchableOpacity
                         onPress={() => {
-                            navigation.navigate('AccountSecurity',{user});
+                            navigation.navigate('AccountSecurity', {user});
                         }}>
                         <SettingItem
                             itemName="账号绑定"
@@ -304,7 +311,7 @@ const EditProfileScreen = (props: any) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: Theme.skinColor,
+        backgroundColor: Theme.skinColor || '#FFF',
     },
     settingItem: {
         flex: 1,

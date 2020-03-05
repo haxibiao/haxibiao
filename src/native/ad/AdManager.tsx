@@ -1,37 +1,73 @@
 import { NativeModules, Platform } from 'react-native';
-import { TTAppID, TTAppIDIOS } from '@app/app.json';
-import { appStore as APP } from '@src/store';
+import {
+    TTAppID,
+    TTAppIDIOS,
+    CodeIdFeedIOS,
+    CodeIdFeed
+} from '@app/app.json';
+import { appStore } from '@src/store';
 
 //这里决策这个APP需要init的sdk...
+let { AdManager } = NativeModules;
 
 export const init = () => {
-    let { AdManager } = NativeModules;
     let appid = '';
-
-    //如果设置了头条的
-    if (APP.tt_appid) {
-        appid = APP.tt_appid;
-        AdManager.init({ appid });
-    }
-
-    //如果设置了腾讯的
-    if (APP.tx_appid) {
-        appid = APP.tx_appid;
-        AdManager.initTx({ appid });
-    }
-
-    //如果设置了百度的
-    if (APP.bd_appid) {
-        appid = APP.bd_appid;
-        AdManager.initBd({ appid });
+    //init 所有 后端 加载的appid provider codeids
+    let {
+        tt_appid,
+        tx_appid,
+        bd_appid,
+        splash_provider,
+        feed_provider,
+        reward_video_provider,
+        codeid_splash,
+        codeid_splash_tencent,
+        codeid_splash_baidu,
+        codeid_feed,
+        codeid_feed_tencent,
+        codeid_feed_baidu,
+        codeid_draw_video,
+        codeid_full_video,
+        codeid_reward_video,
+        codeid_reward_video_tencent,
+    } = appStore;
+    if (tt_appid) {
+        appid = tt_appid;
+        AdManager.init({
+            tt_appid,
+            tx_appid,
+            bd_appid,
+            splash_provider,
+            feed_provider,
+            reward_video_provider,
+            codeid_splash,
+            codeid_splash_tencent,
+            codeid_splash_baidu,
+            codeid_feed,
+            codeid_feed_tencent,
+            codeid_feed_baidu,
+            codeid_draw_video,
+            codeid_full_video,
+            codeid_reward_video,
+            codeid_reward_video_tencent
+        });
     }
 
     if (appid === '') {
-        //如果没有，默认用json里的
+        //如果没有后端加载的appid，默认用json里的
         appid = Platform.OS === 'ios' ? TTAppIDIOS : TTAppID;
         AdManager.init({ appid });
     }
 
 };
 
-export default { init };
+//弹层前可以考虑预加载FeedAd
+export const loadFeedAd = () => {
+    let { codeid_feed, feed_provider } = appStore;
+    let codeid = codeid_feed;
+    if (!codeid)
+        codeid = Platform.OS === 'ios' ? CodeIdFeedIOS : CodeIdFeed;
+    return AdManager.loadFeedAd({ codeid, provider: feed_provider });
+}
+
+export default { init, loadFeedAd };

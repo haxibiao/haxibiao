@@ -4,12 +4,11 @@ import { createBottomTabNavigator } from 'react-navigation';
 
 import HomeScreen from '@src/screens/home';
 import FindScreen from '@src/screens/find';
+import TaskScreen from '@src/screens/task';
 import NotificationScreen from '@src/screens/notification';
 import MyHomeScreen from '@src/screens/my';
 
 import { BottomTabBar } from './BottomTabBar';
-
-import WalletTab from '@src/screens/wallet/WalletTab.tsx';
 
 const routerConfig = {
     首页: {
@@ -21,8 +20,12 @@ const routerConfig = {
         navigationOptions: () => TabOptions('发现'),
     },
     资产: {
-        screen: WalletTab,
+        screen: TaskScreen,
         navigationOptions: () => TabOptions('资产'),
+    },
+    通知: {
+        screen: NotificationScreen,
+        navigationOptions: () => TabOptions('通知'),
     },
     个人: {
         screen: MyHomeScreen,

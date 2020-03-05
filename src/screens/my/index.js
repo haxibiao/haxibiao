@@ -11,15 +11,16 @@ import {
     StatusBar,
 } from 'react-native';
 import { PageContainer, Iconfont, Row, Avatar, Badge } from '@src/components';
-import StoreContext, { observer, appStore } from '@src/store';
+import StoreContext, { observer, appStore, userStore } from '@src/store';
 import { middlewareNavigate, useNavigation } from '@src/router';
-import { userStore } from '@src/store';
 import { GQL, useQuery } from '@src/apollo';
+import { useDetainment } from '@src/common';
 
 import JPushModule from 'jpush-react-native';
 
 export default observer(props => {
     const navigation = useNavigation();
+    useDetainment(navigation);
     const store = useContext(StoreContext);
     const [taskAD, setTaskAD] = useState(false);
     const user = Helper.syncGetter('userStore.me', store);
@@ -27,8 +28,16 @@ export default observer(props => {
     const isLogin = user.token && login ? true : false;
     const { data: result, refetch } = useQuery(GQL.userProfileQuery, {
         variables: { id: user.id },
+        fetchPolicy: 'network-only',
     });
     const userData = Helper.syncGetter('user', result) || {};
+
+    // 记住用户的广告时间间隔
+    let dongdezhuanUser = Helper.syncGetter('dongdezhuanUser', userData) || {};
+    let { ad_duration = 900000 } = dongdezhuanUser;
+    console.log('用户广告时间' + ad_duration);
+
+    appStore.setAdDuration(ad_duration);
 
     const userProfile = Object.assign({}, user, {
         ...userData,
@@ -64,7 +73,7 @@ export default observer(props => {
     return (
         <PageContainer contentViewStyle={{ marginTop: 0 }}>
             <ScrollView style={styles.container} bounces={false} showsVerticalScrollIndicator={false}>
-                <View style={{ marginBottom: -PxDp(20) }}>
+                <View style={{ marginBottom: appStore.enableWallet ? -PxDp(20) : PxDp(20) }}>
                     <TouchableWithoutFeedback onPress={() => authNavigator('User', { user })}>
                         <View style={styles.personTopInfo}>
                             <View style={styles.personTopBg}>
@@ -150,8 +159,8 @@ export default observer(props => {
                 </View>
 
                 {appStore.enableWallet && (
-                    <View style={styles.wallet}>
-                        <TouchableWithoutFeedback onPress={() => authNavigator('TaskScreen')}>
+                    <TouchableWithoutFeedback onPress={() => authNavigator('Wallet', { user: userProfile })}>
+                        <View style={styles.wallet}>
                             <View style={styles.walletItem}>
                                 <Image
                                     source={require('@app/assets/images/icon_wallet_dmb.png')}
@@ -166,9 +175,7 @@ export default observer(props => {
                                     </Text>
                                 </View>
                             </View>
-                        </TouchableWithoutFeedback>
-                        <View style={styles.middleLine} />
-                        <TouchableWithoutFeedback onPress={() => authNavigator('Wallet', { user: userProfile })}>
+                            <View style={styles.middleLine} />
                             <View style={styles.walletItem}>
                                 <Image
                                     source={require('@app/assets/images/icon_wallet_rmb.png')}
@@ -183,8 +190,8 @@ export default observer(props => {
                                     </Text>
                                 </View>
                             </View>
-                        </TouchableWithoutFeedback>
-                    </View>
+                        </View>
+                    </TouchableWithoutFeedback>
                 )}
 
                 {isLogin && taskAD && appStore.enableWallet && (
@@ -214,22 +221,25 @@ export default observer(props => {
                 )}
 
                 <View style={styles.columnItemsWrap}>
-                    <TouchableOpacity
-                        style={styles.columnItem}
-                        onPress={() => {
-                            authNavigator('NotificationPage');
-                        }}>
-                        <Row>
-                            <View style={styles.columnIconWrap}>
-                                <Image
-                                    style={styles.columnIcon}
-                                    source={require('@app/assets/images/ic_mine_chat.png')}
-                                />
-                            </View>
-                            <Text style={styles.itemTypeText}>我的消息</Text>
-                        </Row>
-                        <Iconfont name="right" size={PxDp(15)} color={Theme.secondaryTextColor} />
-                    </TouchableOpacity>
+                    {appStore.enableWallet && (
+                        <TouchableOpacity
+                            style={styles.columnItem}
+                            onPress={() => {
+                                authNavigator('NotificationPage');
+                            }}>
+                            <Row>
+                                <View style={styles.columnIconWrap}>
+                                    <Image
+                                        style={styles.columnIcon}
+                                        source={require('@app/assets/images/ic_mine_chat.png')}
+                                    />
+                                </View>
+                                <Text style={styles.itemTypeText}>我的消息</Text>
+                            </Row>
+                            <Iconfont name="right" size={PxDp(15)} color={Theme.secondaryTextColor} />
+                        </TouchableOpacity>
+                    )}
+
                     <TouchableOpacity style={styles.columnItem} onPress={() => authNavigator('喜欢', { user })}>
                         <Row>
                             <View style={styles.columnIconWrap}>
@@ -242,7 +252,7 @@ export default observer(props => {
                         </Row>
                         <Iconfont name="right" size={PxDp(15)} color={Theme.secondaryTextColor} />
                     </TouchableOpacity>
-                    {/* <TouchableOpacity
+                    <TouchableOpacity
                         style={styles.columnItem}
                         onPress={() => {
                             authNavigator('我的收藏');
@@ -257,7 +267,7 @@ export default observer(props => {
                             <Text style={styles.itemTypeText}>我的收藏</Text>
                         </Row>
                         <Iconfont name="right" size={PxDp(15)} color={Theme.secondaryTextColor} />
-                    </TouchableOpacity> */}
+                    </TouchableOpacity>
                     <TouchableOpacity style={styles.columnItem} onPress={() => authNavigator('浏览记录')}>
                         <Row>
                             <View style={styles.columnIconWrap}>

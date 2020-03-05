@@ -10,6 +10,7 @@ import { Row } from 'components';
 
 function WithdrawLogItem(props) {
     const { style, navigation, item } = props;
+    console.log('item', item);
     let statusText,
         color,
         imageUrl,
@@ -32,16 +33,12 @@ function WithdrawLogItem(props) {
     switch (item.to_platform) {
         case 'Alipay':
             imageUrl = require('@app/assets/images/alipay.png');
-            item.platform = '支付宝';
             break;
         case 'Wechat':
             imageUrl = require('@app/assets/images/wechat.png');
-            item.platform = '微信';
             break;
         case 'dongdezhuan':
             imageUrl = require('@app/assets/images/dongdezhuan.png');
-            item.platform = '懂得赚';
-            imageUrl = require('@app/assets/images/alipay.png');
             break;
         default:
             imageUrl = require('@app/assets/images/alipay.png');
@@ -62,7 +59,9 @@ function WithdrawLogItem(props) {
             <Image source={imageUrl} style={{ width: size, height: size, marginVertical: PxDp(15) }} />
             <Row style={styles.content}>
                 <View style={{ width: (Device.WIDTH * 4) / 7 }}>
-                    <Text style={styles.statusText}>{statusText}</Text>
+                    <Text style={styles.statusText}>
+                        {item.to_platform === 'dongdezhuan' ? '提现到懂得赚' : statusText}
+                    </Text>
                     {item.status == -1 && (
                         <Text
                             style={{ fontSize: 12, color: Theme.themeRed }}

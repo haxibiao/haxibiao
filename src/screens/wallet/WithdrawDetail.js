@@ -32,10 +32,7 @@ const WithdrawDetail = props => {
                                     <Text style={styles.name}>{userStore.me.name}</Text>
                                 </View>
                                 <View style={styles.info}>
-                                    <Text style={styles.money}>
-                                        {withdraw.amount}
-                                        .00
-                                    </Text>
+                                    <Text style={styles.money}>{withdraw.amount}</Text>
                                     {withdraw.status === 1 ? (
                                         <Text
                                             style={{

@@ -25,11 +25,11 @@ class IncomeAndExpenditureItem extends Component {
                 </Row>
                 <Row style={{ justifyContent: 'space-between', marginTop: Font(10) }}>
                     <Text style={{ fontSize: Font(12), color: Theme.subTextColor }}>{item.created_at}</Text>
-                    <Text
+                    {/* <Text
                         style={{
                             fontSize: Font(12),
                             color: Theme.subTextColor,
-                        }}>{`剩余贡献值: ${item.balance}`}</Text>
+                        }}>{`剩余${Config.limitAlias}: ${item.balance}`}</Text> */}
                 </Row>
             </View>
         );

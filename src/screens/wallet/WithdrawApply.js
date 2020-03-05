@@ -15,7 +15,7 @@ export default function WithdrawApply(props) {
                 <View style={styles.content}>
                     <Text style={styles.header}>提现申请已提交</Text>
                     <View style={styles.center}>
-                        <Text style={styles.money}>{amount}.00</Text>
+                        <Text style={styles.money}>{amount}</Text>
                         <Text style={{ fontSize: Font(10), color: Theme.secondaryColor, paddingTop: PxDp(32) }}>
                             {' '}
                             元

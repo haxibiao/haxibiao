@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity, Animated, Easing } from 'react-native';
 
-const botHeight = 250;
+const botHeight = 300;
 
 interface Props {
     value: number;
@@ -109,7 +109,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     bottle: {
-        width: 160,
+        width: 140,
         height: botHeight,
         borderWidth: 10,
         borderColor: '#e9e9e9',
@@ -117,20 +117,26 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         alignItems: 'flex-start',
         overflow: 'hidden',
-        borderBottomLeftRadius: 50,
-        borderBottomRightRadius: 50,
+        borderBottomLeftRadius: 30,
+        borderBottomRightRadius: 30,
+        borderTopLeftRadius: 0.5,
+        borderTopRightRadius: 0.5,
     },
     bottleWrapper: {
-        width: 160,
+        width: 140,
         height: botHeight,
+        transform: [{rotateX:'-40deg'}],
     },
     bottleDoubleGen: {
-        width: 160,
+        width: 140,
         height: botHeight,
         borderWidth: 10,
         borderColor: '#e9e9e9',
-        borderBottomLeftRadius: 50,
-        borderBottomRightRadius: 50,
+        borderBottomLeftRadius: 30,
+        borderBottomRightRadius: 30,
+        borderTopLeftRadius: 0.5,
+        borderTopRightRadius: 0.5,
+
         overflow: 'hidden',
         position: 'absolute',
         bottom: 0,

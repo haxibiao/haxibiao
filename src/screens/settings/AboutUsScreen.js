@@ -45,7 +45,7 @@ class AboutUs extends Component {
                                     <Text style={styles.sectionTitle}>联系我们</Text>
                                     {/*<Text style={{ fontSize: 13, color: Theme.subTextColor, marginTop: 15 }}>QQ交流群: 4337413</Text>*/}
                                     <Text style={styles.officialText}>官网地址： {Config.Name}.com</Text>
-                                    <Text style={styles.officialText}>商务合作： db@{Config.Name}.com</Text>
+                                    <Text style={styles.officialText}>商务合作： bd@haxifang.com</Text>
                                     <Text style={styles.officialText}>新浪微博： 点墨阁</Text>
                                     <Text style={styles.officialText}>官方QQ群： 735220029</Text>
                                 </View>

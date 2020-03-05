@@ -111,7 +111,7 @@ const Chat = observer((props: Props) => {
             titleStyle={{ fontSize: Font(16) }}
             rightView={
                 <TouchFeedback onPress={() => middlewareNavigate('ChatSetting', { user: chat.withUser })} style={{}}>
-                    <Text style={{ fontSize: Font(16), color: Theme.navBarTitleColor }}>设置</Text>
+                    <Text style={{ fontSize: Font(16), color: Theme.navBarTitleColor || "#666" }}>设置</Text>
                 </TouchFeedback>
             }>
             <View style={{ paddingTop: 10, flex: 1 }}>

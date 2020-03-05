@@ -50,9 +50,11 @@ export default (props: any) => {
 	if (loading || !observableArticles  ) return <SpinnerLoading />;
 	// console.log("loading",loading);
 	// console.log("!observableArticles",observableArticles);	
+	console.log("要是有事也是一样啥意思呀", Theme.groundColour);
+	
 
 	return (
-		<PageContainer title='浏览记录'>
+		<PageContainer title="浏览记录" while>
 			<View style={styles.container}>
 				<FlatList
 					contentContainerStyle={styles.contentContainer}
@@ -94,7 +96,7 @@ export default (props: any) => {
 
 const styles = StyleSheet.create({
 	container: {
-		backgroundColor: Theme.skinColor,
+		backgroundColor: Theme.groundColour,
 		flex: 1,
 	},
 	contentContainer: {

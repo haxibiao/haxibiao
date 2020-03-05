@@ -8,3 +8,4 @@ export { default as ProgressOverlay } from './ProgressOverlay';
 export { default as PullChooser } from './PullChooser';
 export { default as WheelPicker } from './WheelPicker';
 export { default as OperationModal } from './OperationModal';
+export { default as UserAgreementOverlay } from './UserAgreementOverlay';

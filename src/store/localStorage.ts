@@ -11,6 +11,7 @@ interface ItemKeys {
     firstInstall: string;
     viewedVersion: any;
     createPostGuidance: string;
+    createUserAgreement: string;
     ShowSplash: string;
 }
 
@@ -21,6 +22,7 @@ const Keys: ItemKeys = {
     firstInstall: 'firstInstall',
     viewedVersion: 'viewedVersion',
     createPostGuidance: 'createPostGuidance',
+    createUserAgreement: 'createUserAgreement',
     ShowSplash: 'ShowSplash'
 };
 

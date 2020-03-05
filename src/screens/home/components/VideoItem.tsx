@@ -35,6 +35,23 @@ export default observer((props: any) => {
     }, []);
 
     if (media.isAdPosition && adShow && appStore.enableAd) {
+        if (index !== VideoStore.viewableItemIndex) {
+            return (
+                <View style={{ height: appStore.viewportHeight }}>
+                    {media.cover && (
+                        <View style={styles.cover}>
+                            <Image
+                                style={styles.curtain}
+                                source={{ uri: media.cover }}
+                                resizeMode="cover"
+                                blurRadius={4}
+                            />
+                            <View style={styles.mask} />
+                        </View>
+                    )}
+                </View>
+            );
+        }
         return (
             <View style={{ height: appStore.viewportHeight }}>
                 <ad.DrawFeedAd
@@ -53,7 +70,10 @@ export default observer((props: any) => {
                                 })
                                 .then((data: any) => {
                                     const { amount, message } = Helper.syncGetter('data.clickAD', data);
-                                    Toast.show({ content: message || `+${amount || 0} 用户行为贡献`, duration: 1500 });
+                                    Toast.show({
+                                        content: message || `+${amount || 0} 用户行为${Config.limitAlias}`,
+                                        duration: 1500,
+                                    });
                                 });
                         }
                     }}
@@ -77,7 +97,7 @@ export default observer((props: any) => {
                                 fontSize: PxDp(12),
                                 marginHorizontal: PxDp(10),
                             }}>
-                            戳一戳，获取有惊喜
+                            戳一戳
                         </Text>
                     </View>
                 )}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 
 import { PageContainer, SpinnerLoading } from '@src/components';
@@ -6,45 +6,66 @@ import { PageContainer, SpinnerLoading } from '@src/components';
 import { ad } from '../../native';
 
 import { appStore } from '@src/store';
+import { useCountDown } from '@src/common';
 import { Query, useQuery, GQL } from '@src/apollo';
-
-const testData = {
-    id: 10,
-    status: 1,
-    name: 'SleepMorning',
-    task_status: -1,
-    reward_info: {
-        gold: 43,
-        contribute: 2,
-    },
-    start_at: '2019-12-03 06:00:00',
-};
+import { useNavigation } from '@src/router';
+import RewardPopup from './components/RewardPopup';
 
 export default (props: any) => {
+    const awaitingTime = useRef(appStore.adWaitingTime);
+    const countDown = useCountDown({
+        expirationTime: awaitingTime.current,
+    });
+    useEffect(() => {
+        if (countDown.isEnd) {
+            awaitingTime.current = appStore.adWaitingTime;
+        }
+    }, [appStore.timeForLastAdvert]);
+
     const { data, refetch } = useQuery(GQL.sleepTaskQuery, { fetchPolicy: 'network-only' });
     const sleepData = Helper.syncGetter('SleepTask', data);
     const id = Helper.syncGetter('id', sleepData);
+    const backgroundImg = Helper.syncGetter('background_img', sleepData);
+    const butTitle = Helper.syncGetter('name', sleepData);
+    const navigation = useNavigation();
 
     // console.log('睡觉打卡', id);
 
     const goTask = () => {
-        ad.RewardVideo.loadAd().then(() => {
-            ad.RewardVideo.startAd().then(result => {
-                if (JSON.parse(result).ad_click) {
-                    // 点击了激励视频
-                    getReward();
-                    Toast.show({ content: '打卡成功！', duration: 1500 });
-                } else if (JSON.parse(result).video_play) {
-                    // 广告播放完成
-                    getReward();
-                    Toast.show({ content: '打卡成功！', duration: 1500 });
-                } else {
-                    Toast.show({ content: '视频未看完，打卡失败！', duration: 1500 });
-                }
+        const thisTime = parseInt(new Date().getTime() / 1000 + '');
+        const oldTime = appStore.timeShowAD;
+        const newTime = oldTime + 120;
+
+        if (newTime > thisTime) {
+            // 间隔时间大于当前时间，不播放广告
+            Toast.show({ content: `${newTime - thisTime} 秒后才能做任务哦！`, duration: 1500 });
+            return new Promise((resolve, reject) => {
+                reject(false);
             });
-        });
+        } else {
+            goAD();
+        }
     };
 
+    const goAD = () => {
+        ad.RewardVideo.loadAd({ intervalTime: 0 }).then(() => {
+            ad.RewardVideo.startAd().then(
+                (result: any) => {
+                    // if (JSON.parse(result).ad_click) {
+                    // 点击了激励视频
+                    // } else if (JSON.parse(result).video_play) {
+                    // 广告播放完成
+                    // } else {
+                    //     Toast.show({ content: '视频未看完，打卡失败！', duration: 1500 });
+                    // }
+                    getReward();
+                },
+                (error: any) => {
+                    ad.RewardVideo.checkResult(error);
+                },
+            );
+        });
+    };
 
     const getReward = () => {
         appStore.client
@@ -53,19 +74,34 @@ export default (props: any) => {
                 variables: {
                     id,
                 },
+                refetchQueries: () => [
+                    {
+                        query: GQL.sleepTaskQuery,
+                    },
+                ],
             })
             .then((data: any) => {
                 // 获取奖励
-                // console.log(TAG,"(请求获取奖励接口)",data);
-                Toast.show({ content: data.data.DrinkWaterReward.content, duration: 1500 });
+                console.log('(请求获取睡觉奖励接口)', data);
+                const message = Helper.syncGetter('data.SleepReward.content', data) || null;
+                const gold = Helper.syncGetter('data.SleepReward.task.reward_info.gold', data) || null;
+                const contribute = Helper.syncGetter('data.SleepReward.task.reward_info.contribute', data) || null;
+                const reward = { message, gold, contribute };
+                RewardPopup({ reward, navigation });
+                // Toast.show({ content: data.data.SleepReward.content, duration: 1500 });
+            })
+            .catch((err: any) => {
+                Toast.show({ content: err.message.replace('GraphQL error: ', '') || '服务器问题，未知问题！' });
+                // console.log('睡觉err：', err);
             });
     };
 
     let is_night = false;
-    let is_satrt = false;
+    let is_start = false;
     if (sleepData) {
         is_night = !sleepData.sleep_status;
-        is_satrt = sleepData.task_status === 1 ? false : true;
+        is_start = sleepData.task_status === 1 ? false : true;
+        console.log('睡觉', sleepData);
     }
 
     return (
@@ -74,8 +110,7 @@ export default (props: any) => {
                 <PageContainer hiddenNavBar={true}>
                     <Image
                         style={{
-                            width: '100%',
-                            height: '100%',
+                            backgroundColor: '#0001',
                             position: 'absolute',
                             top: 0,
                             right: 0,
@@ -83,42 +118,49 @@ export default (props: any) => {
                             left: 0,
                         }}
                         source={{
-                            uri: is_night
-                                ? 'http://cos.haxibiao.com/storage/image/1572509711n37goPKcu1F8qN32.png'
-                                : 'http://cos.haxibiao.com/storage/image/1574747648Vxb8VoAUCR64aZ96.png',
+                            uri:
+                                backgroundImg || 'http://cos.haxibiao.com/storage/image/1572509711n37goPKcu1F8qN32.png',
                         }}
                     />
                     <View
                         style={{
                             position: 'absolute',
                             bottom: 100,
-                            width: '100%',
+                            width: Device.WIDTH,
                             justifyContent: 'center',
                             alignItems: 'center',
                         }}>
                         <TouchableOpacity
-                            disabled={is_satrt}
+                            disabled={!countDown.isEnd || is_start}
                             style={{
                                 paddingHorizontal: 35,
                                 paddingVertical: 15,
-                                backgroundColor: is_satrt ? '#eb687766' : '#eb6877',
+                                backgroundColor: !countDown.isEnd ? '#969696' : is_start ? '#eb687766' : '#eb6877',
                                 borderRadius: 10,
                                 justifyContent: 'center',
                                 alignItems: 'center',
                             }}
                             onPress={goTask}>
-                            <Text style={{ color: '#fdc625', textAlign: 'center', fontSize: 20, fontWeight: 'bold' }}>
-                                {is_night ? '睡觉' : '起床'}
+                            <Text
+                                style={{
+                                    color: !countDown.isEnd ? '#fff' : '#fdc625',
+                                    textAlign: 'center',
+                                    fontSize: 20,
+                                    fontWeight: 'bold',
+                                }}>
+                                {butTitle}
+                                {countDown.isEnd ? '' : ` ${countDown.minutes}:${countDown.seconds}`}
                             </Text>
                         </TouchableOpacity>
                         <Text style={{ color: '#FFF', marginTop: 20, fontSize: 16 }}>
-                            {sleepData.details || is_night ? '每个小时可以打睡觉卡一次' : '睡觉至少15分钟才可以打起床卡'}
+                            {sleepData.details ||
+                                (is_night ? '每个小时可以打睡觉卡一次' : '睡觉至少15分钟才可以打起床卡')}
                         </Text>
                     </View>
                 </PageContainer>
             ) : (
-                    <SpinnerLoading />
-                )}
+                <SpinnerLoading />
+            )}
         </>
     );
 };

@@ -7,9 +7,9 @@ export const loadSplashAd = () => {
     let codeid = '';
 
     //后端加载的配置
-    let { codeidSplash, SplashProvider } = APP;
-    if (codeidSplash != '') {
-        codeid = codeidSplash;
+    let { codeid_splash, splash_provider } = APP;
+    if (codeid_splash != '') {
+        codeid = codeid_splash;
     }
 
     if (codeid === '') {
@@ -17,8 +17,7 @@ export const loadSplashAd = () => {
         codeid = Platform.OS === 'ios' ? CodeIdSplashIOS : CodeIdSplash;
     }
 
-    // let adArgs = { provider: '腾讯', codeid: '2020496591997995' };
-    let adArgs = { provider: SplashProvider, codeid };
+    let adArgs = { provider: splash_provider, codeid };
     return NativeModules.Splash.loadSplashAd(adArgs);
 };
 
