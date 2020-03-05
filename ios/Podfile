@@ -1,8 +1,8 @@
 platform :ios, '9.0'
 require_relative '../node_modules/@react-native-community/cli-platform-ios/native_modules'
 
-target 'dianmoge' do
-  # Pods for dianmoge
+target 'haxibiao' do
+  # Pods for haxibiao
   pod 'React', :path => '../node_modules/react-native/'
   pod 'React-Core', :path => '../node_modules/react-native/React'
   pod 'React-DevSupport', :path => '../node_modules/react-native/React'
@@ -36,7 +36,7 @@ target 'dianmoge' do
 
   pod 'JPushRN', :path => '../node_modules/jpush-react-native'
 
-  target 'dianmogeTests' do
+  target 'haxibiaoTests' do
     inherit! :search_paths
     # Pods for testing
   end
@@ -44,10 +44,10 @@ target 'dianmoge' do
   use_native_modules!
 end
 
-target 'dianmoge-tvOS' do
-  # Pods for dianmoge-tvOS
+target 'haxibiao-tvOS' do
+  # Pods for haxibiao-tvOS
 
-  target 'dianmoge-tvOSTests' do
+  target 'haxibiao-tvOSTests' do
     inherit! :search_paths
     # Pods for testing
   end
