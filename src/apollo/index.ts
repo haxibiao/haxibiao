@@ -43,7 +43,7 @@ let netInfo: any;
 export function useClientBuilder(userToken: string) {
     const createClient = useCallback(token => {
         return new ApolloClient({
-            uri: Config.ServerRoot + '/gql',
+            uri: Config.ServerRoot + '/graphql',
             request: async operation => {
                 if (!netInfo) {
                     netInfo = await NetInfo.fetch();

@@ -135,7 +135,7 @@ export default observer(props => {
                                     placeholderTextColor={'rgba(255,255,255,0.4)'}
                                     autoCorrect={false}
                                     keyboardType="numeric"
-                                    placeholder={'请输入手机号'}
+                                    placeholder={'请输入账号'}
                                     style={styles.inputStyle}
                                     value={formData.account}
                                     onChangeText={changeAccount}
@@ -252,7 +252,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         width: '100%',
         height: '100%',
-        backgroundColor: '#6661'
+        backgroundColor: '#6661',
     },
     header: {
         position: 'absolute',

@@ -11,19 +11,25 @@
     "AppVersionNumber": 2.6,
     "SocketServer": "ws://socket.haxibiao.com:6001",
 
+    "appStoreUrl": "itms-apps://itunes.apple.com/app/id1434767781",
     "goldAlias": "金币",
+    "limitAlias": "贡献值",
     "qqGroup": "692035916",
+    "WechatAppId": "wxf79f886d16c1e588",
 
-    "CodeIdBanner": "916582063",
-    "CodeIdBannerIOS": "916582063",
-    "CodeIdFeed": "916582887",
-    "CodeIdFeedIOS": "916582887",
-    "CodeIdSplash": "816582039",
-    "CodeIdSplashIOS": "816582039",
-    "CodeIdDrawFeed": "916582757",
-    "CodeIdDrawFeedIOS": "916582757",
-    "CodeIdFullVideo": "916582815",
-    "CodeIdFullVideoIOS": "916582815",
-    "CodeIdRewardVideo": "916582412",
-    "CodeIdRewardVideoIOS": "916582412"
+    "TTAppIDIOS": "5031407",
+    "CodeIdBannerIOS": "917576007",
+    "CodeIdFeedIOS": "931407994",
+    "CodeIdSplashIOS": "831407678",
+    "CodeIdDrawFeedIOS": "931407500",
+    "CodeIdFullVideoIOS": "943671864",
+    "CodeIdRewardVideoIOS": "916582412",
+
+    "TTAppID": "5017576",
+    "CodeIdBanner": "917576007",
+    "CodeIdFeed": "917576575",
+    "CodeIdSplash": "817576238",
+    "CodeIdDrawFeed": "917576134",
+    "CodeIdFullVideo": "943671834",
+    "CodeIdRewardVideo": "917576640"
 }
