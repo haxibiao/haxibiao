@@ -1,7 +1,7 @@
 #import './mutation.graphql'
 
 # 首页推荐视频
-query RecommendVideosQuery($page: Int, $count: Int!) {
+query RecommendVideosQuery($page: Int, $count: Int) {
     recommendVideos(page: $page, count: $count) {
         paginatorInfo {
             currentPage
@@ -281,6 +281,6 @@ query articleQuery($id: Int!) {
     }
 }
 #复制视频链接
-query shareQuery($id: ID!){
-  sharePost(id:$id)
+query shareQuery($id: ID!) {
+    sharePost(id: $id)
 }

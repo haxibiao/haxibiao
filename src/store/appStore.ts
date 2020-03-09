@@ -37,7 +37,7 @@ class App {
     @observable rewardCount: number = 0; // 激励视频的次数
 
     @observable enableAd: boolean = false; // 广告开关
-    @observable enableWallet: boolean = false; // 钱包相关业务开关
+    @observable enableWallet: boolean = true; // 钱包相关业务开关
     @observable createPostGuidance: boolean = true; // 用户引导,现在默认关闭
     @observable createUserAgreement: boolean = true; // 用户协议观看记录,默认已看
 

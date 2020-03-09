@@ -207,7 +207,7 @@ export default observer((props: any) => {
                                                                         content:
                                                                             message ||
                                                                             `+${amount || 0} 用户行为${
-                                                                                Config.limitAlias
+                                                                            Config.limitAlias
                                                                             }`,
                                                                         duration: 1500,
                                                                     });
@@ -264,7 +264,7 @@ export default observer((props: any) => {
                     ListFooterComponent={() =>
                         hasMorePages ? <Placeholder quantity={1} /> : <Footer finished={true} />
                     }
-                    // ListHeaderComponent={_renderRecommend}
+                // ListHeaderComponent={_renderRecommend}
                 />
             </View>
         </PageContainer>

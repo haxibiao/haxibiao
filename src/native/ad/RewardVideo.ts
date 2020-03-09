@@ -25,6 +25,9 @@ if (codeidFull === '') {
 
 // 加载所有激励视频紧急备用
 export const loadAllAd = () => {
+    if (Platform.OS === 'ios') {
+        return null;
+    }
     return module.loadAllAd();
 };
 
