@@ -19,7 +19,8 @@ const device = {
     SystemVersion: DeviceInfo.getSystemVersion(),
     PixelRatio: PixelRatio.get(), // 获取屏幕分辨率
     PhoneNumber: DeviceInfo.getPhoneNumber(),
-    UUID: DeviceInfo.getUniqueID()
+    UUID: 'xxx',
+    // DeviceInfo.getUniqueID()
 };
 // 设备信息
 Global.Device = device;

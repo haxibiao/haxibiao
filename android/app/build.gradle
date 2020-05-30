@@ -175,7 +175,7 @@ android {
         applicationId appConfigJson.AppID
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode appConfigJson.Build
+        versionCode appConfigJson.VersionCode
         versionName appConfigJson.Version
         multiDexEnabled true
         manifestPlaceholders = [
@@ -316,14 +316,6 @@ android {
         }
     }
 
-    packagingOptions {
-        pickFirst '**/armeabi-v7a/libc++_shared.so'
-        pickFirst '**/x86/libc++_shared.so'
-        pickFirst '**/arm64-v8a/libc++_shared.so'
-        pickFirst '**/x86_64/libc++_shared.so'
-        pickFirst '**/x86/libjsc.so'
-        pickFirst '**/armeabi-v7a/libjsc.so'
-    }
 }
 
 
@@ -368,11 +360,11 @@ dependencies {
 
 
     if (enableHermes) {
-      def hermesPath = "../../node_modules/hermesvm/android/";
-      debugImplementation files(hermesPath + "hermes-debug.aar")
-      releaseImplementation files(hermesPath + "hermes-release.aar")
-    } else {
-      implementation jscFlavor
+	    def hermesPath = "../../node_modules/hermes-engine/android/";
+	    debugImplementation files(hermesPath + "hermes-debug.aar")
+	    releaseImplementation files(hermesPath + "hermes-release.aar")
+    }else {
+        implementation jscFlavor
     }
 }
 

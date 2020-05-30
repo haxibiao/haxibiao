@@ -4,12 +4,12 @@
  */
 import React, { Component } from 'react';
 import { Image, View, StyleSheet } from 'react-native';
-const ViewProps = require('ViewPropTypes');
+
 import Iconfont from '../Iconfont';
 
 type Props = {
     size?: number,
-    style?: typeof ViewProps,
+    style?: any,
     ...Image.propTypes,
 };
 

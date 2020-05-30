@@ -2,11 +2,11 @@
 
 import React, { Component } from 'react';
 import { StyleSheet, View, Image, PixelRatio } from 'react-native';
-const ViewProps = require('ViewPropTypes');
+
 
 type Props = {
     size?: number;
-    style?: typeof ViewProps;
+    style?: any;
     source: any;
 };
 

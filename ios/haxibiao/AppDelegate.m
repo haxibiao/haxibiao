@@ -18,8 +18,6 @@
 #include "AdBoss.h"
 #import "BUAdSDK/BUSplashAdView.h" //启动屏广告
 
-#import "../../node_modules/react-native-orientation/iOS/RCTOrientation/Orientation.h"
-
 @interface AppDelegate () <BUSplashAdDelegate>
 
 @end
@@ -45,7 +43,7 @@
   [RNSplashScreen show];
   
   // 穿山甲广告
-  [AdBoss init:@"5031407"];
+  [AdBoss init:@"5016582"];
   [AdBoss hookApp:self];
   [AdBoss hookWindow:self.window];
   
@@ -69,9 +67,5 @@
 - (void)splashAd:(BUSplashAdView *)splashAd didFailWithError:(NSError *)error {
   [splashAd removeFromSuperview];
 }
-
-- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(UIWindow *)window {
-   return [Orientation getOrientation];
- }
 
 @end
