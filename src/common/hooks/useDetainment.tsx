@@ -1,7 +1,7 @@
 import React, { useMemo, useEffect, useCallback, useRef } from 'react';
 import { StyleSheet, BackHandler, View, Text, TouchableOpacity } from 'react-native';
 import { Overlay } from 'teaset';
-import { ad } from '@src/native';
+import { ad } from '@native';
 import { userStore } from '@src/store';
 
 const OverlayWidth = Device.WIDTH * 0.6;

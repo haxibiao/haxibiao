@@ -23,7 +23,7 @@ import { middlewareNavigate, useNavigation, useNavigationParam } from '@src/rout
 import StoreContext, { observer, appStore, userStore } from '@src/store';
 import { GQL, useMutation, useQuery } from '@src/apollo';
 import { useDetainment, downloadApk } from '@src/common';
-import { ad, AppUtil } from '@src/native';
+import { ad, AppUtil } from '@native';
 import TaskItem from './components/TaskItem';
 
 const batTop = PxDp(Theme.statusBarHeight);
@@ -298,11 +298,11 @@ export default observer((props: any) => {
                         )}
                     </>
                 ) : (
-                    <StatusView.EmptyView
-                        title="精彩的东西往往需要去登陆！"
-                        imageSource={require('@app/assets/images/default_empty.png')}
-                    />
-                )}
+                        <StatusView.EmptyView
+                            title="精彩的东西往往需要去登陆！"
+                            imageSource={require('@app/assets/images/default_empty.png')}
+                        />
+                    )}
             </ScrollView>
             {sucModule && (
                 <HxfModal

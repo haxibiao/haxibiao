@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 
 import { PageContainer, SpinnerLoading, HxfModal, Row } from '@src/components';
 
-import { ad } from '@src/native';
+import { ad } from '@native';
 import { Overlay } from 'teaset';
 
 import { useCountDown } from '@src/common';

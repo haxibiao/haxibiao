@@ -14,7 +14,7 @@
 #import './task/index.graphql'
 
 query me {
-  me {
-    id
-  }
+    me {
+        id
+    }
 }

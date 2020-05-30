@@ -19,7 +19,7 @@ import { middlewareNavigate, useNavigation, useNavigationParam } from '@src/rout
 import StoreContext, { observer, appStore, userStore } from '@src/store';
 import { GQL, useMutation, useQuery } from '@src/apollo';
 import { useDetainment, downloadApk } from '@src/common';
-import { ad, AppUtil } from '@src/native';
+import { ad, AppUtil } from '@native';
 
 interface Props {
     taskData: any;
@@ -46,8 +46,8 @@ export default (props: Props) => {
     // 任务图标获取
     const taskIcon = icon
         ? {
-              uri: icon,
-          }
+            uri: icon,
+        }
         : require('@app/assets/images/task_gift.png');
 
     // 请求激励视频任务奖励接口，触发点击广告

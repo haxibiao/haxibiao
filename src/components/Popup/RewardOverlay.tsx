@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
-import { ad } from '@src/native';
+import { ad } from '@native';
 import Iconfont from '../Iconfont';
 
 export default props => {

@@ -2,7 +2,7 @@ import React, { useState, useCallback, useMemo } from 'react';
 import { StyleSheet, View, Image, TouchableOpacity, Text } from 'react-native';
 import { SafeText } from '@src/components';
 import { observer, appStore } from '@src/store';
-import { ad } from '@src/native';
+import { ad } from '@native';
 import { useNavigation } from '@src/router';
 import Player from './Player';
 import SideBar from './SideBar';

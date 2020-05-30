@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Image, Clipboard, ScrollView, Linking } from 'r
 import { GQL, useMutation, useClientBuilder } from '@src/apollo';
 import { download, exceptionCapture, syncGetter } from '@src/common';
 import { userStore } from '@src/store';
-import { Share } from '@src/native';
+import { Share } from '@native';
 import * as WeChat from 'react-native-wechat';
 import useReport from './useReport';
 import TouchFeedback from '../Basic/TouchFeedback';
@@ -152,7 +152,7 @@ const MoreOperation = props => {
                     },
                 })
                 .then((result: any) => {
-                    Toast.show({ content: '收藏成功！'});
+                    Toast.show({ content: '收藏成功！' });
                 })
                 .catch((error: any) => {
                     target.favorited = !target.favorited;
@@ -163,7 +163,7 @@ const MoreOperation = props => {
             navigation.navigate('Login');
         }
     }, [target]);
-    
+
     const onFavorite = useCallback(() => {
         onPressIn();
         if (TOKEN) {

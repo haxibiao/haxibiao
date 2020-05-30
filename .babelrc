@@ -1,26 +1,35 @@
 {
-  "presets": ["module:metro-react-native-babel-preset"],
-  "plugins": [
-    "import-graphql",
-    [
-      "@babel/plugin-proposal-decorators",
-      {
-        "legacy": true
-      }
-    ],
-    [
-      "babel-plugin-root-import",
-      {
-        "paths": [{
-            "rootPathPrefix": "@app",
-            "rootPathSuffix": "./"
-          },
-          {
-            "rootPathPrefix": "@src",
-            "rootPathSuffix": "./src"
-          }
+    "presets": ["module:metro-react-native-babel-preset"],
+    "plugins": [
+        "import-graphql",
+        [
+            "@babel/plugin-proposal-decorators",
+            {
+                "legacy": true
+            }
+        ],
+        [
+            "babel-plugin-root-import",
+            {
+                "paths": [
+                    {
+                        "rootPathPrefix": "@app",
+                        "rootPathSuffix": "./"
+                    },
+                    {
+                        "rootPathPrefix": "@graphql",
+                        "rootPathSuffix": "./graphql"
+                    },
+                    {
+                        "rootPathPrefix": "@native",
+                        "rootPathSuffix": "./native"
+                    },
+                    {
+                        "rootPathPrefix": "@src",
+                        "rootPathSuffix": "./src"
+                    }
+                ]
+            }
         ]
-      }
     ]
-  ]
 }

@@ -1,4 +1,4 @@
-#import './mutation.graphql'
+#import './mutation.gql'
 
 # 评论列表
 query commentsQuery(

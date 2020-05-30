@@ -5,7 +5,7 @@ import { Toast } from './components';
 import codePush from 'react-native-code-push';
 import SplashScreen from 'react-native-splash-screen';
 
-import { ad } from './native';
+import { ad } from '@native';
 
 import { Provider } from 'mobx-react';
 import StoreContext, * as store from './store';

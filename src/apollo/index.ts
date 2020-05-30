@@ -5,7 +5,7 @@ import Config from '@src/common/config';
 import DeviceInfo from 'react-native-device-info';
 import NetInfo from '@react-native-community/netinfo';
 
-export { GQL } from './gqls';
+export { GQL } from '@graphql';
 export { Query, Mutation, compose, graphql, withApollo } from 'react-apollo';
 export * from '@apollo/react-hooks';
 
@@ -43,7 +43,7 @@ let netInfo: any;
 export function useClientBuilder(userToken: string) {
     const createClient = useCallback(token => {
         return new ApolloClient({
-            uri: Config.ServerRoot + '/graphql',
+            uri: Config.ServerRoot + '/gql',
             request: async operation => {
                 if (!netInfo) {
                     netInfo = await NetInfo.fetch();

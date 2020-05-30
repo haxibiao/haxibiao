@@ -1,4 +1,4 @@
-#import './mutation.graphql'
+#import './mutation.gql'
 
 # 用户主页
 query userQuery($id: Int!) {

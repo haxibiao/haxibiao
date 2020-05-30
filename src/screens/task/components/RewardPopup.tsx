@@ -6,20 +6,20 @@ import { Row } from '@src/components';
 import { appStore, userStore } from '@src/store';
 
 import { GQL } from '@src/apollo';
-import { ad } from '@src/native';
+import { ad } from '@native';
 
 type rewardObj = {
     message: string | null;
     gold: number | null;
     contribute: number | null;
-}
+};
 
 type Props = {
-    reward : rewardObj;
-    navigation : any;
-}
+    reward: rewardObj;
+    navigation: any;
+};
 
-export default (props: Props ) => {
+export default (props: Props) => {
 
     const { reward, navigation } = props;
 

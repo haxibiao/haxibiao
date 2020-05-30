@@ -3,7 +3,7 @@ import { View, Text, PermissionsAndroid, Platform, StyleSheet } from 'react-nati
 import { Row, TouchFeedback, Iconfont } from '@src/components';
 import { downloadManager } from '@src/common';
 import RNFetchBlob from 'rn-fetch-blob';
-import { AppUtil } from '@src/native';
+import { AppUtil } from '@native';
 
 const DownLoadApk = props => {
     const [downloading, setDownloading] = useState(false);

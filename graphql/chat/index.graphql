@@ -1,4 +1,4 @@
-#import './mutation.graphql'
+#import './mutation.gql'
 
 query chatsQuery($user_id: Int!, $page: Int) {
     chats(user_id: $user_id, page: $page) {

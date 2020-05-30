@@ -18,7 +18,7 @@ import StoreContext, { observer, appStore } from '@src/store';
 import { middlewareNavigate, useNavigation } from '@src/router';
 import { exceptionCapture, useDetainment } from '@src/common';
 import { observable } from 'mobx';
-import ad from '@src/native/ad';
+import ad from '@native/ad';
 import Comment from '@app/assets/images/pinglun.svg';
 
 const sh = Device.HEIGHT;

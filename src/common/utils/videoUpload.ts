@@ -3,7 +3,7 @@
  * created by wyk made in 2019-01-14 11:44:03
  */
 
-import { VideoUploader, VodUploader } from '@src/native';
+import { VideoUploader, VodUploader } from '@native';
 
 export const { cancelUpload } = VideoUploader;
 
@@ -36,12 +36,12 @@ export function videoUpload(props: UploadOption) {
         .then(res => {
             // console.log('res', res);
             onStarted && onStarted("111111");
-            VodUploader.startUpload(res, videoPath).then((publishCode:any) => {
-                console.log("publish code 的值为 : ",publishCode)
+            VodUploader.startUpload(res, videoPath).then((publishCode: any) => {
+                console.log("publish code 的值为 : ", publishCode);
                 if (publishCode != 0) {
                     // vod上传失败
                     Toast.show({ content: '视频上传失败，请稍后重试' });
-                } 
+                }
             });
         })
         .catch(error => {

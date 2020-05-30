@@ -4,7 +4,7 @@ import { StyleSheet, View, Text, Image, TouchableOpacity, FlatList } from 'react
 import WaterCup from './components/WaterCup';
 import { PageContainer, Row, SpinnerLoading } from '@src/components';
 
-import { ad } from '../../native';
+import { ad } from '@native';
 
 import { appStore, userStore } from '@src/store';
 import { Query, useQuery, GQL } from '@src/apollo';
@@ -239,8 +239,8 @@ export default (props: any) => {
                     </Text>
                 </PageContainer>
             ) : (
-                <SpinnerLoading />
-            )}
+                    <SpinnerLoading />
+                )}
         </>
     );
 };

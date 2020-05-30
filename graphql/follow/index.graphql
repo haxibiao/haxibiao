@@ -1,4 +1,4 @@
-#import './mutation.graphql'
+#import './mutation.gql'
 
 # 用户关注的用户
 query followedUsersQuery($user_id: Int!, $page: Int) {

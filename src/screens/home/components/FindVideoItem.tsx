@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text, Image } from 'react-native';
 import { observer } from '@src/store';
-import { ad } from '@src/native';
+import { ad } from '@native';
 import Player from './Player';
 import SideBar from './SideBar';
 import VideoStore from '../VideoStore';

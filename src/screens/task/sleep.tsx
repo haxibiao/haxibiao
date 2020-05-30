@@ -3,7 +3,7 @@ import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
 
 import { PageContainer, SpinnerLoading } from '@src/components';
 
-import { ad } from '../../native';
+import { ad } from '@native';
 
 import { appStore } from '@src/store';
 import { useCountDown } from '@src/common';
@@ -159,8 +159,8 @@ export default (props: any) => {
                     </View>
                 </PageContainer>
             ) : (
-                <SpinnerLoading />
-            )}
+                    <SpinnerLoading />
+                )}
         </>
     );
 };
