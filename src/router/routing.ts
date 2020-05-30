@@ -1,6 +1,6 @@
 import SplashGuide from './SplashGuide';
 
-import MainTabNavigator from './MainTabNavigator.js';
+import MainTabNavigator from '@layout/MainTabNavigator';
 import AskQuestion from '../screens/creation/AskQuestionScreen';
 import SelectCategory from '../screens/creation/SelectCategoryScreen';
 

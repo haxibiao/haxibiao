@@ -4,6 +4,7 @@ import { createBottomTabNavigator } from 'react-navigation';
 
 import HomeScreen from '@src/screens/home';
 import FindScreen from '@src/screens/find';
+import TaskScreen from '@src/screens/task';
 import NotificationScreen from '@src/screens/notification';
 import MyHomeScreen from '@src/screens/my';
 
@@ -17,6 +18,10 @@ const routerConfig = {
     发现: {
         screen: FindScreen,
         navigationOptions: () => TabOptions('发现'),
+    },
+    资产: {
+        screen: TaskScreen,
+        navigationOptions: () => TabOptions('资产'),
     },
     通知: {
         screen: NotificationScreen,
@@ -79,7 +84,7 @@ export default createBottomTabNavigator(routerConfig, {
 
 const TabOptions = routeName => {
     const title = routeName;
-    const tabBarIcon = ({ focused }: { focused: boolean }) => {
+    const tabBarIcon = ({ focused }: { focused: boolean; }) => {
         let source;
         switch (routeName) {
             case '首页':
@@ -96,6 +101,11 @@ const TabOptions = routeName => {
                 source = focused
                     ? require('@app/assets/images/init-notification-focus.png')
                     : require('@app/assets/images/init-notification.png');
+                break;
+            case '资产':
+                source = focused
+                    ? require('@app/assets/images/init-wallet-focus.png')
+                    : require('@app/assets/images/init-wallet.png');
                 break;
             case '个人':
                 source = focused

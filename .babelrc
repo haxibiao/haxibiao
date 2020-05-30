@@ -25,6 +25,10 @@
                         "rootPathSuffix": "./native"
                     },
                     {
+                        "rootPathPrefix": "@layout",
+                        "rootPathSuffix": "./layout"
+                    },
+                    {
                         "rootPathPrefix": "@src",
                         "rootPathSuffix": "./src"
                     }

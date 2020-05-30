@@ -17,6 +17,7 @@
             "@app": ["./"],
             "@graphql": ["./graphql"],
             "@native": ["./native"],
+            "@layout": ["./layout"],
             "@src": ["./src"]
         }
     },
