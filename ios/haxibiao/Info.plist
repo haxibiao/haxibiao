@@ -44,8 +44,12 @@
 			</dict>
 		</dict>
 	</dict>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>哈希表需要访问您的媒体库来发布动态</string>
 	<key>NSCameraUsageDescription</key>
 	<string>哈希表需要访问您的相机</string>
+	<key>NSContactsUsageDescription</key>
+	<string>哈希表需要访问您的通讯录来推荐好友</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>哈希表需要访问您的位置来提供更好的内容推荐</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
