@@ -56,10 +56,12 @@ const SelectCategoryScreen = props => {
         });
         const latestCategoriesQuery = client.query({
             query: GQL.categoriesQuery,
-            variables: { filter: 'other', count: 20 },
+            variables: { filter: 'other', count: 10},
         });
         Promise.all([hotCategoriesQuery, latestCategoriesQuery])
             .then(function (responses) {
+                console.log('话题页面请求数据',responses);
+
                 const hotCategoriesData = Helper.syncGetter('data.categories.data', responses[0]);
                 const latestCategoriesData = Helper.syncGetter('data.categories.data', responses[1]);
                 if (hotCategoriesData) {
@@ -74,6 +76,8 @@ const SelectCategoryScreen = props => {
                 });
             })
             .catch(function (error) {
+                console.log('话题页面报错',error);
+                
                 setPromiseState({
                     loading: false,
                     error,
