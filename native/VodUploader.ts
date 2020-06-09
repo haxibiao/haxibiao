@@ -2,7 +2,7 @@ import { NativeModules, DeviceEventEmitter, NativeEventEmitter, Platform } from 
 
 export type UploadEvent = 'resultVideo' | 'videoProgress';
 
-let module = NativeModules.VodVideoUploader;
+let module = Platform.OS === 'android' ? NativeModules.VodVideoUploader : NativeModules.VodUploader;
 let eventPrefix = 'VodUploader-';
 let deviceEmitter = Platform.OS === 'android' ? DeviceEventEmitter : module ? new NativeEventEmitter(module) : null;
 
