@@ -158,7 +158,7 @@ export default observer(props => {
                     </TouchableWithoutFeedback>
                 </View>
 
-                {appStore.enableWallet && (
+                {/* {appStore.enableWallet && (
                     <TouchableWithoutFeedback onPress={() => authNavigator('Wallet', { user: userProfile })}>
                         <View style={styles.wallet}>
                             <View style={styles.walletItem}>
@@ -192,7 +192,7 @@ export default observer(props => {
                             </View>
                         </View>
                     </TouchableWithoutFeedback>
-                )}
+                )} */}
 
                 {isLogin && taskAD && appStore.enableWallet && (
                     <View style={{ marginBottom: PxDp(10) }}>

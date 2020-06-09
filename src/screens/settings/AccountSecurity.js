@@ -158,7 +158,7 @@ class AccountSecurity extends Component {
                         }
                     />
 
-                    {appStore.enableWallet && (
+                    {/* {appStore.enableWallet && (
                         <ListItem
                             style={styles.listItem}
                             onPress={this.alipay}
@@ -208,7 +208,7 @@ class AccountSecurity extends Component {
                                 <Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />
                             </View>
                         }
-                    />
+                    /> */}
 
                     <ListItem
                         style={styles.listItem}
