@@ -4,7 +4,7 @@ import { GQL, useMutation, useClientBuilder } from '@src/apollo';
 import { download, exceptionCapture, syncGetter } from '@src/common';
 import { userStore } from '@src/store';
 import { Share } from '@native';
-import * as WeChat from 'react-native-wechat';
+import * as WeChat from 'react-native-wechat-lib';
 import useReport from './useReport';
 import TouchFeedback from '../Basic/TouchFeedback';
 
@@ -253,8 +253,8 @@ const MoreOperation = props => {
         onPressIn();
         const link = await fetchShareLink();
         try {
-            await WeChat.shareToSession({
-                type: 'video',
+            await WeChat.shareVideo({
+                scene:0,
                 title: target.body || '我发现一个很好看的小视频，分享给你',
                 videoUrl: Config.ServerRoot + '/s/p/' + target.id + '?user_id=' + userStore.me.id,
             });
@@ -267,9 +267,9 @@ const MoreOperation = props => {
         onPressIn();
         const link = await fetchShareLink();
         try {
-            await WeChat.shareToTimeline({
-                type: 'text',
-                description: link,
+            await WeChat.shareWebpage({
+                scene: 1,
+                webpageUrl: link ?? '',
             });
         } catch (e) {
             Toast.show({ content: '未安装微信或当前微信版本较低' });
@@ -362,7 +362,7 @@ const MoreOperation = props => {
 
     return (
         <View style={styles.optionsContainer}>
-            {showShare && (
+            {false && (
                 <>
                     <View style={[styles.body, { marginTop: PxDp(10) }]}>
                         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>

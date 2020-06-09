@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { appStore, userStore } from '@src/store';
 import { GQL, useMutation } from '@src/apollo';
-import * as WeChat from 'react-native-wechat';
+import * as WeChat from 'react-native-wechat-lib';
 
 interface Props {
     onSuccess?: Function;

@@ -12,7 +12,7 @@ import StoreContext, * as store from './store';
 import ApolloApp from './ApolloApp';
 
 import JPushModule from 'jpush-react-native';
-import * as WeChat from 'react-native-wechat';
+import * as WeChat from 'react-native-wechat-lib';
 
 import { checkUpdate } from '@src/common';
 
@@ -36,7 +36,7 @@ function App() {
 
         checkUpdate('autoCheck');
 
-        WeChat.registerApp(WechatAppId);
+        WeChat.registerApp(WechatAppId, '');
     }, []);
 
     const fetchConfig = () => {
