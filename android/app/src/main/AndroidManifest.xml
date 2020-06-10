@@ -65,8 +65,8 @@
       <activity android:name="com.haxibiao.ad.ttadsdk.RewardActivity"></activity>
       <activity android:name="com.haxibiao.ad.ttadsdk.FullScreenActivity"></activity>
       <activity android:name="com.haxibiao.ad.ttadsdk.SplashActivity"  android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
-        <meta-data android:name="splash_title" android:value="有剑气" />
-        <meta-data android:name="splash_title_color" android:value="#9398B7" />
+        <meta-data android:name="splash_title" android:value="哈希表" />
+        <meta-data android:name="splash_title_color" android:value="#1777FF" />
         <meta-data android:name="splash_layout" android:resource="@layout/diy_splash"/>
       </activity>
 

@@ -35,6 +35,7 @@ export const BottomTabBar = observer(props => {
                         style={{
                             width: PxDp(40),
                             height: PxDp(40),
+                            marginBottom: PxDp(25),
                         }}
                     />
                     {appStore.enableWallet && !appStore.createPostGuidance && (
