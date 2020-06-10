@@ -76,13 +76,17 @@ export default observer(props => {
                 <View style={{ marginBottom: appStore.enableWallet ? -PxDp(20) : PxDp(20) }}>
                     <TouchableWithoutFeedback onPress={() => authNavigator('User', { user })}>
                         <View style={styles.personTopInfo}>
-                            <View style={styles.personTopBg}>
+                            {/* <View style={styles.personTopBg}>
                                 <Image
                                     style={styles.personTopBgImage}
-                                    source={require('@app/assets/images/person_top_bg.jpg')}
+                                    source={require('@app/assets/images/person_top_bg.png')}
                                 />
-                            </View>
+                            </View> */}
                             <View style={styles.userInfo}>
+                                <Avatar
+                                    source={userProfile.avatar || require('@app/assets/images/default_avatar.png')}
+                                    style={styles.userAvatar}
+                                />
                                 <View>
                                     <Text style={styles.userName} numberOfLines={1}>
                                         {isLogin ? userProfile.name : '登录/注册'}
@@ -92,11 +96,13 @@ export default observer(props => {
                                             ? user.introduction || '这个人很懒，啥都没留下'
                                             : '欢迎来到' + Config.AppName}
                                     </Text>
+
                                 </View>
-                                <Avatar
-                                    source={userProfile.avatar || require('@app/assets/images/default_avatar.png')}
-                                    style={styles.userAvatar}
-                                />
+                                {
+                                    isLogin &&
+                                    <Iconfont name="right" size={PxDp(15)} color={'#000'} />
+                                }
+
                             </View>
                             <View style={styles.metaWrap}>
                                 <TouchableOpacity
@@ -234,24 +240,11 @@ export default observer(props => {
                                         source={require('@app/assets/images/ic_mine_chat.png')}
                                     />
                                 </View>
-                                <Text style={styles.itemTypeText}>我的消息</Text>
+                                <Text style={styles.itemTypeText}>消息通知</Text>
                             </Row>
-                            <Iconfont name="right" size={PxDp(15)} color={Theme.secondaryTextColor} />
+                            <Iconfont name="right" size={PxDp(15)} color={'#afafaf'} />
                         </TouchableOpacity>
                     )}
-
-                    <TouchableOpacity style={styles.columnItem} onPress={() => authNavigator('喜欢', { user })}>
-                        <Row>
-                            <View style={styles.columnIconWrap}>
-                                <Image
-                                    style={styles.columnIcon}
-                                    source={require('@app/assets/images/ic_mine_like.png')}
-                                />
-                            </View>
-                            <Text style={styles.itemTypeText}>我的喜欢</Text>
-                        </Row>
-                        <Iconfont name="right" size={PxDp(15)} color={Theme.secondaryTextColor} />
-                    </TouchableOpacity>
                     <TouchableOpacity
                         style={styles.columnItem}
                         onPress={() => {
@@ -266,19 +259,20 @@ export default observer(props => {
                             </View>
                             <Text style={styles.itemTypeText}>我的收藏</Text>
                         </Row>
-                        <Iconfont name="right" size={PxDp(15)} color={Theme.secondaryTextColor} />
+                        <Iconfont name="right" size={PxDp(15)} color={'#afafaf'} />
                     </TouchableOpacity>
-                    <TouchableOpacity style={styles.columnItem} onPress={() => authNavigator('浏览记录')}>
+
+                    <TouchableOpacity style={styles.columnItem} onPress={() => authNavigator('喜欢', { user })}>
                         <Row>
                             <View style={styles.columnIconWrap}>
                                 <Image
                                     style={styles.columnIcon}
-                                    source={require('@app/assets/images/ic_mine_history.png')}
+                                    source={require('@app/assets/images/ic_mine_like.png')}
                                 />
                             </View>
-                            <Text style={styles.itemTypeText}>浏览记录</Text>
+                            <Text style={styles.itemTypeText}>我的喜欢</Text>
                         </Row>
-                        <Iconfont name="right" size={PxDp(15)} color={Theme.secondaryTextColor} />
+                        <Iconfont name="right" size={PxDp(15)} color={'#afafaf'} />
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.columnItem} onPress={() => authNavigator('Feedback')}>
                         <Row>
@@ -290,8 +284,22 @@ export default observer(props => {
                             </View>
                             <Text style={styles.itemTypeText}>意见反馈</Text>
                         </Row>
-                        <Iconfont name="right" size={PxDp(15)} color={Theme.secondaryTextColor} />
+                        <Iconfont name="right" size={PxDp(15)} color={'#afafaf'} />
                     </TouchableOpacity>
+
+                    <TouchableOpacity style={styles.columnItem} onPress={() => authNavigator('浏览记录')}>
+                        <Row>
+                            <View style={styles.columnIconWrap}>
+                                <Image
+                                    style={styles.columnIcon}
+                                    source={require('@app/assets/images/ic_mine_history.png')}
+                                />
+                            </View>
+                            <Text style={styles.itemTypeText}>浏览记录</Text>
+                        </Row>
+                        <Iconfont name="right" size={PxDp(15)} color={'#afafaf'} />
+                    </TouchableOpacity>
+
                     <TouchableOpacity
                         style={styles.columnItem}
                         onPress={() => middlewareNavigate('Setting', { user: userProfile })}>
@@ -304,7 +312,7 @@ export default observer(props => {
                             </View>
                             <Text style={styles.itemTypeText}>设置</Text>
                         </Row>
-                        <Iconfont name="right" size={PxDp(15)} color={Theme.secondaryTextColor} />
+                        <Iconfont name="right" size={PxDp(15)} color={'#afafaf'} />
                     </TouchableOpacity>
                 </View>
             </ScrollView>
@@ -333,10 +341,11 @@ const styles = StyleSheet.create({
         paddingHorizontal: PxDp(Theme.itemSpace),
     },
     columnItemsWrap: {
-        borderRadius: PxDp(6),
-        marginHorizontal: PxDp(Theme.itemSpace),
+        width: "100%",
+        height: "100%",
+        backgroundColor: '#fff',
         overflow: 'hidden',
-        marginBottom: PxDp(10),
+        marginTop: PxDp(25)
     },
     container: {
         backgroundColor: Theme.groundColour,
@@ -344,10 +353,10 @@ const styles = StyleSheet.create({
         marginBottom: PxDp(Theme.BOTTOM_HEIGHT),
     },
     introduction: {
-        color: '#fff',
+        color: '#afafaf',
         fontSize: PxDp(14),
         marginTop: PxDp(10),
-        marginRight: PxDp(70),
+        marginRight: PxDp(150),
     },
     itemType: {
         justifyContent: 'center',
@@ -361,27 +370,31 @@ const styles = StyleSheet.create({
         marginLeft: PxDp(Theme.itemSpace),
     },
     metaCount: {
-        color: '#fff',
+        color: '#000',
         fontSize: PxDp(15),
-        fontWeight: 'bold',
+        fontWeight: '300',
+        marginBottom: PxDp(5),
+        marginLeft: PxDp(8),
     },
 
     metaItem: {
         flex: 1,
-        flexDirection: 'row',
+        alignContent: 'center',
         alignItems: 'center',
-        justifyContent: 'center',
-        padding: PxDp(Theme.itemSpace),
+        marginLeft: PxDp(10),
+        marginRight: PxDp(10),
+        paddingVertical: PxDp(Theme.itemSpace),
     },
     metaLabel: {
-        color: '#fff',
+        color: '#afafaf',
         fontSize: PxDp(13),
         marginLeft: PxDp(10),
     },
     metaWrap: {
-        alignItems: 'stretch',
+        alignContent: 'center',
+        alignItems: 'center',
+        justifyContent: 'flex-end',
         flexDirection: 'row',
-        marginBottom: PxDp(20),
     },
     middleLine: {
         backgroundColor: Theme.borderColor,
@@ -405,15 +418,13 @@ const styles = StyleSheet.create({
     personTopInfo: {
         padding: PxDp(Theme.itemSpace),
         paddingTop: PxDp(Theme.statusBarHeight + 20),
-        backgroundColor: Theme.primaryColor,
+        backgroundColor: '#fff',
     },
     userAvatar: {
         borderColor: '#fff',
         borderRadius: PxDp(33),
         borderWidth: PxDp(1),
         height: PxDp(66),
-        marginLeft: PxDp(-60),
-
         width: PxDp(66),
     },
     userInfo: {
@@ -423,8 +434,8 @@ const styles = StyleSheet.create({
         padding: PxDp(Theme.itemSpace),
     },
     userName: {
-        color: '#fff',
-        fontSize: PxDp(20),
+        color: '#000',
+        fontSize: PxDp(18),
         fontWeight: 'bold',
     },
     wallet: {
