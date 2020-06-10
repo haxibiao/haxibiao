@@ -200,7 +200,7 @@ const styles = StyleSheet.create({
     itemContentTop: { justifyContent: 'space-between' },
     itemName: {
         color: Theme.defaultTextColor,
-        fontSize: Font(15),
+        fontSize: Font(12),
         fontWeight: 'bold',
     },
     lastMessage: {
