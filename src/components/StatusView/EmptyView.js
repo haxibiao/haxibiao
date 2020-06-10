@@ -41,14 +41,14 @@ const styles = StyleSheet.create({
         minHeight: Helper.WPercent(80),
     },
     image: {
-        width: Helper.WPercent(36),
-        height: Helper.WPercent(36),
+        width: Helper.WPercent(80),
+        height: Helper.WPercent(80),
         resizeMode: 'contain',
     },
     title: {
         fontSize: Font(14),
         color: Theme.subTextColor,
-        marginTop: PxDp(10),
+        marginTop: PxDp(-40),
     },
 });
 
