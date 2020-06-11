@@ -12,7 +12,7 @@ import { BottomTabBar } from './BottomTabBar';
 const routerConfig = {
     首页: {
         screen: HomeScreen,
-        navigationOptions: () => TabOptions('首页'),
+        navigationOptions: () => TabOptions('首页') ,
     },
     发现: {
         screen: FindScreen,
@@ -82,7 +82,7 @@ const TabOptions = routeName => {
     const tabBarIcon = ({ focused }: { focused: boolean; }) => {
         let source;
         let name;
-        let a;
+        let a;        
         switch (routeName) {
             case '首页':
                 source = focused
@@ -96,7 +96,7 @@ const TabOptions = routeName => {
                     ? require('@app/assets/images/init_discover_focus.png')
                     : require('@app/assets/images/init_discover.png');
                 a = focused ? true : false;
-                name = '发现'
+                name = '发现';
                 break;
             case '通知':
                 source = focused
@@ -116,7 +116,7 @@ const TabOptions = routeName => {
         return (
             <View style={styles.top}>
                 <Image source={source} style={styles.image} />
-                <Text style={{ width: PxDp(20), height: PxDp(14), fontSize: Font(8), color: a ? '#1777FF' : '#000' }}>{name}</Text>
+                <Text style={{ width: PxDp(20), height: PxDp(14), fontSize: Font(8), color: a ? '#1777FF' : '#989898' }}>{name}</Text>
             </View>
         )
     };
@@ -128,7 +128,6 @@ const styles = StyleSheet.create({
         width: PxDp(75),
         height: PxDp(49),
         justifyContent: 'center',
-        marginBottom: PxDp(15),
         alignItems: 'center'
     },
     image: {
