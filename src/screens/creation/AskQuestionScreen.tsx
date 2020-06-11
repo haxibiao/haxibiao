@@ -94,7 +94,7 @@ const AskQuestionScreen = props => {
     const selectCategory = useCallback(
         category => {
             if (
-                __.find(categories, function(item) {
+                __.find(categories, function (item) {
                     return item.id === category.id;
                 })
             ) {
@@ -216,7 +216,7 @@ const AskQuestionScreen = props => {
                             )}
                             {addedCategories}
                         </View>
-                        {appStore.enableWallet && (
+                        {/* {appStore.enableWallet && (
                             <HxfRadio
                                 onChange={changeContentType}
                                 radioText={
@@ -229,7 +229,7 @@ const AskQuestionScreen = props => {
                                 }
                                 mode="switch"
                             />
-                        )}
+                        )} */}
 
                         <View style={[styles.goldsOption, contentType !== issueContentType && { display: 'none' }]}>
                             {GoldsOption.map((value, index) => {
