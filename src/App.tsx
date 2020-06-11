@@ -55,7 +55,7 @@ function App() {
                     ad.AdManager.loadFeedAd();
                     ad.RewardVideo.loadAllAd();
                     //开屏
-                    ad.Splash.loadSplashAd();
+                    // ad.Splash.loadSplashAd();
                 }
             })
             .catch(err => {
