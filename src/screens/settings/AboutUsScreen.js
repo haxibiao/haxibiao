@@ -44,7 +44,6 @@ class AboutUs extends Component {
                                     <Text style={styles.officialText}>官网地址： {Config.Name}.com</Text>
                                     <Text style={styles.officialText}>商务合作： bd@haxifang.com</Text>
                                     <Text style={styles.officialText}>新浪微博： 哈希表</Text>
-                                    <Text style={styles.officialText}>官方QQ群： 735220029</Text>
                                 </View>
                             </View>
                         </View>
