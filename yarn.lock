@@ -3347,8 +3347,8 @@ escape-html@~1.0.3:
 
 escape-string-regexp@2.0.0:
   version "2.0.0"
-  resolved "https://registry.yarnpkg.com/escape-string-regexp/-/escape-string-regexp-2.0.0.tgz#a30304e99daa32e23b2fd20f51babd07cffca344"
-  integrity sha512-UpzcLCXolUWcNu5HtVMHYdXJjArjsF9C0aNnquZYY4uW/Vu0miy5YoWvbV345HauVvcAUnpRuhMMcqTcGOY2+w==
+  resolved "https://registry.npm.taobao.org/escape-string-regexp/download/escape-string-regexp-2.0.0.tgz?cache=0&sync_timestamp=1587627212242&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fescape-string-regexp%2Fdownload%2Fescape-string-regexp-2.0.0.tgz#a30304e99daa32e23b2fd20f51babd07cffca344"
+  integrity sha1-owME6Z2qMuI7L9IPUbq9B8/8o0Q=
 
 escape-string-regexp@^1.0.2, escape-string-regexp@^1.0.5:
   version "1.0.5"
@@ -3708,7 +3708,7 @@ eventemitter3@^3.0.0:
 
 events@1.0.1:
   version "1.0.1"
-  resolved "https://registry.yarnpkg.com/events/-/events-1.0.1.tgz#386f6471cbb609e7925e7bfe7468634b9e069ac2"
+  resolved "https://registry.npm.taobao.org/events/download/events-1.0.1.tgz?cache=0&sync_timestamp=1578498298945&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fevents%2Fdownload%2Fevents-1.0.1.tgz#386f6471cbb609e7925e7bfe7468634b9e069ac2"
   integrity sha1-OG9kccu2CeeSXnv+dGhjS54GmsI=
 
 events@^1.1.0:
@@ -4535,14 +4535,6 @@ husky@^3.0.4:
     read-pkg "^5.2.0"
     run-node "^1.0.0"
     slash "^3.0.0"
-
-"hxf-react-native-uilib@git+http://auto:hxb332211@code.haxibiao.cn/native/hxf-react-native-uilib.git":
-  version "1.0.0"
-  resolved "git+http://auto:hxb332211@code.haxibiao.cn/native/hxf-react-native-uilib.git#01df0f5ae2e5b393178f32e15dfd05670d235250"
-
-"hxf-tencent-live@git+http://auto:hxb332211@code.haxibiao.cn/native/tencentlive.git":
-  version "1.0.0"
-  resolved "git+http://auto:hxb332211@code.haxibiao.cn/native/tencentlive.git#906b12743d73b06701b34904791159c3443dce64"
 
 iconv-lite@0.4.24, iconv-lite@^0.4.17, iconv-lite@^0.4.24, iconv-lite@~0.4.13:
   version "0.4.24"
@@ -5389,8 +5381,8 @@ jpush-react-native@2.5.3:
 
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
-  resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
-  integrity sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==
+  resolved "https://registry.npm.taobao.org/js-tokens/download/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
+  integrity sha1-GSA/tZmR35jjoocFDUZHzerzJJk=
 
 js-tokens@^3.0.2:
   version "3.0.2"
@@ -7264,10 +7256,10 @@ react-native-config@luggit/react-native-config:
   version "1.0.0"
   resolved "https://codeload.github.com/luggit/react-native-config/tar.gz/2318d8000bde6cac7352285f0f61488724369c05"
 
-react-native-device-info@^5.5.6:
-  version "5.5.8"
-  resolved "https://registry.yarnpkg.com/react-native-device-info/-/react-native-device-info-5.5.8.tgz#5b971db0b550b1e53eb176c5042812429cf3a16b"
-  integrity sha512-Y4EkBXUfdpDMP+utVaQcgWnNXoqf7B6rLCS0hwpaifzhrzC7cb51vhaPBN1p4Kqym3AfqZ6VoMjorvFJLRAjqg==
+react-native-device-info@^5.6.1:
+  version "5.6.1"
+  resolved "https://registry.npm.taobao.org/react-native-device-info/download/react-native-device-info-5.6.1.tgz#3ae88d8659b7b64d204dbfc39f69126b769363d4"
+  integrity sha1-OuiNhlm3tk0gTb/Dn2kSa3aTY9Q=
 
 react-native-gesture-handler@^1.6.1:
   version "1.6.1"
@@ -7543,6 +7535,10 @@ react-native-tab-view@^1.2.0, react-native-tab-view@^1.4.1:
   dependencies:
     prop-types "^15.6.1"
 
+"react-native-tencent-live@git+http://auto:hxb332211@code.haxibiao.cn/packages/react-native-tencent-live":
+  version "1.0.0"
+  resolved "git+http://auto:hxb332211@code.haxibiao.cn/packages/react-native-tencent-live#906b12743d73b06701b34904791159c3443dce64"
+
 react-native-typescript-transformer@^1.2.13:
   version "1.2.13"
   resolved "https://registry.yarnpkg.com/react-native-typescript-transformer/-/react-native-typescript-transformer-1.2.13.tgz#be92a3d110dbb2cf2f4aebe60a935be124cfb7ed"
@@ -7588,20 +7584,24 @@ react-native-view-shot@^3.1.2:
   resolved "https://registry.yarnpkg.com/react-native-view-shot/-/react-native-view-shot-3.1.2.tgz#8c8e84c67a4bc8b603e697dbbd59dbc9b4f84825"
   integrity sha512-9u9fPtp6a52UMoZ/UCPrCjKZk8tnkI9To0Eh6yYnLKFEGkRZ7Chm6DqwDJbYJHeZrheCCopaD5oEOnRqhF4L2Q==
 
-react-native-webview@^9.3.0:
+react-native-webview@^9.4.0:
   version "9.4.0"
-  resolved "https://registry.yarnpkg.com/react-native-webview/-/react-native-webview-9.4.0.tgz#108da34a6c7e1c032dcabc942b7e4947ca1d8028"
-  integrity sha512-BBOFUuza0p04+7fNi7TJmB0arpDJzGxHYwTCgI4vj5n/fl7u4jbm7ETp88mf7lo9lP6C6HGLo38KnEy1aXCQkg==
+  resolved "https://registry.npm.taobao.org/react-native-webview/download/react-native-webview-9.4.0.tgz#108da34a6c7e1c032dcabc942b7e4947ca1d8028"
+  integrity sha1-EI2jSmx+HAMtyryUK35JR8odgCg=
   dependencies:
     escape-string-regexp "2.0.0"
     invariant "2.2.4"
 
 react-native-wechat-lib@^1.1.16:
   version "1.1.16"
-  resolved "https://registry.yarnpkg.com/react-native-wechat-lib/-/react-native-wechat-lib-1.1.16.tgz#e69480e923f4778f600cc9374cef0db53b9cac7e"
-  integrity sha512-V+cvuYCDDkg8O7YxOv89dkmo8Ie2idsL5pqIBW6RQZFTkGEMXb36IdwSJn+LG/cQyftqLF/A7WwBC9Dsm6B0VQ==
+  resolved "https://registry.npm.taobao.org/react-native-wechat-lib/download/react-native-wechat-lib-1.1.16.tgz#e69480e923f4778f600cc9374cef0db53b9cac7e"
+  integrity sha1-5pSA6SP0d49gDMk3TO8NtTucrH4=
   dependencies:
     events "1.0.1"
+
+"react-native-widgets@git+http://auto:hxb332211@code.haxibiao.cn/packages/react-native-widgets":
+  version "1.0.0"
+  resolved "git+http://auto:hxb332211@code.haxibiao.cn/packages/react-native-widgets#3d693b694bdc99c27b48dd2142e5ced302739ba3"
 
 react-native@0.61.5:
   version "0.61.5"
