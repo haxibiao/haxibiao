@@ -32,9 +32,8 @@ class AboutUs extends Component {
                                 <Text style={styles.sectionTitle}>关于{Config.AppName}</Text>
                                 <Text style={styles.appIntro}>
                                     {Config.AppName}
-                                    是一款手机休闲益智短视频学习软件。
-                                    如果你觉得你掌握的知识够全面就快来
-                                    {Config.AppName}吧，各国趣味知识，涵盖天文、地理、历史科学应有尽有。
+                                   是一群年轻人学习成长的家园，在这里可以交流分享自己的知识和脑洞，并转化为博客、视频。
+                                    {Config.AppName}记录成长每一刻。
                                 </Text>
                             </View>
 
@@ -44,7 +43,7 @@ class AboutUs extends Component {
                                     {/*<Text style={{ fontSize: 13, color: Theme.subTextColor, marginTop: 15 }}>QQ交流群: 4337413</Text>*/}
                                     <Text style={styles.officialText}>官网地址： {Config.Name}.com</Text>
                                     <Text style={styles.officialText}>商务合作： bd@haxifang.com</Text>
-                                    <Text style={styles.officialText}>新浪微博： 点墨阁</Text>
+                                    <Text style={styles.officialText}>新浪微博： 哈希表</Text>
                                     <Text style={styles.officialText}>官方QQ群： 735220029</Text>
                                 </View>
                             </View>

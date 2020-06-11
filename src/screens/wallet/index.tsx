@@ -465,7 +465,7 @@ export default observer((props: any) => {
                 }}>
                     <Text style={styles.withdrawTitle}>高额提现令牌</Text>
                     <TouchableOpacity onPress={TokenDescription}>
-                        <Image source={require('@app/assets/images/tokenDescription.png')} style={{ width: PxDp(18), height: PxDp(18),marginLeft:PxDp(5), }} />
+                        <Image source={require('@app/assets/images/tokenDescription.png')} style={{ width: PxDp(18), height: PxDp(18), marginLeft: PxDp(5), }} />
                     </TouchableOpacity>
 
                 </View>
@@ -534,7 +534,7 @@ export default observer((props: any) => {
                     </Text>
 
                     <Text style={styles.ruleText}>
-                        2、懂得赚是点墨阁、答题赚钱、答妹等时下热门赚钱APP的官方专属钱包，多款赚钱APP收益一键提现，不限时不限量秒提现，汇聚百款赚钱软件评测攻略，是千万网赚用户必备的赚钱提现法宝。
+                        2、懂得赚是哈希表、答题赚钱、答妹等时下热门赚钱APP的官方专属钱包，多款赚钱APP收益一键提现，不限时不限量秒提现，汇聚百款赚钱软件评测攻略，是千万网赚用户必备的赚钱提现法宝。
                     </Text>
 
                     <Text style={styles.ruleText}>

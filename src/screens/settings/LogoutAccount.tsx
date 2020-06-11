@@ -16,7 +16,7 @@ const LogoutAccount = props => {
                 <Text style={{ margin: 15 }}>注意，注销账号后以下信息将被清空且无法找回</Text>
 
                 <View style={styles.information}>
-                    <Text style={styles.textStyle}>1.点墨阁将再也无法使用此账号</Text>
+                    <Text style={styles.textStyle}>1.哈希表将再也无法使用此账号</Text>
                     <Text style={styles.textStyle}>2.智慧点以及余额将被清零</Text>
                     <Text style={styles.textStyle}>3.交易记录将被清零</Text>
                     <Text style={styles.description}>

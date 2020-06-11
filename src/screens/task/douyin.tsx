@@ -25,7 +25,7 @@ export default function Douyin_tutorial() {
                         url: 'http://cos.haxibiao.com/storage/image/1576119234gFyPXxNgXulhnI6t.jpg',
                     },
                     {
-                        value: '第四步:打开点墨阁 ',
+                        value: '第四步:打开哈希表 ',
                         url: 'http://cos.haxibiao.com/storage/image/1576119237QD0M3eTmJxl3sKUY.jpg',
                     },
                     {
