@@ -115,9 +115,9 @@ export default observer(() => {
             <ApolloProvider client={client}>
                 <RootStackNavigator ref={setRootNavigation} uriPrefix={`${name}://`} />
             </ApolloProvider>
-            <Text style={{ fontSize: PxDp(5), color: '#666', position: 'absolute', bottom: 5, right: 5 }}>
+            {/* <Text style={{ fontSize: PxDp(5), color: '#666', position: 'absolute', bottom: 5, right: 5 }}>
                 {user.id}
-            </Text>
+            </Text> */}
         </OldApolloProvider>
     );
 });
