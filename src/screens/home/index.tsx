@@ -190,24 +190,8 @@ export default observer(props => {
                     viewabilityConfig={config.current}
                 />
             ) : (
-                <SpinnerLoading />
-            )}
-
-            {appStore.enableWallet && (
-                <View style={styles.rewardProgress}>
-                    {me.id ? (
-                        <View />
-                    ) : (
-                        <ImageBackground
-                            source={require('@app/assets/images/chat_left.png')}
-                            style={styles.overlayTip}
-                            resizeMode={'stretch'}>
-                            <Text style={styles.overlayTipText}>登录后看视频赚钱、边看边赚</Text>
-                        </ImageBackground>
-                    )}
-                    <RewardProgress />
-                </View>
-            )}
+                    <SpinnerLoading />
+                )}
 
             <CommentOverlay ref={commentRef} media={activeMedia} navigation={navigation} />
         </View>
