@@ -33,9 +33,9 @@ export const BottomTabBar = observer(props => {
                     <Image
                         source={require('@app/assets/images/publish.png')}
                         style={{
-                            width: PxDp(40),
-                            height: PxDp(40),
-                            marginBottom: PxDp(25),
+                            width: PxDp(35),
+                            height: PxDp(35),
+                            marginBottom: PxDp(22),
                         }}
                     />
                     {appStore.enableWallet && !appStore.createPostGuidance && (
