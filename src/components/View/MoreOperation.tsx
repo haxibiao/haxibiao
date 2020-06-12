@@ -114,7 +114,7 @@ const MoreOperation = props => {
                 .mutate({
                     mutation: GQL.addUserBlockMutation,
                     variables: {
-                        id: target.id,
+                        id: target.user.id,
                     },
                     refetchQueries: () => [
                         {
@@ -254,7 +254,7 @@ const MoreOperation = props => {
         const link = await fetchShareLink();
         try {
             await WeChat.shareVideo({
-                scene:0,
+                scene: 0,
                 title: target.body || '我发现一个很好看的小视频，分享给你',
                 videoUrl: Config.ServerRoot + '/s/p/' + target.id + '?user_id=' + userStore.me.id,
             });
@@ -385,7 +385,7 @@ const MoreOperation = props => {
 };
 
 MoreOperation.defaultProps = {
-    options: ['不感兴趣', '举报'],
+    options: ['不感兴趣', '举报', '拉黑'],
     type: 'articles',
     shares: ['微信', 'QQ好友', '微博', '朋友圈', 'QQ空间'],
     showShare: false,

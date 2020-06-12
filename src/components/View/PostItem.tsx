@@ -69,7 +69,7 @@ const videoHeight = videoWidth * 1.33;
 const COVER_WIDTH = Device.WIDTH - PxDp(Theme.itemSpace) * 2;
 
 const PostItem: React.FC<Props> = observer((props: Props) => {
-    const { showSubmitStatus, showSeparator, post = {}, showComment,time_ago } = props;
+    const { showSubmitStatus, showSeparator, post = {}, showComment, time_ago } = props;
     const navigation = useNavigation();
     const client = useApolloClient();
     const {
@@ -162,7 +162,7 @@ const PostItem: React.FC<Props> = observer((props: Props) => {
                         showShare={true}
                         downloadUrl={Helper.syncGetter('video.url', post)}
                         downloadUrlTitle={Helper.syncGetter('body', post)}
-                        options={isSelf ? ['删除', '下载', '复制链接'] : ['下载', '不感兴趣', '复制链接', post.favorited ? '取消收藏': '收藏', '举报']}
+                        options={isSelf ? ['删除', '下载', '复制链接'] : ['下载', '不感兴趣', '复制链接', post.favorited ? '取消收藏' : '收藏', '举报', '拉黑']}
                         deleteCallback={() => startAnimation(1, 0)}
                     />
                 </ApolloProvider>
