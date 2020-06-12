@@ -348,7 +348,7 @@ PODS:
     - React
   - RSKImageCropper (2.2.3)
   - SSZipArchive (2.2.3)
-  - TXLiteAVSDK_Professional (7.2.8940)
+  - TXLiteAVSDK_Professional (7.2.8932)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -665,7 +665,7 @@ SPEC CHECKSUMS:
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   RSKImageCropper: a446db0e8444a036b34f3c43db01b2373baa4b2a
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
-  TXLiteAVSDK_Professional: 4afe0775eeff059219964472fd4fa0f1ea4ca860
+  TXLiteAVSDK_Professional: a93f4d5fbc38382906ce4b38560b08d5b3b9a192
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
 PODFILE CHECKSUM: 734c08f3a4e6c6b5c507cefa17744e8731a6573c

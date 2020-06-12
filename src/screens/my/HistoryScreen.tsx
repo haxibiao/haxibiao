@@ -50,7 +50,7 @@ export default (props: any) => {
 	if (loading || !observableArticles  ) return <SpinnerLoading />;
 	// console.log("loading",loading);
 	// console.log("!observableArticles",observableArticles);	
-	console.log("要是有事也是一样啥意思呀", Theme.groundColour);
+	console.log("要是有事也是一样啥意思呀",observableArticles);
 	
 
 	return (
@@ -64,7 +64,7 @@ export default (props: any) => {
 					refreshControl={<CustomRefreshControl onRefresh={refetch} />}
 					keyExtractor={(item, index) => index.toString()}
 					scrollEventThrottle={16}
-					renderItem={(item: any) => <PostItem post={item.item.article} />}
+					renderItem={(item: any) => <PostItem time_ago={item.item.time_ago} post={item.item.article} />}
 					ListEmptyComponent={
 						<StatusView.EmptyView imageSource={require('@app/assets/images/default_empty.png')} />
 					}

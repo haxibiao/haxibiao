@@ -6,6 +6,7 @@ query userVisitsQuery($user_id: Int!, $page: Int) {
             hasMorePages
         }
         data {
+            time_ago
             article {
                 id
                 type

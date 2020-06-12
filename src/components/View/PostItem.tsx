@@ -61,6 +61,7 @@ export interface Props {
     showSubmitStatus?: boolean;
     showComment?: boolean; // 是否显示评论(详情页)
     post: any;
+    time_ago: any;
 }
 
 const videoWidth = Device.WIDTH * 0.6;
@@ -68,13 +69,12 @@ const videoHeight = videoWidth * 1.33;
 const COVER_WIDTH = Device.WIDTH - PxDp(Theme.itemSpace) * 2;
 
 const PostItem: React.FC<Props> = observer((props: Props) => {
-    const { showSubmitStatus, showSeparator, post = {}, showComment } = props;
+    const { showSubmitStatus, showSeparator, post = {}, showComment,time_ago } = props;
     const navigation = useNavigation();
     const client = useApolloClient();
     const {
         type,
         user,
-        time_ago,
         body,
         description,
         cover,
