@@ -46,8 +46,6 @@ PODS:
     - DoubleConversion
     - glog
   - glog (0.3.5)
-  - hxf-react-native-uilib (1.0.0):
-    - React
   - hxf-tencent-live (1.0.0):
     - React
     - TXLiteAVSDK_Professional
@@ -286,6 +284,8 @@ PODS:
     - React
   - react-native-webview (9.4.0):
     - React
+  - react-native-widgets (1.0.0):
+    - React
   - React-RCTActionSheet (0.61.5):
     - React-Core/RCTActionSheetHeaders (= 0.61.5)
   - React-RCTAnimation (0.61.5):
@@ -327,7 +327,7 @@ PODS:
     - React
   - RNCMaskedView (0.1.10):
     - React
-  - RNDeviceInfo (5.5.8):
+  - RNDeviceInfo (5.6.1):
     - React
   - RNGestureHandler (1.6.1):
     - React
@@ -348,7 +348,7 @@ PODS:
     - React
   - RSKImageCropper (2.2.3)
   - SSZipArchive (2.2.3)
-  - TXLiteAVSDK_Professional (7.2.8932)
+  - TXLiteAVSDK_Professional (7.2.8940)
   - Yoga (1.14.0)
 
 DEPENDENCIES:
@@ -363,8 +363,7 @@ DEPENDENCIES:
   - FBReactNativeSpec (from `../node_modules/react-native/Libraries/FBReactNativeSpec`)
   - Folly (from `../node_modules/react-native/third-party-podspecs/Folly.podspec`)
   - glog (from `../node_modules/react-native/third-party-podspecs/glog.podspec`)
-  - hxf-react-native-uilib (from `../node_modules/hxf-react-native-uilib`)
-  - hxf-tencent-live (from `../node_modules/hxf-tencent-live`)
+  - hxf-tencent-live (from `../node_modules/react-native-tencent-live`)
   - JCoreRN (from `../node_modules/jcore-react-native`)
   - JPushRN (from `../node_modules/jpush-react-native`)
   - lottie-ios (from `../node_modules/lottie-ios`)
@@ -404,6 +403,7 @@ DEPENDENCIES:
   - react-native-view-shot (from `../node_modules/react-native-view-shot`)
   - "react-native-viewpager (from `../node_modules/@react-native-community/viewpager`)"
   - react-native-webview (from `../node_modules/react-native-webview`)
+  - react-native-widgets (from `../node_modules/react-native-widgets`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
   - React-RCTAnimation (from `../node_modules/react-native/Libraries/NativeAnimation`)
   - React-RCTBlob (from `../node_modules/react-native/Libraries/Blob`)
@@ -462,10 +462,8 @@ EXTERNAL SOURCES:
     :podspec: "../node_modules/react-native/third-party-podspecs/Folly.podspec"
   glog:
     :podspec: "../node_modules/react-native/third-party-podspecs/glog.podspec"
-  hxf-react-native-uilib:
-    :path: "../node_modules/hxf-react-native-uilib"
   hxf-tencent-live:
-    :path: "../node_modules/hxf-tencent-live"
+    :path: "../node_modules/react-native-tencent-live"
   JCoreRN:
     :path: "../node_modules/jcore-react-native"
   JPushRN:
@@ -540,6 +538,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/viewpager"
   react-native-webview:
     :path: "../node_modules/react-native-webview"
+  react-native-widgets:
+    :path: "../node_modules/react-native-widgets"
   React-RCTActionSheet:
     :path: "../node_modules/react-native/Libraries/ActionSheetIOS"
   React-RCTAnimation:
@@ -601,7 +601,6 @@ SPEC CHECKSUMS:
   FBReactNativeSpec: 118d0d177724c2d67f08a59136eb29ef5943ec75
   Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51
   glog: 1f3da668190260b06b429bb211bfbee5cd790c28
-  hxf-react-native-uilib: 12ab5b4dfb3bb3cc0c282c7d0ead35d1d7ff8e6d
   hxf-tencent-live: 80d8d3aeae092150d669b724e03ef4b21762b563
   JCoreRN: 4b0ad270209c0e1ab2ec92b33f19774ee15f3c25
   JPushRN: 24d74b712a1cc214be8e62dc356b7c331180472d
@@ -642,6 +641,7 @@ SPEC CHECKSUMS:
   react-native-view-shot: 4475fde003fe8a210053d1f98fb9e06c1d834e1c
   react-native-viewpager: a7b438ca32c57b2614ece2a123e7fe116f743131
   react-native-webview: cf5527893252b3b036eea024a1da6996f7344c74
+  react-native-widgets: 9aefe4374c5158a9b38014adbe2259876c4dbe24
   React-RCTActionSheet: 600b4d10e3aea0913b5a92256d2719c0cdd26d76
   React-RCTAnimation: 791a87558389c80908ed06cc5dfc5e7920dfa360
   React-RCTBlob: d89293cc0236d9cb0933d85e430b0bbe81ad1d72
@@ -655,7 +655,7 @@ SPEC CHECKSUMS:
   rn-fetch-blob: f065bb7ab7fb48dd002629f8bdcb0336602d3cba
   RNCAsyncStorage: cd7234ff15c010723ed7c499ae4eedc605eac1fd
   RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
-  RNDeviceInfo: 655265668063a05fff096c6819da0b7289753ef7
+  RNDeviceInfo: b6e650fbd234732c759544218657d549b4339038
   RNGestureHandler: 8f09cd560f8d533eb36da5a6c5a843af9f056b38
   RNImageCropPicker: bfb3ea9c8622f290532e2fe63f369e0d5a52f597
   RNPermissions: 3635b407c15f2fe591bd2101c8f20aa0912caba8
@@ -665,7 +665,7 @@ SPEC CHECKSUMS:
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   RSKImageCropper: a446db0e8444a036b34f3c43db01b2373baa4b2a
   SSZipArchive: 62d4947b08730e4cda640473b0066d209ff033c9
-  TXLiteAVSDK_Professional: a93f4d5fbc38382906ce4b38560b08d5b3b9a192
+  TXLiteAVSDK_Professional: 4afe0775eeff059219964472fd4fa0f1ea4ca860
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
 PODFILE CHECKSUM: 734c08f3a4e6c6b5c507cefa17744e8731a6573c
