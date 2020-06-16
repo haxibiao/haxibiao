@@ -14,23 +14,64 @@
 #     "gold":30
 #   }
 # }
-mutation createPostMutation($body: String!,$qcvod_fileid:String,$images: [String!]){
-  createPostContent(body:$body,qcvod_fileid:$qcvod_fileid,images:$images){
-    id
-    description
-    user{
+mutation createPostMutation(
+    $body: String!
+    $images: [String!]
+    $video_id: Int
+    $qcvod_fileid: String
+    $category_ids: [Int!]
+    $type: ContenType!
+    $issueInput: IssueInfo
+) {
+    createContent(
+        body: $body
+        images: $images
+        video_id: $video_id
+        qcvod_fileid: $qcvod_fileid
+        category_ids: $category_ids
+        type: $type
+        issueInput: $issueInput
+    ) {
         id
-        avatar
-        name
+        type
+        title
+        description
+        time_ago
+        cover
+        count_likes
+        count_replies
+        liked
+        answered_status
+        question_reward
+        user {
+            avatar
+            name
+            id
+        }
+        categories {
+            id
+            name
+            logo
+        }
+        images {
+            id
+            url
+            width
+            height
+        }
+        video {
+            id
+            url
+            duration
+            info {
+                width
+                height
+                rotate
+                covers
+            }
+            cover_url
+        }
     }
-    video{
-      url
-      cover_url
-    }
-    status
-    review_id
-    review_day
-  }
 }
 
 #看视频奖励

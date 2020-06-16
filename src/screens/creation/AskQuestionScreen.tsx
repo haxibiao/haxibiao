@@ -43,11 +43,11 @@ const AskQuestionScreen = props => {
             body: formData.body,
             qcvod_fileid: formData.video_id,
             images: formData.images,
-            // category_ids: categories.map(category => category.id),
-            // type: contentType,
-            // issueInput: {
-            //     gold,
-            // },
+            category_ids: categories.map(category => category.id),
+            type: contentType,
+            issueInput: {
+                gold,
+            },
         },
         onError: error => {
             Toast.show({
@@ -59,7 +59,7 @@ const AskQuestionScreen = props => {
                 content: '发布成功',
             });
             navigation.replace('PostDetail', {
-                post: mutationResult.createPostContent,
+                post: observable(mutationResult.createContent),
             });
         },
     });
