@@ -1,6 +1,6 @@
 import React, { useCallback, useState, useRef } from 'react';
 import { StyleSheet, View, Text, Animated, Keyboard, Image } from 'react-native';
-import { TouchFeedback, Iconfont, SafeText, Avatar, PullChooser, ItemSeparator } from '@src/components';
+import { TouchFeedback, Iconfont, SafeText, Avatar, PullChooser, ItemSeparator,useReport } from '@src/components';
 import { useNavigation } from '@src/router';
 import { exceptionCapture, useLinearAnimation } from '@src/common';
 import { useMutation, GQL } from '@src/apollo';
@@ -107,10 +107,10 @@ const CommentItem = (props: Props) => {
         }
         Keyboard.dismiss();
         const operations = [
-            // {
-            //     title: '举报',
-            //     onPress: () => navigation.navigate('Report', {}),
-            // },
+            {
+                title: '举报',
+                onPress: () => navigation.navigate('Report'),
+            },
             {
                 title: '回复',
                 onPress: () => replyHandler(comment),
@@ -152,7 +152,7 @@ const CommentItem = (props: Props) => {
 
     return (
         <Animated.View style={animateStyles}>
-            <TouchFeedback style={styles.comment} onPress={() => replyHandler(comment)} onLongPress={onLongPress}>
+            <TouchFeedback style={styles.comment} onPress={onLongPress} >
                 {comment.is_accept && (
                     <View style={styles.acceptAnswer}>
                         <Image style={styles.acceptImage} source={require('@app/assets/images/accept_answer.png')} />

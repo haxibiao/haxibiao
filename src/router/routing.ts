@@ -34,7 +34,9 @@ import EditProfileScreen from '../screens/profile/HomeScreen';
 // content
 import ArticleDetailScreen from '../screens/article/DetailScreen';
 import CommentScreen from '../screens/comment/CommentScreen';
+import Report from '../screens/comment/Report';
 import PostDetailScreen from '../screens/post';
+
 
 // category
 import CategoryScreen from '../screens/category';
@@ -182,6 +184,10 @@ export default {
     User: {
         screen: UserHomeScreen,
     },
+    Report: {
+        screen: Report,
+    },
+    
     喜欢: {
         screen: LikedArticlesScreen,
     },
