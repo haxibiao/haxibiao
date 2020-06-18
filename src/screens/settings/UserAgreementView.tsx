@@ -133,7 +133,142 @@ export default () => {
                     </Text>
                 </View>
                 <View style={styles.fontWrap}>
-                    <Text style={styles.darkFont}>4、 用户行为规范</Text>
+                    <Text style={styles.darkFont}>
+                    4.关于内容：
+                    </Text>
+                </View>
+                <View style={styles.fontWrap}>
+                    <Text style={styles.darkFont}>
+                    你评论、发布、传播的内容应自觉遵守宪法法律、法规、遵守公共秩序，尊重社会公德、国家制度、国家利益、公民合法权益、道德风尚和信息真实性等要求。你同意并承诺不制作、复制、发布、传播法律、法规禁止的下列信息内容：
+                    </Text>
+                </View>
+                <View style={styles.fontWrap}>
+                    <Text style={styles.darkFont}>
+                    （1）反对宪法确定的基本原则的；
+                    </Text>
+                </View>
+                <View style={styles.fontWrap}>
+                    <Text style={styles.darkFont}>
+                    （2）危害国家安全，泄露国家秘密的；
+                    </Text>
+                </View>
+                <View style={styles.fontWrap}>
+                    <Text style={styles.darkFont}>
+                    （3）颠覆国家政权，推翻国家制度、煽动分裂国家、破坏国家统一的；
+                    </Text>
+                </View>
+                <View style={styles.fontWrap}>
+                    <Text style={styles.darkFont}>
+                    （4）损害国家荣誉和利益的；
+                    </Text>
+                </View>
+                <View style={styles.fontWrap}>
+                    <Text style={styles.darkFont}>
+                    （5）宣扬恐怖主义、极端主义的；
+                    </Text>
+                </View>
+                <View style={styles.fontWrap}>
+                    <Text style={styles.darkFont}>
+                    （6）宣扬民族仇恨、民族歧视，破坏民族团结的；
+                    </Text>
+                </View>
+                <View style={styles.fontWrap}>
+                    <Text style={styles.darkFont}>
+                    （7）煽动地域歧视、地域仇恨的；
+                    </Text>
+                </View>
+                <View style={styles.fontWrap}>
+                    <Text style={styles.darkFont}>
+                    （8）破坏国家宗教政策，宣扬邪教和迷信的；
+                    </Text>
+                </View>
+                <View style={styles.fontWrap}>
+                    <Text style={styles.darkFont}>
+                    （9）编造、散布谣言、虚假信息，扰乱经济秩序和社会秩序、破坏社会稳定的；
+                    </Text>
+                </View>
+                <View style={styles.fontWrap}>
+                    <Text style={styles.darkFont}>
+                    （10）散布、传播暴力、淫秽、色情、赌博、凶杀、恐怖或者教唆犯罪的；
+                    </Text>
+                </View>
+                <View style={styles.fontWrap}>
+                    <Text style={styles.darkFont}>
+                    （11）侵害未成年人合法权益或者损害未成年人身心健康的；
+                    </Text>
+                </View>
+                <View style={styles.fontWrap}>
+                    <Text style={styles.darkFont}>
+                    （12）未获他人允许，偷拍、偷录他人，侵害他人合法权利的；
+                    </Text>
+                </View>
+                <View style={styles.fontWrap}>
+                    <Text style={styles.darkFont}>
+                    （13）包含恐怖、暴力血腥、高危险性、危害表演者自身或他人身心健康内容的；
+                    </Text>
+                </View>
+                <View style={styles.fontWrap}>
+                    <Text style={styles.darkFont}>
+                    （14）危害网络安全、利用网络从事危害国家安全、荣誉和利益的；
+                    </Text>
+                </View>
+                <View style={styles.fontWrap}>
+                    <Text style={styles.darkFont}>
+                    （15）侮辱或者诽谤他人，侵害他人合法权益的；
+                    </Text>
+                </View>
+                <View style={styles.fontWrap}>
+                    <Text style={styles.darkFont}>
+                    （16）对他人进行暴力恐吓、威胁，实施人肉搜索的；
+                    </Text>
+                </View>
+                <View style={styles.fontWrap}>
+                    <Text style={styles.darkFont}>
+                    （17）涉及他人隐私、个人信息或资料的；
+                    </Text>
+                </View>
+                <View style={styles.fontWrap}>
+                    <Text style={styles.darkFont}>
+                    （18）散布污言秽语，损害社会公序良俗的；
+                    </Text>
+                </View>
+                <View style={styles.fontWrap}>
+                    <Text style={styles.darkFont}>
+                    （19）侵犯他人隐私权、名誉权、肖像权、知识产权等合法权益内容的；
+                    </Text>
+                </View>
+                <View style={styles.fontWrap}>
+                    <Text style={styles.darkFont}>
+                    （20）散布商业广告，或类似的商业招揽信息、过度营销信息及垃圾信息；
+                    </Text>
+                </View>
+                <View style={styles.fontWrap}>
+                    <Text style={styles.darkFont}>
+                    （21）使用本网站常用语言文字以外的其他语言文字评论的；
+                    </Text>
+                </View>
+                <View style={styles.fontWrap}>
+                    <Text style={styles.darkFont}>
+                    （22）与所评论的信息毫无关系的；
+                    </Text>
+                </View>
+                <View style={styles.fontWrap}>
+                    <Text style={styles.darkFont}>
+                    （23）所发表的信息毫无意义的，或刻意使用字符组合以逃避技术审核的；
+                    </Text>
+                </View>
+                <View style={styles.fontWrap}>
+                    <Text style={styles.darkFont}>
+                    （24）其他违反法律法规、政策及公序良俗、干扰“哈希表”正常运营或侵犯其他用户或第三方合法权益内容的其他信息。
+                    </Text>
+                </View>
+                <View style={styles.fontWrap}>
+                    <Text style={styles.darkFont}>
+                    公司设立公众投诉、举报平台，你可按照公司公示的投诉举报制度向公司投诉、举报各类违法违规行为、违法传播活动、违法有害信息等内容，公司将及时受理和处理你的投诉举报，以共同营造风清气正的网络空间。
+                    </Text>
+                </View>
+                <View style={styles.fontWrap}>
+                    <Text style={styles.darkFont}>5、 用户行为规范</Text>
                 </View>
                 <View style={styles.fontWrap}>
                     <Text style={styles.darkFont}>
@@ -144,39 +279,39 @@ export default () => {
                 </View>
                 <View style={styles.fontWrap}>
                     <Text style={styles.tintFont}>
-                        4.1 使用未经公司授权或许可的任何插件、外挂、系统或第三方工具对“
+                        5.1 使用未经公司授权或许可的任何插件、外挂、系统或第三方工具对“
                         {Config.AppName}
                         ”软件及相关服务的正常运行进行干扰、破坏、修改或施加其他影响。
                     </Text>
                 </View>
                 <View style={styles.fontWrap}>
                     <Text style={styles.tintFont}>
-                        4.2 利用或针对“
+                        5.2 利用或针对“
                         {Config.AppName}
                         ”软件及相关服务进行任何危害计算机网络安全的行为
                     </Text>
                 </View>
                 <View style={styles.fontWrap}>
                     <Text style={styles.tintFont}>
-                        4.3
+                        5.3
                         在任何情况下,如果公司有理由认为您的任何行为违反或可能违反上述约定的,公司可独立进行判断并处理,且有权在不进行任何事先通知的情况下终止向您提供服务,并追究相关法律责任。
                     </Text>
                 </View>
                 <View style={styles.fontWrap}>
                     <Text style={styles.darkFont}>
-                        4.4
+                        5.4
                         公司致力使跟帖评论成为文明、理性、友善、高质量的意见交流。在推动跟帖评论业务发展的同时,不断加强相应的信息安全管理能力,完善跟帖评论自律,切实履行社会责任,遵守国家法律法规,尊重公民合法权益,尊重社会公序良俗。
                     </Text>
                 </View>
                 <View style={styles.fontWrap}>
                     <Text style={styles.darkFont}>
-                        4.5
+                        5.5
                         您评论、发布、传播的内容应自觉遵守宪法法律、法规、遵守公共秩序,尊重社会公德、社会主义制度、国家利益、公民合法权益、道德风尚和信息真实性等要求。
                     </Text>
                 </View>
                 <View style={styles.fontWrap}>
                     <Text style={styles.darkFont}>
-                        4.6
+                        5.6
                         公司设立公众投诉、举报平台,您可按照公司公示的投诉举报制度向公司投诉、举报各类违法违规行为、违法传播活动、违法有害信息等内容,公司将及时受理和处理您的投诉举报,以共同营造风清气正的网络空间。
                     </Text>
                 </View>
@@ -185,7 +320,7 @@ export default () => {
                 </View>
                 <View style={styles.fontWrap}>
                     <Text style={styles.tintFont}>
-                        5.1 公司在“
+                        6.1 公司在“
                         {Config.AppName}
                         ”软件及相关服务中提供的内容（包括但不限于软件、技术、程序、网页、文字、图片、图像、音频、视频、图表、版面设计、电子文档等）的知识产权属于公司所有。公司提供本服务时所依托的软件的著作权、专利权及其他知识产权均归公司所有。未经公司许可,任何人不得擅自使用（包括但不限于通过任何机器人、蜘蛛等程序或设备监视、复制、传播、展示、镜像、上载、下载）“
                         {Config.AppName}
@@ -194,7 +329,7 @@ export default () => {
                 </View>
                 <View style={styles.fontWrap}>
                     <Text style={styles.tintFont}>
-                        5.2 您理解并同意,在使用“
+                        6.2 您理解并同意,在使用“
                         {Config.AppName}
                         ”软件及相关服务时发布上传的文字、图片、视频、音频等均由您原创或已获合法授权。您通过“
                         {Config.AppName}
@@ -203,20 +338,20 @@ export default () => {
                 </View>
                 <View style={styles.fontWrap}>
                     <Text style={styles.tintFont}>
-                        5.3 您知悉、理解并同意您通过“
+                        6.3 您知悉、理解并同意您通过“
                         {Config.AppName}
                         ”软件及相关服务发布上传的内容,授权公司及其关联公司、控制公司可在全球范围内、免费、非独家、可转授权地使用,使用范围包括但不限于在当前或其他网站、应用程序、产品或终端设备等,并授权公司及其关联公司、控制公司对相应内容可进行修改、复制、改编、翻译、汇编或制作衍生产品。
                     </Text>
                 </View>
                 <View style={styles.fontWrap}>
                     <Text style={styles.tintFont}>
-                        5.4
+                        6.4
                         您确认并同意授权公司以公司自己的名义或委托专业第三方对侵犯您上传发布的享有知识产权的内容进行代维权,维权形式包括但不限于：监测侵权行为、发送维权函、提起诉讼或仲裁、调解、和解等,公司有权对维权事宜做出决策并独立实施。
                     </Text>
                 </View>
                 <View style={styles.fontWrap}>
                     <Text style={styles.tintFont}>
-                        5.5 公司为“
+                        6.5 公司为“
                         {Config.AppName}
                         ”开发、运营提供技术支持,并对“
                         {Config.AppName}
@@ -228,26 +363,26 @@ export default () => {
                 </View>
                 <View style={styles.fontWrap}>
                     <Text style={styles.tintFont}>
-                        6.1 您理解并同意,“
+                        7.1 您理解并同意,“
                         {Config.AppName}
                         ”软件及相关服务可能会受多种因素的影响
                     </Text>
                 </View>
                 <View style={styles.fontWrap}>
                     <Text style={styles.tintFont}>
-                        6.2对于涉嫌借款、理财或其他涉财产的网络信息、账户密码、广告或推广等信息的,请您谨慎对待并自行进行判断,基于前述原因您因此遭受的财产、利润、商业信誉、资料损失或其他有形或无形损失,公司不承担任何直接、间接、附带、特别、衍生性或惩罚性的赔偿责任
+                        7.2对于涉嫌借款、理财或其他涉财产的网络信息、账户密码、广告或推广等信息的,请您谨慎对待并自行进行判断,基于前述原因您因此遭受的财产、利润、商业信誉、资料损失或其他有形或无形损失,公司不承担任何直接、间接、附带、特别、衍生性或惩罚性的赔偿责任
                     </Text>
                 </View>
                 <View style={styles.fontWrap}>
                     <Text style={styles.tintFont}>
-                        6.3 您理解并同意,在使用“
+                        7.3 您理解并同意,在使用“
                         {Config.AppName}
                         ”软件及相关服务过程中,可能遇到不可抗力等因素（不可抗力是指不能预见、不能克服并不能避免的客观事件）,包括但不限于政府行为、监管政策、自然灾害、网络原因、黑客攻击、战争或任何其它类似事件。出现不可抗力情况时,公司将努力在第一时间及时修复,但因不可抗力给您造成暂停、中止、终止服务或造成任何损失的,您同意公司不承担任何法律责任。
                     </Text>
                 </View>
                 <View style={styles.fontWrap}>
                     <Text style={styles.tintFont}>
-                        6.4
+                        7.4
                         公司依据本协议约定获得处理违法违规内容的权利,该权利不构成公司的义务或承诺,公司不能保证及时发现违法行为或进行相应处理。
                     </Text>
                 </View>
@@ -262,7 +397,7 @@ export default () => {
                 </View>
                 <View style={styles.fontWrap}>
                     <Text style={styles.darkFont}>
-                        6.6
+                        7.6
                         您理解并同意,本协议是在保障遵守国家法律法规、维护公序良俗,保护他人合法权益,公司在能力范围内尽最大的努力按照相关法律法规进行判断,但并不保证公司判断完全与司法机关、行政机关的判断一致,如因此产生的后果您已经理解并同意自行承担。
                     </Text>
                 </View>
