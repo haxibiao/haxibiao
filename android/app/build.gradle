@@ -82,6 +82,7 @@ project.ext.react = [
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
+apply from: "../../node_modules/react-native-code-push/android/codepush.gradle"
 
 /**
  * Set this to true to create two separate APKs instead of one:
@@ -130,6 +131,7 @@ android {
 
     defaultConfig {
         applicationId "com.haxibiao"
+		multiDexEnabled true
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
@@ -145,11 +147,17 @@ android {
     }
     signingConfigs {
         debug {
-            storeFile file('debug.keystore')
-            storePassword 'android'
-            keyAlias 'androiddebugkey'
-            keyPassword 'android'
+            storeFile file('ainicheng.keystore')
+            storePassword MYAPP_RELEASE_STORE_PASSWORD 
+            keyAlias MYAPP_RELEASE_KEY_ALIAS 
+            keyPassword MYAPP_RELEASE_KEY_PASSWORD 
         }
+        release {
+            storeFile file(MYAPP_RELEASE_STORE_FILE) 
+            storePassword MYAPP_RELEASE_STORE_PASSWORD 
+            keyAlias MYAPP_RELEASE_KEY_ALIAS 
+            keyPassword MYAPP_RELEASE_KEY_PASSWORD 
+        } 
     }
     buildTypes {
         debug {
