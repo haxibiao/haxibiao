@@ -1,57 +1,39 @@
 package com.haxibiao;
-import android.content.Context;
-import androidx.multidex.MultiDexApplication;
-import android.util.Log;
 
+import android.app.Application;
+import android.content.Context;
 import com.facebook.react.PackageList;
-import com.facebook.hermes.reactexecutor.HermesExecutorFactory;
-import com.facebook.react.bridge.JavaScriptExecutorFactory;
 import com.facebook.react.ReactApplication;
-import com.reactnativecommunity.asyncstorage.AsyncStoragePackage;
-import com.airbnb.android.react.lottie.LottiePackage;
+import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
-import java.lang.reflect.InvocationTargetException;
 import com.facebook.soloader.SoLoader;
-import com.haxibiao.ad.AdPackage;
-import com.haxibiao.toolkits.ToolkitsPackage;
-import com.microsoft.codepush.react.CodePush;
-import cn.jpush.reactnativejpush.JPushPackage;
-import com.haxibiao.vodupload.VodUploadPackage;
-
-import com.theweflex.react.WeChatPackage;
-
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
-public class MainApplication extends MultiDexApplication implements ReactApplication {
+public class MainApplication extends Application implements ReactApplication {
 
-  private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
-    @Override
-    public boolean getUseDeveloperSupport() {
-      return BuildConfig.DEBUG;
-    }
+  private final ReactNativeHost mReactNativeHost =
+      new ReactNativeHost(this) {
+        @Override
+        public boolean getUseDeveloperSupport() {
+          return BuildConfig.DEBUG;
+        }
 
-    @Override
-    protected String getJSBundleFile() {
-        return CodePush.getJSBundleFile();
-    }
+        @Override
+        protected List<ReactPackage> getPackages() {
+          @SuppressWarnings("UnnecessaryLocalVariable")
+          List<ReactPackage> packages = new PackageList(this).getPackages();
+          // Packages that cannot be autolinked yet can be added manually here, for example:
+          // packages.add(new MyReactNativePackage());
+          return packages;
+        }
 
-    @Override
-    protected List<ReactPackage> getPackages() {
-      List<ReactPackage> packages = new PackageList(this).getPackages();
-      packages.add(new ToolkitsPackage());
-      packages.add(new JPushPackage(true, true));
-      packages.add(new AdPackage()); //广告模块
-      packages.add(new VodUploadPackage());
-       packages.add(new WeChatPackage());
-      return packages;
-    }
-
-    @Override
-    protected String getJSMainModuleName() {
-      return "index";
-    }
-  };
+        @Override
+        protected String getJSMainModuleName() {
+          return "index";
+        }
+      };
 
   @Override
   public ReactNativeHost getReactNativeHost() {
@@ -62,24 +44,28 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
   public void onCreate() {
     super.onCreate();
     SoLoader.init(this, /* native exopackage */ false);
-    // JPushInterface.init(this);
-    initializeFlipper(this); // Remove this line if you don't want Flipper enabled
+    initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
   }
 
   /**
-   * Loads Flipper in React Native templates.
+   * Loads Flipper in React Native templates. Call this in the onCreate method with something like
+   * initializeFlipper(this, getReactNativeHost().getReactInstanceManager());
    *
    * @param context
+   * @param reactInstanceManager
    */
-  private static void initializeFlipper(Context context) {
+  private static void initializeFlipper(
+      Context context, ReactInstanceManager reactInstanceManager) {
     if (BuildConfig.DEBUG) {
       try {
         /*
-          We use reflection here to pick up the class that initializes Flipper,
+         We use reflection here to pick up the class that initializes Flipper,
         since Flipper library is not available in release mode
         */
-        Class<?> aClass = Class.forName("com.facebook.flipper.ReactNativeFlipper");
-        aClass.getMethod("initializeFlipper", Context.class).invoke(null, context);
+        Class<?> aClass = Class.forName("com.haxibiao.ReactNativeFlipper");
+        aClass
+            .getMethod("initializeFlipper", Context.class, ReactInstanceManager.class)
+            .invoke(null, context, reactInstanceManager);
       } catch (ClassNotFoundException e) {
         e.printStackTrace();
       } catch (NoSuchMethodException e) {

@@ -15,10 +15,12 @@ import com.android.build.OutputFile
  *   // the name of the generated asset file containing your JS bundle
  *   bundleAssetName: "index.android.bundle",
  *
- *   // the entry file for bundle generation
+ *   // the entry file for bundle generation. If none specified and
+ *   // "index.android.js" exists, it will be used. Otherwise "index.js" is
+ *   // default. Can be overridden with ENTRY_FILE environment variable.
  *   entryFile: "index.android.js",
  *
- *   // https://facebook.github.io/react-native/docs/performance#enable-the-ram-format
+ *   // https://reactnative.dev/docs/performance#enable-the-ram-format
  *   bundleCommand: "ram-bundle",
  *
  *   // whether to bundle JS and assets in debug mode
@@ -76,52 +78,10 @@ import com.android.build.OutputFile
  */
 
 project.ext.react = [
-    entryFile: "index.js",
     enableHermes: false,  // clean and rebuild if changing
-
-    devDisabledInStaging: true,
-    devDisabledInXiaomi: true,
-    devDisabledInBaidu: true,
-    devDisabledInWandoujia:true,
-    devDisabledInOppo:true,
-    devDisabledInHuawei:true,
-    devDisabledInMeizu:true,
-    devDisabledInVivo:true,
-    devDisabledInQihoo:true,
-    devDisabledInTencent:true,
-    
-    bundleInStaging: true,
-    bundleInXiaomi: true,
-    bundleInBaidu: true,
-    bundleInWandoujia:true,
-    bundleInOppo:true,
-    bundleInHuawei:true,
-    bundleInMeizu:true,
-    bundleInVivo:true,
-    bundleInQihoo:true,
-    bundleInTencent:true,
 ]
 
-project.ext.envConfigFiles = [
-    debug: ".env",
-    release: ".env.prod",
-    staging: ".env.staging",
-    xiaomi: ".env.xiaomi",
-    baidu: ".env.baidu",
-    wandoujia:".env.wandoujia",
-    oppo:".env.oppo",
-    huawei:".env.huawei",
-    meizu:".env.meizu",
-    vivo:".env.vivo",
-    qihoo:".env.qihoo",
-    tencent:".env.tencent",
-]
-
-
-apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 apply from: "../../node_modules/react-native/react.gradle"
-apply from: "../../node_modules/react-native-code-push/android/codepush.gradle"
-
 
 /**
  * Set this to true to create two separate APKs instead of one:
@@ -169,19 +129,11 @@ android {
     }
 
     defaultConfig {
-        def appConfigJsonFile = file('../../app.json')
-        def appConfigJson = new groovy.json.JsonSlurper().parseText(appConfigJsonFile.text)
-
-        applicationId appConfigJson.AppID
+        applicationId "com.haxibiao"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode appConfigJson.VersionCode
-        versionName appConfigJson.Version
-        multiDexEnabled true
-        manifestPlaceholders = [
-                JPUSH_APPKEY: "e2a41156f64a44a99af56d47", //在此替换你的APPKey
-                APP_CHANNEL: "developer-default"    //应用渠道号
-        ]
+        versionCode 1
+        versionName "1.0"
     }
     splits {
         abi {
@@ -193,114 +145,25 @@ android {
     }
     signingConfigs {
         debug {
-            storeFile file('ainicheng.keystore')
-            storePassword MYAPP_RELEASE_STORE_PASSWORD 
-            keyAlias MYAPP_RELEASE_KEY_ALIAS 
-            keyPassword MYAPP_RELEASE_KEY_PASSWORD 
+            storeFile file('debug.keystore')
+            storePassword 'android'
+            keyAlias 'androiddebugkey'
+            keyPassword 'android'
         }
-        release {
-            storeFile file(MYAPP_RELEASE_STORE_FILE) 
-            storePassword MYAPP_RELEASE_STORE_PASSWORD 
-            keyAlias MYAPP_RELEASE_KEY_ALIAS 
-            keyPassword MYAPP_RELEASE_KEY_PASSWORD 
-        } 
     }
     buildTypes {
-         debug {
-            // Note: CodePush updates should not be tested in Debug mode as they are overriden by the RN packager. However, because CodePush checks for updates in all modes, we must supply a key.
+        debug {
             signingConfig signingConfigs.debug
-            buildConfigField "String", "CODEPUSH_KEY", '""'
-            // applicationIdSuffix ".debug"
         }
         release {
             // Caution! In production, you need to generate your own keystore file.
-            // see https://facebook.github.io/react-native/docs/signed-apk-android.
-            signingConfig signingConfigs.release
+            // see https://reactnative.dev/docs/signed-apk-android.
+            signingConfig signingConfigs.debug
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-            buildConfigField "String", "CODEPUSH_KEY", '"' + rootProject.code_push_key_production + '"'
         }
-        staging {
-            initWith release
-            applicationIdSuffix '.staging'
-            matchingFallbacks = ['release']
-            signingConfig signingConfigs.release
-            buildConfigField "String", "CODEPUSH_KEY", '"' + rootProject.code_push_key_staging + '"'
-        }  
-        xiaomi {
-            initWith release
-            minifyEnabled enableProguardInReleaseBuilds
-            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-            matchingFallbacks = ['release']
-            signingConfig signingConfigs.release
-            buildConfigField "String", "CODEPUSH_KEY", '"' + rootProject.code_push_key_production + '"'
-        }
-        baidu {
-            initWith release
-            matchingFallbacks = ['release']
-            minifyEnabled enableProguardInReleaseBuilds
-            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-            signingConfig signingConfigs.release
-            buildConfigField "String", "CODEPUSH_KEY", '"' + rootProject.code_push_key_production + '"'
-        }
-        wandoujia {
-            initWith release
-            matchingFallbacks = ['release']
-            minifyEnabled enableProguardInReleaseBuilds
-            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-            signingConfig signingConfigs.release
-            buildConfigField "String", "CODEPUSH_KEY", '"' + rootProject.code_push_key_production + '"'
-        }
-        oppo {
-            initWith release
-            matchingFallbacks = ['release']
-            minifyEnabled enableProguardInReleaseBuilds
-            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-            signingConfig signingConfigs.release
-            buildConfigField "String", "CODEPUSH_KEY", '"' + rootProject.code_push_key_production + '"'
-        }
-        huawei {
-            initWith release
-            matchingFallbacks = ['release']
-            minifyEnabled enableProguardInReleaseBuilds
-            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-            signingConfig signingConfigs.release
-            buildConfigField "String", "CODEPUSH_KEY", '"' + rootProject.code_push_key_production + '"'
-        }
-        meizu {
-            initWith release
-            matchingFallbacks = ['release']
-            minifyEnabled enableProguardInReleaseBuilds
-            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-            signingConfig signingConfigs.release
-            buildConfigField "String", "CODEPUSH_KEY", '"' + rootProject.code_push_key_production + '"'
-        }
-        vivo {
-            initWith release
-            matchingFallbacks = ['release']
-            minifyEnabled enableProguardInReleaseBuilds
-            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-            signingConfig signingConfigs.release
-            buildConfigField "String", "CODEPUSH_KEY", '"' + rootProject.code_push_key_production + '"'
-        }
-        qihoo {
-            initWith release
-            matchingFallbacks = ['release']
-            minifyEnabled enableProguardInReleaseBuilds
-            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-            signingConfig signingConfigs.release
-            buildConfigField "String", "CODEPUSH_KEY", '"' + rootProject.code_push_key_production + '"'
-        }
-        tencent {
-            initWith release
-            matchingFallbacks = ['release']
-            minifyEnabled enableProguardInReleaseBuilds
-            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
-            signingConfig signingConfigs.release
-            buildConfigField "String", "CODEPUSH_KEY", '"' + rootProject.code_push_key_production + '"'
-        }
-        
     }
+
     // applicationVariants are e.g. debug, release
     applicationVariants.all { variant ->
         variant.outputs.each { output ->
@@ -315,55 +178,32 @@ android {
 
         }
     }
-
 }
-
-
-repositories {
-    flatDir {
-        dirs 'libs', project(':toolkits').file('libs')
-    }
-}
-
-// subprojects {
-//     afterEvaluate {project ->
-//         if (project.hasProperty("android")) {
-//             android {
-//                 compileSdkVersion 28
-//                 buildToolsVersion '28.0.3'
-//                 defaultConfig {
-//                     targetSdkVersion 28
-//                 }
-//             }
-//         }
-//     }
-// }
 
 dependencies {
-    implementation project(':lottie-react-native')
     implementation fileTree(dir: "libs", include: ["*.jar"])
+    //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
-    implementation 'com.android.support:multidex:1.0.3'
-    implementation 'com.facebook.fresco:fresco:2.0.0'
-    // For animated GIF support
-    implementation 'com.facebook.fresco:animated-gif:2.0.0'
-    // For WebP support, including animated WebP
-    implementation 'com.facebook.fresco:animated-webp:2.0.0'
-    implementation 'com.facebook.fresco:webpsupport:2.0.0'
 
-    implementation project(':jpush-react-native')  // 添加 jpush 依赖
-    implementation project(':jcore-react-native')  // 添加 jcore 依赖
+    implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
 
-    implementation project(':toolkits')
-    // 穿山甲必须
-    compile 'pl.droidsonroids.gif:android-gif-drawable:1.2.2'
+    debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
+      exclude group:'com.facebook.fbjni'
+    }
 
+    debugImplementation("com.facebook.flipper:flipper-network-plugin:${FLIPPER_VERSION}") {
+        exclude group:'com.facebook.flipper'
+    }
+
+    debugImplementation("com.facebook.flipper:flipper-fresco-plugin:${FLIPPER_VERSION}") {
+        exclude group:'com.facebook.flipper'
+    }
 
     if (enableHermes) {
-	    def hermesPath = "../../node_modules/hermes-engine/android/";
-	    debugImplementation files(hermesPath + "hermes-debug.aar")
-	    releaseImplementation files(hermesPath + "hermes-release.aar")
-    }else {
+        def hermesPath = "../../node_modules/hermes-engine/android/";
+        debugImplementation files(hermesPath + "hermes-debug.aar")
+        releaseImplementation files(hermesPath + "hermes-release.aar")
+    } else {
         implementation jscFlavor
     }
 }

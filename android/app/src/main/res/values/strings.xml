@@ -1,6 +1,3 @@
 <resources>
-    <string name="app_name">有剑气</string>
-    <string moduleConfig="true" name="reactNativeCodePush_androidDeploymentKey">kVPIlswzvPjJquNHqGbIQJiOtqno0je8LPfDo</string>
-    <string name="appCenterCrashes_whenToSendCrashes" moduleConfig="true" translatable="false">ALWAYS_SEND</string>
-	<string name="appCenterAnalytics_whenToEnableAnalytics" moduleConfig="true" translatable="false">ALWAYS_SEND</string>
+    <string name="app_name">haxibiao</string>
 </resources>

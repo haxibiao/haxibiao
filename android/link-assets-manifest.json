@@ -2,8 +2,8 @@
   "migIndex": 1,
   "data": [
     {
-      "path": "fonts/iconfont.ttf",
-      "sha1": "0249d500f8e67203c8cb80b6d4949240f098a37b"
+      "path": "src/assets/fonts/iconfont.ttf",
+      "sha1": "02b4deb02de6903573e002d4365cf2b5d6301637"
     }
   ]
 }

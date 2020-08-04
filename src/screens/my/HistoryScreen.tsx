@@ -9,37 +9,29 @@ import {
 	Placeholder,
 	CustomRefreshControl,
 	ItemSeparator,
-} from '@src/components';
-import { Query, GQL, useQuery } from '@src/apollo';
-import { userStore } from '@src/store';
+} from '~components';
+import { Query, GQL, useQuery } from '~apollo';
+import { userStore } from '~store';
 import { observable } from 'mobx';
 
 export default (props: any) => {
 	const { me } = userStore;
 	const [observableArticles, setArticles] = useState(null);
 
-	const { loading, error, data: userVisitsQueryResult, refetch, fetchMore } = useQuery(
-		GQL.userVisitsQuery,
-		{
-			variables: { user_id: me.id },
-			fetchPolicy: 'network-only',
-		},
-	);
-	const articles = useMemo(() => Helper.syncGetter('visits.data', userVisitsQueryResult), [
+	const { loading, error, data: userVisitsQueryResult, refetch, fetchMore } = useQuery(GQL.userVisitsQuery, {
+		variables: { user_id: me.id },
+		fetchPolicy: 'network-only',
+	});
+	const articles = useMemo(() => Helper.syncGetter('visits.data', userVisitsQueryResult), [userVisitsQueryResult]);
+
+	const hasMorePages = useMemo(() => Helper.syncGetter('visits.paginatorInfo.hasMorePages', userVisitsQueryResult), [
+		userVisitsQueryResult,
+	]);
+	const currentPage = useMemo(() => Helper.syncGetter('visits.paginatorInfo.currentPage', userVisitsQueryResult), [
 		userVisitsQueryResult,
 	]);
 
-	const hasMorePages = useMemo(
-		() => Helper.syncGetter('visits.paginatorInfo.hasMorePages', userVisitsQueryResult),
-		[userVisitsQueryResult],
-	);
-	const currentPage = useMemo(
-		() => Helper.syncGetter('visits.paginatorInfo.currentPage', userVisitsQueryResult),
-		[userVisitsQueryResult],
-    );
-    
-    console.log("浏览记录：",userVisitsQueryResult);
-    
+	console.log('浏览记录：', userVisitsQueryResult);
 
 	useEffect(() => {
 		if (Array.isArray(articles)) {
@@ -47,11 +39,10 @@ export default (props: any) => {
 		}
 	}, [articles]);
 
-	if (loading || !observableArticles  ) return <SpinnerLoading />;
+	if (loading || !observableArticles) return <SpinnerLoading />;
 	// console.log("loading",loading);
-	// console.log("!observableArticles",observableArticles);	
-	console.log("要是有事也是一样啥意思呀",observableArticles);
-	
+	// console.log("!observableArticles",observableArticles);
+	console.log('要是有事也是一样啥意思呀', observableArticles);
 
 	return (
 		<PageContainer title="浏览记录" while>
@@ -66,7 +57,7 @@ export default (props: any) => {
 					scrollEventThrottle={16}
 					renderItem={(item: any) => <PostItem time_ago={item.item.time_ago} post={item.item.article} />}
 					ListEmptyComponent={
-						<StatusView.EmptyView imageSource={require('@app/assets/images/default_empty.png')} />
+						<StatusView.EmptyView imageSource={require('~assets/images/default_empty.png')} />
 					}
 					onEndReached={() => {
 						if (hasMorePages) {

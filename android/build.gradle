@@ -2,21 +2,17 @@
 
 buildscript {
     ext {
-        buildToolsVersion = "28.0.3"
-        minSdkVersion = 19
-        compileSdkVersion = 28
-        targetSdkVersion = 28
-        supportLibVersion = "28.0.0"
-        code_push_key_production = "e33kyCx9tZx_bPI4dkkJey8nmegPBJXsByJwX"
-        code_push_key_staging = "UsCJfFcTf3khxcEDedFMmK-87ot5SkXiBykDX"
+        buildToolsVersion = "29.0.2"
+        minSdkVersion = 16
+        compileSdkVersion = 29
+        targetSdkVersion = 29
     }
     repositories {
         google()
         jcenter()
     }
     dependencies {
-        classpath('com.android.tools.build:gradle:3.5.0')
-
+        classpath("com.android.tools.build:gradle:3.5.3")
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -34,21 +30,8 @@ allprojects {
             url("$rootDir/../node_modules/jsc-android/dist")
         }
 
-        //解决image crop picker, ucrop 依赖找不到...
-        maven { url "https://jitpack.io" }
-
         google()
         jcenter()
+        maven { url 'https://www.jitpack.io' }
     }
-}
-
-subprojects { 
-    afterEvaluate { project -> 
-        if (project.hasProperty("android")) { 
-            android { 
-                compileSdkVersion = 28 
-                buildToolsVersion = "28.0.3" 
-            } 
-        } 
-    } 
 }

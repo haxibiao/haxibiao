@@ -11,9 +11,9 @@ import {
 	CustomRefreshControl,
 	ItemSeparator,
 	HxfButton,
-} from '@src/components';
-import { Query, useQuery, GQL } from '@src/apollo';
-import { observer, userStore } from '@src/store';
+} from '~components';
+import { Query, useQuery, GQL } from '~apollo';
+import { observer, userStore } from '~store';
 import UserProfile from './components/UserProfile';
 import BottomBar from './components/BottomBar';
 import { observable } from 'mobx';
@@ -54,7 +54,7 @@ export default observer((props: any) => {
 
 	const scrollAnimateValue = useRef(new Animated.Value(0));
 
-	const scrollListener = useCallback(e => {
+	const scrollListener = useCallback((e) => {
 		const { contentOffset, contentSize } = e.nativeEvent;
 		const { y } = contentOffset;
 	}, []);
@@ -87,8 +87,7 @@ export default observer((props: any) => {
 		extrapolate: 'clamp',
 	});
 
-
-	if (loading || !userData || !observableArticles  ) return <SpinnerLoading />;
+	if (loading || !userData || !observableArticles) return <SpinnerLoading />;
 
 	return (
 		<PageContainer contentViewStyle={{ marginTop: 0 }} error={error}>
@@ -105,8 +104,8 @@ export default observer((props: any) => {
 				renderItem={(item: any) => <PostItem post={item.item} />}
 				ListEmptyComponent={
 					<StatusView.EmptyView
-						title='TA还没有作品'
-						imageSource={require('@app/assets/images/default_empty.png')}
+						title="TA还没有作品"
+						imageSource={require('~assets/images/default_empty.png')}
 					/>
 				}
 				onEndReached={() => {

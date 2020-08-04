@@ -10,9 +10,9 @@ import {
 	CustomRefreshControl,
 	ItemSeparator,
 	TouchFeedback,
-} from '@src/components';
-import { Query, useQuery, GQL } from '@src/apollo';
-import { observer } from '@src/store';
+} from '~components';
+import { Query, useQuery, GQL } from '~apollo';
+import { observer } from '~store';
 import CategoryProfile from './components/CategoryProfile';
 import { observable } from 'mobx';
 
@@ -54,7 +54,7 @@ export default observer((props: any) => {
 
 	const scrollAnimateValue = useRef(new Animated.Value(0));
 
-	const scrollListener = useCallback(e => {
+	const scrollListener = useCallback((e) => {
 		const { contentOffset, contentSize } = e.nativeEvent;
 		const { y } = contentOffset;
 	}, []);
@@ -118,8 +118,8 @@ export default observer((props: any) => {
 				renderItem={(item: any) => <PostItem post={item.item} />}
 				ListEmptyComponent={
 					<StatusView.EmptyView
-						title='TA还没有作品'
-						imageSource={require('@app/assets/images/default_empty.png')}
+						title="TA还没有作品"
+						imageSource={require('~assets/images/default_empty.png')}
 					/>
 				}
 				onEndReached={() => {
@@ -152,7 +152,7 @@ export default observer((props: any) => {
 			</Animated.View>
 			<View style={styles.buttonWrap}>
 				<TouchFeedback activeOpacity={1} onPress={buttonPress}>
-					<Image source={require('@app/assets/images/ic_send_post.png')} style={styles.sendButton} />
+					<Image source={require('~assets/images/ic_send_post.png')} style={styles.sendButton} />
 				</TouchFeedback>
 			</View>
 		</PageContainer>

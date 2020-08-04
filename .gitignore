@@ -20,22 +20,14 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
-project.xcworkspace
-!debug.keystore
 
 # Android/IntelliJ
 #
 build/
 .idea
 .gradle
-nohup.out
-.project
 local.properties
 *.iml
-*.hprof
-.classpath
-.settings
-android/app/release
 
 # Visual Studio Code
 #
@@ -51,6 +43,7 @@ yarn-error.log
 buck-out/
 \.buckd/
 *.keystore
+!debug.keystore
 
 # fastlane
 #
@@ -68,7 +61,3 @@ buck-out/
 
 # CocoaPods
 /ios/Pods/
-
-# Jest
-#
-.jest/

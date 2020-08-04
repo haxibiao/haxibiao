@@ -3,46 +3,39 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Image, PixelRatio } from 'react-native';
 
+class Avatar extends Component {
+	static defaultProps = {
+		size: PxDp(44),
+		style: {},
+	};
 
-type Props = {
-    size?: number;
-    style?: any;
-    source: any;
-};
+	constructor(props: any) {
+		super(props);
 
-class Avatar extends Component<Props> {
-    static defaultProps = {
-        size: PxDp(44),
-        style: {},
-    };
+		this.state = {
+			loading: true,
+		};
+	}
 
-    constructor(props: any) {
-        super(props);
+	render() {
+		let { source, size, style } = this.props;
+		let avatar = {
+			width: size,
+			height: size,
+			borderRadius: PixelRatio.roundToNearestPixel(size / 2),
+			backgroundColor: '#f9f9f9',
+		};
+		if (typeof source === 'string') {
+			source = { uri: source };
+		}
+		return <Image source={source} resizeMode="cover" style={[avatar, style]} onError={this._onError} />;
+	}
 
-        this.state = {
-            loading: true,
-        };
-    }
-
-    render() {
-        let { source, size, style } = this.props;
-        let avatar = {
-            width: size,
-            height: size,
-            borderRadius: PixelRatio.roundToNearestPixel(size / 2),
-            backgroundColor: '#f9f9f9',
-        };
-        if (typeof source === 'string') {
-            source = { uri: source };
-        }
-        return <Image source={source} resizeMode="cover" style={[avatar, style]} onError={this._onError} />;
-    }
-
-    _onError = () => {
-        this.setState({
-            loading: false,
-        });
-    };
+	_onError = () => {
+		this.setState({
+			loading: false,
+		});
+	};
 }
 
 const styles = StyleSheet.create({});
