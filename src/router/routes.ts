@@ -79,179 +79,179 @@ import TaskNewUserBook from '~screens/task/newuser';
 
 export default {
 	SplashGuide: {
-		screen: SplashGuide,
+		component: SplashGuide,
 		path: 'splash/:route',
 	},
 	主页: {
-		screen: MainTabNavigator,
+		component: MainTabNavigator,
 		path: 'mainTab/:route',
 	},
 	Login: {
-		screen: LoginScreen,
+		component: LoginScreen,
 	},
 	AskQuestion: {
-		screen: AskQuestion,
+		component: AskQuestion,
 	},
 	SpiderVideo: {
-		screen: SpiderVideo,
+		component: SpiderVideo,
 	},
 	SelectCategory: {
-		screen: SelectCategory,
+		component: SelectCategory,
 	},
 	Wallet: {
-		screen: Wallet,
+		component: Wallet,
 	},
 	WithdrawApply: {
-		screen: WithdrawApply,
+		component: WithdrawApply,
 	},
 	WithdrawHistory: {
-		screen: WithdrawHistory,
+		component: WithdrawHistory,
 	},
 	VerifyAccount: {
-		screen: VerifyAccount,
+		component: VerifyAccount,
 	},
 	WithdrawDetail: {
-		screen: WithdrawDetail,
+		component: WithdrawDetail,
 	},
 	BindAlipay: {
-		screen: BindAlipay,
+		component: BindAlipay,
 	},
 	BindDongdezhuan: {
-		screen: BindDongdezhuan,
+		component: BindDongdezhuan,
 	},
 	CommentNotification: {
-		screen: CommentsScreen,
+		component: CommentsScreen,
 	},
 	FollowNotification: {
-		screen: FollowNotificationsScreen,
+		component: FollowNotificationsScreen,
 	},
 	BeLikedNotification: {
-		screen: BeLikedScreen,
+		component: BeLikedScreen,
 	},
 	OtherRemindNotification: {
-		screen: OtherRemindScreen,
+		component: OtherRemindScreen,
 	},
 	Works: {
-		screen: WorksScreen,
+		component: WorksScreen,
 	},
 	Society: {
-		screen: SocietyScreen,
+		component: SocietyScreen,
 	},
 	CommonQuestion: {
-		screen: CommonQuestionScreen,
+		component: CommonQuestionScreen,
 	},
 	Setting: {
-		screen: SettingsScreen,
+		component: SettingsScreen,
 		path: 'setting/:route',
 	},
 	编辑个人资料: {
-		screen: EditProfileScreen,
+		component: EditProfileScreen,
 	},
 	AboutUs: {
-		screen: AboutUsScreen,
+		component: AboutUsScreen,
 	},
 	UserProtocol: {
-		screen: UserAgreementScreen,
+		component: UserAgreementScreen,
 	},
 	PrivacyPolicy: {
-		screen: PrivacyPolicyScreen,
+		component: PrivacyPolicyScreen,
 	},
 	ModifyPassword: {
-		screen: ModifyPassword,
+		component: ModifyPassword,
 	},
 	文章详情: {
-		screen: ArticleDetailScreen,
+		component: ArticleDetailScreen,
 	},
 	Category: {
-		screen: CategoryScreen,
+		component: CategoryScreen,
 	},
 	Comment: {
-		screen: CommentScreen,
+		component: CommentScreen,
 	},
 	PostDetail: {
-		screen: PostDetailScreen,
+		component: PostDetailScreen,
 	},
 	Chat: {
-		screen: ChatScreen,
+		component: ChatScreen,
 	},
 	ChatSetting: {
-		screen: ChatSettingScreen,
+		component: ChatSettingScreen,
 	},
 	// 新消息: {
-	//     screen: NewChatScreen,
+	//     component: NewChatScreen,
 	// },
 	User: {
-		screen: UserHomeScreen,
+		component: UserHomeScreen,
 	},
 	Report: {
-		screen: Report,
+		component: Report,
 	},
 
 	喜欢: {
-		screen: LikedArticlesScreen,
+		component: LikedArticlesScreen,
 	},
 	找回密码: {
-		screen: RetrievePasswordScreen,
+		component: RetrievePasswordScreen,
 	},
 	获取验证码: {
-		screen: VerificationScreen,
+		component: VerificationScreen,
 	},
 	我的收藏: {
-		screen: FavoritedArticlesScreen,
+		component: FavoritedArticlesScreen,
 	},
 	浏览记录: {
-		screen: BrowsingHistoryScreen,
+		component: BrowsingHistoryScreen,
 	},
 	账号安全: {
-		screen: AccountSafety,
+		component: AccountSafety,
 	},
 	AccountSecurity: {
-		screen: AccountSecurity,
+		component: AccountSecurity,
 	},
 	Feedback: {
-		screen: FeedbackScreen,
+		component: FeedbackScreen,
 	},
 	FeedbackDetail: {
-		screen: FeedbackDetail,
+		component: FeedbackDetail,
 	},
 	ModifyAliPay: {
-		screen: ModifyAliPay,
+		component: ModifyAliPay,
 	},
 	LogoutAccount: {
-		screen: LogoutAccount,
+		component: LogoutAccount,
 	},
 
 	CancellationAgreement: {
-		screen: CancellationAgreement,
+		component: CancellationAgreement,
 	},
 	TaskScreen: {
-		screen: TaskScreen,
+		component: TaskScreen,
 	},
 	TaskDrinkWater: {
-		screen: TaskDrinkWaterScreen,
+		component: TaskDrinkWaterScreen,
 		path: 'task/TaskDrinkWater',
 	},
 	TaskSleep: {
-		screen: TaskSleepScreen,
+		component: TaskSleepScreen,
 		path: 'task/TaskSleep',
 	},
 	TaskRewardVideo: {
-		screen: TaskRewardVideo,
+		component: TaskRewardVideo,
 		path: 'task/TaskRewardVideo',
 	},
 	Praise: {
-		screen: Praise,
+		component: Praise,
 	},
 	PhoneVerification: {
-		screen: PhoneVerification,
+		component: PhoneVerification,
 	},
 	NotificationPage: {
-		screen: NotificationPage,
+		component: NotificationPage,
 	},
 	TaskNewUserBook: {
-		screen: TaskNewUserBook,
+		component: TaskNewUserBook,
 	},
 	UserBlockScreen: {
-		screen: UserBlockScreen,
+		component: UserBlockScreen,
 	},
 };
