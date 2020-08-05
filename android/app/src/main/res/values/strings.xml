@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">哈希表</string>
-	<string moduleConfig="true" name="CodePushDeploymentKey">kVPIlswzvPjJquNHqGbIQJiOtqno0je8LPfDo</string>
     <string name="appCenterCrashes_whenToSendCrashes" moduleConfig="true" translatable="false">ALWAYS_SEND</string>
 	<string name="appCenterAnalytics_whenToEnableAnalytics" moduleConfig="true" translatable="false">ALWAYS_SEND</string>
+	
+	<string moduleConfig="true" name="CodePushDeploymentKey">RXiLlwywOZFYSAgcZ1pUAGc2wPpz4ksvOXqog</string>
+	<string moduleConfig="true" name="CodePushServerUrl">http://codepush.haxibiao.com/</string>
 </resources>
