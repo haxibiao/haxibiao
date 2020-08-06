@@ -218,7 +218,7 @@ export default observer(
                         position: 'absolute',
                     },
                     {
-                        height: 55,
+                        height:DEFAULT_TABBAR_HEIGHT + insets.bottom,
                         paddingBottom: insets.bottom,
                         paddingHorizontal: Math.max(insets.left, insets.right),
                     },
