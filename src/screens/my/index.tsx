@@ -294,7 +294,7 @@ export default observer((props) => {
 
 					<TouchableOpacity
 						style={styles.columnItem}
-						onPress={() => middlewareNavigate('Setting', { user: userProfile })}>
+						onPress={() => navigation.navigate('Setting', { user: userProfile })}>
 						<Row>
 							<View style={styles.columnIconWrap}>
 								<Image

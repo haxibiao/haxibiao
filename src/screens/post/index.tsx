@@ -24,8 +24,7 @@ interface Props {
 const index = (props: Props) => {
 	const navigation = useNavigation();
     const route = useRoute();
-
-    const category = route.params?.category ?? {};
+    const media = route.params?.post ?? {};
 	const hasVideo = media.video && media.video.url;
 	const [replyByComment, setReplyByComment] = useState();
 	const flatListRef = useRef();
@@ -96,7 +95,7 @@ const index = (props: Props) => {
 
 	return (
 		<PageContainer title="详情" contentViewStyle={hasVideo ? { marginTop: 0 } : {}}>
-			{hasVideo && <Player video={media.video} />}
+			{hasVideo && <Player video={media.video} navigation={navigation} />}
 			<View style={[styles.container, Device.IOS && { paddingBottom: Theme.HOME_INDICATOR_HEIGHT }]}>
 				<ScrollView
 					onScroll={onScroll}

@@ -32,7 +32,7 @@ export default class Player extends Component {
 		};
 	}
 
-	componentDidMount() {
+	componentDidMount () {
 		let { navigation } = this.props;
 		// let BackHandler = ReactNative.BackHandler ? ReactNative.BackHandler : ReactNative.BackAndroid;
 		if (Device.Android) {
@@ -44,7 +44,7 @@ export default class Player extends Component {
 	}
 
 	componentWillUnmount() {
-		this.willBlurSubscription.remove();
+		this.willBlurSubscription();
 		// 离开固定竖屏
 		Orientation.lockToPortrait();
 	}

@@ -16,19 +16,12 @@ export { useNavigation, useRoute };
 const router: { [key: string]: any } = routing;
 
 export const middlewareNavigate = (navigation: any, routeName: string, params?: object, action?: any) => {
-    const authAction = CommonActions.navigate({
-        name: 'Login',
-    });
-
-    const navigateAction = CommonActions.navigate({
-        name: routeName,
-        params,
-    });
 
     if (router[routeName] && !TOKEN) {
-        navigation.dispatch(authAction);
+        navigation.navigate('Login')
+
     } else {
-        navigation.dispatch(navigateAction);
+        navigation.navigate(routeName, { params })
     }
 };
 

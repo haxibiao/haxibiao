@@ -11,40 +11,47 @@ import BottomTabBar from './BottomTabBar';
 
 const Tab = createBottomTabNavigator();
 export default function MainTabNavigator() {
-    return (
-        <Tab.Navigator initialRouteName="HomeScreen" tabBar={(props: any) => <BottomTabBar {...props} />}>
-            <Tab.Screen
-                name="HomeScreen"
-                component={HomeScreen}
-                options={{
-                    tabBarLabel: '首页',
-                }}
-            />
-            <Tab.Screen
-                name="FindScreen"
-                component={FindScreen}
-                options={{
-                    tabBarLabel: '发现',
-                }}
-            />
-            <Tab.Screen
-                name="Notification"
-                component={NotificationScreen}
-                options={{
-                    tabBarLabel: '通知',
-                }}
-            />
-            <Tab.Screen
-                name="MyHomeScreen"
-                component={MyHomeScreen}
-                options={{
-                    tabBarLabel: '个人',
-                }}
-            />
-        </Tab.Navigator>
-    );
+	return (
+		<Tab.Navigator initialRouteName="HomeScreen" tabBar={(props: any) => <BottomTabBar {...props} />}>
+			<Tab.Screen
+				name="HomeScreen"
+				component={HomeScreen}
+				options={{
+					tabBarLabel: '首页',
+				}}
+			/>
+			<Tab.Screen
+				name="FindScreen"
+				component={FindScreen}
+				options={{
+					tabBarLabel: '发现',
+				}}
+			/>
+			<Tab.Screen
+				name="fabu"
+				component={NotificationScreen}
+				options={{
+					tabBarLabel: '补发布',
+				}}
+			/>
+			<Tab.Screen
+				name="Notification"
+				component={NotificationScreen}
+				options={{
+					tabBarLabel: '通知',
+				}}
+			/>
+			<Tab.Screen
+				name="MyHomeScreen"
+				component={MyHomeScreen}
+				options={{
+					tabBarLabel: '个人',
+				}}
+			/>
+		</Tab.Navigator>
+	);
 }
 
 const styles = StyleSheet.create({
-    tabBarIcon: { width: 22, height:22 },
+	tabBarIcon: { width: 22, height: 22 },
 });

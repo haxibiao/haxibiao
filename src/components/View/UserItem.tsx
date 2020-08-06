@@ -25,14 +25,8 @@ class UserItem extends Component {
 	render() {
 		const { user, style, navigation } = this.props;
 		const { id = 1, avatar, name, followed_status, introduction } = user;
-		const pushAction = StackActions.push({
-			routeName: 'User',
-			params: {
-				user,
-			},
-		});
 		return (
-			<TouchableOpacity style={[styles.item, style]} onPress={() => navigation.dispatch(pushAction)}>
+			<TouchableOpacity style={[styles.item, style]} onPress={() => navigation.navigate('User', { user })}>
 				<Avatar source={avatar} size={PxDp(50)} />
 				<View style={styles.right}>
 					<View style={styles.info}>

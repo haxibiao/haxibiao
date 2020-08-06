@@ -2,7 +2,7 @@ import React, { Component, useEffect, useCallback, useMemo, useRef } from 'react
 import { RefreshControl, View, FlatList } from 'react-native';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 
-import { PageContainer, ScrollTabBar } from '@src/components';
+import { PageContainer, ScrollTabBar } from '~components';
 import WithdrawLog from './components/WithdrawLog';
 import IncomeAndExpenditure from './components/IncomeAndExpenditure';
 import ContributionLog from "./components/ContributionLog";

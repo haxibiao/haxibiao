@@ -12,7 +12,9 @@ import {
     Dimensions,
     TouchableOpacity,
     DeviceEventEmitter,
+    TouchableWithoutFeedback,
 } from 'react-native';
+import { Overlay } from 'teaset';
 import { CommonActions, useTheme } from '@react-navigation/native';
 import { useSafeArea } from 'react-native-safe-area-context';
 import { observer, userStore, appStore } from '../store';
@@ -53,6 +55,10 @@ const iconSource = {
         active: require('@app/src/assets/images/init_discover_focus.png'),
         inactive: require('@app/src/assets/images/init_discover.png'),
     },
+    Notification2: {
+        active: require('@app/src/assets/images/init-notification-focus.png'),
+        inactive: require('@app/src/assets/images/init-notification.png'),
+    },
     Notification: {
         active: require('@app/src/assets/images/init-notification-focus.png'),
         inactive: require('@app/src/assets/images/init-notification.png'),
@@ -87,6 +93,8 @@ export default observer(
         const defaultInsets = useSafeArea();
 
         const focusedRoute = state.routes[state.index];
+            console.log('111111===============',focusedRoute);
+
         const focusedDescriptor = descriptors[focusedRoute.key];
         const focusedOptions = focusedDescriptor.options;
 
@@ -193,7 +201,7 @@ export default observer(
                 style={[
                     styles.bottomTabBar,
                     {
-                        backgroundColor: colors.card,
+                        backgroundColor:focusedRoute.name != 'HomeScreen' ? colors.card :'rgba(255,255,255,0)',
                         borderTopColor: colors.border,
                     },
                     {
@@ -210,7 +218,7 @@ export default observer(
                         position: 'absolute',
                     },
                     {
-                        height: DEFAULT_TABBAR_HEIGHT + insets.bottom,
+                        height: 55,
                         paddingBottom: insets.bottom,
                         paddingHorizontal: Math.max(insets.left, insets.right),
                     },
@@ -257,6 +265,9 @@ export default observer(
                                 target: route.key,
                             });
                         };
+                        if(index == 2){
+                            return <PublishButton key="publishButton" navigation={navigation} />;
+                        }
 
                         return (
                             <TouchableOpacity
@@ -293,6 +304,26 @@ function TabBarIcon({ name, focused, activeTintColor, inactiveTintColor }) {
                 <Image source={iconSource[name].inactive} style={styles.iconSize} />
             </View>
         </View>
+    );
+}
+const PublishButton = ({ navigation })=> {
+
+    const onPublishPress = () => {
+       navigation.navigate('AskQuestion')
+    }
+
+    return (
+        <TouchableWithoutFeedback key="publish" onPress={onPublishPress}>
+            <View style={styles.tabItem}>
+                <Image
+                    source={require('../assets/images/publish.png')}
+                    style={{
+                        width: 40,
+                        height:40,
+                    }}
+                />
+            </View>
+        </TouchableWithoutFeedback>
     );
 }
 

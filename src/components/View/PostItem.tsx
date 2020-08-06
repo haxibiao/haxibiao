@@ -269,7 +269,7 @@ const PostItem: React.FC<Props> = observer((props: Props) => {
                         ) : null} */}
 						</Row>
 						{!(isSelf && showComment) && (
-							<TouchableOpacity activeOpacity={0.6} onPress={showMoreOperation}>
+							<TouchableOpacity activeOpacity={0.6} >
 								<Iconfont name="qita1" size={PxDp(22)} color={'#CCD5E0'} />
 							</TouchableOpacity>
 						)}

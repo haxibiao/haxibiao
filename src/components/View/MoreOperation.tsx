@@ -24,6 +24,7 @@ const MoreOperation = (props) => {
 		shares,
 	} = props;
 	const report = useReport({ target, type });
+console.log('ahjdghashjdhagjdahsdj',target);
 
 	const [deleteArticleMutation] = useMutation(GQL.deleteArticle, {
 		variables: {
@@ -114,7 +115,7 @@ const MoreOperation = (props) => {
 				.mutate({
 					mutation: GQL.addUserBlockMutation,
 					variables: {
-						id: target.user.id,
+						id: target.id,
 					},
 					refetchQueries: () => [
 						{
