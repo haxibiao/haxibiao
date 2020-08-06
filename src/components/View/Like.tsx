@@ -3,7 +3,7 @@ import { StyleSheet, View, TouchableOpacity, Animated, Image, Text } from 'react
 import { useBounceAnimation } from '~utils';
 import { GQL, useMutation } from '~apollo';
 import { observer } from '~store';
-import { useNavigation } from 'react-navigation-hooks';
+import { useNavigation } from '@react-navigation/native';
 import Iconfont from '../Iconfont';
 import SafeText from '../Basic/SafeText';
 

@@ -6,10 +6,10 @@
 import React, { Component } from 'react';
 import { StyleSheet, Platform, StatusBar, View, Text, TouchableOpacity, Animated, Dimensions } from 'react-native';
 import PropTypes from 'prop-types';
-import { withNavigation } from 'react-navigation';
+// import { withNavigation } from 'react-navigation';
 import Iconfont from '../Iconfont';
 
-class NavigatorBar extends Component {
+export default class NavigatorBar extends Component {
 	static propTypes = {
 		showShadow: PropTypes.bool,
 		isTopNavigator: PropTypes.bool, // whether the page is initialized
@@ -211,4 +211,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default withNavigation(NavigatorBar);
+// export default withNavigation(NavigatorBar);

@@ -71,7 +71,7 @@ export default observer((props: any) => {
 				refetchChatsQuery();
 			});
 			return () => {
-				navWillBlurListener.remove();
+				navWillBlurListener();
 			};
 		}
 	}, [userId, refetchUnreadsQuery, refetchChatsQuery]);

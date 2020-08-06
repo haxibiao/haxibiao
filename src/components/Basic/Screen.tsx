@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { View, StatusBar, ActivityIndicator } from 'react-native';
-import { withNavigation } from 'react-navigation';
+// import { withNavigation } from 'react-navigation';
 
-class Screen extends Component {
+export default class Screen extends Component {
     render() {
         let { navigation, customStyle = {}, lightBar, header = false, leftComponent = false } = this.props;
         if (navigation.getParam('auth') && TOKEN === null) {
@@ -28,4 +28,4 @@ class Screen extends Component {
     }
 }
 
-export default withNavigation(Screen);
+// export default withNavigation(Screen);

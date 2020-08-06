@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import { withNavigation } from 'react-navigation';
+// import { withNavigation } from 'react-navigation';
 
 import Iconfont from '../Iconfont';
 
-class HeaderLeft extends Component {
+export default class HeaderLeft extends Component {
     render() {
         const { color = Theme.defaultTextColor, children, navigation, goBack = true } = this.props;
         return (
@@ -34,4 +34,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default withNavigation(HeaderLeft);
+// export default withNavigation(HeaderLeft);

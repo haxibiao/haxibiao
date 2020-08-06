@@ -84,18 +84,18 @@ export default observer((props) => {
 		[fetchData],
 	);
 
-	useEffect(() => {
-		const navWillFocusListener = props.navigation.addListener('willFocus', () => {
-			StatusBar.setBarStyle('light-content');
-		});
-		const navWillBlurListener = navigation.addListener('willBlur', () => {
-			StatusBar.setBarStyle('dark-content');
-		});
-		return () => {
-			navWillFocusListener.remove();
-			navWillBlurListener.remove();
-		};
-	}, []);
+    useEffect(() => {
+        const navWillFocusListener = navigation.addListener('willFocus', () => {
+            StatusBar.setBarStyle('light-content');
+        });
+        const navWillBlurListener = navigation.addListener('willBlur', () => {
+            StatusBar.setBarStyle('dark-content');
+        });
+        return () => {
+            navWillFocusListener();
+            navWillBlurListener();
+        };
+    }, []);
 
 	useEffect(() => {
 		if (userStore.launched) {

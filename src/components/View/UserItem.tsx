@@ -5,7 +5,7 @@
 
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import { withNavigation, StackActions } from 'react-navigation';
+import { StackActions } from '@react-navigation/native';
 
 import Iconfont from '../Iconfont';
 import Row from '../Basic/Row';
@@ -92,4 +92,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default withNavigation(UserItem);
+export default UserItem;

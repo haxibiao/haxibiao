@@ -5,7 +5,7 @@
 
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
-import { withNavigation } from 'react-navigation';
+// import { withNavigation } from 'react-navigation';
 
 import { GQL, graphql, compose } from '~apollo';
 import { userStore } from '~store';
@@ -123,4 +123,4 @@ class FollowButton extends Component<Props> {
 
 const styles = StyleSheet.create({});
 
-export default compose(withNavigation, graphql(GQL.followUserMutation, { name: 'followUser' }))(FollowButton);
+export default compose(graphql(GQL.followUserMutation, { name: 'followUser' }))(FollowButton);

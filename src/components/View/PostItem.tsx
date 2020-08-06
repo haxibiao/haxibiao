@@ -25,7 +25,7 @@ import Comment from '~assets/images/pinglun.svg';
 import StoreContext, { observer, useObservable, appStore, userStore } from '~store';
 import { useApolloClient, ApolloProvider } from '~apollo';
 import { useNavigation } from '~router';
-import { StackActions } from 'react-navigation';
+import { StackActions } from '@react-navigation/native';
 import { Overlay } from 'teaset';
 
 interface SubmitStatusProps {

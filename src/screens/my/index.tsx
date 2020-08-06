@@ -65,8 +65,8 @@ export default observer((props) => {
 			StatusBar.setBarStyle('dark-content');
 		});
 		return () => {
-			navWillFocusListener.remove();
-			navWillBlurListener.remove();
+			navWillFocusListener();
+			navWillBlurListener();
 		};
 	});
 

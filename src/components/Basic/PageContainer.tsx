@@ -4,7 +4,7 @@
 
 import React, { Component } from 'react';
 import { View, StyleSheet, Text, StatusBar } from 'react-native';
-import { NavigationEvents } from 'react-navigation';
+// import { NavigationEvents } from 'react-navigation';
 import NavigatorBar from '../Header/NavigatorBar';
 import KeyboardSpacer from '../Other/KeyboardSpacer';
 import SubmitLoading from '../View/SubmitLoading';
@@ -68,12 +68,12 @@ class PageContainer extends Component {
 					{this.renderContent()}
 				</View>
 				{autoKeyboardInsets && <KeyboardSpacer topInsets={topInsets} />}
-				<NavigationEvents
+				{/* <NavigationEvents
 					onWillFocus={onWillFocus}
 					onDidFocus={onDidFocus}
 					onWillBlur={onWillBlur}
 					onDidBlur={onDidBlur}
-				/>
+				/> */}
 				<SubmitLoading isVisible={submitting} content={submitTips} />
 			</View>
 		);

@@ -7,7 +7,7 @@ import FindScreen from '~screens/find';
 import NotificationScreen from '~screens/notification';
 import MyHomeScreen from '~screens/my';
 
-import {BottomTabBar} from './BottomTabBar';
+import BottomTabBar from './BottomTabBar';
 
 const Tab = createBottomTabNavigator();
 export default function MainTabNavigator() {
