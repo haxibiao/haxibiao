@@ -11,7 +11,7 @@ import { Mutation, GQL } from '~apollo';
 class IntroduceScreen extends Component {
 	constructor(props) {
 		super(props);
-		this.introduction = props.navigation.getParam('introduction', '');
+		this.introduction = props.route.params?.introduction ?? '';
 	}
 
 	render() {

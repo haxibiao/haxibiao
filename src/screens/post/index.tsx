@@ -13,6 +13,7 @@ import {
 } from '~components';
 import { GQL, useQuery } from '~apollo';
 import { observer, userStore } from '~store';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 import CommentItem from '../comment/CommentItem';
 import CommentInput from '../comment/CommentInput';
@@ -21,8 +22,10 @@ interface Props {
 	navigation: any;
 }
 const index = (props: Props) => {
-	const { navigation } = props;
-	const media = navigation.getParam('post');
+	const navigation = useNavigation();
+    const route = useRoute();
+
+    const category = route.params?.category ?? {};
 	const hasVideo = media.video && media.video.url;
 	const [replyByComment, setReplyByComment] = useState();
 	const flatListRef = useRef();

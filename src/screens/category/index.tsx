@@ -19,7 +19,7 @@ import { observable } from 'mobx';
 const animatedReferenceValue = Device.WIDTH * 0.75 - PxDp(Theme.NAVBAR_HEIGHT + Theme.statusBarHeight);
 
 export default observer((props: any) => {
-	const category = props.navigation.getParam('category', {});
+	const category = props.route.params?.category ?? {};
 	const [observableArticles, setArticles] = useState([]);
 
 	const { data: categoryQueryResult } = useQuery(GQL.categoryQuery, {

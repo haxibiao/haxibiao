@@ -16,7 +16,7 @@ import { checkUpdate } from '~utils';
 class index extends Component {
 	constructor(props) {
 		super(props);
-		const user = props.navigation.getParam('user');
+		const user = props.route.params?.user ?? {};
 
 		this.state = {
 			storageSize: (Math.random(1, 10) * 10).toFixed(1) + 'M',

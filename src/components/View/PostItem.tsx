@@ -175,18 +175,12 @@ const PostItem: React.FC<Props> = observer((props: Props) => {
 		Overlay.show(MoreOperationOverlay);
 	}, [client, post]);
 
-	const onPress = useCallback(() => {
-		if (showComment) {
-			return;
-		}
-		const action = StackActions.push({
-			routeName: 'PostDetail',
-			params: {
-				post,
-			},
-		});
-		navigation.dispatch(action);
-	}, [post, showComment]);
+    const onPress = useCallback(() => {
+        if (showComment) {
+            return;
+        }
+        navigation.navigate('PostDetail', { "post": post });
+    }, [post, showComment]);
 
 	const showRemark = useMemo(() => showSubmitStatus && remark && submit < 0, [props]);
 

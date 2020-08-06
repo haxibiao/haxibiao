@@ -5,7 +5,7 @@ import { middlewareNavigate } from '~router';
 
 const ChatSetting = (props) => {
 	const { navigation } = props;
-	const user = navigation.getParam('user', {});
+	const user = props.route.params?.user ?? {};
 	const [contentType, setContentType] = useState(false);
 
 	const changeContentType = useCallback(() => {

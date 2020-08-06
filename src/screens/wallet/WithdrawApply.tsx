@@ -6,8 +6,8 @@ const SCREEN_WIDTH = Dimensions.get('window').width;
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 
 export default function WithdrawApply(props) {
-	const created_at = props.navigation.getParam('created_at'); // 提现记录创建时间
-	const amount = props.navigation.getParam('amount'); // 单次提现额度
+	const created_at = props.route.params?.created_at ?? {}; // 提现记录创建时间
+	const amount = props.route.params?.amount ?? {}; // 单次提现额度
 	return (
 		<PageContainer title="提现申请">
 			<View style={styles.container}>

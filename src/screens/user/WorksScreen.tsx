@@ -14,7 +14,7 @@ import { Query, GQL, useQuery } from '~apollo';
 import { observable } from 'mobx';
 
 export default (props: any) => {
-	const user = props.navigation.getParam('user', {});
+	const user = props.route.params?.user ?? {};
 	const [observableArticles, setArticles] = useState(null);
 
 	const { loading, error, data: myArticlesQueryResult, refetch, fetchMore } = useQuery(GQL.myArticlesQuery, {

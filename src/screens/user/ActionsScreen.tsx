@@ -21,8 +21,8 @@ import { Query, GQL } from "apollo";
 class ActionsScreen extends Component {
 	constructor(props) {
 		super(props);
-		this.user = props.navigation.getParam("user", {});
-		this.self = props.navigation.getParam("self", false);
+		this.user = props.route.params?.user ?? {};
+		this.self = props.route.params?.self ?? false;
 		this.state = {
 			fetchingMore: true
 		};

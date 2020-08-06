@@ -21,7 +21,7 @@ import { observable } from 'mobx';
 const animatedReferenceValue = Device.WIDTH * 0.75 - PxDp(Theme.NAVBAR_HEIGHT + Theme.statusBarHeight);
 
 export default observer((props: any) => {
-	const user = props.navigation.getParam('user', {});
+	const user = props.route.params?.user ?? {};
 	const [observableArticles, setArticles] = useState(null);
 
 	const { data: userQueryResult } = useQuery(GQL.userQuery, {

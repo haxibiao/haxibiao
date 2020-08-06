@@ -11,7 +11,7 @@ import { bindWechat } from '~utils';
 class AccountSecurity extends Component {
 	constructor(props) {
 		super(props);
-		const user = props.navigation.getParam('user');
+		const user = props.route.params?.user ?? {};
 		console.log('user', user);
 		this.state = {
 			is_bind_wechat: Helper.syncGetter('wallet.bind_platforms.wechat', user) || false,
@@ -24,7 +24,7 @@ class AccountSecurity extends Component {
 
 	alipay = async () => {
 		const { navigation } = this.props;
-		const user = navigation.getParam('user');
+		const user = this.props.route.params?.user ?? {};
 		console.log('wallet', user.wallet);
 
 		if (!user.phone) {
@@ -46,7 +46,7 @@ class AccountSecurity extends Component {
 
 	modifyPassword = async () => {
 		const { navigation } = this.props;
-		const user = navigation.getParam('user');
+		const user = this.props.route.params?.user ?? {};
 
 		if (!user.phone) {
 			PopOverlay({
@@ -62,7 +62,7 @@ class AccountSecurity extends Component {
 
 	account = async () => {
 		const { navigation } = this.props;
-		const user = navigation.getParam('user');
+		const user = this.props.route.params?.user ?? {};
 		if (!user.phone) {
 			navigation.navigate('账号安全');
 		}
@@ -102,7 +102,7 @@ class AccountSecurity extends Component {
 
 	render() {
 		const { navigation } = this.props;
-		const user = navigation.getParam('user') || userStore.me;
+		const user = this.props.route.params?.user ?? userStore.me;
 		const { is_bind_wechat, is_bind_alipay, is_bind_dongdezhuan, dongdezhuanUser } = this.state;
 
 		return (
