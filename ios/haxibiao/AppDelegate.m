@@ -4,6 +4,8 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 
+#import <CodePush/CodePush.h>
+
 #ifdef FB_SONARKIT_ENABLED
 #import <FlipperKit/FlipperClient.h>
 #import <FlipperKitLayoutPlugin/FlipperKitLayoutPlugin.h>
@@ -11,6 +13,9 @@
 #import <FlipperKitReactPlugin/FlipperKitReactPlugin.h>
 #import <FlipperKitUserDefaultsPlugin/FKUserDefaultsPlugin.h>
 #import <SKIOSNetworkPlugin/SKIOSNetworkAdapter.h>
+
+//#import <CodePush/CodePush.h>
+
 
 static void InitializeFlipper(UIApplication *application) {
   FlipperClient *client = [FlipperClient sharedClient];
@@ -31,6 +36,7 @@ static void InitializeFlipper(UIApplication *application) {
 
 - (BOOL)application:(UIApplication *)application
     didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+  
 #ifdef FB_SONARKIT_ENABLED
   InitializeFlipper(application);
 #endif
@@ -60,8 +66,11 @@ static void InitializeFlipper(UIApplication *application) {
       [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index"
                                                      fallbackResource:nil];
 #else
-  return [[NSBundle mainBundle] URLForResource:@"main"
-                                 withExtension:@"jsbundle"];
+//  return [[NSBundle mainBundle] URLForResource:@"main"
+//                                 withExtension:@"jsbundle"];
+  
+    //注释掉上面的，修改为：
+    return [CodePush bundleURL];
 #endif
 }
 

@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, ScrollView, View } from 'react-native';
+import codePush from 'react-native-code-push';
+
 import {
 	PageContainer,
 	TouchFeedback,
@@ -131,10 +133,29 @@ class index extends Component {
 					<ItemSeparator />
 					<ListItem
 						onPress={() => {
-							let rs = checkUpdate();
-							if (rs) {
-								AppUpdateOverlay.show(rs);
-							}
+							// let rs = checkUpdate();
+							// if (rs) {
+							// 	AppUpdateOverlay.show(rs);
+							// }
+
+							codePush
+								.sync({
+									updateDialog: {
+										title: '有更新了哟',
+										optionalUpdateMessage: '这是强制的哟',
+									},
+									installMode: codePush.InstallMode.IMMEDIATE,
+								})
+								.then(
+									(status) => {
+										console.log('codePush sync status', status);
+									},
+									(reason) => {
+										console.log('codePush reject reason', reason);
+									},
+								);
+
+							Toast.show({ content: '已是最新版本' });
 						}}
 						style={styles.listItem}
 						leftComponent={<Text style={styles.itemText}>检查更新</Text>}

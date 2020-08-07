@@ -61,12 +61,14 @@ class Toast extends Component<Props, State> {
 				toValue: 1,
 				duration: this.props.fadeInDuration,
 				easing: Easing.linear,
+				useNativeDriver: true,
 			}),
 			Animated.delay(duration),
 			Animated.timing(this.state.opacity, {
 				toValue: 0,
 				duration: this.props.fadeOutDuration,
 				easing: Easing.linear,
+				useNativeDriver: true,
 			}),
 		]).start(() => {
 			this.setState({ content: null, isShow: false });
