@@ -3,6 +3,7 @@ import { Text, View, StyleSheet, ScrollView, FlatList, Keyboard } from 'react-na
 import { Player, PageContainer, Row, Avatar, TouchFeedback, KeyboardSpacer, ListFooter, StatusView } from '~components';
 import { GQL, useQuery } from '~apollo';
 import { observer, userStore } from '~store';
+import { useRoute } from '@react-navigation/native';
 
 import CommentItem from '../comment/CommentItem';
 import CommentInput from '../comment/CommentInput';
@@ -12,8 +13,9 @@ interface Props {
 	navigation: any;
 }
 const index = (props: Props) => {
+	const route = useRoute();
 	const { navigation } = props;
-	const feedback = navigation.getParam('feedback');
+	const feedback = route.params?.feedback;
 	const [replyByComment, setReplyByComment] = useState();
 	const flatListRef = useRef();
 	const fancyInputRef = useRef();

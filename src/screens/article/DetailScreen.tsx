@@ -50,7 +50,7 @@ class DetailScreen extends Component {
 	render() {
 		let { showWrite, addCommentVisible, imageViewerVisible } = this.state;
 		let { login } = userStore;
-		const article = this.props.navigation.getParam('article', {});
+		const article = this.props.route.params?.article ?? {};
 
 		return (
 			<PageContainer title="文章详情">

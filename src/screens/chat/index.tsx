@@ -6,6 +6,7 @@ import { PageContainer, LoadingError, SpinnerLoading, HeaderRight, Header, Touch
 import { Query, Mutation, withApollo, GQL, useQuery, useMutation } from '~apollo';
 import { appStore, userStore, observer } from '~store';
 import Echo from 'laravel-echo';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 import ChatStore from './ChatStore';
 
@@ -15,9 +16,11 @@ interface Props {
 
 const Chat = observer((props: Props) => {
 	const { navigation } = props;
+	const route = useRoute();
+
 	const [messages, setMessages] = useState([]);
 	const { me } = userStore;
-	const chat = navigation.getParam('chat', {});
+    const chat = route.params?.chat ?? {};
 
 	useEffect(() => {
 		if (chat.id) {

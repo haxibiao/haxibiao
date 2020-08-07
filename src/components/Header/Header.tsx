@@ -1,10 +1,10 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, Platform } from 'react-native';
-import { withNavigation } from 'react-navigation';
+// import { withNavigation } from 'react-navigation';
 
 import Iconfont from '../Iconfont';
 
-class Header extends React.Component {
+export default class Header extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -90,4 +90,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default withNavigation(Header);
+// export default withNavigation(Header);

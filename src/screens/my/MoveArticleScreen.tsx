@@ -11,7 +11,7 @@ class MoveArticleScreen extends Component {
 	constructor(props) {
 		super(props);
 		this.toggleCreateModal = this.toggleCreateModal.bind(this);
-		this.article = props.navigation.getParam('article', {});
+		this.article = props.route.params?.article ?? {};
 		const { collection = {} } = this.article;
 		this.collectionName = '';
 		this.state = {

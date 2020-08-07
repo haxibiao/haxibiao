@@ -1,8 +1,7 @@
 import React, { useEffect, useContext, useCallback, useState } from 'react';
 import { StyleSheet, Clipboard, Text, View, TouchableOpacity } from 'react-native';
 import { ApolloProvider, useClientBuilder } from '~apollo';
-import { setRootNavigation, middlewareNavigate } from '~router';
-import RootStackNavigator from '~router/RootStackNavigator';
+import RootStackNavigator from '~router';
 import StoreContext, { observer, appStore } from '~store';
 import { ApolloProvider as OldApolloProvider } from 'react-apollo';
 import { useCaptureVideo } from '~utils';
@@ -112,11 +111,8 @@ export default observer(() => {
 	return (
 		<OldApolloProvider client={client}>
 			<ApolloProvider client={client}>
-				<RootStackNavigator ref={setRootNavigation} uriPrefix={`${name}://`} />
+			<RootStackNavigator uriPrefix={`${name}://`} />
 			</ApolloProvider>
-			{/* <Text style={{ fontSize: PxDp(5), color: '#666', position: 'absolute', bottom: 5, right: 5 }}>
-                {user.id}
-            </Text> */}
 		</OldApolloProvider>
 	);
 });

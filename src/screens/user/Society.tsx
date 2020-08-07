@@ -11,9 +11,9 @@ import Follower from './society/Follower';
 
 class Society extends Component {
 	render() {
-		let { navigation } = this.props;
-		let user = navigation.getParam('user', {});
-		let follower = navigation.getParam('follower');
+		let { navigation,route } = this.props;
+        let user = route.params?.user ?? {};
+        let follower = route.params?.follower;
 		return (
 			<PageContainer hiddenNavBar contentViewStyle={{ marginTop: Theme.statusBarHeight }}>
 				<ScrollableTabView

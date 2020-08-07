@@ -4,7 +4,7 @@ import { Colors } from '~utils';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 import { Header, CustomTabBar, Screen, ContentEnd, LoadingError, SpinnerLoading, BlankContent } from '~components';
 import NotificationItem from './NotificationItem';
-
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { Query, GQL } from '~apollo';
 import store from '~store';
 
@@ -20,8 +20,10 @@ class CategoryScreen extends Component {
 
 	render() {
 		let { fetchingMore } = this.state;
-		let { user, navigation } = this.props;
-		let category = navigation.getParam('category', {});
+		let { user} = this.props;
+		const navigation = useNavigation();
+		const route = useRoute();
+		let category = route.params?.category ?? {};
 		return (
 			<Screen header={<Header routeName={category.name} />}>
 				<View style={styles.container}>

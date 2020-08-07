@@ -30,8 +30,8 @@ const issueContentType = 'ISSUE';
 const PostContentType = 'POST';
 
 const AskQuestionScreen = (props) => {
-	const category = useMemo(() => props.navigation.getParam('category'), [props]);
-	const user = useNavigationParam('user') || userStore.me;
+	const category = useMemo(() => props.route.params?.category ?? {}, [props]);
+	// const user = useNavigationParam('user') || userStore.me;
 	const navigation = useNavigation();
 	const [gold, setGold] = useState(0);
 	const [userGold, setUserGold] = useState(0);

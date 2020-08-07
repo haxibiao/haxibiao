@@ -65,8 +65,8 @@ export default observer((props) => {
 			StatusBar.setBarStyle('dark-content');
 		});
 		return () => {
-			navWillFocusListener.remove();
-			navWillBlurListener.remove();
+			navWillFocusListener();
+			navWillBlurListener();
 		};
 	});
 
@@ -294,7 +294,7 @@ export default observer((props) => {
 
 					<TouchableOpacity
 						style={styles.columnItem}
-						onPress={() => middlewareNavigate('Setting', { user: userProfile })}>
+						onPress={() => navigation.navigate('Setting', { user: userProfile })}>
 						<Row>
 							<View style={styles.columnIconWrap}>
 								<Image

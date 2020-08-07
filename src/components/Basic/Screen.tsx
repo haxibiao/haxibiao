@@ -1,31 +1,30 @@
 import React, { Component } from 'react';
 import { View, StatusBar, ActivityIndicator } from 'react-native';
-import { withNavigation } from 'react-navigation';
+import { useRoute } from '@react-navigation/native';
 
-class Screen extends Component {
-    render() {
-        let { navigation, customStyle = {}, lightBar, header = false, leftComponent = false } = this.props;
-        if (navigation.getParam('auth') && TOKEN === null) {
-            return <ActivityIndicator />;
-        }
-        return (
-            <View
-                style={[
-                    {
-                        flex: 1,
-                        backgroundColor: '#ffffff',
-                    },
-                    customStyle,
-                ]}>
-                <StatusBar
-                    translucent={true}
-                    backgroundColor={'transparent'}
-                    barStyle={lightBar ? 'light-content' : 'dark-content'}
-                />
-                {this.props.children}
-            </View>
-        );
+const Screen = (props: any) => {
+    const { customStyle = {}, lightBar, header = false, leftComponent = false } = props;
+    const routs = useRoute();
+    if (routs.params?.auth && TOKEN === null) {
+        return <ActivityIndicator />;
     }
-}
+    return (
+        <View
+            style={[
+                {
+                    flex: 1,
+                    backgroundColor: '#ffffff',
+                },
+                customStyle,
+            ]}>
+            <StatusBar
+                translucent={true}
+                backgroundColor={'transparent'}
+                barStyle={lightBar ? 'light-content' : 'dark-content'}
+            />
+            {props.children}
+        </View>
+    );
+};
 
-export default withNavigation(Screen);
+export default Screen;

@@ -10,7 +10,7 @@ import {
     Dimensions,
     TouchableHighlight,
 } from 'react-native';
-import { withNavigation } from 'react-navigation';
+// import { withNavigation } from 'react-navigation';
 
 import Iconfont from '../Iconfont';
 import { Avatar } from '../Basic';
@@ -19,7 +19,7 @@ const IMG_INTERVAL = 2;
 const IMG_WIDTH = (Device.WIDTH - 34) / 3;
 const COVER_WIDTH = Device.WIDTH - 30;
 
-const NoteItem = (props: any) => {
+export default (props: any) => {
     const {
         post,
         navigation,
@@ -215,4 +215,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default withNavigation(NoteItem);
+// export default withNavigation(NoteItem);

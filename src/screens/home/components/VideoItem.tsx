@@ -113,7 +113,7 @@ export default observer((props: any) => {
 					<View style={styles.mask} />
 				</View>
 			)}
-			<Player media={media} index={index} />
+			<Player media={media} index={index} navigation={navigation}/>
 			<LinearGradient
 				style={styles.shadowContainer}
 				pointerEvents={'none'}

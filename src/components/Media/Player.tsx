@@ -4,7 +4,7 @@
  */
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, Animated, Easing, TouchableOpacity, BackHandler } from 'react-native';
-import { withNavigation } from 'react-navigation';
+// import { withNavigation } from 'react-navigation';
 import Video from 'react-native-video';
 
 import VideoStatus from './VideoStatus';
@@ -22,7 +22,7 @@ let TestVideo = {
 };
 
 @observer
-class Player extends Component {
+export default class Player extends Component {
 	constructor(props) {
 		super(props);
 		let { video, inScreen, navigation } = props;
@@ -32,7 +32,7 @@ class Player extends Component {
 		};
 	}
 
-	componentDidMount() {
+	componentDidMount () {
 		let { navigation } = this.props;
 		// let BackHandler = ReactNative.BackHandler ? ReactNative.BackHandler : ReactNative.BackAndroid;
 		if (Device.Android) {
@@ -44,7 +44,7 @@ class Player extends Component {
 	}
 
 	componentWillUnmount() {
-		this.willBlurSubscription.remove();
+		this.willBlurSubscription();
 		// 离开固定竖屏
 		Orientation.lockToPortrait();
 	}
@@ -149,4 +149,4 @@ const styles = StyleSheet.create({
 		bottom: 0,
 	},
 });
-export default withNavigation(Player);
+// export default withNavigation(Player);

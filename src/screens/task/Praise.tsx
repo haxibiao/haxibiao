@@ -29,7 +29,7 @@ export default (props) => {
 	}, []);
 	const [phone, onChangeNumber] = useState('');
 
-	const user = props.navigation.getParam('user', {});
+	const user = props.route.params?.user ?? {};
 	console.log('user.id', user);
 	console.log('Token', TOKEN);
 

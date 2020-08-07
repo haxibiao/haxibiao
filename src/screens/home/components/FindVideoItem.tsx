@@ -5,10 +5,12 @@ import { ad } from 'react-native-ad';
 import Player from './Player';
 import SideBar from './SideBar';
 import VideoStore from '../VideoStore';
+import { useNavigation, useRoute } from '@react-navigation/native';
 
 export default observer((props) => {
 	const { media, index } = props;
 	const [adShow, setAdShow] = useState(true);
+	const navigation = useNavigation();
 	// if (media.isAdPosition && adShow) {
 	//     return (
 	//         <View style={{ height: VideoStore.viewportHeight }}>
@@ -37,7 +39,7 @@ export default observer((props) => {
 					<View style={styles.mask} />
 				</View>
 			)}
-			<Player media={media} index={index} />
+			<Player media={media} index={index} navigation={navigation} />
 			<View style={styles.videoInfo}>
 				{/*  <View style={styles.left}>
                     <View>

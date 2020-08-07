@@ -18,7 +18,7 @@ class WithdrawLog extends Component {
 
 	render() {
 		const { navigation } = this.props;
-		const wallet_id = navigation.getParam('wallet_id');
+        let wallet_id = userStore.me.wallet.id;
 		if (!wallet_id) {
 			return (
 				<View style={{ flex: 1 }}>

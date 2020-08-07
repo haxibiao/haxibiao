@@ -4,11 +4,12 @@ import { PageContainer, HxfTextInput, HxfButton, Row, Center, Iconfont, Gradient
 import { exceptionCapture, useBounceAnimation } from '~utils';
 import { GQL, useMutation } from '~apollo';
 import { observer } from '~store';
+import { useNavigation } from '@react-navigation/native';
 
 const thumbType = ['name', 'account', 'password'];
 
 export default observer((props) => {
-	const { navigation } = props;
+	const navigation = useNavigation();
 	const store = useContext(StoreContext);
 	const [submitting, toggleSubmitting] = useState(false);
 	const [secure, setSecure] = useState(true);

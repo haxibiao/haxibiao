@@ -25,7 +25,7 @@ import Comment from '~assets/images/pinglun.svg';
 import StoreContext, { observer, useObservable, appStore, userStore } from '~store';
 import { useApolloClient, ApolloProvider } from '~apollo';
 import { useNavigation } from '~router';
-import { StackActions } from 'react-navigation';
+import { StackActions } from '@react-navigation/native';
 import { Overlay } from 'teaset';
 
 interface SubmitStatusProps {
@@ -175,18 +175,12 @@ const PostItem: React.FC<Props> = observer((props: Props) => {
 		Overlay.show(MoreOperationOverlay);
 	}, [client, post]);
 
-	const onPress = useCallback(() => {
-		if (showComment) {
-			return;
-		}
-		const action = StackActions.push({
-			routeName: 'PostDetail',
-			params: {
-				post,
-			},
-		});
-		navigation.dispatch(action);
-	}, [post, showComment]);
+    const onPress = useCallback(() => {
+        if (showComment) {
+            return;
+        }
+        navigation.navigate('PostDetail', { "post": post });
+    }, [post, showComment]);
 
 	const showRemark = useMemo(() => showSubmitStatus && remark && submit < 0, [props]);
 
@@ -275,7 +269,7 @@ const PostItem: React.FC<Props> = observer((props: Props) => {
                         ) : null} */}
 						</Row>
 						{!(isSelf && showComment) && (
-							<TouchableOpacity activeOpacity={0.6} onPress={showMoreOperation}>
+							<TouchableOpacity activeOpacity={0.6} >
 								<Iconfont name="qita1" size={PxDp(22)} color={'#CCD5E0'} />
 							</TouchableOpacity>
 						)}
