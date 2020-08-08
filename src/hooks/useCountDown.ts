@@ -1,7 +1,7 @@
 import { useMemo, useState, useEffect } from 'react';
 
 interface Props {
-    expirationTime: number | string;
+    expirationTime: number;
 }
 
 export const useCountDown = (props: Props) => {
