@@ -3,27 +3,15 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
 import CommentsInput from '../../comment/CommentsInput';
 
-import { Mutation, GQL, graphql, compose } from '~apollo';
+import { GQL, useMutation } from '~apollo';
 import { width, navigate } from '~utils';
 import { Iconfont } from '~components';
 import { userStore } from '~store';
-class ArticleBottomTools extends Component {
-	constructor(props) {
-		super(props);
-	}
-	render() {
-		const {
-			like,
-			unlike,
-			comments,
-			article,
-			showWrite,
-			toggleCommentModal,
-			handleRewardVisible,
-			handleSlideShareMenu,
-			commentHandler,
-			navigation,
-		} = this.props;
+
+export default (props:any) => {
+		const [like] = useMutation(GQL.likeArticleMutation);
+		const [unlike] = useMutation(GQL.unlikeArticleMutation);
+		const { comments, article, showWrite, toggleCommentModal, commentHandler } = this.props;
 		let { login, me } = userStore;
 		let { liked_id, count_likes } = article;
 		return (
@@ -50,47 +38,39 @@ class ArticleBottomTools extends Component {
 					<TouchableOpacity
 						style={{ flex: 1 }}
 						onPress={async () => {
-							if (login) {
-								if (!liked_id) {
-									like({
-										variables: {
-											liked_id: article.id,
-											user_id: me.id,
-										},
-										// optimisticResponse: {
-										//   __typename: 'Mutation',
-										//   like: {
-										//     id: article.id,
-										//     liked_id: !liked_id,
-										//     count_likes: liked_id ? --count_likes : ++count_likes
-										//   }
-										// }
-										update: (cache, { data }) => {
-											cache.writeQuery({
-												query: GQL.articleQuery,
-												variables: { id: article.id },
-												data: {
-													article: {
-														...article,
-														count_likes: data.like.article.count_likes,
-														liked_id: data.like.id,
-													},
-												},
-											});
-										},
-									});
-								} else {
-									unlike({
-										variables: {
-											id: liked_id,
-										},
-									});
-									liked_id--;
-									count_likes--;
-								}
-							} else {
-								navigate('Login');
-							}
+							// if (login) {
+							// 	if (!liked_id) {
+							// 		like({
+							// 			variables: {
+							// 				liked_id: article.id,
+							// 				user_id: me.id,
+							// 			},
+							// 			update: (cache, { data }) => {
+							// 				cache.writeQuery({
+							// 					query: GQL.articleQuery,
+							// 					variables: { id: article.id },
+							// 					data: {
+							// 						article: {
+							// 							...article,
+							// 							count_likes: data.like.article.count_likes,
+							// 							liked_id: data.like.id,
+							// 						},
+							// 					},
+							// 				});
+							// 			},
+							// 		});
+							// 	} else {
+							// 		unlike({
+							// 			variables: {
+							// 				id: liked_id,
+							// 			},
+							// 		});
+							// 		liked_id--;
+							// 		count_likes--;
+							// 	}
+							// } else {
+							// 	navigate('Login');
+							// }
 						}}>
 						<View style={styles.articleToolItem}>
 							<Iconfont
@@ -114,7 +94,7 @@ class ArticleBottomTools extends Component {
 			</View>
 		);
 	}
-}
+})
 
 const styles = StyleSheet.create({
 	BottomTools: {
@@ -150,8 +130,3 @@ const styles = StyleSheet.create({
 		color: Theme.tintTextColor,
 	},
 });
-
-export default compose(
-	graphql(GQL.likeArticleMutation, { name: 'like' }),
-	graphql(GQL.unlikeArticleMutation, { name: 'unlike' }),
-)(ArticleBottomTools);

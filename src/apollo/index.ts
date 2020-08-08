@@ -6,7 +6,7 @@ import DeviceInfo from 'react-native-device-info';
 import NetInfo from '@react-native-community/netinfo';
 
 export { GQL } from '~gqls';
-export { Query, Mutation, compose, graphql, withApollo } from 'react-apollo';
+export { Query, Mutation, useMutation, useQuery, graphql, withApollo } from 'react-apollo';
 
 export * from '@apollo/react-hooks';
 

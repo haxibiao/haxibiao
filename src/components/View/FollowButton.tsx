@@ -7,9 +7,8 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
 // import { withNavigation } from 'react-navigation';
 
-import { GQL, graphql, compose } from '~apollo';
+import { GQL, graphql } from '~apollo';
 import { userStore } from '~store';
-import Iconfont from '../Iconfont';
 
 type Props = {
 	id: number;
@@ -123,4 +122,4 @@ class FollowButton extends Component<Props> {
 
 const styles = StyleSheet.create({});
 
-export default compose(graphql(GQL.followUserMutation, { name: 'followUser' }))(FollowButton);
+export default graphql(GQL.followUserMutation, { name: 'followUser' })(FollowButton);

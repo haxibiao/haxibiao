@@ -6,7 +6,7 @@ import React, { Component } from 'react';
 import { StyleSheet, View, Text, TextInput } from 'react-native';
 import { PageContainer, TouchFeedback, HxfButton, CustomTextInput } from '~components';
 
-import { compose, graphql, GQL } from '~apollo';
+import { graphql, GQL } from '~apollo';
 import { userStore } from '~store';
 
 class EditProfileScreen extends Component {
@@ -139,4 +139,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default compose(graphql(GQL.SendVerifyCodeMutation, { name: 'SendVerifyCodeMutation' }))(EditProfileScreen);
+export default graphql(GQL.SendVerifyCodeMutation, { name: 'SendVerifyCodeMutation' })(EditProfileScreen);

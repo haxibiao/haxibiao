@@ -116,4 +116,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default compose(graphql(GQL.SendVerifyCodeMutation, { name: 'SendVerifyCodeMutation' }))(VerificationScreen);
+export default graphql(GQL.SendVerifyCodeMutation, { name: 'SendVerifyCodeMutation' })(VerificationScreen);

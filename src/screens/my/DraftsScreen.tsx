@@ -1,115 +1,34 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, FlatList } from 'react-native';
 import { OperationModal, NoteItem, ListFooter, LoadingError, SpinnerLoading, BlankContent, Screen } from '~components';
 
 import { Query, graphql, compose, GQL } from '~apollo';
 import { Colors } from '~utils';
 import store from '~store';
-import user from '../../store/user';
-class DraftsScreen extends Component {
-	constructor(props) {
-		super(props);
-		this.handleModal = this.handleModal.bind(this);
-		this.state = {
-			modalVisible: false,
-		};
-	}
+// import { useNavigation } from '@react-navigation/native';
 
-	render() {
-		let { modalVisible } = this.state;
-		let { navigation } = this.props;
-		let { me: user } = store;
-		return (
-			<Screen>
-				<View style={styles.container}>
-					<Query query={GQL.draftsQuery} variables={{ user_id: user.id }} fetchPolicy="network-only">
-						{({ loading, error, data, refetch, fetchMore }) => {
-							if (error) return <LoadingError reload={() => refetch()} />;
-							if (loading) return <SpinnerLoading />;
-							let {
-								data: items,
-								paginatorInfo: { hasMorePages, currentPage },
-							} = data.articles;
-							if (items.length < 1) {
-								return <BlankContent />;
-							}
-							return (
-								<FlatList
-									data={items}
-									refreshing={loading}
-									onRefresh={() => {
-										refetch();
-									}}
-									keyExtractor={(item, index) => index.toString()}
-									renderItem={({ item, index }) => (
-										<NoteItem
-											post={item}
-											compress
-											popoverMenu
-											longPress={() => {
-												this.article = item;
-												this.handleModal();
-											}}
-											options={['编辑', '删除', '公开发布']}
-											popoverHandler={(index) => {
-												this.article = item;
-												this.operationHandler(index);
-											}}
-										/>
-									)}
-									onEndReachedThreshold={0.3}
-									onEndReached={() => {
-										if (hasMorePages) {
-											fetchMore({
-												variables: {
-													page: ++currentPage,
-												},
-												updateQuery: (prev, { fetchMoreResult: more }) => {
-													return {
-														articles: {
-															...more.articles,
-															data: [...prev.articles.data, ...more.articles.data],
-														},
-													};
-												},
-											});
-										}
-									}}
-									ListFooterComponent={ListFooter}
-								/>
-							);
-						}}
-					</Query>
-				</View>
-				<OperationModal
-					operation={['编辑', '删除', '公开发布']}
-					visible={modalVisible}
-					handleVisible={this.handleModal}
-					handleOperation={(index) => {
-						this.operationHandler(index);
-						this.handleModal();
-					}}
-				/>
-			</Screen>
-		);
-	}
+// graphql(GQL.removeArticleMutation, { name: 'removeArticle' }),
+// 	graphql(GQL.publishArticleMutation, { name: 'publishArticle' }),
 
-	handleModal() {
-		this.setState((prevState) => ({
-			modalVisible: !prevState.modalVisible,
-		}));
-	}
+export default (props) => {
+	let [modalVisible, setMoalVisible] = useState(false);
+	// let navigation = useNavigation();
+	let { me: user } = store;
 
-	operationHandler = (index) => {
-		let { navigation, publishArticle, removeArticle } = this.props;
+	const handleModal = () => {
+		setMoalVisible(!modalVisible);
+	};
+
+	const operationHandler = (index) => {
+		let { navigation, article, publishArticle, removeArticle } = props;
 		switch (index) {
 			case 0:
-				navigation.navigate('创作', { article: this.article });
+				navigation.navigate('创作', { article });
 				break;
 			case 1:
 				removeArticle({
 					variables: {
-						id: this.article.id,
+						id: article.id,
 					},
 					refetchQueries: (result) => [
 						{
@@ -124,7 +43,7 @@ class DraftsScreen extends Component {
 			case 2:
 				publishArticle({
 					variables: {
-						id: this.article.id,
+						id: article.id,
 					},
 					refetchQueries: (result) => [
 						{
@@ -135,7 +54,81 @@ class DraftsScreen extends Component {
 				break;
 		}
 	};
-}
+
+	return (
+		<Screen>
+			<View style={styles.container}>
+				<Query query={GQL.draftsQuery} variables={{ user_id: user.id }} fetchPolicy="network-only">
+					{({ loading, error, data, refetch, fetchMore }) => {
+						if (error) return <LoadingError reload={() => refetch()} />;
+						if (loading) return <SpinnerLoading />;
+						let {
+							data: items,
+							paginatorInfo: { hasMorePages, currentPage },
+						} = data.articles;
+						if (items.length < 1) {
+							return <BlankContent />;
+						}
+						return (
+							<FlatList
+								data={items}
+								refreshing={loading}
+								onRefresh={() => {
+									refetch();
+								}}
+								keyExtractor={(item, index) => index.toString()}
+								renderItem={({ item, index }) => (
+									<NoteItem
+										post={item}
+										compress
+										popoverMenu
+										longPress={() => {
+											// this.article = item;
+											handleModal();
+										}}
+										options={['编辑', '删除', '公开发布']}
+										popoverHandler={(index) => {
+											// this.article = item;
+											operationHandler(index);
+										}}
+									/>
+								)}
+								onEndReachedThreshold={0.3}
+								onEndReached={() => {
+									if (hasMorePages) {
+										fetchMore({
+											variables: {
+												page: ++currentPage,
+											},
+											updateQuery: (prev, { fetchMoreResult: more }) => {
+												return {
+													articles: {
+														...more.articles,
+														data: [...prev.articles.data, ...more.articles.data],
+													},
+												};
+											},
+										});
+									}
+								}}
+								ListFooterComponent={ListFooter}
+							/>
+						);
+					}}
+				</Query>
+			</View>
+			<OperationModal
+				operation={['编辑', '删除', '公开发布']}
+				visible={modalVisible}
+				handleVisible={handleModal}
+				handleOperation={(index) => {
+					operationHandler(index);
+					handleModal();
+				}}
+			/>
+		</Screen>
+	);
+};
 
 const styles = StyleSheet.create({
 	container: {
@@ -160,8 +153,3 @@ const styles = StyleSheet.create({
 		lineHeight: 22,
 	},
 });
-
-export default compose(
-	graphql(GQL.removeArticleMutation, { name: 'removeArticle' }),
-	graphql(GQL.publishArticleMutation, { name: 'publishArticle' }),
-)(DraftsScreen);

@@ -179,4 +179,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default compose(graphql(GQL.setWalletPaymentInfoMutation, { name: 'setWalletPaymentInfo' }))(BindAlipay);
+export default graphql(GQL.setWalletPaymentInfoMutation, { name: 'setWalletPaymentInfo' })(BindAlipay);

@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, TextInput } from 'react-native';
 import { HxfButton, PageContainer } from '~components';
-import { compose, graphql, GQL } from '~apollo';
+// import { graphql, GQL } from '~apollo';
 
-class RetrievePassword extends Component {
+export default class RetrievePassword extends Component {
+	// 	retrievePasswordMutation
+	// GQL.retrievePasswordMutation
+
+	// SendVerifyCodeMutation
+	// GQL.SendVerifyCodeMutation
+
 	constructor(props) {
 		super(props);
 		const { time } = 59;
@@ -192,8 +198,3 @@ const styles = StyleSheet.create({
 		paddingHorizontal: 0,
 	},
 });
-
-export default compose(
-	graphql(GQL.retrievePasswordMutation, { name: 'retrievePasswordMutation' }),
-	graphql(GQL.SendVerifyCodeMutation, { name: 'SendVerifyCodeMutation' }),
-)(RetrievePassword);
