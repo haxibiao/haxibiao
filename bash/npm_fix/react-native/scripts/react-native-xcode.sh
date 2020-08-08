@@ -1,9 +1,5 @@
 #!/bin/bash
 
-echo "打包时记得修改这里的路径..."
-coderoot="/data/app/haxibiao"
-
-
 # Bundle React Native app's code and image assets.
 # This script is supposed to be invoked as part of Xcode build process
 # and relies on environment variables (including PWD) set by Xcode
@@ -134,7 +130,7 @@ BUNDLE_FILE="$DEST/main.jsbundle"
 #   $EXTRA_PACKAGER_ARGS
 
 echo "直接复制 ios build出来的 bundle和assets ...."
-/bin/cp -rf ${coderoot}/build/* $DEST/
+/bin/cp -rf ${PROJECT_ROOT}/build/* $DEST/
 
 if [[ $DEV != true && ! -f "$BUNDLE_FILE" ]]; then
   echo "error: File $BUNDLE_FILE does not exist. This must be a bug with" >&2

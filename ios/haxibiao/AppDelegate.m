@@ -66,11 +66,11 @@ static void InitializeFlipper(UIApplication *application) {
       [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index"
                                                      fallbackResource:nil];
 #else
-//  return [[NSBundle mainBundle] URLForResource:@"main"
-//                                 withExtension:@"jsbundle"];
+  return [[NSBundle mainBundle] URLForResource:@"main"
+                                 withExtension:@"jsbundle"];
   
     //注释掉上面的，修改为：
-    return [CodePush bundleURL];
+//    return [CodePush bundleURL];
 #endif
 }
 

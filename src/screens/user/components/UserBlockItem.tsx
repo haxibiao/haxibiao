@@ -5,7 +5,7 @@
 
 import React, { Component } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import { withNavigation, StackActions } from 'react-navigation';
+// import {  StackActions } from 'react-navigation;
 import { Avatar, SafeText, FollowButton } from '~components';
 
 import { userStore } from '~store';
@@ -130,4 +130,4 @@ const styles = StyleSheet.create({
 	},
 });
 
-export default withNavigation(UserBlockItem);
+export default UserBlockItem;

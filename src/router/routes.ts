@@ -1,6 +1,6 @@
 import SplashGuide from './SplashGuide';
 
-import MainTabNavigator from '~router/MainTabNavigator';
+import MainTabNavigator from '~router/BottomTabNavigator';
 import AskQuestion from '~screens/creation/AskQuestionScreen';
 import SelectCategory from '~screens/creation/SelectCategoryScreen';
 
