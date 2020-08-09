@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 
 import { StyleSheet, View, Text, TouchableOpacity } from 'react-native';
-import CommentsInput from '../../comment/CommentsInput';
 
-import { GQL, useMutation } from '~apollo';
-import { width, navigate } from '~utils';
-import { Iconfont } from '~components';
-import { userStore } from '~store';
+import { GQL, useMutation } from '~/apollo';
+import { width, navigate } from '~/utils';
+import { Iconfont,CommentsInput } from '~/components';
+import { userStore } from '~/store';
 
 export default (props:any) => {
 		const [like] = useMutation(GQL.likeArticleMutation);

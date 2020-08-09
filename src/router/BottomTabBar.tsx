@@ -48,24 +48,24 @@ const useNativeDriver = Platform.OS !== 'web';
 
 const iconSource = {
     HomeScreen: {
-        active: require('@app/src/assets/images/init_main_focus.png'),
-        inactive: require('@app/src/assets/images/init_main.png'),
+        active: require('~/assets/images/init_main_focus.png'),
+        inactive: require('~/assets/images/init_main.png'),
     },
     FindScreen: {
-        active: require('@app/src/assets/images/init_discover_focus.png'),
-        inactive: require('@app/src/assets/images/init_discover.png'),
+        active: require('~/assets/images/init_discover_focus.png'),
+        inactive: require('~/assets/images/init_discover.png'),
     },
     Notification2: {
-        active: require('@app/src/assets/images/init-notification-focus.png'),
-        inactive: require('@app/src/assets/images/init-notification.png'),
+        active: require('~/assets/images/init-notification-focus.png'),
+        inactive: require('~/assets/images/init-notification.png'),
     },
     Notification: {
-        active: require('@app/src/assets/images/init-notification-focus.png'),
-        inactive: require('@app/src/assets/images/init-notification.png'),
+        active: require('~/assets/images/init-notification-focus.png'),
+        inactive: require('~/assets/images/init-notification.png'),
     },
     MyHomeScreen: {
-        active: require('@app/src/assets/images/init_personal_focus.png'),
-        inactive: require('@app/src/assets/images/init_personal.png'),
+        active: require('~/assets/images/init_personal_focus.png'),
+        inactive: require('~/assets/images/init_personal.png'),
     },
 };
 
@@ -93,7 +93,7 @@ export default observer(
         const defaultInsets = useSafeArea();
 
         const focusedRoute = state.routes[state.index];
-            console.log('111111===============',focusedRoute);
+        console.log('111111===============', focusedRoute);
 
         const focusedDescriptor = descriptors[focusedRoute.key];
         const focusedOptions = focusedDescriptor.options;
@@ -175,7 +175,7 @@ export default observer(
         const handleLayout = (e: LayoutChangeEvent) => {
             const { height, width } = e.nativeEvent.layout;
 
-            setLayout(layout => {
+            setLayout((layout) => {
                 if (height === layout.height && width === layout.width) {
                     return layout;
                 } else {
@@ -201,7 +201,7 @@ export default observer(
                 style={[
                     styles.bottomTabBar,
                     {
-                        backgroundColor:focusedRoute.name != 'HomeScreen' ? colors.card :'rgba(255,255,255,0)',
+                        backgroundColor: focusedRoute.name != 'HomeScreen' ? colors.card : 'rgba(255,255,255,0)',
                         borderTopColor: colors.border,
                     },
                     {
@@ -218,7 +218,7 @@ export default observer(
                         position: 'absolute',
                     },
                     {
-                        height:DEFAULT_TABBAR_HEIGHT + insets.bottom,
+                        height: DEFAULT_TABBAR_HEIGHT + insets.bottom,
                         paddingBottom: insets.bottom,
                         paddingHorizontal: Math.max(insets.left, insets.right),
                     },
@@ -265,7 +265,7 @@ export default observer(
                                 target: route.key,
                             });
                         };
-                        if(index == 2){
+                        if (index == 2) {
                             return <PublishButton key="publishButton" navigation={navigation} />;
                         }
 
@@ -306,11 +306,10 @@ function TabBarIcon({ name, focused, activeTintColor, inactiveTintColor }) {
         </View>
     );
 }
-const PublishButton = ({ navigation })=> {
-
+const PublishButton = ({ navigation }) => {
     const onPublishPress = () => {
-       navigation.navigate('AskQuestion')
-    }
+        navigation.navigate('AskQuestion');
+    };
 
     return (
         <TouchableWithoutFeedback key="publish" onPress={onPublishPress}>
@@ -319,13 +318,13 @@ const PublishButton = ({ navigation })=> {
                     source={require('../assets/images/publish.png')}
                     style={{
                         width: 40,
-                        height:40,
+                        height: 40,
                     }}
                 />
             </View>
         </TouchableWithoutFeedback>
     );
-}
+};
 
 const styles = StyleSheet.create({
     bottomTabBar: {

@@ -16,12 +16,10 @@ export { useNavigation, useRoute };
 const router: { [key: string]: any } = routing;
 
 export const middlewareNavigate = (navigation: any, routeName: string, params?: object, action?: any) => {
-
     if (router[routeName] && !TOKEN) {
-        navigation.navigate('Login')
-
+        navigation.navigate('Login');
     } else {
-        navigation.navigate(routeName, { params })
+        navigation.navigate(routeName, { params });
     }
 };
 
@@ -48,7 +46,7 @@ export default () => {
         <NavigationContainer>
             <Stack.Navigator initialRouteName="Home" headerMode="none">
                 <Stack.Screen name="Home" component={BottomTabNavigator} />
-                {(Object.keys(SCREENS) as (keyof typeof SCREENS)[]).map(name => (
+                {(Object.keys(SCREENS) as (keyof typeof SCREENS)[]).map((name) => (
                     <Stack.Screen
                         key={name}
                         name={name}

@@ -11,15 +11,15 @@ import {
     SafeText,
     Row,
     Like,
-} from '~components';
+} from '~/components';
 import Swiper from 'react-native-swiper';
-import { GQL, useQuery, useLazyQuery } from '~apollo';
-import StoreContext, { observer, appStore } from '~store';
-import { middlewareNavigate, useNavigation } from '~router';
-import { exceptionCapture, useDetainment } from '~utils';
+import { GQL, useQuery, useLazyQuery } from '~/apollo';
+import StoreContext, { observer, appStore } from '~/store';
+import { middlewareNavigate, useNavigation } from '~/router';
+import { exceptionCapture, useDetainment } from '~/utils';
 import { observable } from 'mobx';
 import { ad } from 'react-native-ad';
-import Comment from '~assets/images/pinglun.svg';
+import Comment from '~/assets/images/pinglun.svg';
 
 const sh = Device.HEIGHT;
 const sw = Device.WIDTH;

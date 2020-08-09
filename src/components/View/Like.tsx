@@ -1,15 +1,15 @@
 import React, { Component, useContext, useRef, useEffect } from 'react';
 import { StyleSheet, View, TouchableOpacity, Animated, Image, Text } from 'react-native';
-import { useBounceAnimation } from '~utils';
-import { GQL, useMutation } from '~apollo';
-import { observer } from '~store';
+import { useBounceAnimation } from '~/utils';
+import { GQL, useMutation } from '~/apollo';
+import { observer } from '~/store';
 import { useNavigation } from '@react-navigation/native';
 import Iconfont from '../Iconfont';
 import SafeText from '../Basic/SafeText';
 
 const imageSource = {
-    liked: require('~assets/images/ic_liked.png'),
-    unlike: require('~assets/images/ic_like.png'),
+    liked: require('~/assets/images/ic_liked.png'),
+    unlike: require('~/assets/images/ic_like.png'),
 };
 
 interface ThumbUpTarget {

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useMemo } from 'react';
 import { AppState, Clipboard } from 'react-native';
-import { GQL } from '~apollo';
-import { exceptionCapture } from '~utils/helper';
+import { GQL } from '~/apollo/index';
+import { exceptionCapture } from '~/utils/helper';
 
 interface Props {
     client: any;

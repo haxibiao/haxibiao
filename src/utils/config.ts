@@ -18,7 +18,7 @@ import {
     qqGroup,
     appStoreUrl,
     WechatAppId,
-} from '@app/app.json';
+} from '!/app.json';
 
 let AppStore = Config && Config.APP_STORE ? Config.APP_STORE : 'haxibiao'; //应用商店名称
 

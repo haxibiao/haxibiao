@@ -1,5 +1,5 @@
-export * from '~hooks';
-export { default as config } from './config';
+export * from '~/hooks';
+export { default as Config } from './config';
 
 export * from './helper';
 export * from './animation';
