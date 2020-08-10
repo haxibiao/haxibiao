@@ -30,6 +30,7 @@
         "appcenter-crashes": "^3.1.1",
         "deprecated-react-native-listview": "^0.0.6",
         "graphql": "^15.3.0",
+        "hermes-engine": "0.5.2-rc1",
         "jcore-react-native": "^1.8.0",
         "jpush-react-native": "^2.8.1",
         "laravel-echo": "^1.8.1",

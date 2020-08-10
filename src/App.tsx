@@ -19,13 +19,14 @@ import { checkUpdate } from '~/utils';
 import { WechatAppId } from '!/app.json';
 
 function App() {
+    let toastRef = useRef();
     const appLunch = useRef(true);
 
     //启动前，初始化Ad
     // ad.AdManager.init();
 
     useEffect(() => {
-        global.Toast = this.toast;
+        global.Toast = toastRef.current;
         if (appLunch.current) {
             Orientation.lockToPortrait();
             SplashScreen.hide();
@@ -70,7 +71,7 @@ function App() {
             <StoreContext.Provider value={store}>
                 <ApolloApp />
             </StoreContext.Provider>
-            <Toast ref={(ref) => (this.toast = ref)} />
+            <Toast ref={toastRef} />
         </View>
     );
 }
