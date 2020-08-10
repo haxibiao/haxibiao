@@ -1,7 +1,7 @@
 import React, { useEffect, useContext, useCallback, useState } from 'react';
 import { StyleSheet, Clipboard, Text, View, TouchableOpacity } from 'react-native';
 import { ApolloProvider, useClientBuilder } from '~/apollo';
-import RootStackNavigator from '~/router';
+import RootStackNavigator from '~/router/RootStackNavigator';
 import StoreContext, { observer, appStore } from '~/store';
 import { ApolloProvider as OldApolloProvider } from 'react-apollo';
 import { useCaptureVideo } from '~/hooks';

@@ -1,6 +1,7 @@
 import React, { useState, useRef, useCallback, useImperativeHandle } from 'react';
 import { StyleSheet, View, Text, Keyboard } from 'react-native';
-import { HxfTextInput, HxfButton, Iconfont } from '~/components';
+import { HxfTextInput, HxfButton } from '~/components/Form';
+import Iconfont from '~/components/Iconfont';
 import { useKeyboardListener } from '~/utils';
 import { GQL, useMutation } from '~/apollo';
 import { userStore } from '~/store';
