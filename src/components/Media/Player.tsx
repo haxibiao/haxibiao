@@ -12,7 +12,7 @@ import VideoControl from './VideoControl';
 
 import { observer, Provider, inject } from 'mobx-react';
 import { appStore } from '~/store';
-import VideoStore from './VideoStore';
+import VideoStore from '~/store/VideoStore';
 import Orientation from 'react-native-orientation';
 
 let TestVideo = {

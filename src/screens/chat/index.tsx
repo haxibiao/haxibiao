@@ -8,7 +8,7 @@ import { appStore, userStore, observer } from '~/store';
 import Echo from 'laravel-echo';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
-import ChatStore from './ChatStore';
+import ChatStore from '~/store/ChatStore';
 
 interface Props {
     navigation: any;

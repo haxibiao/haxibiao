@@ -2,15 +2,12 @@
  * @flow
  * created by wyk made in 2019-06-18 10:28:20
  */
-import { GiftedChat } from 'react-native-gifted-chat';
-import { Keyboard } from 'react-native';
-import { observable, action, runInAction } from 'mobx';
-// import { Theme, Api, PxFit, Config, ISIOS } from '../utils';
-// import ConfigStore from './ConfigStore';
-import { userStore, appStore } from '~/store';
-import { useApolloClient, GQL } from '~/apollo';
+
+import { observable, action } from 'mobx';
+import userStore from './userStore';
+import appStore from './appStore';
+import { GQL } from '~/apollo';
 import JPushModule from 'jpush-react-native';
-// import { CreateRoomMutation, CreateMesssageMutation, MessagesQuery, ChatsQuery } from '../graphql/chat.graphql';
 
 interface Message {
     _id: number;

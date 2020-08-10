@@ -4,7 +4,7 @@ import { observer } from '~/store';
 import { ad } from 'react-native-ad';
 import Player from './Player';
 import SideBar from './SideBar';
-import VideoStore from '../VideoStore';
+import VideoStore from '~/store/VideoStore';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
 export default observer((props) => {

@@ -1,4 +1,4 @@
-import { observable, action, computed, runInAction } from 'mobx';
+import { observable, action, computed } from 'mobx';
 
 interface User {
     id: number;
@@ -80,7 +80,6 @@ class VideoStore {
         this.getReward = this.getReward.concat(id);
         console.log('this.getReward', this.getReward);
     }
-    
 }
 
 export default new VideoStore();

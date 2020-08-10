@@ -5,7 +5,7 @@ import StoreContext, { observer } from '~/store';
 import { GQL, useMutation } from '~/apollo';
 import { useNavigation, middlewareNavigate } from '~/router';
 import * as Progress from 'react-native-progress';
-import VideoStore from '../VideoStore';
+import VideoStore from '~/store/VideoStore';
 
 const RewardProgress = observer((props) => {
     const store = useContext(StoreContext);

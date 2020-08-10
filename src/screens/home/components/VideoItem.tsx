@@ -6,7 +6,7 @@ import { ad } from 'react-native-ad';
 import { useNavigation } from '~/router';
 import Player from './Player';
 import SideBar from './SideBar';
-import VideoStore from '../VideoStore';
+import VideoStore from '~/store/VideoStore';
 import AdRewardProgress from './AdRewardProgress';
 import LinearGradient from 'react-native-linear-gradient';
 

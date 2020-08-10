@@ -5,7 +5,7 @@ import { Iconfont } from '~/components';
 import { useDoubleAction } from '~/utils';
 import { useApolloClient, ApolloProvider } from '~/apollo';
 import { observer } from '~/store';
-import VideoStore from '../VideoStore';
+import VideoStore from '~/store/VideoStore';
 import VideoLoading from './VideoLoading';
 import Operation from './Operation';
 import Video from 'react-native-video';

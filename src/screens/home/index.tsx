@@ -8,10 +8,10 @@ import { useDetainment } from '~/utils';
 import VideoItem from './components/VideoItem';
 import Footer from './components/Footer';
 import RewardProgress from './components/RewardProgress';
-import VideoStore from './VideoStore';
 import CommentOverlay from '../comment/CommentOverlay';
 import { useNavigation } from '~/router';
 import { Keys, Storage } from '~/store';
+import VideoStore from '~/store/VideoStore';
 
 export default observer((props) => {
     const store = useContext(StoreContext);
