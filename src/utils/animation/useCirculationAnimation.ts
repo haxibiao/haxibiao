@@ -12,6 +12,7 @@ export const useCirculationAnimation = (props: Props) => {
     const runAnimation = useCallback(() => {
         animation.current.setValue(0);
         Animated.timing(animation.current, {
+            useNativeDriver: true,
             toValue: 1,
             duration,
             easing: Easing.linear,

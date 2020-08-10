@@ -15,6 +15,7 @@ export const useLinearAnimation = (props: Props) => {
         (startValue: number = 0, toValue: number = 1) => {
             animation.current.setValue(startValue);
             Animated.timing(animation.current, {
+                useNativeDriver: true,
                 toValue,
                 duration,
             }).start(() => callback());

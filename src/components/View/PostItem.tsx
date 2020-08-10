@@ -98,6 +98,7 @@ const PostItem: React.FC<Props> = observer((props: Props) => {
         (startValue: number = 0, toValue: number = 1) => {
             animation.current.setValue(startValue);
             Animated.timing(animation.current, {
+                useNativeDriver: true,
                 toValue,
                 duration: 300,
             }).start(() => setVisible(false));

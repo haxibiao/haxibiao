@@ -7,10 +7,12 @@ const Love = () => {
     useEffect(() => {
         Animated.stagger(400, [
             Animated.spring(animation.current, {
+                useNativeDriver: true,
                 toValue: 1,
                 duration: 400,
             }),
             Animated.timing(animation.current, {
+                useNativeDriver: true,
                 toValue: 2,
                 duration: 800,
             }),

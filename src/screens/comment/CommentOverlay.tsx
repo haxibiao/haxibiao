@@ -48,6 +48,7 @@ class CommentOverlay extends Component {
             () => ({ visible: true }),
             () => {
                 Animated.timing(this.offset, {
+                    useNativeDriver: true,
                     easing: Easing.linear,
                     duration: 200,
                     toValue: 1,
@@ -59,6 +60,7 @@ class CommentOverlay extends Component {
     // 隐藏动画
     slideDown = () => {
         Animated.timing(this.offset, {
+            useNativeDriver: true,
             easing: Easing.linear,
             duration: 200,
             toValue: 0,

@@ -113,7 +113,7 @@ export default observer(
                 Animated.timing(visible, {
                     toValue: 1,
                     duration: 250,
-                    useNativeDriver,
+                    useNativeDriver: true,
                 }).start(({ finished }) => {
                     if (finished) {
                         setIsTabBarHidden(false);
@@ -125,7 +125,7 @@ export default observer(
                 Animated.timing(visible, {
                     toValue: 0,
                     duration: 200,
-                    useNativeDriver,
+                    useNativeDriver: true,
                 }).start();
             }
         }, [shouldShowTabBar, visible]);
