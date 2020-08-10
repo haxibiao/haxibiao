@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
         zIndex: 99,
         left: 0,
         right: 0,
-        bottom: PxDp(Theme.BOTTOM_HEIGHT),
+        bottom:0,
         height: PxDp(1),
         backgroundColor: 'rgba(255,255,255,0.5)',
     },

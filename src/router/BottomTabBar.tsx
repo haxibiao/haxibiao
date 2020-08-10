@@ -218,7 +218,7 @@ export default observer(
                         position: 'absolute',
                     },
                     {
-                        height: DEFAULT_TABBAR_HEIGHT + insets.bottom,
+                        height: DEFAULT_TABBAR_HEIGHT + insets.bottom+4,
                         paddingBottom: insets.bottom,
                         paddingHorizontal: Math.max(insets.left, insets.right),
                     },
@@ -232,7 +232,7 @@ export default observer(
 
                         const focused = index === state.index;
                         const { options } = descriptors[route.key];
-                        const color = focused ? activeTintColor : inactiveTintColor;
+                        const color = focused ? '#2F76FE' : '#999999';
                         const tabBarLabel = descriptors[route.key].options.tabBarLabel || route.name;
 
                         const onPress = () => {
@@ -297,7 +297,7 @@ function TabBarIcon({ name, focused, activeTintColor, inactiveTintColor }) {
     // active and inactive one, so we can fade between them.
     return (
         <View style={styles.tabBarIcon}>
-            <View style={[styles.icon, { opacity: focused ? 1 : 0 }]}>
+            <View style={[styles.icon, { opacity: focused ? 1 : 0 ,}]}>
                 <Image source={iconSource[name].active} style={styles.iconSize} />
             </View>
             <View style={[styles.icon, { opacity: focused ? 0 : 1 }]}>
@@ -331,8 +331,7 @@ const styles = StyleSheet.create({
         left: 0,
         right: 0,
         bottom: 0,
-        borderTopWidth: StyleSheet.hairlineWidth,
-        elevation: 8,
+        elevation: 0,
     },
     content: {
         flex: 1,
@@ -348,7 +347,7 @@ const styles = StyleSheet.create({
     tabBarIcon: {
         position: 'relative',
         width: 22,
-        height: 22,
+        height: 22,     
     },
     icon: {
         position: 'absolute',
@@ -366,5 +365,7 @@ const styles = StyleSheet.create({
     label: {
         fontSize: 10,
         marginTop: 2,
+        fontWeight:'bold',
+        
     },
 });
