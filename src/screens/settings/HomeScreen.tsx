@@ -149,13 +149,29 @@ class index extends Component {
                                 .then(
                                     (status) => {
                                         console.log('codePush sync status', status);
+                                        let statusText = '已最新';
+                                        if (status == 1) {
+                                            statusText = '更新已安装,需重启...';
+                                        }
+                                        if (status == 2) {
+                                            statusText = '更新已忽略...';
+                                        }
+                                        if (status == 3) {
+                                            statusText = '更新遇到未知错误...';
+                                        }
+                                        if (status == 4) {
+                                            statusText = '正在下载更新...';
+                                        }
+                                        if (status == 5) {
+                                            statusText = '正在检查更新...';
+                                        }
+                                        Toast.show({ content: '检查结果 - ' + statusText });
                                     },
                                     (reason) => {
                                         console.log('codePush reject reason', reason);
+                                        Toast.show({ content: '拒绝原因-' + reason });
                                     },
                                 );
-
-                            Toast.show({ content: '已是最新版本' });
                         }}
                         style={styles.listItem}
                         leftComponent={<Text style={styles.itemText}>检查更新</Text>}

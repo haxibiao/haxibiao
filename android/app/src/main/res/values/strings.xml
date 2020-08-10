@@ -3,6 +3,6 @@
     <string name="appCenterCrashes_whenToSendCrashes" moduleConfig="true" translatable="false">ALWAYS_SEND</string>
 	<string name="appCenterAnalytics_whenToEnableAnalytics" moduleConfig="true" translatable="false">ALWAYS_SEND</string>
 	
-	<string moduleConfig="true" name="CodePushDeploymentKey">RXiLlwywOZFYSAgcZ1pUAGc2wPpz4ksvOXqog</string>
+	<string moduleConfig="true" name="CodePushDeploymentKey">9wIzsYHmlPcdPgynsdsQoh7X7m9a4ksvOXqog</string>
 	<string moduleConfig="true" name="CodePushServerUrl">http://codepush.haxibiao.com/</string>
 </resources>
