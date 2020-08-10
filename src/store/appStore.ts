@@ -98,6 +98,11 @@ class App {
     setAdDuration(duration: number) {
         this.intervalForAdvert = duration;
     }
+
+    // @action.bound
+    // showComment() {
+    //     this.modalIsShow = true;
+    // }
 }
 
 export default new App();

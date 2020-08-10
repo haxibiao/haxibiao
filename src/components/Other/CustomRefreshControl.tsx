@@ -3,10 +3,9 @@
  * created by wyk made in 2018-12-11 16:16:04
  */
 
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, RefreshControl } from 'react-native';
 import { appStore } from '~/store';
-import { observer } from 'mobx-react';
 
 type Props = {
     onRefresh: Function;
@@ -18,9 +17,8 @@ type Props = {
     progressBackgroundColor?: string;
 };
 
-@observer
-class CustomRefreshControl extends Component<Props> {
-    static defaultProps = {
+export default (props: Props) => {
+    let defaultProps = {
         title: '',
         size: undefined,
         tintColor: '#FFCC80',
@@ -28,40 +26,34 @@ class CustomRefreshControl extends Component<Props> {
         progressBackgroundColor: '#fff',
     };
 
-    constructor(props) {
-        super(props);
+    const [refreshing, setRefreshing] = useState(false);
 
-        this.state = {
-            isRefreshing: false,
-        };
-    }
+    const { onRefresh, reset, ...otherProps } = props;
 
-    onRefresh = () => {
-        const { onRefresh, reset } = this.props;
+    const _onRefresh = async () => {
         const { deviceOffline } = appStore;
         if (deviceOffline) {
             Toast.show({ content: '网络错误,请检查网络连接' });
             return;
         }
-        if (!onRefresh) return;
-        this.setState({ isRefreshing: true }, async () => {
-            try {
-                await onRefresh();
-            } catch (e) {
-                console.error('onRefresh error', e);
-            } finally {
-                this.setState({ isRefreshing: false });
-                reset && reset();
-            }
-        });
+        if (!onRefresh) {
+            return;
+        }
+        await onRefresh();
+        setRefreshing(true);
+
+        //FIXME: 以前这里很复杂，可以异步等onRefresh事件完成
+        // , async () => {
+        //     try {
+        //         await onRefresh();
+        //     } catch (e) {
+        //         console.error('onRefresh error', e);
+        //     } finally {
+        //         setRefreshing(false);
+        //         reset && reset();
+        //     }
+        // }
     };
 
-    render() {
-        const { refreshing, onRefresh, ...props } = this.props;
-        return <RefreshControl refreshing={this.state.isRefreshing} onRefresh={this.onRefresh} {...props} />;
-    }
-}
-
-const styles = StyleSheet.create({});
-
-export default CustomRefreshControl;
+    return <RefreshControl {...defaultProps} refreshing={refreshing} onRefresh={_onRefresh} {...otherProps} />;
+};

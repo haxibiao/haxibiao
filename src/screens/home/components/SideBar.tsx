@@ -1,10 +1,10 @@
 import React, { Component, useCallback } from 'react';
 import { StyleSheet, View, Image, Animated, TouchableOpacity } from 'react-native';
+import { DeviceEventEmitter } from 'react-native';
 import { Avatar, Iconfont, Like, SafeText, MoreOperation } from '~/components';
 import { useApolloClient, ApolloProvider } from '~/apollo';
 import { useNavigation } from '~/router';
-import { observer } from '~/store';
-import VideoStore from '../VideoStore';
+import { observer, appStore } from '~/store';
 import { Overlay } from 'teaset';
 
 export default observer((props) => {
@@ -59,7 +59,12 @@ export default observer((props) => {
                 <Like media={media} shadowText={true} />
             </View>
             <View style={styles.itemWrap}>
-                <TouchableOpacity onPress={VideoStore.showComment}>
+                <TouchableOpacity
+                    onPress={() => {
+                        //展开评论
+                        // appStore.showComment();
+                        DeviceEventEmitter.emit('showComment');
+                    }}>
                     <Image source={require('~/assets/images/comment_item.png')} style={styles.imageStyle} />
                     <SafeText shadowText={true} style={styles.countText}>
                         {Helper.NumberFormat(Helper.syncGetter('count_comments', media))}

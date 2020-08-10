@@ -3,115 +3,108 @@
  * created by wyk made in 2019-04-01 17:53:01
  */
 
-import React, { Component } from 'react';
-import {
-    StyleSheet,
-    View,
-    Image,
-    TouchableOpacity,
-    FlatList,
-    Text,
-    Keyboard,
-    Animated,
-    Easing,
-    ScrollView,
-} from 'react-native';
-import {
-    TouchFeedback,
-    Iconfont,
-    Row,
-    ItemSeparator,
-    StatusView,
-    Placeholder,
-    KeyboardSpacer,
-    Footer,
-} from '~/components';
-import { Query, Mutation, compose, withApollo, graphql, GQL } from '~/apollo';
-import { appStore } from '~/store';
-import { observer } from 'mobx-react';
+import React, { useState, forwardRef, useImperativeHandle, useEffect, useCallback } from 'react';
+import { StyleSheet, View, TouchableOpacity, Text, Animated, Easing } from 'react-native';
+import { TouchFeedback, Iconfont } from '~/components';
+import { DeviceEventEmitter } from 'react-native';
+// import { appStore, observer } from '~/store';
 import Comments from './Comments';
 
-@observer
-class CommentOverlay extends Component {
-    constructor(props) {
-        super(props);
-        this.offset = new Animated.Value(0);
-        this.state = {
-            visible: false,
-        };
-    }
+export default forwardRef((props: any, ref) => {
+    let offset = new Animated.Value(0);
+    const [visible, setVisible] = useState(props.visible ? true : false);
 
-    // 显示动画
-    slideUp = () => {
-        appStore.modalIsShow = true;
-        this.setState(
-            () => ({ visible: true }),
-            () => {
-                Animated.timing(this.offset, {
-                    useNativeDriver: true,
-                    easing: Easing.linear,
-                    duration: 200,
-                    toValue: 1,
-                }).start();
+    const _slideUp = useCallback(() => {
+        // appStore.modalIsShow = true;
+        Animated.timing(offset, {
+            useNativeDriver: true,
+            easing: Easing.linear,
+            duration: 200,
+            toValue: 1,
+        }).start();
+    }, [offset]);
+
+    useEffect(() => {
+        //监听展开评论点击事件 - 方案2： 当外部组件拿不到ref时，只好丢事件
+        DeviceEventEmitter.once(
+            'showComment',
+            (args) => {
+                console.log('DeviceEventEmitter setVisible ...args', args);
+                setVisible(true);
             },
+            null,
         );
-    };
+
+        if (visible) {
+            _slideUp();
+        }
+        return () => {};
+    }, [_slideUp, visible]);
+
+    // 显示动画 - 外部展开评论时调用 - 方案1
+    useImperativeHandle(ref, () => ({
+        slideUp() {
+            setVisible(true);
+        },
+    }));
 
     // 隐藏动画
-    slideDown = () => {
-        Animated.timing(this.offset, {
+    const slideDown = () => {
+        Animated.timing(offset, {
             useNativeDriver: true,
             easing: Easing.linear,
             duration: 200,
             toValue: 0,
         }).start(() => {
-            this.setState({ visible: false });
-            appStore.modalIsShow = false;
+            setVisible(false);
+            // appStore.modalIsShow = false;
         });
     };
 
-    render() {
-        const { media } = this.props;
-        const translateY = this.offset.interpolate({
-            inputRange: [0, 1],
-            outputRange: [(Device.HEIGHT * 2) / 3, 0],
-            extrapolate: 'clamp',
-        });
-        if (!this.state.visible || !media) {
-            return <View />;
-        }
-        return (
-            <View style={styles.container}>
-                <View style={styles.modalLayout}>
-                    <TouchableOpacity style={styles.mask} onPress={this.slideDown} activeOpacity={1} />
-                    <Animated.View
-                        style={{
-                            transform: [
-                                {
-                                    translateY,
-                                },
-                            ],
-                        }}>
-                        <View style={styles.contentContainer}>
-                            <View style={styles.header}>
-                                <Text style={styles.headerText}>
-                                    <Text style={styles.countCommentsText}>
-                                        {Helper.syncGetter('count_comments', media)}
-                                    </Text>
-                                    {Helper.syncGetter('count_comments', media) > 0 ? '条评论' : '评论'}
-                                </Text>
-                                <TouchFeedback style={styles.close} onPress={this.slideDown}>
-                                    <Iconfont name="guanbi1" size={PxDp(20)} color={Theme.defaultTextColor} />
-                                </TouchFeedback>
-                            </View>
-                            <Comments media={media} commentAbleId={media.id} commentAbleType="articles" />
-                        </View>
-                    </Animated.View>
-                </View>
-            </View>
-        );
+    const { media } = props;
+    const translateY = offset.interpolate({
+        inputRange: [0, 1],
+        outputRange: [(Device.HEIGHT * 2) / 3, 0],
+        extrapolate: 'clamp',
+    });
+
+    console.log('comment overlay visible', visible);
+
+    if (!visible || !media) {
+        return <View />;
     }
-}
+    console.log('comment overlay render media ', media);
+    return (
+        <View style={styles.container}>
+            <View style={styles.modalLayout}>
+                <TouchableOpacity style={styles.mask} onPress={slideDown} activeOpacity={1} />
+                <Animated.View
+                    style={{
+                        transform: [
+                            {
+                                translateY,
+                            },
+                        ],
+                    }}>
+                    <View style={styles.contentContainer}>
+                        <View style={styles.header}>
+                            <Text style={styles.headerText}>
+                                <Text style={styles.countCommentsText}>
+                                    {Helper.syncGetter('count_comments', media)}
+                                </Text>
+                                {Helper.syncGetter('count_comments', media) > 0 ? '条评论' : '评论'}
+                            </Text>
+                            <TouchFeedback style={styles.close} onPress={slideDown}>
+                                <Iconfont name="guanbi1" size={PxDp(20)} color={Theme.defaultTextColor} />
+                            </TouchFeedback>
+                        </View>
+                        <Comments media={media} commentAbleId={media.id} commentAbleType="articles" />
+                    </View>
+                </Animated.View>
+            </View>
+        </View>
+    );
+});
 
 const styles = StyleSheet.create({
     close: {
@@ -157,5 +150,3 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
     },
 });
-
-export default CommentOverlay;

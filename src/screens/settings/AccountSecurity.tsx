@@ -1,30 +1,28 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-
 import { PageContainer, TouchFeedback, Iconfont, Avatar, ListItem, PopOverlay } from '~/components';
 import { userStore, appStore } from '~/store';
-import { observer } from 'mobx-react';
-
+import { useRoute, useNavigation } from '~/router';
 import { bindWechat } from '~/utils';
 
-@observer
-class AccountSecurity extends Component {
-    constructor(props) {
-        super(props);
-        const user = props.route.params?.user ?? {};
-        console.log('user', user);
-        this.state = {
-            is_bind_wechat: Helper.syncGetter('wallet.bind_platforms.wechat', user) || false,
-            is_bind_alipay: Helper.syncGetter('wallet.platforms.alipay', user) || false,
-            is_bind_dongdezhuan: Helper.syncGetter('is_bind_dongdezhuan', user) || false,
-            dongdezhuanUser: Helper.syncGetter('dongdezhuanUser', user) || false,
-            me: user,
-        };
-    }
+//FIXME: 需要检查逻辑
+export default () => {
+    const navigation = useNavigation();
+    let route = useRoute();
+    const user = route.params?.user ?? userStore.me;
+    console.log('user', user);
+    let stateObj = {
+        is_bind_wechat: Helper.syncGetter('wallet.bind_platforms.wechat', user) || false,
+        is_bind_alipay: Helper.syncGetter('wallet.platforms.alipay', user) || false,
+        is_bind_dongdezhuan: Helper.syncGetter('is_bind_dongdezhuan', user) || false,
+        dongdezhuanUser: Helper.syncGetter('dongdezhuanUser', user) || false,
+        me: user,
+    };
 
-    alipay = async () => {
-        const { navigation } = this.props;
-        const user = this.props.route.params?.user ?? {};
+    const [state, setState] = useState(stateObj);
+
+    const alipay = async () => {
+        const user = route.params?.user ?? {};
         console.log('wallet', user.wallet);
 
         if (!user.phone) {
@@ -44,9 +42,8 @@ class AccountSecurity extends Component {
         }
     };
 
-    modifyPassword = async () => {
-        const { navigation } = this.props;
-        const user = this.props.route.params?.user ?? {};
+    const modifyPassword = async () => {
+        const user = route.params?.user ?? {};
 
         if (!user.phone) {
             PopOverlay({
@@ -60,108 +57,100 @@ class AccountSecurity extends Component {
         }
     };
 
-    account = async () => {
-        const { navigation } = this.props;
-        const user = this.props.route.params?.user ?? {};
+    const account = async () => {
+        const user = route.params?.user ?? {};
         if (!user.phone) {
             navigation.navigate('账号安全');
         }
     };
 
-    handlerBindWechat = () => {
-        if (this.state.is_bind_wechat) {
+    const handlerBindWechat = () => {
+        if (state.is_bind_wechat) {
             Toast.show({
                 content: '已绑定微信',
             });
         } else {
             bindWechat({
-                onSuccess: this.onSuccess,
+                onSuccess: onSuccess,
             });
         }
     };
 
-    onSuccess = () => {
+    const onSuccess = () => {
         Toast.show({
             content: '绑定成功',
         });
 
-        this.setState({
+        setState({
             is_bind_wechat: true,
         });
     };
 
-    handlerBindDongdezhuan = () => {
-        if (this.state.is_bind_dongdezhuan) {
+    const handlerBindDongdezhuan = () => {
+        if (state.is_bind_dongdezhuan) {
             Toast.show({
                 content: '已绑定懂得赚',
             });
         } else {
-            this.props.navigation.navigate('BindDongdezhuan');
+            navigation.navigate('BindDongdezhuan');
         }
     };
 
-    render() {
-        const { navigation } = this.props;
-        const user = this.props.route.params?.user ?? userStore.me;
-        const { is_bind_wechat, is_bind_alipay, is_bind_dongdezhuan, dongdezhuanUser } = this.state;
+    const { is_bind_wechat, is_bind_alipay, is_bind_dongdezhuan, dongdezhuanUser } = state;
 
-        return (
-            <PageContainer title="账号安全" white loading={!user}>
-                <View style={styles.container}>
-                    <View style={styles.panelLeft}>
-                        <Avatar
-                            source={user.avatar}
-                            size={52}
-                            borderStyle={{ borderWidth: 1, borderColor: '#ffffff' }}
-                        />
-                        <View style={styles.panelContent}>
-                            <Text style={{ color: Theme.defaultTextColor, fontSize: 15 }}>{user.name}</Text>
-                        </View>
+    return (
+        <PageContainer title="账号安全" white loading={!user}>
+            <View style={styles.container}>
+                <View style={styles.panelLeft}>
+                    <Avatar source={user.avatar} size={52} borderStyle={{ borderWidth: 1, borderColor: '#ffffff' }} />
+                    <View style={styles.panelContent}>
+                        <Text style={{ color: Theme.defaultTextColor, fontSize: 15 }}>{user.name}</Text>
                     </View>
+                </View>
 
-                    <ListItem
-                        style={styles.listItem}
-                        leftComponent={<Text style={styles.itemText}>{Config.AppName}账号</Text>}
-                        rightComponent={
+                <ListItem
+                    style={styles.listItem}
+                    leftComponent={<Text style={styles.itemText}>{Config.AppName}账号</Text>}
+                    rightComponent={
+                        <View style={styles.rightWrap}>
+                            <Text style={styles.rightText}>{user.id}</Text>
+                        </View>
+                    }
+                />
+
+                <ListItem
+                    style={styles.listItem}
+                    leftComponent={<Text style={styles.itemText}>身份标识</Text>}
+                    rightComponent={
+                        <View style={styles.rightWrap}>
+                            <Text style={styles.rightText}>{user.uuid || '未知身份'}</Text>
+                        </View>
+                    }
+                />
+
+                <ListItem
+                    onPress={account}
+                    style={styles.listItem}
+                    leftComponent={<Text style={styles.itemText}>手机账号</Text>}
+                    rightComponent={
+                        user.phone ? (
                             <View style={styles.rightWrap}>
-                                <Text style={styles.rightText}>{user.id}</Text>
+                                <Text style={styles.rightText}>{user.title_phone}</Text>
+                                <Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />
                             </View>
-                        }
-                    />
-
-                    <ListItem
-                        style={styles.listItem}
-                        leftComponent={<Text style={styles.itemText}>身份标识</Text>}
-                        rightComponent={
+                        ) : (
                             <View style={styles.rightWrap}>
-                                <Text style={styles.rightText}>{user.uuid || '未知身份'}</Text>
+                                <Text style={styles.linkText}>去设置</Text>
+                                <Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />
                             </View>
-                        }
-                    />
+                        )
+                    }
+                />
 
-                    <ListItem
-                        onPress={this.account}
-                        style={styles.listItem}
-                        leftComponent={<Text style={styles.itemText}>手机账号</Text>}
-                        rightComponent={
-                            user.phone ? (
-                                <View style={styles.rightWrap}>
-                                    <Text style={styles.rightText}>{user.title_phone}</Text>
-                                    <Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />
-                                </View>
-                            ) : (
-                                <View style={styles.rightWrap}>
-                                    <Text style={styles.linkText}>去设置</Text>
-                                    <Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />
-                                </View>
-                            )
-                        }
-                    />
-
-                    {/* {appStore.enableWallet && (
+                {/* {appStore.enableWallet && (
                         <ListItem
                             style={styles.listItem}
-                            onPress={this.alipay}
+                            onPress={alipay}
                             leftComponent={<Text style={styles.itemText}>支付宝账号</Text>}
                             rightComponent={<Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />}
                             rightComponent={
@@ -182,7 +171,7 @@ class AccountSecurity extends Component {
 
                     {!Device.IOS && (
                         <ListItem
-                            onPress={this.handlerBindWechat}
+                            onPress={handlerBindWechat}
                             style={styles.listItem}
                             leftComponent={<Text style={styles.itemText}>微信账号</Text>}
                             rightComponent={
@@ -197,7 +186,7 @@ class AccountSecurity extends Component {
                     )}
 
                     <ListItem
-                        onPress={this.handlerBindDongdezhuan}
+                        onPress={handlerBindDongdezhuan}
                         style={styles.listItem}
                         leftComponent={<Text style={styles.itemText}>懂得赚账号</Text>}
                         rightComponent={
@@ -210,13 +199,13 @@ class AccountSecurity extends Component {
                         }
                     /> */}
 
-                    <ListItem
-                        style={styles.listItem}
-                        onPress={this.modifyPassword}
-                        leftComponent={<Text style={styles.itemText}>修改密码</Text>}
-                        rightComponent={<Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />}
-                    />
-                    {/* <ListItem
+                <ListItem
+                    style={styles.listItem}
+                    onPress={modifyPassword}
+                    leftComponent={<Text style={styles.itemText}>修改密码</Text>}
+                    rightComponent={<Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />}
+                />
+                {/* <ListItem
                         style={styles.listItem}
                         onPress={() => {
                             navigation.navigate('LogoutAccount');
@@ -224,11 +213,10 @@ class AccountSecurity extends Component {
                         leftComponent={<Text style={styles.itemText}>注销账号</Text>}
                         rightComponent={<Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />}
                     /> */}
-                </View>
-            </PageContainer>
-        );
-    }
-}
+            </View>
+        </PageContainer>
+    );
+};
 
 const styles = StyleSheet.create({
     avatarTip: {
@@ -321,5 +309,3 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
 });
-
-export default AccountSecurity;

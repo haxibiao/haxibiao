@@ -11,8 +11,7 @@ import RewardProgress from './components/RewardProgress';
 import VideoStore from './VideoStore';
 import CommentOverlay from '../comment/CommentOverlay';
 import { useNavigation } from '~/router';
-import { Keys, Storage } from '../../store/localStorage';
-import { Overlay } from 'teaset';
+import { Keys, Storage } from '~/store';
 
 export default observer((props) => {
     const store = useContext(StoreContext);
@@ -21,7 +20,15 @@ export default observer((props) => {
     const client = useApolloClient();
     const navigation = useNavigation();
     useDetainment(navigation, true);
+
+    //展开评论用
     const commentRef = useRef();
+    // 动态添加属性，mobx 6自动proxy, 不兼容hermes...
+    // appStore.showComment = useCallback(() => {
+    //     console.log('展开评论slideUp');
+    //     commentRef.current.slideUp();
+    // }, [commentRef]);
+
     const config = useRef({
         waitForInteraction: true,
         viewAreaCoveragePercentThreshold: 95,
@@ -36,14 +43,6 @@ export default observer((props) => {
         appStore.viewportHeight = height;
     }, []);
 
-    VideoStore.showComment = useCallback(() => {
-        commentRef.current.slideUp();
-    }, [commentRef]);
-
-    const hideComment = useCallback(() => {
-        commentRef.current.slideDown();
-    }, [commentRef]);
-
     const VideosQuery = useCallback(() => {
         return client.query({
             query: GQL.RecommendVideosQuery,
@@ -56,6 +55,8 @@ export default observer((props) => {
             VideoStore.isLoadMore = true;
             const [error, result] = await Helper.exceptionCapture(VideosQuery);
             const videoSource = Helper.syncGetter('data.recommendVideos.data', result);
+            console.log('首页视频刷数据videoSource', videoSource);
+
             if (error) {
                 VideoStore.isError = true;
             } else {
@@ -211,8 +212,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        width: null,
-        height: null,
     },
     rewardProgress: {
         position: 'absolute',

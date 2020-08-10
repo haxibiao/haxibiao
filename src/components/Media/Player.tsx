@@ -2,9 +2,9 @@
  * @flow
  * created by wyk made in 2019-02-25 17:34:23
  */
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Animated, Easing, TouchableOpacity, BackHandler } from 'react-native';
-// import { withNavigation } from 'react-navigation';
+import { useNavigation } from '~/router';
 import Video from 'react-native-video';
 
 import VideoStatus from './VideoStatus';
@@ -21,108 +21,101 @@ let TestVideo = {
     url: 'https://1251052432.vod2.myqcloud.com/3ef5dd60vodtransgzp1251052432/1b0ce41b5285890784373984093/v.f30.mp4',
 };
 
-@observer
-export default class Player extends Component {
-    constructor(props) {
-        super(props);
-        let { video, inScreen, navigation } = props;
-        this.videoStore = new VideoStore({ video, inScreen, navigation });
-        this.state = {
-            muted: false,
-        };
-    }
+export default (props: any) => {
+    let navigation = useNavigation();
+    let { video, inScreen, style } = props;
+    let videoStore = new VideoStore({ video, inScreen, navigation });
+    const [muted, setMuted] = useState(false);
 
-    componentDidMount() {
-        let { navigation } = this.props;
+    useEffect(() => {
         // let BackHandler = ReactNative.BackHandler ? ReactNative.BackHandler : ReactNative.BackAndroid;
         if (Device.Android) {
-            BackHandler.addEventListener('hardwareBackPress', this._backButtonPress);
+            BackHandler.addEventListener('hardwareBackPress', _backButtonPress);
         }
-        this.willBlurSubscription = navigation.addListener('willBlur', (payload) => {
-            this.videoStore.paused = true;
+        //不再画面时，暂停播放
+        navigation.addListener('willBlur', (payload) => {
+            videoStore.paused = true;
         });
-    }
 
-    componentWillUnmount() {
-        this.willBlurSubscription();
-        // 离开固定竖屏
-        Orientation.lockToPortrait();
-    }
+        return () => {
+            // 离开时暂停播放
+            videoStore.paused = true;
+            // 离开固定竖屏
+            Orientation.lockToPortrait();
+        };
+    }, []);
 
-    _backButtonPress = () => {
+    const _backButtonPress = () => {
         if (appStore.isFullScreen) {
-            this.videoStore.onFullScreen();
+            videoStore.onFullScreen();
             return true;
         }
         return false;
     };
 
-    render() {
-        let { video, style, navigation } = this.props;
-        let {
-            status,
-            orientation,
-            paused,
-            getVideoRef,
-            controlSwitch,
-            onAudioBecomingNoisy,
-            onAudioFocusChanged,
-            loadStart,
-            onLoaded,
-            onProgressChanged,
-            onPlayEnd,
-            onPlayError,
-        } = this.videoStore;
-        return (
-            <View
-                style={[
-                    styles.playContainer,
-                    style,
-                    appStore.isFullScreen
-                        ? {
-                              width: Device.WIDTH,
-                              height: Device.HEIGHT,
-                              marginTop: 0,
-                              position: 'absolute',
-                              zIndex: 10000,
-                          }
-                        : styles.defaultSize,
-                ]}>
-                {status !== 'notWifi' && (
-                    <Video
-                        style={styles.videoStyle}
-                        ref={getVideoRef}
-                        source={{
-                            uri: video.url,
-                        }}
-                        // poster={video.cover}
-                        rate={1.0}
-                        volume={1.0}
-                        muted={false}
-                        paused={paused}
-                        resizeMode={'contain'}
-                        disableFocus={true}
-                        useTextureView={false}
-                        playWhenInactive={false}
-                        playInBackground={false}
-                        onLoadStart={loadStart} // 当视频开始加载时的回调函数
-                        onLoad={onLoaded} // 当视频加载完毕时的回调函数
-                        onProgress={onProgressChanged} //每250ms调用一次，以获取视频播放的进度
-                        onEnd={onPlayEnd}
-                        onError={onPlayError}
-                        onAudioBecomingNoisy={onAudioBecomingNoisy}
-                        onAudioFocusChanged={onAudioFocusChanged}
-                        ignoreSilentSwitch="obey"
-                    />
-                )}
-                <TouchableOpacity activeOpacity={1} onPress={controlSwitch} style={styles.controlContainer}>
-                    <VideoControl videoStore={this.videoStore} navigation={navigation} />
-                </TouchableOpacity>
-                <VideoStatus videoStore={this.videoStore} />
-            </View>
-        );
-    }
-}
+    let {
+        status,
+        orientation,
+        paused,
+        getVideoRef,
+        controlSwitch,
+        onAudioBecomingNoisy,
+        onAudioFocusChanged,
+        loadStart,
+        onLoaded,
+        onProgressChanged,
+        onPlayEnd,
+        onPlayError,
+    } = videoStore;
+    return (
+        <View
+            style={[
+                styles.playContainer,
+                style,
+                appStore.isFullScreen
+                    ? {
+                          width: Device.WIDTH,
+                          height: Device.HEIGHT,
+                          marginTop: 0,
+                          position: 'absolute',
+                          zIndex: 10000,
+                      }
+                    : styles.defaultSize,
+            ]}>
+            {status !== 'notWifi' && (
+                <Video
+                    style={styles.videoStyle}
+                    ref={getVideoRef}
+                    source={{
+                        uri: video.url,
+                    }}
+                    // poster={video.cover}
+                    rate={1.0}
+                    volume={1.0}
+                    muted={false}
+                    paused={paused}
+                    resizeMode={'contain'}
+                    disableFocus={true}
+                    useTextureView={false}
+                    playWhenInactive={false}
+                    playInBackground={false}
+                    onLoadStart={loadStart} // 当视频开始加载时的回调函数
+                    onLoad={onLoaded} // 当视频加载完毕时的回调函数
+                    onProgress={onProgressChanged} //每250ms调用一次，以获取视频播放的进度
+                    onEnd={onPlayEnd}
+                    onError={onPlayError}
+                    onAudioBecomingNoisy={onAudioBecomingNoisy}
+                    onAudioFocusChanged={onAudioFocusChanged}
+                    ignoreSilentSwitch="obey"
+                />
+            )}
+            <TouchableOpacity activeOpacity={1} onPress={controlSwitch} style={styles.controlContainer}>
+                <VideoControl videoStore={this.videoStore} navigation={navigation} />
+            </TouchableOpacity>
+            <VideoStatus videoStore={this.videoStore} />
+        </View>
+    );
+};
 
 const styles = StyleSheet.create({
     playContainer: {
@@ -149,4 +142,3 @@ const styles = StyleSheet.create({
         bottom: 0,
     },
 });
-// export default withNavigation(Player);
