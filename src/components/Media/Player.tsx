@@ -24,22 +24,24 @@ let TestVideo = {
 export default (props: any) => {
     let navigation = useNavigation();
     let { video, inScreen, style } = props;
-    let videoStore = new VideoStore({ video, inScreen, navigation });
+    let videoStore = VideoStore;
     const [muted, setMuted] = useState(false);
 
     useEffect(() => {
+        videoStore.play();
+
         // let BackHandler = ReactNative.BackHandler ? ReactNative.BackHandler : ReactNative.BackAndroid;
         if (Device.Android) {
             BackHandler.addEventListener('hardwareBackPress', _backButtonPress);
         }
         //不再画面时，暂停播放
         navigation.addListener('willBlur', (payload) => {
-            videoStore.paused = true;
+            videoStore.pause();
         });
 
         return () => {
             // 离开时暂停播放
-            videoStore.paused = true;
+            videoStore.pause();
             // 离开固定竖屏
             Orientation.lockToPortrait();
         };
@@ -54,6 +56,8 @@ export default (props: any) => {
     };
 
     let {
+        videoPaused,
+        play,
         status,
         orientation,
         paused,
@@ -93,7 +97,8 @@ export default (props: any) => {
                     rate={1.0}
                     volume={1.0}
                     muted={false}
-                    paused={paused}
+                    repeat={true}
+                    paused={videoPaused}
                     resizeMode={'contain'}
                     disableFocus={true}
                     useTextureView={false}
@@ -109,10 +114,10 @@ export default (props: any) => {
                     ignoreSilentSwitch="obey"
                 />
             )}
-            <TouchableOpacity activeOpacity={1} onPress={controlSwitch} style={styles.controlContainer}>
-                <VideoControl videoStore={this.videoStore} navigation={navigation} />
+            {/* <TouchableOpacity activeOpacity={1} onPress={play} style={styles.controlContainer}>
+                <VideoControl videoStore={videoStore} navigation={navigation} />
             </TouchableOpacity>
-            <VideoStatus videoStore={this.videoStore} />
+            <VideoStatus videoStore={videoStore} /> */}
         </View>
     );
 };
