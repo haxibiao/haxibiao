@@ -18,6 +18,8 @@ import { useNavigation, useRoute } from '@react-navigation/native';
 import CommentItem from '../comment/CommentItem';
 import CommentInput from '../../components/View/CommentInput';
 
+import ArticleBodyView from './components/ArticleBodyView';
+
 interface Props {
     navigation: any;
 }
@@ -93,6 +95,8 @@ const index = (props: Props) => {
         [fetchMoreComments],
     );
 
+    console.log('文章详情', media.body);
+
     return (
         <PageContainer title="详情" contentViewStyle={hasVideo ? { marginTop: 0 } : {}}>
             {hasVideo && <Player video={media.video} navigation={navigation} />}
@@ -102,7 +106,19 @@ const index = (props: Props) => {
                     style={styles.container}
                     contentContainerStyle={styles.contentContainerStyle}
                     keyboardShouldPersistTaps={'handled'}>
-                    <PostItem post={media} showComment={true} />
+                    <View>
+                        {media.type === 'article' ? (
+                            <View style={{ width: 200 }}>
+                                <View style={{ paddingHorizontal: 15, paddingVertical: 5 }}>
+                                    <ArticleBodyView body={media.body} />
+                                </View>
+                                <View style={{ width: '100%', height: 10, backgroundColor: Theme.groundColour }} />
+                            </View>
+                        ) : (
+                            <PostItem post={media} showComment={true} />
+                        )}
+                    </View>
+
                     <FlatList
                         showsVerticalScrollIndicator={false}
                         scrollEnabled={false}

@@ -235,7 +235,7 @@ const PostItem: React.FC<Props> = observer((props: Props) => {
 
                     <View style={styles.contentTop}>
                         <Text style={styles.bodyText} numberOfLines={showComment ? 100 : 3}>
-                            {body || description}
+                            {body ? body.replace(/<[^>]+>/g, '') : description.replace(/<[^>]+>/g, '')}
                         </Text>
                     </View>
                     {renderCover}
