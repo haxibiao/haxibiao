@@ -3,11 +3,14 @@ import { StyleSheet, View, ScrollView, Image, Text } from 'react-native';
 import { videoPicker, videoUpload, imagePicker } from '~/utils';
 import Video from 'react-native-video';
 import ImageViewer from 'react-native-image-zoom-viewer';
+import { VodUploaderWithUrl } from 'react-native-vod';
+import ImagePicker from 'react-native-image-crop-picker';
 import Iconfont from '../Iconfont';
 import TouchFeedback from '../Basic/TouchFeedback';
 import OverlayViewer from '../Popup/OverlayViewer';
 import ProgressOverlay from '../Popup/ProgressOverlay';
 import PullChooser from '../Popup/PullChooser';
+import login from '!/src/screens/login';
 
 const maxMediaWidth = Device.WIDTH - Theme.itemSpace * 4;
 const mediaWidth = maxMediaWidth / 3;
@@ -126,50 +129,61 @@ const VideoUploadView = (props: Props) => {
         onResponse(null);
     }, []);
 
-    useEffect(() => {
-        if (video) {
-            setVideoSize(Helper.ResponseMedia(video.width, video.height, maxWidth || maxMediaWidth));
-        }
-    }, [video]);
+    // useEffect(() => {
+    //     if (video) {
+    //         setVideoSize(Helper.ResponseMedia(video.width, video.height, maxWidth || maxMediaWidth));
+    //     }
+    // }, [video]);
+        //MARK:Func 选择视频处理函数
+        const __vStart = () => {
+            console.log("视频开始上传");
 
-    const videoUploadHandler = useCallback(() => {
-        videoPicker(
-            (uploadVideo) => {
-                setVideo(uploadVideo);
-            },
-            {
-                onBeforeUpload: (metadata) => {
-                    if (metadata.duration > 60) {
-                        setVideo(null);
-                        Toast.show({
-                            content: `视频时长需在${60}秒以内`,
-                        });
-                        throw Error(`视频时长需在${60}秒以内`);
-                    }
-                },
-                onStarted: (uploadId) => {
-                    ProgressOverlay.show('正在上传...');
-                },
-                onProcess: (progress: number) => {
-                    // 设置上传进度回调方法
-                    ProgressOverlay.progress(progress);
-                },
-                onCompleted: (data: any) => {
-                    // console.log("测试vod返回",data);
-                    if (data.video_id) {
-                        ProgressOverlay.hide();
-                        Toast.show({
-                            content: '视频上传成功',
-                        });
-                        onResponse(data);
-                    } else {
-                        onUploadError();
-                    }
-                },
-                onError: () => onUploadError(),
-            },
-        );
-    }, []);
+            Toast.show({
+                content: '视频开始上传',
+            });
+
+            // ProgressOverlay.show('正在上传...');
+        }
+        const __vProgress = (progress:number) => {
+            // ProgressOverlay.progress(progress);
+        }
+        const __vComplete = (data:any) => {
+            console.log('shipshdiasudhsaioda',data);
+            
+            // ProgressOverlay.hide();
+            setVideo(data);
+            onResponse(data);
+
+        }
+        const __vError = (error:any) => {
+            // ProgressOverlay.hide();
+            Toast.show({
+                content: '上传失败',
+            });
+            setVideo(null);
+            onResponse(null);
+
+            }
+    
+
+    const videoUploadHandler = () => {
+        ImagePicker.openPicker({
+            multiple: false,
+            mediaType: 'video',
+            }).then((video:any) => {
+            let p:string = video.path;
+            console.log("视频信息: ",p.substr(7));
+            VodUploaderWithUrl({
+                url: 'https://haxibiao.com/api/signature/vod-' + Config.Name,
+                videoPath: p.substr(7),
+                onProcess: __vProgress,
+                onError: __vError,
+                onCompleted: __vComplete,
+                onStarted: __vStart
+            });
+        })
+    }
+
 
     const onUploadError = useCallback(() => {
         ProgressOverlay.hide();
@@ -203,14 +217,14 @@ const VideoUploadView = (props: Props) => {
     if (video) {
         return (
             <View style={{ flexDirection: 'row' }}>
-                <TouchFeedback activeOpacity={1} onPress={() => showVideo(video.path)}>
+                <TouchFeedback activeOpacity={1} onPress={() => showVideo(video.video_url)}>
                     <Video
                         muted={true}
                         repeat={true}
                         style={[styles.uploadView, { marginRight: 0 }, videoSize]}
                         resizeMode="cover"
                         source={{
-                            uri: video.path,
+                            uri: video.video_url,
                         }}
                     />
                     <View style={styles.playMark}>

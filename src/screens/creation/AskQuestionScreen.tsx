@@ -49,17 +49,28 @@ const AskQuestionScreen = (props) => {
             },
         },
         onError: (error) => {
-            Toast.show({
-                content: error.message.replace('GraphQL error: ', '') || '发布失败',
-            });
+            
+            console.log('打印视频发布错误',error,categories.map((category) => category.id));
+            if(categories.map((category) => category.id)[0] == undefined){
+                Toast.show({
+                    content:'请添加话题',
+                });
+    
+            }else{
+                Toast.show({
+                    content: error.message.replace('GraphQL error: ', '') || '发布失败',
+                });
+    
+            }
+            
         },
         onCompleted: (mutationResult) => {
+            console.log('视频发布成功',mutationResult,categories);
+
             Toast.show({
                 content: '发布成功',
             });
-            navigation.replace('PostDetail', {
-                post: observable(mutationResult.createContent),
-            });
+            navigation.goBack();
         },
     });
 
