@@ -22,7 +22,7 @@ import MoreOperation from './MoreOperation';
 import Gift from '!/assets/images/gift_svg.svg';
 import Comment from '!/assets/images/pinglun.svg';
 
-import StoreContext, { observer, useObservable, appStore, userStore } from '~/store';
+import StoreContext, { observer, appStore, userStore } from '~/store';
 import { useApolloClient, ApolloProvider } from '~/apollo';
 import { useNavigation } from '~/router';
 import { StackActions } from '@react-navigation/native';

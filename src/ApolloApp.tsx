@@ -14,7 +14,7 @@ import JPushModule from 'jpush-react-native';
 import { UserAgreementOverlay } from '~/components';
 
 export default observer(() => {
-    const store = useContext(StoreContext);
+    // const store = useContext(StoreContext);
     const client = useClientBuilder(Helper.syncGetter('userStore.me.token', store));
     appStore.client = client;
 

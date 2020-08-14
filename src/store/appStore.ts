@@ -4,7 +4,7 @@ import { act } from 'react-test-renderer';
 import { Keys, Storage } from './localStorage';
 import AppJson from '!/app.json';
 
-class App {
+class AppStore {
     @observable viewportHeight: number = Device.HEIGHT;
     @observable deviceOffline: boolean = false;
     @observable connectionInfoType: Record<string, any> = {};
@@ -105,4 +105,4 @@ class App {
     // }
 }
 
-export default new App();
+export default new AppStore();

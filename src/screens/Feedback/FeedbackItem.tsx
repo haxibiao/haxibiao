@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { View, StyleSheet, Image, Text, Dimensions, TouchableWithoutFeedback, TouchableOpacity } from 'react-native';
 import { Avatar, GridImage, Iconfont, Row, PlaceholderImage, SafeText } from '~/components';
-import StoreContext, { observer, useObservable } from '~/store';
+import StoreContext, { observer } from '~/store';
 import { StackActions } from '@react-navigation/native';
 
 export interface Props {

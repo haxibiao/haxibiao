@@ -8,7 +8,7 @@ import StoreContext, { observer, userStore } from '~/store';
 import FeedbackItem from './FeedbackItem';
 
 export default observer((props) => {
-    const store = useContext(StoreContext);
+    // const store = useContext(StoreContext);
     const { loading, error, data, fetchMore, refetch } = useQuery(GQL.MyFeedbackQuery, {
         variables: { id: userStore.me.id },
     });

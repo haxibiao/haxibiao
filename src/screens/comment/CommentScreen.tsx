@@ -12,7 +12,7 @@ import CommentInput from '../../components/View/CommentInput';
 
 export default observer((props) => {
     const client = useApolloClient();
-    const store = useContext(StoreContext);
+    // const store = useContext(StoreContext);
     const commentId = useRoute().params?.comment.id;
     const [replyByComment, setReplyByComment] = useState();
     const loadingMore = useRef(false);

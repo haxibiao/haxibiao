@@ -1,10 +1,11 @@
-import React from 'react';
-import { Keys, Storage } from './localStorage';
+export { Keys, Storage } from './localStorage';
+export { observer } from 'mobx-react';
 
-export default StoreContext = React.createContext({});
-
-export { observer, useObservable, useObserver } from 'mobx-react-lite';
+//单例 store = viewmodel
 export { default as appStore } from './appStore';
 export { default as userStore } from './userStore';
+export { default as chatStore } from './ChatStore';
+export { default as videoStore } from './VideoStore';
 
-export { Keys, Storage };
+//非单例的store = viewmdoel
+export { default as PalyerStore } from './PlayerStore';

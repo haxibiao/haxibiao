@@ -10,9 +10,8 @@ import Video from 'react-native-video';
 import VideoStatus from './VideoStatus';
 import VideoControl from './VideoControl';
 
-import { observer, Provider, inject } from 'mobx-react';
-import { appStore } from '~/store';
-import VideoStore from '~/store/VideoStore';
+import { appStore, observer } from '~/store';
+import PlayerStore from '~/store/PlayerStore';
 import Orientation from 'react-native-orientation';
 
 let TestVideo = {
@@ -21,10 +20,10 @@ let TestVideo = {
     url: 'https://1251052432.vod2.myqcloud.com/3ef5dd60vodtransgzp1251052432/1b0ce41b5285890784373984093/v.f30.mp4',
 };
 
-export default (props: any) => {
+export default observer((props: any) => {
     let navigation = useNavigation();
     let { video, inScreen, style } = props;
-    let videoStore = VideoStore;
+    let videoStore = new PlayerStore({ video, navigation, inScreen });
     const [muted, setMuted] = useState(false);
 
     useEffect(() => {
@@ -120,7 +119,7 @@ export default (props: any) => {
             <VideoStatus videoStore={videoStore} /> */}
         </View>
     );
-};
+});
 
 const styles = StyleSheet.create({
     playContainer: {
