@@ -19,7 +19,7 @@ import { middlewareNavigate, useNavigation } from '~/router';
 import { exceptionCapture, useDetainment } from '~/utils';
 import { observable } from 'mobx';
 import { ad } from 'react-native-ad';
-import Comment from '~/assets/images/pinglun.svg';
+import Comment from '!/assets/images/pinglun.svg';
 
 const sh = Device.HEIGHT;
 const sw = Device.WIDTH;

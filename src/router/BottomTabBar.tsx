@@ -48,24 +48,24 @@ const useNativeDriver = Platform.OS !== 'web';
 
 const iconSource = {
     HomeScreen: {
-        active: require('~/assets/images/init_main_focus.png'),
-        inactive: require('~/assets/images/init_main.png'),
+        active: require('!/assets/images/init_main_focus.png'),
+        inactive: require('!/assets/images/init_main.png'),
     },
     FindScreen: {
-        active: require('~/assets/images/init_discover_focus.png'),
-        inactive: require('~/assets/images/init_discover.png'),
+        active: require('!/assets/images/init_discover_focus.png'),
+        inactive: require('!/assets/images/init_discover.png'),
     },
     Notification2: {
-        active: require('~/assets/images/init-notification-focus.png'),
-        inactive: require('~/assets/images/init-notification.png'),
+        active: require('!/assets/images/init-notification-focus.png'),
+        inactive: require('!/assets/images/init-notification.png'),
     },
     Notification: {
-        active: require('~/assets/images/init-notification-focus.png'),
-        inactive: require('~/assets/images/init-notification.png'),
+        active: require('!/assets/images/init-notification-focus.png'),
+        inactive: require('!/assets/images/init-notification.png'),
     },
     MyHomeScreen: {
-        active: require('~/assets/images/init_personal_focus.png'),
-        inactive: require('~/assets/images/init_personal.png'),
+        active: require('!/assets/images/init_personal_focus.png'),
+        inactive: require('!/assets/images/init_personal.png'),
     },
 };
 
@@ -218,7 +218,7 @@ export default observer(
                         position: 'absolute',
                     },
                     {
-                        height: DEFAULT_TABBAR_HEIGHT + insets.bottom+4,
+                        height: DEFAULT_TABBAR_HEIGHT + insets.bottom + 4,
                         paddingBottom: insets.bottom,
                         paddingHorizontal: Math.max(insets.left, insets.right),
                     },
@@ -297,7 +297,7 @@ function TabBarIcon({ name, focused, activeTintColor, inactiveTintColor }) {
     // active and inactive one, so we can fade between them.
     return (
         <View style={styles.tabBarIcon}>
-            <View style={[styles.icon, { opacity: focused ? 1 : 0 ,}]}>
+            <View style={[styles.icon, { opacity: focused ? 1 : 0 }]}>
                 <Image source={iconSource[name].active} style={styles.iconSize} />
             </View>
             <View style={[styles.icon, { opacity: focused ? 0 : 1 }]}>
@@ -347,7 +347,7 @@ const styles = StyleSheet.create({
     tabBarIcon: {
         position: 'relative',
         width: 22,
-        height: 22,     
+        height: 22,
     },
     icon: {
         position: 'absolute',
@@ -365,7 +365,6 @@ const styles = StyleSheet.create({
     label: {
         fontSize: 10,
         marginTop: 2,
-        fontWeight:'bold',
-        
+        fontWeight: 'bold',
     },
 });

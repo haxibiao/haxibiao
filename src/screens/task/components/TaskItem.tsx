@@ -48,7 +48,7 @@ export default (props: Props) => {
         ? {
               uri: icon,
           }
-        : require('~/assets/images/task_gift.png');
+        : require('!/assets/images/task_gift.png');
 
     // 请求激励视频任务奖励接口，触发点击广告
     const [onClickRewardVideo] = useMutation(GQL.ADRewardVideoMutation, {
@@ -340,7 +340,7 @@ export default (props: Props) => {
                     <Text numberOfLines={1} style={styles.taskRewardInfo}>
                         +{reward_info.gold || 0}
                     </Text>
-                    <Image source={require('~/assets/images/icon_wallet_dmb.png')} style={styles.goldIcon} />
+                    <Image source={require('!/assets/images/icon_wallet_dmb.png')} style={styles.goldIcon} />
                 </Row>
                 {TaskButton}
             </View>

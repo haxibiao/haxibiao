@@ -119,7 +119,7 @@ export default observer((props: any) => {
                 ListEmptyComponent={
                     <StatusView.EmptyView
                         title="TA还没有作品"
-                        imageSource={require('~/assets/images/default_empty.png')}
+                        imageSource={require('!/assets/images/default_empty.png')}
                     />
                 }
                 onEndReached={() => {
@@ -152,7 +152,7 @@ export default observer((props: any) => {
             </Animated.View>
             <View style={styles.buttonWrap}>
                 <TouchFeedback activeOpacity={1} onPress={buttonPress}>
-                    <Image source={require('~/assets/images/ic_send_post.png')} style={styles.sendButton} />
+                    <Image source={require('!/assets/images/ic_send_post.png')} style={styles.sendButton} />
                 </TouchFeedback>
             </View>
         </PageContainer>

@@ -182,7 +182,7 @@ export default observer((props) => {
                     })}
                     ListEmptyComponent={
                         <View style={styles.cover}>
-                            <Image style={styles.curtain} source={require('~/assets/images/curtain.png')} />
+                            <Image style={styles.curtain} source={require('!/assets/images/curtain.png')} />
                         </View>
                     }
                     ListFooterComponent={<Footer />}

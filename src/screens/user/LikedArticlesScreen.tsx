@@ -65,7 +65,7 @@ export default (props: any) => {
                         }
                     }}
                     ListEmptyComponent={
-                        <StatusView.EmptyView imageSource={require('~/assets/images/default_empty.png')} />
+                        <StatusView.EmptyView imageSource={require('!/assets/images/default_empty.png')} />
                     }
                     onEndReached={() => {
                         if (hasMorePages) {

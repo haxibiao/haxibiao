@@ -86,29 +86,29 @@ const TabOptions = (routeName) => {
         switch (routeName) {
             case '首页':
                 source = focused
-                    ? require('~/assets/images/init_main_focus.png')
-                    : require('~/assets/images/init_main.png');
+                    ? require('!/assets/images/init_main_focus.png')
+                    : require('!/assets/images/init_main.png');
                 a = focused ? true : false;
                 name = '首页';
                 break;
             case '发现':
                 source = focused
-                    ? require('~/assets/images/init_discover_focus.png')
-                    : require('~/assets/images/init_discover.png');
+                    ? require('!/assets/images/init_discover_focus.png')
+                    : require('!/assets/images/init_discover.png');
                 a = focused ? true : false;
                 name = '发现';
                 break;
             case '通知':
                 source = focused
-                    ? require('~/assets/images/init-notification-focus.png')
-                    : require('~/assets/images/init-notification.png');
+                    ? require('!/assets/images/init-notification-focus.png')
+                    : require('!/assets/images/init-notification.png');
                 name = '通知';
                 a = focused ? true : false;
                 break;
             case '个人':
                 source = focused
-                    ? require('~/assets/images/init_personal_focus.png')
-                    : require('~/assets/images/init_personal.png');
+                    ? require('!/assets/images/init_personal_focus.png')
+                    : require('!/assets/images/init_personal.png');
                 name = '个人';
                 a = focused ? true : false;
                 break;

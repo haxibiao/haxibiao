@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 import LottieView from 'lottie-react-native';
 
-const animation = require('~/assets/json/loadinganimation.json');
+const animation = require('!/assets/json/loadinganimation.json');
 
 export default () => {
     return (

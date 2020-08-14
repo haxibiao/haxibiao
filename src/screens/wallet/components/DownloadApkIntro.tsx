@@ -18,7 +18,7 @@ class DownloadApkIntro {
                 <View style={styles.container}>
                     <View style={styles.content}>
                         <Row style={{ marginTop: PxDp(25) }}>
-                            <Image source={require('~/assets/images/dongdezhuan.png')} style={styles.icon} />
+                            <Image source={require('!/assets/images/dongdezhuan.png')} style={styles.icon} />
                             <View style={{ marginLeft: PxDp(5) }}>
                                 <Text style={styles.title}>懂得赚</Text>
                                 <Text style={styles.appInfo} numberOfLines={1}>

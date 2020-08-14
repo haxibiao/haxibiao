@@ -79,12 +79,12 @@ export default observer((props) => {
                             {/* <View style={styles.personTopBg}>
                                 <Image
                                     style={styles.personTopBgImage}
-                                    source={require('~/assets/images/person_top_bg.png')}
+                                    source={require('!/assets/images/person_top_bg.png')}
                                 />
                             </View> */}
                             <View style={styles.userInfo}>
                                 <Avatar
-                                    source={userProfile.avatar || require('~/assets/images/default_avatar.png')}
+                                    source={userProfile.avatar || require('!/assets/images/default_avatar.png')}
                                     style={styles.userAvatar}
                                 />
                                 <View>
@@ -164,7 +164,7 @@ export default observer((props) => {
                         <View style={styles.wallet}>
                             <View style={styles.walletItem}>
                                 <Image
-                                    source={require('~/assets/images/icon_wallet_dmb.png')}
+                                    source={require('!/assets/images/icon_wallet_dmb.png')}
                                     style={styles.walletItemIcon}
                                 />
                                 <View>
@@ -179,7 +179,7 @@ export default observer((props) => {
                             <View style={styles.middleLine} />
                             <View style={styles.walletItem}>
                                 <Image
-                                    source={require('~/assets/images/icon_wallet_rmb.png')}
+                                    source={require('!/assets/images/icon_wallet_rmb.png')}
                                     style={styles.walletItemIcon}
                                 />
                                 <View>
@@ -205,7 +205,7 @@ export default observer((props) => {
                                     resizeMode: 'stretch',
                                     marginHorizontal: '8%',
                                 }}
-                                source={require('~/assets/images/task_sleep_main.png')}
+                                source={require('!/assets/images/task_sleep_main.png')}
                             />
                         </TouchableOpacity>
 
@@ -232,7 +232,7 @@ export default observer((props) => {
                                 <View style={styles.columnIconWrap}>
                                     <Image
                                         style={styles.columnIcon}
-                                        source={require('~/assets/images/ic_mine_chat.png')}
+                                        source={require('!/assets/images/ic_mine_chat.png')}
                                     />
                                 </View>
                                 <Text style={styles.itemTypeText}>消息通知</Text>
@@ -249,7 +249,7 @@ export default observer((props) => {
                             <View style={styles.columnIconWrap}>
                                 <Image
                                     style={styles.columnIcon}
-                                    source={require('~/assets/images/ic_mine_collect.png')}
+                                    source={require('!/assets/images/ic_mine_collect.png')}
                                 />
                             </View>
                             <Text style={styles.itemTypeText}>我的收藏</Text>
@@ -260,7 +260,7 @@ export default observer((props) => {
                     <TouchableOpacity style={styles.columnItem} onPress={() => authNavigator('喜欢', { user })}>
                         <Row>
                             <View style={styles.columnIconWrap}>
-                                <Image style={styles.columnIcon} source={require('~/assets/images/ic_mine_like.png')} />
+                                <Image style={styles.columnIcon} source={require('!/assets/images/ic_mine_like.png')} />
                             </View>
                             <Text style={styles.itemTypeText}>我的喜欢</Text>
                         </Row>
@@ -271,7 +271,7 @@ export default observer((props) => {
                             <View style={styles.columnIconWrap}>
                                 <Image
                                     style={styles.columnIcon}
-                                    source={require('~/assets/images/ic_mine_feedback.png')}
+                                    source={require('!/assets/images/ic_mine_feedback.png')}
                                 />
                             </View>
                             <Text style={styles.itemTypeText}>意见反馈</Text>
@@ -284,7 +284,7 @@ export default observer((props) => {
                             <View style={styles.columnIconWrap}>
                                 <Image
                                     style={styles.columnIcon}
-                                    source={require('~/assets/images/ic_mine_history.png')}
+                                    source={require('!/assets/images/ic_mine_history.png')}
                                 />
                             </View>
                             <Text style={styles.itemTypeText}>浏览记录</Text>
@@ -299,7 +299,7 @@ export default observer((props) => {
                             <View style={styles.columnIconWrap}>
                                 <Image
                                     style={styles.columnIcon}
-                                    source={require('~/assets/images/ic_mine_setting.png')}
+                                    source={require('!/assets/images/ic_mine_setting.png')}
                                 />
                             </View>
                             <Text style={styles.itemTypeText}>设置</Text>

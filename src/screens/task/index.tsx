@@ -129,10 +129,10 @@ export default observer((props: any) => {
                             height: '100%',
                             width: '100%',
                         }}
-                        source={require('~/assets/images/wallet_back.png')}
+                        source={require('!/assets/images/wallet_back.png')}
                     />
                     <Image
-                        source={require('~/assets/images/create_wallet_guide.gif')}
+                        source={require('!/assets/images/create_wallet_guide.gif')}
                         style={{
                             position: 'absolute',
                             top: 25,
@@ -157,7 +157,7 @@ export default observer((props: any) => {
                             }}>
                             <Row>
                                 <Image
-                                    source={require('~/assets/images/icon_wallet_rmb.png')}
+                                    source={require('!/assets/images/icon_wallet_rmb.png')}
                                     style={styles.walletItemIcon}
                                 />
                                 <Text style={{ color: '#FFF' }}>{Config.goldAlias}</Text>
@@ -218,7 +218,7 @@ export default observer((props: any) => {
                                     height: bannerHeight,
                                     resizeMode: 'cover',
                                 }}
-                                source={require('~/assets/images/task_ad_bar1.png')}
+                                source={require('!/assets/images/task_ad_bar1.png')}
                             />
                         </TouchableOpacity>
 
@@ -300,7 +300,7 @@ export default observer((props: any) => {
                 ) : (
                     <StatusView.EmptyView
                         title="精彩的东西往往需要去登陆！"
-                        imageSource={require('~/assets/images/default_empty.png')}
+                        imageSource={require('!/assets/images/default_empty.png')}
                     />
                 )}
             </ScrollView>
@@ -312,7 +312,7 @@ export default observer((props: any) => {
                     }}>
                     <Row>
                         <Image
-                            source={require('~/assets/images/icon_wallet_rmb.png')}
+                            source={require('!/assets/images/icon_wallet_rmb.png')}
                             style={{ width: PxDp(50), height: PxDp(50) }}
                         />
                         <View style={styles.SuccessModuleTextBack}>

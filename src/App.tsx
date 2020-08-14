@@ -7,8 +7,6 @@ import SplashScreen from 'react-native-splash-screen';
 
 import { ad } from 'react-native-ad';
 
-import { Provider } from 'mobx-react';
-import StoreContext, * as store from '~/store';
 import ApolloApp from './ApolloApp';
 
 import JPushModule from 'jpush-react-native';
@@ -68,9 +66,7 @@ function App() {
 
     return (
         <View style={styles.container}>
-            <StoreContext.Provider value={store}>
-                <ApolloApp />
-            </StoreContext.Provider>
+            <ApolloApp />
             <Toast ref={toastRef} />
         </View>
     );

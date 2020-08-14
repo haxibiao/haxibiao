@@ -33,7 +33,7 @@ export default (props: Props) => {
             <View style={styles.SuccessModule}>
                 <Row>
                     <Image
-                        source={require('~/assets/images/icon_wallet_rmb.png')}
+                        source={require('!/assets/images/icon_wallet_rmb.png')}
                         style={{ width: PxDp(50), height: PxDp(50) }}
                     />
                     <View style={styles.SuccessModuleTextBack}>

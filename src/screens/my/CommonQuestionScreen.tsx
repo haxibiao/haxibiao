@@ -44,7 +44,7 @@ class CommonQuestionScreen extends Component {
             return (
                 <View style={styles.issueItem} key={index}>
                     <View style={styles.question}>
-                        <Image style={styles.avatar} source={require('~/assets/images/xiaodamei_man.png')} />
+                        <Image style={styles.avatar} source={require('!/assets/images/xiaodamei_man.png')} />
                         <View style={styles.content}>
                             <View style={[styles.inner, styles.right]}>
                                 <Text style={styles.questionText}>{elem.question}</Text>
@@ -57,7 +57,7 @@ class CommonQuestionScreen extends Component {
                                 <Text style={styles.answerText}>{elem.answer}</Text>
                             </View>
                         </View>
-                        <Image style={styles.avatar} source={require('~/assets/images/xiaodamei_women.png')} />
+                        <Image style={styles.avatar} source={require('!/assets/images/xiaodamei_women.png')} />
                     </View>
                 </View>
             );

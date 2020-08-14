@@ -65,18 +65,18 @@ export default observer((props) => {
                         // appStore.showComment();
                         DeviceEventEmitter.emit('showComment');
                     }}>
-                    <Image source={require('~/assets/images/comment_item.png')} style={styles.imageStyle} />
+                    <Image source={require('!/assets/images/comment_item.png')} style={styles.imageStyle} />
                     <SafeText shadowText={true} style={styles.countText}>
                         {Helper.NumberFormat(Helper.syncGetter('count_comments', media))}
                     </SafeText>
                 </TouchableOpacity>
                 {media.type === 'issue' && media.answered_status === 0 && media.question_reward > 0 && (
-                    <Image source={require('~/assets/images/question_reward.png')} style={styles.questionReward} />
+                    <Image source={require('!/assets/images/question_reward.png')} style={styles.questionReward} />
                 )}
             </View>
             <View style={styles.itemWrap}>
                 <TouchableOpacity onPress={showMoreOperation}>
-                    <Image source={require('~/assets/images/more_item.png')} style={styles.imageStyle} />
+                    <Image source={require('!/assets/images/more_item.png')} style={styles.imageStyle} />
                 </TouchableOpacity>
             </View>
         </View>

@@ -47,7 +47,7 @@ const UserBlock = () => {
                 refreshControl={<CustomRefreshControl onRefresh={refetch} />}
                 renderItem={({ item, index }) => <UserBlockItem user={item} />}
                 onEndReachedThreshold={0.3}
-                ListEmptyComponent={<StatusView.EmptyView imageSource={require('~/assets/images/default_empty.png')} />}
+                ListEmptyComponent={<StatusView.EmptyView imageSource={require('!/assets/images/default_empty.png')} />}
                 onEndReached={() => {
                     if (hasMorePages) {
                         fetchMore({

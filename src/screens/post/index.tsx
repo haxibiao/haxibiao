@@ -136,7 +136,7 @@ const index = (props: Props) => {
                         }}
                         keyExtractor={(item) => item.id.toString()}
                         ListEmptyComponent={() => (
-                            <StatusView.EmptyView imageSource={require('~/assets/images/default_comment.png')} />
+                            <StatusView.EmptyView imageSource={require('!/assets/images/default_comment.png')} />
                         )}
                         ListFooterComponent={() => <ListFooter hidden={hiddenListFooter} finished={!hasMorePages} />}
                         keyboardShouldPersistTaps="always"

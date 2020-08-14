@@ -198,7 +198,7 @@ const EditProfileScreen = (props: any) => {
                                     source={
                                         user.background
                                             ? { uri: user.background }
-                                            : require('~/assets/images/blue_purple.png')
+                                            : require('!/assets/images/blue_purple.png')
                                     }
                                     style={{ width: 60, height: 40, borderRadius: 5 }}
                                 />

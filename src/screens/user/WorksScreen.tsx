@@ -54,7 +54,7 @@ export default (props: any) => {
                     ListEmptyComponent={
                         <StatusView.EmptyView
                             title="TA还没有作品"
-                            imageSource={require('~/assets/images/default_empty.png')}
+                            imageSource={require('!/assets/images/default_empty.png')}
                         />
                     }
                     onEndReached={() => {

@@ -7,16 +7,16 @@ export default (props) => {
     const { gold } = props;
     return (
         <View style={styles.container}>
-            <Image source={require('~/assets/images/shine.png')} />
+            <Image source={require('!/assets/images/shine.png')} />
             <View style={styles.content}>
-                <Image source={require('~/assets/images/reward_coin.png')} />
+                <Image source={require('!/assets/images/reward_coin.png')} />
                 <Text>{`恭喜获得100${Config.goldAlias}`}</Text>
                 <TouchableOpacity>
                     <Text>{`${Config.goldAlias}翻倍`}</Text>
                 </TouchableOpacity>
                 <View>
                     <Text>{`我的${Config.goldAlias}：`}</Text>
-                    <Image source={require('~/assets/images/icon_wallet_dmb.png')} />
+                    <Image source={require('!/assets/images/icon_wallet_dmb.png')} />
                     <Text>900</Text>
                     <Text>≈1.5元</Text>
                 </View>

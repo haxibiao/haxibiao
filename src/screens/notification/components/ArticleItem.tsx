@@ -9,7 +9,7 @@ export default (data: any) => {
     console.log(Helper.syncGetter('article', item));
 
     let cover = Helper.syncGetter('article.cover', item);
-    let cover_url = cover ? { uri: cover } : require('~/assets/images/default_avatar.png');
+    let cover_url = cover ? { uri: cover } : require('!/assets/images/default_avatar.png');
 
     return (
         <View style={{ flexDirection: 'row', paddingHorizontal: PxDp(20), marginVertical: PxDp(15) }}>
@@ -24,7 +24,7 @@ export default (data: any) => {
                 }}>
                 <Avatar
                     source={
-                        { uri: Helper.syncGetter('user.avatar', item) } || require('~/assets/images/default_avatar.png')
+                        { uri: Helper.syncGetter('user.avatar', item) } || require('!/assets/images/default_avatar.png')
                     }
                 />
             </TouchableOpacity>

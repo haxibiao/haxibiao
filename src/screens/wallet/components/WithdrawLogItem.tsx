@@ -32,16 +32,16 @@ function WithdrawLogItem(props) {
 
     switch (item.to_platform) {
         case 'Alipay':
-            imageUrl = require('~/assets/images/alipay.png');
+            imageUrl = require('!/assets/images/alipay.png');
             break;
         case 'Wechat':
-            imageUrl = require('~/assets/images/wechat.png');
+            imageUrl = require('!/assets/images/wechat.png');
             break;
         case 'dongdezhuan':
-            imageUrl = require('~/assets/images/dongdezhuan.png');
+            imageUrl = require('!/assets/images/dongdezhuan.png');
             break;
         default:
-            imageUrl = require('~/assets/images/alipay.png');
+            imageUrl = require('!/assets/images/alipay.png');
             size = 46;
             break;
     }

@@ -88,7 +88,7 @@ export default observer((props: any) => {
                             alignItems: 'center',
                         }}>
                         <Image
-                            source={require('~/assets/images/click_tips.png')}
+                            source={require('!/assets/images/click_tips.png')}
                             style={{ width: (20 * 208) / 118, height: 20 }}
                         />
                         <Text

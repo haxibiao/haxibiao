@@ -19,8 +19,8 @@ import GridImage from './GridImage';
 import Like from './Like';
 import MoreOperation from './MoreOperation';
 
-import Gift from '~/assets/images/gift_svg.svg';
-import Comment from '~/assets/images/pinglun.svg';
+import Gift from '!/assets/images/gift_svg.svg';
+import Comment from '!/assets/images/pinglun.svg';
 
 import StoreContext, { observer, useObservable, appStore, userStore } from '~/store';
 import { useApolloClient, ApolloProvider } from '~/apollo';

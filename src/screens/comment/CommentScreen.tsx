@@ -95,7 +95,7 @@ export default observer((props) => {
                     onEndReachedThreshold={0.2}
                     onEndReached={fetchMoreComments}
                     ListEmptyComponent={() => (
-                        <StatusView.EmptyView imageSource={require('~/assets/images/default_comment.png')} />
+                        <StatusView.EmptyView imageSource={require('!/assets/images/default_comment.png')} />
                     )}
                     ListHeaderComponent={() => (
                         <CommentItem

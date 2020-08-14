@@ -115,7 +115,7 @@ export default observer((props) => {
         <PageContainer autoKeyboardInsets={false} submitting={submitting} submitTips={'loading'} hiddenNavBar>
             <View style={styles.container}>
                 <View style={styles.registerCoverContainer}>
-                    <Image source={require('~/assets/images/login_cover.png')} style={styles.registerCover} />
+                    <Image source={require('!/assets/images/login_cover.png')} style={styles.registerCover} />
                 </View>
                 <View style={styles.header}>
                     <TouchableOpacity style={{ padding: PxDp(5) }} onPress={() => navigation.pop()}>
@@ -127,7 +127,7 @@ export default observer((props) => {
                 </View>
                 <View style={styles.formContainer}>
                     <Center>
-                        <Image source={require('~/assets/images/dmg_logo_white.png')} style={styles.logo} />
+                        <Image source={require('!/assets/images/dmg_logo_white.png')} style={styles.logo} />
                     </Center>
                     <View>
                         <View style={styles.fieldGroup}>

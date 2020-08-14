@@ -198,35 +198,35 @@ const MoreOperation = (props) => {
     const operation = useMemo(
         () => ({
             下载: {
-                image: require('~/assets/images/more_video_download.png'),
+                image: require('!/assets/images/more_video_download.png'),
                 callback: downloadVideo,
             },
             复制链接: {
-                image: require('~/assets/images/more_links.png'),
+                image: require('!/assets/images/more_links.png'),
                 callback: copyLink,
             },
             举报: {
-                image: require('~/assets/images/more_report.png'),
+                image: require('!/assets/images/more_report.png'),
                 callback: reportArticle,
             },
             删除: {
-                image: require('~/assets/images/more_delete.png'),
+                image: require('!/assets/images/more_delete.png'),
                 callback: deleteArticle,
             },
             不感兴趣: {
-                image: require('~/assets/images/more_dislike.png'),
+                image: require('!/assets/images/more_dislike.png'),
                 callback: dislike,
             },
             拉黑: {
-                image: require('~/assets/images/more_shield.png'),
+                image: require('!/assets/images/more_shield.png'),
                 callback: shield,
             },
             收藏: {
-                image: require('~/assets/images/more_favorite.png'),
+                image: require('!/assets/images/more_favorite.png'),
                 callback: favorite,
             },
             取消收藏: {
-                image: require('~/assets/images/more_favorite.png'),
+                image: require('!/assets/images/more_favorite.png'),
                 callback: onFavorite,
             },
         }),
@@ -324,23 +324,23 @@ const MoreOperation = (props) => {
     const share = useMemo(
         () => ({
             微信: {
-                image: require('~/assets/images/share_wx.png'),
+                image: require('!/assets/images/share_wx.png'),
                 callback: shareToWechat,
             },
             QQ好友: {
-                image: require('~/assets/images/share_qq.png'),
+                image: require('!/assets/images/share_qq.png'),
                 callback: shareToQQ,
             },
             微博: {
-                image: require('~/assets/images/share_wb.png'),
+                image: require('!/assets/images/share_wb.png'),
                 callback: shareToWeiBo,
             },
             朋友圈: {
-                image: require('~/assets/images/share_pyq.png'),
+                image: require('!/assets/images/share_pyq.png'),
                 callback: shareToTimeline,
             },
             QQ空间: {
-                image: require('~/assets/images/share_qqz.png'),
+                image: require('!/assets/images/share_qqz.png'),
                 callback: shareToQQZone,
             },
         }),

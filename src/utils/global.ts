@@ -2,7 +2,7 @@ import { Dimensions, PixelRatio, Platform } from 'react-native';
 import DeviceInfo from 'react-native-device-info';
 import _ from 'lodash';
 import config from './config';
-import theme from '~/theme';
+import theme from '!/theme';
 import * as Helper from './helper';
 
 const { height, width } = Dimensions.get('window');

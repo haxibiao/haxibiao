@@ -27,7 +27,7 @@ const HxfRadio = (props: Props) => {
         title = <Text style={[styles.radioText, props.textStyle]}>{props.radioText}</Text>;
     }
     if (props.mode === 'switch') {
-        const trackImage = state ? require('~/assets/images/bg.png') : require('~/assets/images/bf.png');
+        const trackImage = state ? require('!/assets/images/bg.png') : require('!/assets/images/bf.png');
         return (
             <TouchableOpacity
                 activeOpacity={1}

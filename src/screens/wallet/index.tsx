@@ -80,17 +80,17 @@ const WithdrawalPlatforms = [
     {
         type: 'ALIPAY',
         name: '支付宝',
-        icon: require('~/assets/images/alipay.png'),
+        icon: require('!/assets/images/alipay.png'),
     },
     {
         type: 'WECHAT',
         name: '微信',
-        icon: require('~/assets/images/wechat.png'),
+        icon: require('!/assets/images/wechat.png'),
     },
     {
         type: 'DONGDEZHUAN',
         name: '懂得赚',
-        icon: require('~/assets/images/dongdezhuan.png'),
+        icon: require('!/assets/images/dongdezhuan.png'),
     },
 ];
 
@@ -308,7 +308,7 @@ export default observer((props: any) => {
         return (
             <TouchableOpacity onPress={bindPlatform}>
                 <Row>
-                    <Image source={require('~/assets/images/broad_tips.png')} style={styles.broadTipsImage} />
+                    <Image source={require('!/assets/images/broad_tips.png')} style={styles.broadTipsImage} />
                     <Text style={styles.bindPlatform}>{`去绑定${platformName}`}</Text>
                 </Row>
             </TouchableOpacity>
@@ -330,7 +330,7 @@ export default observer((props: any) => {
         <PageContainer title="提现" loading={loading} submitting={submitting} submitTips={'请求中…'}>
             <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={false}>
                 <View style={styles.statistics}>
-                    <ImageBackground source={require('~/assets/images/wallet_bg.png')} style={styles.bannerImage}>
+                    <ImageBackground source={require('!/assets/images/wallet_bg.png')} style={styles.bannerImage}>
                         <View style={styles.banner}>
                             <View style={styles.bannerLeft}>
                                 <Row>
@@ -465,7 +465,7 @@ export default observer((props: any) => {
                     <Text style={styles.withdrawTitle}>高额提现令牌</Text>
                     <TouchableOpacity onPress={TokenDescription}>
                         <Image
-                            source={require('~/assets/images/tokenDescription.png')}
+                            source={require('!/assets/images/tokenDescription.png')}
                             style={{ width: PxDp(18), height: PxDp(18), marginLeft: PxDp(5) }}
                         />
                     </TouchableOpacity>
@@ -481,7 +481,7 @@ export default observer((props: any) => {
                                     onPress={() => setWithdrawAmount(data.amount, 'withdrawBadge')}>
                                     <Image
                                         style={styles.withdrawBadgeImage}
-                                        source={require('~/assets/images/withdrawBadge.png')}
+                                        source={require('!/assets/images/withdrawBadge.png')}
                                     />
                                     <Text
                                         style={{

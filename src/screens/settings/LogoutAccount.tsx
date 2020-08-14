@@ -9,7 +9,7 @@ const LogoutAccount = (props) => {
     return (
         <PageContainer title="注销账号" white>
             <View style={styles.container}>
-                <Avatar style={styles.caveat} size={PxDp(55)} source={require('~/assets/images/logout.png')} />
+                <Avatar style={styles.caveat} size={PxDp(55)} source={require('!/assets/images/logout.png')} />
 
                 <Text style={{ fontSize: Font(22), color: '#000000' }}>将现在的账号注销</Text>
 

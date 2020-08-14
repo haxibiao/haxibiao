@@ -29,13 +29,13 @@ const UserAgreementOverlay = (isAgr = true, way = true) => {
                         }}>
                         {way ? (
                             <Image
-                                source={require('~/assets/images/gou1.png')}
+                                source={require('!/assets/images/gou1.png')}
                                 resizeMode="contain"
                                 style={{ height: 13, width: 13, marginHorizontal: PxDp(5) }}
                             />
                         ) : (
                             <Image
-                                source={require('~/assets/images/gou2.png')}
+                                source={require('!/assets/images/gou2.png')}
                                 resizeMode="contain"
                                 style={{ height: 12, width: 12, marginHorizontal: PxDp(5) }}
                             />

@@ -8,8 +8,8 @@ import Iconfont from '../Iconfont';
 import SafeText from '../Basic/SafeText';
 
 const imageSource = {
-    liked: require('~/assets/images/ic_liked.png'),
-    unlike: require('~/assets/images/ic_like.png'),
+    liked: require('!/assets/images/ic_liked.png'),
+    unlike: require('!/assets/images/ic_like.png'),
 };
 
 interface ThumbUpTarget {

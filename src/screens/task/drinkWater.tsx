@@ -27,7 +27,7 @@ const day = date.getDate().toString();
 const DrinkButton = (props: Props) => {
     const { id, task_status, start_time, task_progress } = props.waterData;
     const back_color = task_status === 3 ? '#89E46D' : task_status === 1 ? '#4B7DC9' : '#4B7DC9';
-    const cap_img = task_status === 3 ? require('~/assets/images/captwo.png') : require('~/assets/images/capone.png');
+    const cap_img = task_status === 3 ? require('!/assets/images/captwo.png') : require('!/assets/images/capone.png');
     const sub_text =
         task_status === 3 ? '✔' : task_status === 1 ? '打卡' : task_status === -1 ? '补喝' : start_time + '后';
 
@@ -117,9 +117,9 @@ export default (props: any) => {
     const [value, setValue] = useState(0);
     const { data, refetch } = useQuery(GQL.drinkWaterListQuery, { fetchPolicy: 'network-only' });
     const back_img =
-        hour > 6 || hour < 18 ? require('~/assets/images/he_back.png') : require('~/assets/images/he_back.png');
+        hour > 6 || hour < 18 ? require('!/assets/images/he_back.png') : require('!/assets/images/he_back.png');
     const top_img =
-        (hour > 6) & (hour < 18) ? require('~/assets/images/taiyang.png') : require('~/assets/images/heyue.png');
+        (hour > 6) & (hour < 18) ? require('!/assets/images/taiyang.png') : require('!/assets/images/heyue.png');
     const hi_text = (hour > 6) & (hour < 18) ? (hour < 12 ? 'HI,上午好' : 'HI,下午好') : 'HI,晚上好';
     let listData = Helper.syncGetter('DrinkWaterTasks', data);
     // console.log("userStore from store : ",userStore.me)
@@ -211,7 +211,7 @@ export default (props: any) => {
                             resizeMode : 'stretch',
                         }}
                     
-                        source={require('~/assets/images/chizi.png')}
+                        source={require('!/assets/images/chizi.png')}
                     /> */}
                     <Image
                         style={{
@@ -222,7 +222,7 @@ export default (props: any) => {
                             right: -15,
                             resizeMode: 'stretch',
                         }}
-                        source={require('~/assets/images/chizi.png')}
+                        source={require('!/assets/images/chizi.png')}
                     />
 
                     <Text
