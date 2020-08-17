@@ -24,8 +24,8 @@ import { useQuery } from '~/apollo';
 import { observable } from 'mobx';
 
 const GoldsOption = [30, 60, 120, 300, 600, 900];
-const contentGap = PxDp(20);
-const MediaItemWidth = (Device.WIDTH - PxDp(60)) / 3;
+const contentGap = pixel(20);
+const MediaItemWidth = (Device.WIDTH - pixel(60)) / 3;
 const issueContentType = 'ISSUE';
 const PostContentType = 'POST';
 
@@ -140,7 +140,7 @@ const AskQuestionScreen = (props) => {
                             categories.splice(index, 1);
                             setCategories([...categories]);
                         }}>
-                        <Iconfont name="guanbi1" size={PxDp(12)} color={Theme.primaryColor} />
+                        <Iconfont name="guanbi1" size={pixel(12)} color={Theme.primaryColor} />
                     </TouchFeedback>
                 </TouchFeedback>
             );
@@ -174,7 +174,7 @@ const AskQuestionScreen = (props) => {
             submitting={loading}
             leftView={
                 <TouchFeedback onPress={() => navigation.goBack()}>
-                    <Iconfont name="guanbi1" size={PxDp(22)} color={Theme.primaryAuxiliaryColor} />
+                    <Iconfont name="guanbi1" size={pixel(22)} color={Theme.primaryAuxiliaryColor} />
                 </TouchFeedback>
             }
             rightView={
@@ -207,7 +207,7 @@ const AskQuestionScreen = (props) => {
                                 <Text style={styles.countInputText}>{`${formData.body.length}/100`}</Text>
                             </View>
                         </View>
-                        <View style={{ marginRight: -PxDp(10) }}>
+                        <View style={{ marginRight: -pixel(10) }}>
                             <MediaUploader
                                 onResponse={uploadResponse}
                                 maxWidth={Device.WIDTH / 2}
@@ -234,7 +234,7 @@ const AskQuestionScreen = (props) => {
                                         style={styles.radioText}
                                         onPress={() => navigation.navigate('CommonQuestion')}>
                                         {`▎悬赏问答`}{' '}
-                                        <Iconfont name="bangzhu" size={PxDp(16)} color={Theme.watermelon} />
+                                        <Iconfont name="bangzhu" size={pixel(16)} color={Theme.watermelon} />
                                     </Text>
                                 }
                                 mode="switch"
@@ -272,21 +272,21 @@ export default AskQuestionScreen;
 
 const styles = StyleSheet.create({
     bodyTextInput: {
-        height: PxDp(120),
+        height: pixel(120),
     },
     bodyTextInputArea: {},
     categoriesContainer: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        marginVertical: PxDp(Theme.itemSpace),
+        marginVertical: pixel(Theme.itemSpace),
     },
     categoryItem: {
         alignItems: 'center',
         flexDirection: 'row',
-        height: PxDp(34),
+        height: pixel(34),
         justifyContent: 'center',
-        marginRight: PxDp(10),
-        marginTop: PxDp(10),
+        marginRight: pixel(10),
+        marginTop: pixel(10),
     },
     categoryName: {
         color: Theme.primaryColor,
@@ -294,14 +294,14 @@ const styles = StyleSheet.create({
     },
     categoryShadow: {
         backgroundColor: Theme.slateGray2,
-        borderRadius: PxDp(4),
-        paddingHorizontal: PxDp(12),
+        borderRadius: pixel(4),
+        paddingHorizontal: pixel(12),
     },
     close: {
-        height: PxDp(30),
+        height: pixel(30),
         justifyContent: 'center',
-        paddingLeft: PxDp(8),
-        width: PxDp(30),
+        paddingLeft: pixel(8),
+        width: pixel(30),
     },
     container: {
         backgroundColor: '#fff',
@@ -311,50 +311,50 @@ const styles = StyleSheet.create({
     contentContainerStyle: { flexGrow: 1, paddingBottom: Theme.HOME_INDICATOR_HEIGHT },
     countInputText: {
         color: Theme.slateGray1,
-        fontSize: PxDp(13),
+        fontSize: pixel(13),
     },
     creatorContainer: {
         backgroundColor: '#fff',
-        borderRadius: PxDp(3),
-        paddingVertical: PxDp(20),
+        borderRadius: pixel(3),
+        paddingVertical: pixel(20),
     },
     disabledButton: {
         backgroundColor: '#f0f0f0',
     },
-    mediaItem: { width: MediaItemWidth, height: MediaItemWidth, marginTop: PxDp(10), marginRight: PxDp(10) },
+    mediaItem: { width: MediaItemWidth, height: MediaItemWidth, marginTop: pixel(10), marginRight: pixel(10) },
     goldItem: {
         alignItems: 'center',
         borderColor: Theme.borderColor,
-        borderRadius: PxDp(4),
-        borderWidth: PxDp(1),
+        borderRadius: pixel(4),
+        borderWidth: pixel(1),
         justifyContent: 'center',
-        marginTop: PxDp(Theme.itemSpace),
-        marginRight: PxDp(10),
-        paddingVertical: PxDp(Theme.itemSpace),
+        marginTop: pixel(Theme.itemSpace),
+        marginRight: pixel(10),
+        paddingVertical: pixel(Theme.itemSpace),
         width: MediaItemWidth,
     },
     goldItemMargin: {
-        marginHorizontal: PxDp(Theme.itemSpace),
+        marginHorizontal: pixel(Theme.itemSpace),
     },
     goldText: {
         color: Theme.defaultTextColor,
-        fontSize: PxDp(16),
+        fontSize: pixel(16),
     },
     goldsOption: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        marginRight: -PxDp(10),
+        marginRight: -pixel(10),
     },
     publishButton: {
         backgroundColor: Theme.watermelon,
-        borderRadius: PxDp(15),
-        height: PxDp(30),
+        borderRadius: pixel(15),
+        height: pixel(30),
         justifyContent: 'center',
-        paddingHorizontal: PxDp(10),
+        paddingHorizontal: pixel(10),
     },
     publishText: {
         color: '#fff',
-        fontSize: PxDp(14),
+        fontSize: pixel(14),
         textAlign: 'center',
     },
     disabledPublishText: {

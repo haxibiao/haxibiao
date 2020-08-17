@@ -69,7 +69,7 @@ export default observer((props: any) => {
     return (
         <PageContainer contentViewStyle={{ marginTop: 0 }}>
             <ScrollView style={styles.container} bounces={false} showsVerticalScrollIndicator={false}>
-                <View style={{ marginBottom: appStore.enableWallet ? -PxDp(20) : PxDp(20) }}>
+                <View style={{ marginBottom: appStore.enableWallet ? -pixel(20) : pixel(20) }}>
                     <TouchableWithoutFeedback onPress={() => authNavigator('User', { user })}>
                         <View style={styles.personTopInfo}>
                             {/* <View style={styles.personTopBg}>
@@ -93,7 +93,7 @@ export default observer((props: any) => {
                                             : '欢迎来到' + Config.AppName}
                                     </Text>
                                 </View>
-                                {isLogin && <Iconfont name="right" size={PxDp(15)} color={'#000'} />}
+                                {isLogin && <Iconfont name="right" size={pixel(15)} color={'#000'} />}
                             </View>
                             <View style={styles.metaWrap}>
                                 <TouchableOpacity
@@ -192,12 +192,12 @@ export default observer((props: any) => {
                 )} */}
 
                 {isLogin && taskAD && appStore.enableWallet && (
-                    <View style={{ marginBottom: PxDp(10) }}>
+                    <View style={{ marginBottom: pixel(10) }}>
                         <TouchableOpacity onPress={() => navigation.navigate('TaskScreen')}>
                             <Image
                                 style={{
                                     width: '84%',
-                                    height: PxDp(75),
+                                    height: pixel(75),
                                     resizeMode: 'stretch',
                                     marginHorizontal: '8%',
                                 }}
@@ -211,7 +211,7 @@ export default observer((props: any) => {
                                     // 关闭任务入口
                                     setTaskAD(false);
                                 }}>
-                                <Iconfont name="guanbi1" size={PxDp(19)} color={Theme.subTextColor} />
+                                <Iconfont name="guanbi1" size={pixel(19)} color={Theme.subTextColor} />
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -233,7 +233,7 @@ export default observer((props: any) => {
                                 </View>
                                 <Text style={styles.itemTypeText}>消息通知</Text>
                             </Row>
-                            <Iconfont name="right" size={PxDp(15)} color={'#afafaf'} />
+                            <Iconfont name="right" size={pixel(15)} color={'#afafaf'} />
                         </TouchableOpacity>
                     )}
                     <TouchableOpacity
@@ -250,7 +250,7 @@ export default observer((props: any) => {
                             </View>
                             <Text style={styles.itemTypeText}>我的收藏</Text>
                         </Row>
-                        <Iconfont name="right" size={PxDp(15)} color={'#afafaf'} />
+                        <Iconfont name="right" size={pixel(15)} color={'#afafaf'} />
                     </TouchableOpacity>
 
                     <TouchableOpacity style={styles.columnItem} onPress={() => authNavigator('喜欢', { user })}>
@@ -260,7 +260,7 @@ export default observer((props: any) => {
                             </View>
                             <Text style={styles.itemTypeText}>我的喜欢</Text>
                         </Row>
-                        <Iconfont name="right" size={PxDp(15)} color={'#afafaf'} />
+                        <Iconfont name="right" size={pixel(15)} color={'#afafaf'} />
                     </TouchableOpacity>
                     <TouchableOpacity style={styles.columnItem} onPress={() => authNavigator('Feedback')}>
                         <Row>
@@ -272,7 +272,7 @@ export default observer((props: any) => {
                             </View>
                             <Text style={styles.itemTypeText}>意见反馈</Text>
                         </Row>
-                        <Iconfont name="right" size={PxDp(15)} color={'#afafaf'} />
+                        <Iconfont name="right" size={pixel(15)} color={'#afafaf'} />
                     </TouchableOpacity>
 
                     <TouchableOpacity style={styles.columnItem} onPress={() => authNavigator('浏览记录')}>
@@ -285,7 +285,7 @@ export default observer((props: any) => {
                             </View>
                             <Text style={styles.itemTypeText}>浏览记录</Text>
                         </Row>
-                        <Iconfont name="right" size={PxDp(15)} color={'#afafaf'} />
+                        <Iconfont name="right" size={pixel(15)} color={'#afafaf'} />
                     </TouchableOpacity>
 
                     <TouchableOpacity
@@ -300,7 +300,7 @@ export default observer((props: any) => {
                             </View>
                             <Text style={styles.itemTypeText}>设置</Text>
                         </Row>
-                        <Iconfont name="right" size={PxDp(15)} color={'#afafaf'} />
+                        <Iconfont name="right" size={pixel(15)} color={'#afafaf'} />
                     </TouchableOpacity>
                 </View>
             </ScrollView>
@@ -310,73 +310,73 @@ export default observer((props: any) => {
 
 const styles = StyleSheet.create({
     columnIcon: {
-        height: PxDp(24),
+        height: pixel(24),
         resizeMode: 'contain',
-        width: PxDp(24),
+        width: pixel(24),
     },
     columnIconWrap: {
         alignItems: 'center',
-        height: PxDp(30),
+        height: pixel(30),
         justifyContent: 'center',
-        width: PxDp(30),
+        width: pixel(30),
     },
     columnItem: {
         alignItems: 'center',
         backgroundColor: '#fff',
         flexDirection: 'row',
-        height: PxDp(62),
+        height: pixel(62),
         justifyContent: 'space-between',
-        paddingHorizontal: PxDp(Theme.itemSpace),
+        paddingHorizontal: pixel(Theme.itemSpace),
     },
     columnItemsWrap: {
         width: '100%',
         height: '100%',
         backgroundColor: '#fff',
         overflow: 'hidden',
-        marginTop: PxDp(25),
+        marginTop: pixel(25),
     },
     container: {
         backgroundColor: Theme.groundColour,
         flex: 1,
-        marginBottom: PxDp(Theme.BOTTOM_HEIGHT),
+        marginBottom: pixel(Theme.BOTTOM_HEIGHT),
     },
     introduction: {
         color: '#afafaf',
-        fontSize: PxDp(14),
-        marginTop: PxDp(10),
-        marginRight: PxDp(150),
+        fontSize: pixel(14),
+        marginTop: pixel(10),
+        marginRight: pixel(150),
     },
     itemType: {
         justifyContent: 'center',
-        marginRight: PxDp(10),
+        marginRight: pixel(10),
         textAlign: 'center',
-        width: PxDp(25),
+        width: pixel(25),
     },
     itemTypeText: {
         color: Theme.secondaryTextColor,
-        fontSize: PxDp(16),
-        marginLeft: PxDp(Theme.itemSpace),
+        fontSize: pixel(16),
+        marginLeft: pixel(Theme.itemSpace),
     },
     metaCount: {
         color: '#000',
-        fontSize: PxDp(15),
+        fontSize: pixel(15),
         fontWeight: '300',
-        marginBottom: PxDp(5),
-        marginLeft: PxDp(8),
+        marginBottom: pixel(5),
+        marginLeft: pixel(8),
     },
 
     metaItem: {
         flex: 1,
         alignContent: 'center',
         alignItems: 'center',
-        marginLeft: PxDp(10),
-        marginRight: PxDp(10),
-        paddingVertical: PxDp(Theme.itemSpace),
+        marginLeft: pixel(10),
+        marginRight: pixel(10),
+        paddingVertical: pixel(Theme.itemSpace),
     },
     metaLabel: {
         color: '#afafaf',
-        fontSize: PxDp(13),
-        marginLeft: PxDp(10),
+        fontSize: pixel(13),
+        marginLeft: pixel(10),
     },
     metaWrap: {
         alignContent: 'center',
@@ -386,8 +386,8 @@ const styles = StyleSheet.create({
     },
     middleLine: {
         backgroundColor: Theme.borderColor,
-        height: PxDp(24),
-        width: PxDp(1),
+        height: pixel(24),
+        width: pixel(1),
     },
     personTopBg: {
         bottom: 0,
@@ -404,36 +404,36 @@ const styles = StyleSheet.create({
         width: null,
     },
     personTopInfo: {
-        padding: PxDp(Theme.itemSpace),
-        paddingTop: PxDp(Theme.statusBarHeight + 20),
+        padding: pixel(Theme.itemSpace),
+        paddingTop: pixel(Theme.statusBarHeight + 20),
         backgroundColor: '#fff',
     },
     userAvatar: {
         borderColor: '#fff',
-        borderRadius: PxDp(33),
-        borderWidth: PxDp(1),
-        height: PxDp(66),
-        width: PxDp(66),
+        borderRadius: pixel(33),
+        borderWidth: pixel(1),
+        height: pixel(66),
+        width: pixel(66),
     },
     userInfo: {
         alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'space-between',
-        padding: PxDp(Theme.itemSpace),
+        padding: pixel(Theme.itemSpace),
     },
     userName: {
         color: '#000',
-        fontSize: PxDp(18),
+        fontSize: pixel(18),
         fontWeight: 'bold',
     },
     wallet: {
         alignItems: 'center',
         backgroundColor: '#fff',
-        borderRadius: PxDp(6),
+        borderRadius: pixel(6),
         flexDirection: 'row',
-        height: PxDp(66),
-        marginHorizontal: PxDp(Theme.itemSpace),
-        marginBottom: PxDp(Theme.itemSpace),
+        height: pixel(66),
+        marginHorizontal: pixel(Theme.itemSpace),
+        marginBottom: pixel(Theme.itemSpace),
     },
     walletItem: {
         alignItems: 'center',
@@ -444,17 +444,17 @@ const styles = StyleSheet.create({
     },
     walletItemCount: {
         color: Theme.secondaryTextColor,
-        fontSize: PxDp(15),
+        fontSize: pixel(15),
         fontWeight: 'bold',
     },
     walletItemIcon: {
-        borderRadius: PxDp(10),
-        height: PxDp(20),
-        marginRight: PxDp(10),
-        width: PxDp(20),
+        borderRadius: pixel(10),
+        height: pixel(20),
+        marginRight: pixel(10),
+        width: pixel(20),
     },
     walletItemLabel: {
         color: Theme.secondaryTextColor,
-        fontSize: PxDp(13),
+        fontSize: pixel(13),
     },
 });

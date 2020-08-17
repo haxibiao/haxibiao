@@ -10,7 +10,7 @@ import Iconfont from '../Iconfont';
 import Row from './Row';
 
 const render = {
-    post: color => (
+    post: (color) => (
         <View style={styles.placeholder}>
             <Row>
                 <View style={[styles.avatar, { backgroundColor: color }]} />
@@ -21,36 +21,36 @@ const render = {
             <View style={[styles.content, { backgroundColor: color }]} />
             <Row>
                 <View style={[styles.label, { backgroundColor: color }]} />
-                <Iconfont name="xihuanfill" size={PxDp(20)} color={color} style={{ marginHorizontal: PxDp(10) }} />
+                <Iconfont name="xihuanfill" size={pixel(20)} color={color} style={{ marginHorizontal: pixel(10) }} />
                 <View style={[styles.label, { backgroundColor: color }]} />
-                <Iconfont name="liuyanfill" size={PxDp(20)} color={color} style={{ marginLeft: PxDp(10) }} />
+                <Iconfont name="liuyanfill" size={pixel(20)} color={color} style={{ marginLeft: pixel(10) }} />
                 <View style={{ flex: 1 }} />
-                <Iconfont name="qita1" size={PxDp(24)} color={color} />
+                <Iconfont name="qita1" size={pixel(24)} color={color} />
             </Row>
         </View>
     ),
-    comment: color => (
+    comment: (color) => (
         <View style={[styles.placeholder, { flexDirection: 'row', alignItems: 'flex-start' }]}>
             <View style={[styles.avatar, { backgroundColor: color }]} />
             <View style={{ flex: 1 }}>
                 <View style={styles.group}>
                     <View>
-                        <View style={[styles.strip, { height: PxDp(15), backgroundColor: color }]} />
+                        <View style={[styles.strip, { height: pixel(15), backgroundColor: color }]} />
                         <View
                             style={[
                                 styles.strip,
-                                { height: PxDp(15), marginVertical: PxDp(10), backgroundColor: color },
+                                { height: pixel(15), marginVertical: pixel(10), backgroundColor: color },
                             ]}
                         />
                     </View>
-                    <Iconfont name="zantongfill" size={PxDp(24)} color={color} />
+                    <Iconfont name="zantongfill" size={pixel(24)} color={color} />
                 </View>
                 <View style={[styles.paragraph, { flex: 0, backgroundColor: color }]} />
                 <View style={[styles.paragraph, { flex: 0, backgroundColor: color }]} />
             </View>
         </View>
     ),
-    chat: color => (
+    chat: (color) => (
         <View style={styles.placeholder}>
             <Row style={{ flex: 1 }}>
                 <View style={[styles.avatar, styles.bigAvatar, { backgroundColor: color }]} />
@@ -61,7 +61,7 @@ const render = {
             </Row>
         </View>
     ),
-    list: color => (
+    list: (color) => (
         <View style={styles.placeholder}>
             <Row>
                 <View style={[styles.avatar, styles.cover, { backgroundColor: color }]} />
@@ -93,7 +93,7 @@ const AnimatedView = ({ children }) => {
                 duration: DURATION,
                 useNativeDriver: true,
             }),
-        ]).start(e => {
+        ]).start((e) => {
             if (e.finished) {
                 start();
             }
@@ -106,55 +106,55 @@ const AnimatedView = ({ children }) => {
 };
 
 type args = {
-    quantity?: number,
-    color?: any,
-    type?: 'post' | 'chat',
+    quantity?: number;
+    color?: any;
+    type?: 'post' | 'chat';
 };
 
 export default function Placeholder(props: args) {
     let quantity = props.quantity || 4;
     let color = props.color || Theme.groundColour;
     let type = props.type || 'post';
-    return new Array(quantity).fill(0).map(function(elem, index) {
+    return new Array(quantity).fill(0).map(function (elem, index) {
         return <AnimatedView key={index}>{render[type](color)}</AnimatedView>;
     });
 }
 
 const styles = StyleSheet.create({
     placeholder: {
-        padding: PxDp(Theme.itemSpace),
+        padding: pixel(Theme.itemSpace),
     },
     avatar: {
-        width: PxDp(50),
-        height: PxDp(50),
-        borderRadius: PxDp(25),
+        width: pixel(50),
+        height: pixel(50),
+        borderRadius: pixel(25),
         backgroundColor: Theme.groundColour,
-        marginRight: PxDp(10),
+        marginRight: pixel(10),
     },
-    bigAvatar: { width: PxDp(50), height: PxDp(50), borderRadius: PxDp(25) },
+    bigAvatar: { width: pixel(50), height: pixel(50), borderRadius: pixel(25) },
     strip: {
-        width: PxDp(80),
-        height: PxDp(20),
-        borderRadius: PxDp(4),
+        width: pixel(80),
+        height: pixel(20),
+        borderRadius: pixel(4),
         backgroundColor: Theme.groundColour,
     },
     paragraph: {
         flex: 1,
-        marginVertical: PxDp(5),
-        height: PxDp(30),
-        borderRadius: PxDp(4),
+        marginVertical: pixel(5),
+        height: pixel(30),
+        borderRadius: pixel(4),
         backgroundColor: Theme.groundColour,
     },
     content: {
-        height: PxDp(100),
+        height: pixel(100),
         backgroundColor: Theme.groundColour,
-        borderRadius: PxDp(6),
-        marginVertical: PxDp(12),
+        borderRadius: pixel(6),
+        marginVertical: pixel(12),
     },
     label: {
         flex: 1,
-        height: PxDp(20),
-        borderRadius: PxDp(4),
+        height: pixel(20),
+        borderRadius: pixel(4),
         backgroundColor: Theme.groundColour,
     },
     group: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },

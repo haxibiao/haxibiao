@@ -16,7 +16,7 @@ export default function WithdrawApply(props) {
                     <Text style={styles.header}>提现申请已提交</Text>
                     <View style={styles.center}>
                         <Text style={styles.money}>{amount}</Text>
-                        <Text style={{ fontSize: font(10), color: Theme.secondaryColor, paddingTop: PxDp(32) }}>
+                        <Text style={{ fontSize: font(10), color: Theme.secondaryColor, paddingTop: pixel(32) }}>
                             {' '}
                             元
                         </Text>
@@ -45,16 +45,16 @@ export default function WithdrawApply(props) {
 
 const styles = StyleSheet.create({
     button: {
-        marginTop: PxDp(20),
+        marginTop: pixel(20),
         alignItems: 'center',
-        borderRadius: PxDp(22),
-        height: PxDp(44),
+        borderRadius: pixel(22),
+        height: pixel(44),
         justifyContent: 'center',
-        width: PxDp(220),
+        width: pixel(220),
     },
     center: {
         flexDirection: 'row',
-        marginTop: PxDp(20),
+        marginTop: pixel(20),
     },
     container: {
         flex: 1,

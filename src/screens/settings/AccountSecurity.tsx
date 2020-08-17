@@ -136,12 +136,12 @@ export default () => {
                         user.phone ? (
                             <View style={styles.rightWrap}>
                                 <Text style={styles.rightText}>{user.title_phone}</Text>
-                                <Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />
+                                <Iconfont name="right" size={pixel(14)} color={Theme.subTextColor} />
                             </View>
                         ) : (
                             <View style={styles.rightWrap}>
                                 <Text style={styles.linkText}>去设置</Text>
-                                <Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />
+                                <Iconfont name="right" size={pixel(14)} color={Theme.subTextColor} />
                             </View>
                         )
                     }
@@ -152,17 +152,17 @@ export default () => {
                             style={styles.listItem}
                             onPress={alipay}
                             leftComponent={<Text style={styles.itemText}>支付宝账号</Text>}
-                            rightComponent={<Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />}
+                            rightComponent={<Iconfont name="right" size={pixel(14)} color={Theme.subTextColor} />}
                             rightComponent={
                                 is_bind_alipay ? (
                                     <View style={styles.rightWrap}>
                                         <Text style={styles.rightText}>已绑定</Text>
-                                        <Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />
+                                        <Iconfont name="right" size={pixel(14)} color={Theme.subTextColor} />
                                     </View>
                                 ) : (
                                     <View style={styles.rightWrap}>
                                         <Text style={styles.linkText}>未绑定</Text>
-                                        <Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />
+                                        <Iconfont name="right" size={pixel(14)} color={Theme.subTextColor} />
                                     </View>
                                 )
                             }
@@ -179,7 +179,7 @@ export default () => {
                                     <Text style={is_bind_wechat ? styles.rightText : styles.linkText}>
                                         {is_bind_wechat ? '已绑定' : '去绑定'}
                                     </Text>
-                                    <Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />
+                                    <Iconfont name="right" size={pixel(14)} color={Theme.subTextColor} />
                                 </View>
                             }
                         />
@@ -194,7 +194,7 @@ export default () => {
                                 <Text style={is_bind_dongdezhuan ? styles.rightText : styles.linkText}>
                                     {is_bind_dongdezhuan ? `已绑定(${dongdezhuanUser.name})` : '去绑定'}
                                 </Text>
-                                <Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />
+                                <Iconfont name="right" size={pixel(14)} color={Theme.subTextColor} />
                             </View>
                         }
                     /> */}
@@ -203,7 +203,7 @@ export default () => {
                     style={styles.listItem}
                     onPress={modifyPassword}
                     leftComponent={<Text style={styles.itemText}>修改密码</Text>}
-                    rightComponent={<Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />}
+                    rightComponent={<Iconfont name="right" size={pixel(14)} color={Theme.subTextColor} />}
                 />
                 {/* <ListItem
                         style={styles.listItem}
@@ -211,7 +211,7 @@ export default () => {
                             navigation.navigate('LogoutAccount');
                         }}
                         leftComponent={<Text style={styles.itemText}>注销账号</Text>}
-                        rightComponent={<Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />}
+                        rightComponent={<Iconfont name="right" size={pixel(14)} color={Theme.subTextColor} />}
                     /> */}
             </View>
         </PageContainer>
@@ -222,54 +222,54 @@ const styles = StyleSheet.create({
     avatarTip: {
         color: Theme.subTextColor,
         fontSize: font(13),
-        marginVertical: PxDp(15),
+        marginVertical: pixel(15),
     },
     container: {
         backgroundColor: '#fff',
         flex: 1,
-        marginHorizontal: PxDp(Theme.itemSpace),
+        marginHorizontal: pixel(Theme.itemSpace),
     },
     field: {
         color: '#666',
         fontSize: font(14),
     },
     fieldGroup: {
-        marginBottom: PxDp(30),
+        marginBottom: pixel(30),
         paddingHorizontal: Theme.itemSpace,
     },
     genderGroup: {
         alignItems: 'center',
         flexDirection: 'row',
-        width: PxDp(100),
+        width: pixel(100),
     },
-    genderItem: { height: PxDp(20), marginRight: PxDp(8), width: PxDp(20) },
+    genderItem: { height: pixel(20), marginRight: pixel(8), width: pixel(20) },
     inputStyle: {
         color: Theme.defaultTextColor,
         flex: 1,
         fontSize: font(15),
-        marginTop: PxDp(6),
-        paddingVertical: PxDp(10),
+        marginTop: pixel(6),
+        paddingVertical: pixel(10),
     },
     inputWrap: {
         alignItems: 'center',
         borderBottomColor: Theme.borderColor,
-        borderBottomWidth: PxDp(1),
+        borderBottomWidth: pixel(1),
         flexDirection: 'row',
     },
     itemText: {
         color: Theme.defaultTextColor,
         fontSize: font(15),
-        marginRight: PxDp(15),
+        marginRight: pixel(15),
     },
     linkText: {
         color: '#407FCF',
         fontSize: font(15),
-        marginRight: PxDp(6),
+        marginRight: pixel(6),
     },
     listItem: {
         borderBottomColor: Theme.borderColor,
-        borderBottomWidth: PxDp(1),
-        height: PxDp(50),
+        borderBottomWidth: pixel(1),
+        height: pixel(50),
     },
     panelContent: {
         height: 34,
@@ -288,7 +288,7 @@ const styles = StyleSheet.create({
     rightText: {
         color: Theme.subTextColor,
         fontSize: font(15),
-        marginRight: PxDp(6),
+        marginRight: pixel(6),
     },
     rightWrap: {
         alignItems: 'center',
@@ -303,9 +303,9 @@ const styles = StyleSheet.create({
     userPanel: {
         alignItems: 'center',
         borderBottomColor: Theme.borderColor,
-        borderBottomWidth: PxDp(1),
+        borderBottomWidth: pixel(1),
         flexDirection: 'row',
-        height: PxDp(80),
+        height: pixel(80),
         justifyContent: 'space-between',
     },
 });

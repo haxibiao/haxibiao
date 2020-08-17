@@ -10,7 +10,7 @@ import Video from 'react-native-video';
 import VideoStatus from './VideoStatus';
 import VideoControl from './VideoControl';
 
-import { appStore, observer } from '~/store';
+import { appStore, observer, PalyerStore } from '~/store';
 import PlayerStore from '~/store/PlayerStore';
 import Orientation from 'react-native-orientation';
 
@@ -23,39 +23,47 @@ let TestVideo = {
 export default observer((props: any) => {
     let navigation = useNavigation();
     let { video, inScreen, style } = props;
-    let videoStore = new PlayerStore({ video, navigation, inScreen });
+    let playerStore = new PlayerStore({ video, navigation, inScreen });
     const [muted, setMuted] = useState(false);
 
     useEffect(() => {
-        videoStore.play();
+        //进入画面，播放
+        let willFocusListener = navigation.addListener('focus', (payload) => {
+            console.log('player  willFocus ------------------');
+            playerStore.play();
+        });
 
         // let BackHandler = ReactNative.BackHandler ? ReactNative.BackHandler : ReactNative.BackAndroid;
         if (Device.Android) {
             BackHandler.addEventListener('hardwareBackPress', _backButtonPress);
         }
         //不再画面时，暂停播放
-        navigation.addListener('willBlur', (payload) => {
-            videoStore.pause();
+        let willBlurListener = navigation.addListener('blur', (payload) => {
+            console.log('player  willBlur ------------------');
+            playerStore.pause();
         });
 
         return () => {
             // 离开时暂停播放
-            videoStore.pause();
+            playerStore.pause();
             // 离开固定竖屏
             Orientation.lockToPortrait();
+
+            //退出取消监听
+            willFocusListener();
+            willBlurListener();
         };
     }, []);
 
     const _backButtonPress = () => {
         if (appStore.isFullScreen) {
-            videoStore.onFullScreen();
+            playerStore.onFullScreen();
             return true;
         }
         return false;
     };
 
     let {
-        videoPaused,
         play,
         status,
         orientation,
@@ -69,7 +77,7 @@ export default observer((props: any) => {
         onProgressChanged,
         onPlayEnd,
         onPlayError,
-    } = videoStore;
+    } = playerStore;
     return (
         <View
             style={[
@@ -97,7 +105,7 @@ export default observer((props: any) => {
                     volume={1.0}
                     muted={false}
                     repeat={true}
-                    paused={videoPaused}
+                    paused={paused}
                     resizeMode={'contain'}
                     disableFocus={true}
                     useTextureView={false}
@@ -113,10 +121,10 @@ export default observer((props: any) => {
                     ignoreSilentSwitch="obey"
                 />
             )}
-            {/* <TouchableOpacity activeOpacity={1} onPress={play} style={styles.controlContainer}>
-                <VideoControl videoStore={videoStore} navigation={navigation} />
+            <TouchableOpacity activeOpacity={1} onPress={play} style={styles.controlContainer}>
+                <VideoControl playerStore={playerStore} navigation={navigation} />
             </TouchableOpacity>
-            <VideoStatus videoStore={videoStore} /> */}
+            <VideoStatus playerStore={playerStore} />
         </View>
     );
 });

@@ -205,35 +205,35 @@ const CommentInput = React.forwardRef((props, ref) => {
 
 const styles = StyleSheet.create({
     buttonWrap: {
-        marginLeft: PxDp(15),
+        marginLeft: pixel(15),
     },
     inputContainer: {
         alignItems: 'center',
         backgroundColor: '#fff',
         flexDirection: 'row',
-        paddingHorizontal: PxDp(15),
-        paddingVertical: PxDp(12),
+        paddingHorizontal: pixel(15),
+        paddingVertical: pixel(12),
     },
     sendButton: {
         alignItems: 'center',
-        borderRadius: PxDp(18),
-        height: PxDp(36),
+        borderRadius: pixel(18),
+        height: pixel(36),
         justifyContent: 'center',
-        width: PxDp(76),
+        width: pixel(76),
     },
     textInput: {
         flex: 1,
-        marginLeft: PxDp(6),
+        marginLeft: pixel(6),
     },
     textInputWrap: {
         backgroundColor: '#f4f4f4',
-        borderRadius: PxDp(18),
+        borderRadius: pixel(18),
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
-        height: PxDp(36),
-        paddingHorizontal: PxDp(12),
-        paddingVertical: PxDp(6),
+        height: pixel(36),
+        paddingHorizontal: pixel(12),
+        paddingVertical: pixel(6),
     },
 });
 

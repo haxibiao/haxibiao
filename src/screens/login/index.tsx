@@ -117,10 +117,10 @@ export default observer((props) => {
                     <Image source={require('!/assets/images/login_cover.png')} style={styles.registerCover} />
                 </View>
                 <View style={styles.header}>
-                    <TouchableOpacity style={{ padding: PxDp(5) }} onPress={() => navigation.pop()}>
+                    <TouchableOpacity style={{ padding: pixel(5) }} onPress={() => navigation.pop()}>
                         <Iconfont name="guanbi1" size={font(24)} color={'#fff'} />
                     </TouchableOpacity>
-                    <TouchableOpacity style={{ padding: PxDp(5) }} onPress={() => toggleEntrance(!signIn)}>
+                    <TouchableOpacity style={{ padding: pixel(5) }} onPress={() => toggleEntrance(!signIn)}>
                         <Text style={styles.linkText}>{signIn ? '去注册' : '去登录'}</Text>
                     </TouchableOpacity>
                 </View>
@@ -143,7 +143,7 @@ export default observer((props) => {
 
                                 {thumb == thumbType[1] && (
                                     <TouchableOpacity onPress={() => changeAccount('')}>
-                                        <Iconfont name={'guanbi1'} size={PxDp(20)} color={Theme.tintTextColor} />
+                                        <Iconfont name={'guanbi1'} size={pixel(20)} color={Theme.tintTextColor} />
                                     </TouchableOpacity>
                                 )}
                             </View>
@@ -163,7 +163,7 @@ export default observer((props) => {
 
                                     {thumb == thumbType[0] && (
                                         <TouchableOpacity onPress={() => changeName('')}>
-                                            <Iconfont name={'guanbi1'} size={PxDp(20)} color={Theme.tintTextColor} />
+                                            <Iconfont name={'guanbi1'} size={pixel(20)} color={Theme.tintTextColor} />
                                         </TouchableOpacity>
                                     )}
                                 </View>
@@ -185,7 +185,7 @@ export default observer((props) => {
                                     <TouchableOpacity onPress={() => setSecure(!secure)}>
                                         <Iconfont
                                             name={secure ? 'icon' : 'liulan2'}
-                                            size={secure ? PxDp(22) : PxDp(20)}
+                                            size={secure ? pixel(22) : pixel(20)}
                                             color={Theme.tintTextColor}
                                         />
                                     </TouchableOpacity>
@@ -204,7 +204,7 @@ export default observer((props) => {
                         <View style={styles.groupFooter}>
                             <TouchableOpacity onPress={onSilentLogin}>
                                 <Row>
-                                    <Iconfont name="iphone" size={PxDp(15)} color="#fff" />
+                                    <Iconfont name="iphone" size={pixel(15)} color="#fff" />
                                     <Text style={styles.grayText}>一键登录</Text>
                                 </Row>
                             </TouchableOpacity>
@@ -255,53 +255,53 @@ const styles = StyleSheet.create({
     },
     header: {
         position: 'absolute',
-        top: PxDp(Theme.statusBarHeight + Theme.itemSpace),
-        left: PxDp(Theme.itemSpace),
-        right: PxDp(Theme.itemSpace),
+        top: pixel(Theme.statusBarHeight + Theme.itemSpace),
+        left: pixel(Theme.itemSpace),
+        right: pixel(Theme.itemSpace),
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',
     },
     formContainer: {
-        marginTop: PxDp(100),
-        marginHorizontal: PxDp(Theme.itemSpace * 2),
+        marginTop: pixel(100),
+        marginHorizontal: pixel(Theme.itemSpace * 2),
     },
     logo: {
-        marginBottom: PxDp(40),
+        marginBottom: pixel(40),
         width: Helper.WPercent(30),
         height: Helper.WPercent(30),
         resizeMode: 'contain',
     },
     fieldGroup: {
-        marginBottom: PxDp(8),
+        marginBottom: pixel(8),
     },
     inputWrap: {
         flexDirection: 'row',
         alignItems: 'center',
-        borderRadius: PxDp(4),
-        paddingRight: PxDp(10),
+        borderRadius: pixel(4),
+        paddingRight: pixel(10),
         backgroundColor: 'rgba(255,255,255,0.2)',
     },
     inputStyle: {
         flex: 1,
-        height: PxDp(42),
+        height: pixel(42),
         fontSize: font(16),
         color: '#fff',
-        paddingBottom: PxDp(10),
-        paddingTop: PxDp(10),
-        padding: PxDp(10),
+        paddingBottom: pixel(10),
+        paddingTop: pixel(10),
+        padding: pixel(10),
     },
     countdown: {
-        padding: PxDp(5),
+        padding: pixel(5),
     },
     countdownText: {
         fontSize: font(13),
         color: Theme.subTextColor,
     },
     buttonStyle: {
-        marginTop: PxDp(Theme.itemSpace),
-        height: PxDp(44),
-        borderRadius: PxDp(4),
+        marginTop: pixel(Theme.itemSpace),
+        height: pixel(44),
+        borderRadius: pixel(4),
         backgroundColor: 'rgba(255,255,255,0.6)',
         justifyContent: 'center',
         alignItems: 'center',
@@ -325,7 +325,7 @@ const styles = StyleSheet.create({
         color: '#fff',
     },
     groupFooter: {
-        marginTop: PxDp(20),
+        marginTop: pixel(20),
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -335,7 +335,7 @@ const styles = StyleSheet.create({
         color: '#fff',
     },
     protocol: {
-        marginBottom: Theme.HOME_INDICATOR_HEIGHT + PxDp(Theme.itemSpace),
+        marginBottom: Theme.HOME_INDICATOR_HEIGHT + pixel(Theme.itemSpace),
         alignItems: 'center',
         justifyContent: 'center',
     },

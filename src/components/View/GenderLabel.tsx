@@ -10,7 +10,7 @@ import Iconfont from '../Iconfont';
 
 class GenderLabel extends Component {
     static defaultProps = {
-        fontSize: PxDp(12),
+        fontSize: pixel(12),
     };
 
     render() {
@@ -29,7 +29,7 @@ class GenderLabel extends Component {
 }
 
 const styles = StyleSheet.create({
-    image: { width: PxDp(36), height: PxDp(18), flexDirection: 'row' },
+    image: { width: pixel(36), height: pixel(18), flexDirection: 'row' },
 });
 
 export default GenderLabel;

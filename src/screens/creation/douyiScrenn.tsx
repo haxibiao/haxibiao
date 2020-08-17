@@ -49,7 +49,7 @@ const douyiScreen = (props: any) => {
         <PageContainer
             leftView={
                 <TouchFeedback onPress={() => props.navigation.goBack()}>
-                    <Iconfont name="guanbi1" size={PxDp(22)} color={Theme.primaryAuxiliaryColor} />
+                    <Iconfont name="guanbi1" size={pixel(22)} color={Theme.primaryAuxiliaryColor} />
                 </TouchFeedback>
             }
             rightView={
@@ -92,7 +92,7 @@ const douyiScreen = (props: any) => {
                                     style={styles.radioText}
                                     onPress={() => props.navigation.navigate('CommonQuestion')}>
                                     {`▎悬浮窗工具` + `  `}
-                                    <Iconfont name="bangzhu" size={PxDp(16)} color={Theme.watermelon} />
+                                    <Iconfont name="bangzhu" size={pixel(16)} color={Theme.watermelon} />
                                 </Text>
                             }
                             mode="switch"
@@ -106,23 +106,23 @@ const douyiScreen = (props: any) => {
 
 const styles = StyleSheet.create({
     bodyTextInput: {
-        height: PxDp(120),
+        height: pixel(120),
     },
     bodyTextInputArea: {
-        marginBottom: PxDp(20),
+        marginBottom: pixel(20),
     },
     categoriesContainer: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        marginVertical: PxDp(Theme.itemSpace),
+        marginVertical: pixel(Theme.itemSpace),
     },
     categoryItem: {
         alignItems: 'center',
         flexDirection: 'row',
-        height: PxDp(34),
+        height: pixel(34),
         justifyContent: 'center',
-        marginRight: PxDp(10),
-        marginTop: PxDp(10),
+        marginRight: pixel(10),
+        marginTop: pixel(10),
     },
     categoryName: {
         color: Theme.primaryColor,
@@ -130,29 +130,29 @@ const styles = StyleSheet.create({
     },
     categoryShadow: {
         backgroundColor: Theme.slateGray2,
-        borderRadius: PxDp(4),
-        paddingHorizontal: PxDp(12),
+        borderRadius: pixel(4),
+        paddingHorizontal: pixel(12),
     },
     close: {
-        height: PxDp(30),
+        height: pixel(30),
         justifyContent: 'center',
-        paddingLeft: PxDp(8),
-        width: PxDp(30),
+        paddingLeft: pixel(8),
+        width: pixel(30),
     },
     container: {
         backgroundColor: '#fff',
         flex: 1,
-        paddingHorizontal: PxDp(20),
+        paddingHorizontal: pixel(20),
     },
     contentContainerStyle: { flexGrow: 1, paddingBottom: Theme.HOME_INDICATOR_HEIGHT },
     countInputText: {
         color: Theme.slateGray1,
-        fontSize: PxDp(13),
+        fontSize: pixel(13),
     },
     creatorContainer: {
         backgroundColor: '#fff',
-        borderRadius: PxDp(3),
-        paddingVertical: PxDp(20),
+        borderRadius: pixel(3),
+        paddingVertical: pixel(20),
     },
     disabledButton: {
         backgroundColor: '#f0f0f0',
@@ -160,14 +160,14 @@ const styles = StyleSheet.create({
 
     publishButton: {
         backgroundColor: Theme.watermelon,
-        borderRadius: PxDp(15),
-        height: PxDp(30),
+        borderRadius: pixel(15),
+        height: pixel(30),
         justifyContent: 'center',
-        paddingHorizontal: PxDp(10),
+        paddingHorizontal: pixel(10),
     },
     publishText: {
         color: '#fff',
-        fontSize: PxDp(14),
+        fontSize: pixel(14),
         textAlign: 'center',
     },
     disabledPublishText: {

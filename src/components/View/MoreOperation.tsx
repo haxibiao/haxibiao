@@ -365,7 +365,7 @@ const MoreOperation = (props) => {
         <View style={styles.optionsContainer}>
             {false && (
                 <>
-                    <View style={[styles.body, { marginTop: PxDp(10) }]}>
+                    <View style={[styles.body, { marginTop: pixel(10) }]}>
                         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
                             {shareView}
                         </ScrollView>
@@ -395,47 +395,47 @@ MoreOperation.defaultProps = {
 const styles = StyleSheet.create({
     optionsContainer: {
         backgroundColor: '#fff',
-        borderTopLeftRadius: PxDp(12),
-        borderTopRightRadius: PxDp(12),
-        paddingBottom: PxDp(Theme.HOME_INDICATOR_HEIGHT),
+        borderTopLeftRadius: pixel(12),
+        borderTopRightRadius: pixel(12),
+        paddingBottom: pixel(Theme.HOME_INDICATOR_HEIGHT),
         overflow: 'hidden',
     },
     body: {
-        paddingVertical: PxDp(5),
+        paddingVertical: pixel(5),
         flexDirection: 'row',
         alignItems: 'center',
     },
     footer: {
         justifyContent: 'center',
         alignItems: 'center',
-        paddingVertical: PxDp(Theme.itemSpace),
-        borderTopWidth: PxDp(1),
+        paddingVertical: pixel(Theme.itemSpace),
+        borderTopWidth: pixel(1),
         borderColor: Theme.borderColor,
     },
     footerText: {
         color: Theme.defaultTextColor,
-        fontSize: PxDp(15),
+        fontSize: pixel(15),
     },
     optionItem: {
         maxWidth: Device.WIDTH * 0.25,
         minWidth: Device.WIDTH * 0.22,
-        padding: PxDp(12),
+        padding: pixel(12),
         justifyContent: 'center',
         alignItems: 'center',
     },
     optionIcon: {
-        width: PxDp(50),
-        height: PxDp(50),
+        width: pixel(50),
+        height: pixel(50),
     },
     optionName: {
-        marginTop: PxDp(10),
+        marginTop: pixel(10),
         color: Theme.subTextColor,
-        fontSize: PxDp(13),
+        fontSize: pixel(13),
     },
     dividingLine: {
-        borderBottomWidth: PxDp(0.2),
+        borderBottomWidth: pixel(0.2),
         borderColor: Theme.borderColor,
-        marginHorizontal: PxDp(25),
+        marginHorizontal: pixel(25),
     },
 });
 

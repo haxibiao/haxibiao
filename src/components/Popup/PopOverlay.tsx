@@ -3,7 +3,6 @@
  * created by wyk made in 2019-01-08 13:06:22
  */
 
-
 import React, { Component } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { Overlay } from 'teaset';
@@ -11,12 +10,12 @@ import SafeText from '../Basic/SafeText';
 import TouchFeedback from '../Basic/TouchFeedback';
 
 type args = {
-    title?: string,
-    content: any,
-    onConfirm: Function,
-    leftContent: string,
-    rightContent: string,
-    leftConfirm: Function,
+    title?: string;
+    content: any;
+    onConfirm: Function;
+    leftContent: string;
+    rightContent: string;
+    leftConfirm: Function;
 };
 
 function renderContent(content) {
@@ -35,7 +34,7 @@ function PopOverlay(props: args) {
         <Overlay.PopView
             style={{ alignItems: 'center', justifyContent: 'center' }}
             animated
-            ref={ref => (popViewRef = ref)}>
+            ref={(ref) => (popViewRef = ref)}>
             <View style={styles.overlayInner}>
                 <SafeText style={styles.headerText}>{title || '提示'}</SafeText>
                 {content && renderContent(content)}
@@ -70,9 +69,9 @@ const styles = StyleSheet.create({
     },
     cancelText: {
         textAlign: 'center',
-        fontSize: PxDp(16),
+        fontSize: pixel(16),
         color: Theme.subTextColor,
-        borderRightWidth: PxDp(1),
+        borderRightWidth: pixel(1),
         borderRightColor: Theme.borderColor,
     },
     confirm: {
@@ -81,34 +80,34 @@ const styles = StyleSheet.create({
     },
     confirmText: {
         textAlign: 'center',
-        fontSize: PxDp(16),
+        fontSize: pixel(16),
         color: Theme.primaryColor,
     },
     control: {
-        height: PxDp(46),
+        height: pixel(46),
         flexDirection: 'row',
         alignItems: 'stretch',
-        borderTopWidth: PxDp(1),
+        borderTopWidth: pixel(1),
         borderTopColor: Theme.borderColor,
     },
     headerText: {
-        fontSize: PxDp(19),
+        fontSize: pixel(19),
         color: Theme.defaultTextColor,
         textAlign: 'center',
     },
     messageText: {
-        fontSize: PxDp(16),
-        lineHeight: PxDp(20),
-        marginVertical: PxDp(20),
+        fontSize: pixel(16),
+        lineHeight: pixel(20),
+        marginVertical: pixel(20),
         color: Theme.secondaryTextColor,
         textAlign: 'center',
     },
     overlayInner: {
         width: Helper.WPercent(80),
-        paddingTop: PxDp(20),
-        paddingHorizontal: PxDp(20),
+        paddingTop: pixel(20),
+        paddingHorizontal: pixel(20),
         backgroundColor: '#fff',
-        borderRadius: PxDp(6),
+        borderRadius: pixel(6),
     },
 });
 

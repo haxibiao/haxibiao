@@ -18,7 +18,7 @@ import UserProfile from './components/UserProfile';
 import BottomBar from './components/BottomBar';
 import { observable } from 'mobx';
 
-const animatedReferenceValue = Device.WIDTH * 0.75 - PxDp(Theme.NAVBAR_HEIGHT + Theme.statusBarHeight);
+const animatedReferenceValue = Device.WIDTH * 0.75 - pixel(Theme.NAVBAR_HEIGHT + Theme.statusBarHeight);
 
 export default observer((props: any) => {
     const user = props.route.params?.user ?? {};
@@ -71,7 +71,7 @@ export default observer((props: any) => {
 
     const height = scrollAnimateValue.current.interpolate({
         inputRange: [0, animatedReferenceValue],
-        outputRange: [Device.WIDTH * 0.75, PxDp(Theme.NAVBAR_HEIGHT + Theme.statusBarHeight)],
+        outputRange: [Device.WIDTH * 0.75, pixel(Theme.NAVBAR_HEIGHT + Theme.statusBarHeight)],
         extrapolate: 'clamp',
     });
 

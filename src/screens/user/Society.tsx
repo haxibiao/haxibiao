@@ -18,13 +18,13 @@ class Society extends Component {
             <PageContainer hiddenNavBar contentViewStyle={{ marginTop: Theme.statusBarHeight }}>
                 <ScrollableTabView
                     initialPage={follower ? 1 : 0}
-                    renderTabBar={(props) => <ScrollTabBar {...props} tabUnderlineWidth={PxDp(50)} />}>
+                    renderTabBar={(props) => <ScrollTabBar {...props} tabUnderlineWidth={pixel(50)} />}>
                     <Following tabLabel="关注" navigation={navigation} user={user} />
                     <Follower tabLabel="粉丝" navigation={navigation} user={user} />
                 </ScrollableTabView>
                 <View style={styles.backButton}>
                     <TouchFeedback activeOpacity={1} onPress={() => navigation.goBack()}>
-                        <Iconfont name="zuojiantou" color={Theme.defaultTextColor} size={PxDp(21)} />
+                        <Iconfont name="zuojiantou" color={Theme.defaultTextColor} size={pixel(21)} />
                     </TouchFeedback>
                 </View>
             </PageContainer>
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
         width: Theme.NAVBAR_HEIGHT,
         height: Theme.NAVBAR_HEIGHT,
         justifyContent: 'center',
-        paddingLeft: PxDp(Theme.itemSpace),
+        paddingLeft: pixel(Theme.itemSpace),
     },
 });
 

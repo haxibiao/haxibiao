@@ -4,8 +4,8 @@
  */
 'use strict';
 
-import React, { Component } from 'react';
-import { StyleSheet, View, Text, Animated, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import React from 'react';
+import { StyleSheet, View, Text, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import Iconfont from '../Iconfont';
 import { appStore, observer } from '~/store';
 import Slider from '@react-native-community/slider';
@@ -22,7 +22,7 @@ export default observer((props: any) => {
         onSlidingComplete,
         playButtonHandler,
         onFullScreen,
-    } = props.videoStore;
+    } = props.playerStore;
     let { isFullScreen } = appStore;
 
     if (!showControl) {
@@ -34,20 +34,20 @@ export default observer((props: any) => {
         <View style={styles.videoControl}>
             <TouchableOpacity
                 activeOpacity={1}
-                onPress={isFullScreen ? onFullScreen : () => this.props.navigation.goBack()}
+                onPress={isFullScreen ? onFullScreen : () => props.navigation.goBack()}
                 style={styles.headerControl}>
-                <Iconfont name="zuojiantou" size={PxDp(22)} color="#fff" />
+                <Iconfont name="zuojiantou" size={pixel(22)} color="#fff" />
             </TouchableOpacity>
 
             <TouchableWithoutFeedback style={styles.pauseMark} onPress={playButtonHandler}>
-                <View style={{ padding: PxDp(20) }}>
-                    <Iconfont name={paused ? 'bofang1' : 'zanting'} size={PxDp(40)} color="#fff" />
+                <View style={{ padding: pixel(20) }}>
+                    <Iconfont name={paused ? 'bofang1' : 'zanting'} size={pixel(40)} color="#fff" />
                 </View>
             </TouchableWithoutFeedback>
             <View style={styles.bottomControl}>
                 <Text style={styles.timeText}>{Helper.TimeFormat(sliderMoveing ? sliderValue : currentTime)}</Text>
                 <Slider
-                    style={{ flex: 1, marginHorizontal: PxDp(10) }}
+                    style={{ flex: 1, marginHorizontal: pixel(10) }}
                     maximumTrackTintColor="rgba(225,225,225,0.5)" //滑块右侧轨道的颜色
                     minimumTrackTintColor={'#fff'} //滑块左侧轨道的颜色
                     thumbTintColor="#fff"
@@ -61,7 +61,7 @@ export default observer((props: any) => {
                 <TouchableOpacity activeOpacity={1} onPress={onFullScreen} style={styles.layoutButton}>
                     <Iconfont
                         name={appStore.isFullScreen ? 'cancel-full-screen' : 'quanping'}
-                        size={PxDp(20)}
+                        size={pixel(20)}
                         color="#fff"
                     />
                 </TouchableOpacity>
@@ -83,35 +83,35 @@ const styles = StyleSheet.create({
     },
     headerControl: {
         position: 'absolute',
-        top: PxDp(15),
-        left: PxDp(15),
-        width: PxDp(40),
-        height: PxDp(40),
+        top: pixel(15),
+        left: pixel(15),
+        width: pixel(40),
+        height: pixel(40),
         justifyContent: 'center',
     },
     pauseMark: {
-        width: PxDp(60),
-        height: PxDp(60),
+        width: pixel(60),
+        height: pixel(60),
         alignItems: 'center',
         justifyContent: 'center',
     },
     bottomControl: {
         position: 'absolute',
-        left: PxDp(20),
-        right: PxDp(20),
-        bottom: PxDp(10),
+        left: pixel(20),
+        right: pixel(20),
+        bottom: pixel(10),
         flexDirection: 'row',
         alignItems: 'center',
     },
     layoutButton: {
-        marginLeft: PxDp(10),
-        width: PxDp(40),
-        height: PxDp(40),
+        marginLeft: pixel(10),
+        width: pixel(40),
+        height: pixel(40),
         alignItems: 'center',
         justifyContent: 'center',
     },
     timeText: {
-        fontSize: PxDp(12),
+        fontSize: pixel(12),
         color: '#fff',
     },
 });

@@ -51,7 +51,7 @@ const HxfRadio = (props: Props) => {
                 name={state ? 'radio-check' : 'radio-uncheck'}
                 color={state ? Theme.primaryColor : '#d4d4d4'}
                 size={font(20)}
-                style={{ marginRight: PxDp(8) }}
+                style={{ marginRight: pixel(8) }}
             />
             {title}
         </TouchableOpacity>
@@ -72,8 +72,8 @@ const styles = StyleSheet.create({
         color: Theme.defaultTextColor,
     },
     switchImage: {
-        width: PxDp(40),
-        height: PxDp(25),
+        width: pixel(40),
+        height: pixel(25),
         resizeMode: 'cover',
     },
     switchModeWrap: {

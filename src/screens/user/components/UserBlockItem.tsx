@@ -62,7 +62,7 @@ const UserBlockItem = (props: Props) => {
 
     return (
         <View style={[styles.item, style]}>
-            <Avatar source={avatar} size={PxDp(50)} />
+            <Avatar source={avatar} size={pixel(50)} />
             <View style={styles.right}>
                 <View style={styles.info}>
                     <SafeText style={styles.nameText}>{name}</SafeText>
@@ -87,31 +87,31 @@ const UserBlockItem = (props: Props) => {
 const styles = StyleSheet.create({
     info: {
         flex: 1,
-        marginRight: PxDp(Theme.itemSpace),
+        marginRight: pixel(Theme.itemSpace),
     },
     introduction: {
-        marginTop: PxDp(8),
-        fontSize: PxDp(12),
+        marginTop: pixel(8),
+        fontSize: pixel(12),
         color: '#696482',
     },
     item: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginLeft: PxDp(Theme.itemSpace),
+        marginLeft: pixel(Theme.itemSpace),
     },
-    labelText: { fontSize: PxDp(12), color: '#fff', marginLeft: PxDp(2), lineHeight: PxDp(14) },
+    labelText: { fontSize: pixel(12), color: '#fff', marginLeft: pixel(2), lineHeight: pixel(14) },
     nameText: {
-        fontSize: PxDp(16),
+        fontSize: pixel(16),
         color: Theme.defaultTextColor,
-        marginRight: PxDp(2),
+        marginRight: pixel(2),
     },
     right: {
         flex: 1,
-        paddingHorizontal: PxDp(Theme.itemSpace),
-        paddingVertical: PxDp(20),
+        paddingHorizontal: pixel(Theme.itemSpace),
+        paddingVertical: pixel(20),
         flexDirection: 'row',
         alignItems: 'center',
-        borderBottomWidth: PxDp(1),
+        borderBottomWidth: pixel(1),
         borderBottomColor: Theme.borderColor,
     },
     buttonsStyle: {
@@ -119,12 +119,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
-        width: PxDp(70),
-        height: PxDp(30),
-        borderRadius: PxDp(15),
+        width: pixel(70),
+        height: pixel(30),
+        borderRadius: pixel(15),
     },
     titleStyle: {
-        fontSize: PxDp(13),
+        fontSize: pixel(13),
         overflow: 'hidden',
         color: '#FFF',
     },

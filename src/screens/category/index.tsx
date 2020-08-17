@@ -16,7 +16,7 @@ import { observer } from '~/store';
 import CategoryProfile from './components/CategoryProfile';
 import { observable } from 'mobx';
 
-const animatedReferenceValue = Device.WIDTH * 0.75 - PxDp(Theme.NAVBAR_HEIGHT + Theme.statusBarHeight);
+const animatedReferenceValue = Device.WIDTH * 0.75 - pixel(Theme.NAVBAR_HEIGHT + Theme.statusBarHeight);
 
 export default observer((props: any) => {
     const category = props.route.params?.category ?? {};
@@ -71,25 +71,25 @@ export default observer((props: any) => {
 
     const height = scrollAnimateValue.current.interpolate({
         inputRange: [0, animatedReferenceValue],
-        outputRange: [Device.WIDTH * 0.75, PxDp(Theme.NAVBAR_HEIGHT + Theme.statusBarHeight)],
+        outputRange: [Device.WIDTH * 0.75, pixel(Theme.NAVBAR_HEIGHT + Theme.statusBarHeight)],
         extrapolate: 'clamp',
     });
 
     const translateX = scrollAnimateValue.current.interpolate({
         inputRange: [0, animatedReferenceValue],
-        outputRange: [0, PxDp(Theme.itemSpace * 2)],
+        outputRange: [0, pixel(Theme.itemSpace * 2)],
         extrapolate: 'clamp',
     });
 
     const translateY = scrollAnimateValue.current.interpolate({
         inputRange: [0, animatedReferenceValue],
-        outputRange: [0, -PxDp(Theme.NAVBAR_HEIGHT)],
+        outputRange: [0, -pixel(Theme.NAVBAR_HEIGHT)],
         extrapolate: 'clamp',
     });
 
     const fontSize = scrollAnimateValue.current.interpolate({
         inputRange: [0, animatedReferenceValue],
-        outputRange: [PxDp(20), PxDp(16)],
+        outputRange: [pixel(20), pixel(16)],
         extrapolate: 'clamp',
     });
 
@@ -176,8 +176,8 @@ const styles = StyleSheet.create({
     },
     buttonWrap: {
         position: 'absolute',
-        right: PxDp(Theme.itemSpace),
-        bottom: PxDp(Theme.HOME_INDICATOR_HEIGHT + Theme.itemSpace * 2),
+        right: pixel(Theme.itemSpace),
+        bottom: pixel(Theme.HOME_INDICATOR_HEIGHT + Theme.itemSpace * 2),
     },
-    sendButton: { width: PxDp(52), height: PxDp(52) },
+    sendButton: { width: pixel(52), height: pixel(52) },
 });

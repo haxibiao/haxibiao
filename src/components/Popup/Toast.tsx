@@ -85,13 +85,13 @@ class Toast extends Component<Props, State> {
         let position;
         switch (this.positionValue) {
             case 'top':
-                position = { top: PxDp(Theme.NAVBAR_HEIGHT + 100) };
+                position = { top: pixel(Theme.NAVBAR_HEIGHT + 100) };
                 break;
             case 'center':
-                position = { top: PxDp(Device.HEIGHT - 120) / 2 };
+                position = { top: pixel(Device.HEIGHT - 120) / 2 };
                 break;
             case 'bottom':
-                position = { bottom: PxDp(Theme.HOME_INDICATOR_HEIGHT + 100) };
+                position = { bottom: pixel(Theme.HOME_INDICATOR_HEIGHT + 100) };
                 break;
         }
         const ToastView = isShow ? (
@@ -120,15 +120,15 @@ const styles = StyleSheet.create({
     toast: {
         maxWidth: '50%',
         backgroundColor: 'rgba(32,30,51,0.7)',
-        borderRadius: PxDp(5),
-        paddingVertical: PxDp(8),
-        paddingHorizontal: PxDp(10),
+        borderRadius: pixel(5),
+        paddingVertical: pixel(8),
+        paddingHorizontal: pixel(10),
         alignItems: 'center',
         justifyContent: 'center',
     },
     content: {
-        fontSize: PxDp(14),
-        lineHeight: PxDp(24),
+        fontSize: pixel(14),
+        lineHeight: pixel(24),
         color: '#fff',
         textAlign: 'center',
     },

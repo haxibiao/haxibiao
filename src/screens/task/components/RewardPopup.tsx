@@ -34,7 +34,7 @@ export default (props: Props) => {
                 <Row>
                     <Image
                         source={require('!/assets/images/icon_wallet_rmb.png')}
-                        style={{ width: PxDp(50), height: PxDp(50) }}
+                        style={{ width: pixel(50), height: pixel(50) }}
                     />
                     <View style={styles.SuccessModuleTextBack}>
                         <Text numberOfLines={1}>{reward.message || '完成任务获得奖励！'}</Text>
@@ -129,17 +129,17 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFF',
         position: 'absolute',
         zIndex: 68,
-        padding: PxDp(20),
-        borderRadius: PxDp(10),
+        padding: pixel(20),
+        borderRadius: pixel(10),
     },
     SuccessModuleTextBack: {
-        width: Device.WIDTH - (Device.WIDTH * 0.3 + PxDp(90)),
+        width: Device.WIDTH - (Device.WIDTH * 0.3 + pixel(90)),
         justifyContent: 'center',
         alignItems: 'center',
         marginLeft: 15,
     },
     SuccessModuleButtonBack: {
-        paddingTop: PxDp(20),
+        paddingTop: pixel(20),
         width: '100%',
         justifyContent: 'center',
         alignContent: 'center',

@@ -159,7 +159,7 @@ export default class RetrievePassword extends Component {
                     />
                 </View>
                 <TouchableOpacity
-                    style={{ marginHorizontal: PxDp(25), marginTop: PxDp(15) }}
+                    style={{ marginHorizontal: pixel(25), marginTop: pixel(15) }}
                     onPress={this.resendVerificationCode}
                     disabled={!(this.time_remaining == 60)}>
                     <Text style={{ color: this.time_remaining == 60 ? Theme.primaryColor : Theme.grey, fontSize: 13 }}>
@@ -172,10 +172,10 @@ export default class RetrievePassword extends Component {
                     onPress={() => this.resetPassword()}
                     disabled={code && password ? false : true}
                     style={{
-                        height: PxDp(38),
-                        fontSize: PxDp(16),
-                        marginHorizontal: PxDp(25),
-                        marginTop: PxDp(30),
+                        height: pixel(38),
+                        fontSize: pixel(16),
+                        marginHorizontal: pixel(25),
+                        marginTop: pixel(30),
                         backgroundColor: Theme.primaryColor,
                     }}
                 />
@@ -186,15 +186,15 @@ export default class RetrievePassword extends Component {
 
 const styles = StyleSheet.create({
     header: {
-        marginBottom: PxDp(40),
-        marginTop: PxDp(50),
-        paddingHorizontal: PxDp(25),
+        marginBottom: pixel(40),
+        marginTop: pixel(50),
+        paddingHorizontal: pixel(25),
     },
     textWrap: {
         borderBottomColor: Theme.lightBorder,
-        borderBottomWidth: PxDp(0.5),
-        marginHorizontal: PxDp(25),
-        marginTop: PxDp(5),
+        borderBottomWidth: pixel(0.5),
+        marginHorizontal: pixel(25),
+        marginTop: pixel(5),
         paddingHorizontal: 0,
     },
 });

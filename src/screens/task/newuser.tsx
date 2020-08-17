@@ -10,7 +10,7 @@ const Newuser = (props) => {
             <View style={styles.Topshape}>
                 <Image
                     source={require('!/assets/images/newuser.jpg')}
-                    style={{ width: PxDp(400), height: PxDp(1400) }}
+                    style={{ width: pixel(400), height: pixel(1400) }}
                 />
             </View>
         </ScrollView>

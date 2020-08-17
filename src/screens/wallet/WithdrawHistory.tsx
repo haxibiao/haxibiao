@@ -13,7 +13,7 @@ class WithdrawHistory extends Component {
         return (
             <PageContainer title="我的账单" white>
                 <ScrollableTabView
-                    renderTabBar={(props) => <ScrollTabBar {...this.props} tabUnderlineWidth={PxDp(30)} />}
+                    renderTabBar={(props) => <ScrollTabBar {...this.props} tabUnderlineWidth={pixel(30)} />}
                     initialPage={this.props.route.params?.tabPage ?? 0}
                     prerenderingSiblingsNumber={this.props.route.params?.tabPage ?? 0}>
                     <WithdrawLog navigation={navigation} tabLabel="提现" />

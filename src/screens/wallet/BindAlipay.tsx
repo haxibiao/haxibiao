@@ -92,13 +92,13 @@ const BindAlipay = (props) => {
     return (
         <PageContainer title={hasWallet.current ? '修改支付宝' : '绑定支付宝'} submitting={submitting}>
             <View style={styles.container}>
-                <View style={{ paddingVertical: PxDp(20) }}>
+                <View style={{ paddingVertical: pixel(20) }}>
                     <Text
                         style={{
                             color: Theme.defaultTextColor,
                             fontSize: font(20),
                             fontWeight: '600',
-                            paddingBottom: PxDp(20),
+                            paddingBottom: pixel(20),
                         }}>
                         支付宝信息
                     </Text>
@@ -158,20 +158,20 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        paddingHorizontal: PxDp(20),
+        paddingHorizontal: pixel(20),
     },
     tipsText: {
         color: Theme.subTextColor,
         fontSize: font(13),
     },
     inputWrap: {
-        borderBottomWidth: PxDp(0.5),
+        borderBottomWidth: pixel(0.5),
         borderBottomColor: Theme.borderColor,
     },
     button: {
-        height: PxDp(40),
-        borderRadius: PxDp(5),
-        marginTop: PxDp(35),
+        height: pixel(40),
+        borderRadius: pixel(5),
+        marginTop: pixel(35),
     },
 });
 

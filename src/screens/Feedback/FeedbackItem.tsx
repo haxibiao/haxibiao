@@ -9,7 +9,7 @@ export interface Props {
     navigation: any;
 }
 
-const COVER_WIDTH = Device.WIDTH - PxDp(Theme.itemSpace) * 2;
+const COVER_WIDTH = Device.WIDTH - pixel(Theme.itemSpace) * 2;
 
 const FeedbackItem: React.FC<Props> = observer((props: Props) => {
     const { feedback, navigation } = props;
@@ -38,7 +38,7 @@ const FeedbackItem: React.FC<Props> = observer((props: Props) => {
             <View style={styles.feedbackContainer}>
                 <View style={styles.headerWrapper}>
                     <View style={styles.userInfo}>
-                        <Avatar source={user.avatar} size={PxDp(38)} />
+                        <Avatar source={user.avatar} size={pixel(38)} />
                         <SafeText style={styles.nameText}>{user.name}</SafeText>
                     </View>
                 </View>
@@ -52,11 +52,11 @@ const FeedbackItem: React.FC<Props> = observer((props: Props) => {
                             {created_at}
                         </Text>
                         <Row>
-                            <Iconfont name="remen1" size={PxDp(14)} color={Theme.slateGray1} />
-                            <Text style={[styles.metaText, { marginRight: PxDp(10) }]} numberOfLines={1}>
+                            <Iconfont name="remen1" size={pixel(14)} color={Theme.slateGray1} />
+                            <Text style={[styles.metaText, { marginRight: pixel(10) }]} numberOfLines={1}>
                                 {hot}
                             </Text>
-                            <Iconfont name="liuyanfill" size={PxDp(14)} color={Theme.slateGray1} />
+                            <Iconfont name="liuyanfill" size={pixel(14)} color={Theme.slateGray1} />
                             <Text style={styles.metaText} numberOfLines={1}>
                                 {count_comment || 0}
                             </Text>
@@ -71,23 +71,23 @@ const FeedbackItem: React.FC<Props> = observer((props: Props) => {
 export default FeedbackItem;
 
 const styles = StyleSheet.create({
-    bodyText: { color: Theme.defaultTextColor, fontSize: PxDp(16), letterSpacing: 0.8 },
+    bodyText: { color: Theme.defaultTextColor, fontSize: pixel(16), letterSpacing: 0.8 },
     bottomPartWrapper: {
-        marginTop: PxDp(10),
+        marginTop: pixel(10),
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'flex-start',
         alignItems: 'center',
     },
     contentBottom: {
-        marginTop: PxDp(12),
+        marginTop: pixel(12),
     },
     contentTop: {
-        marginTop: PxDp(12),
+        marginTop: pixel(12),
     },
     feedbackContainer: {
-        paddingHorizontal: PxDp(Theme.itemSpace),
-        marginVertical: PxDp(Theme.itemSpace),
+        paddingHorizontal: pixel(Theme.itemSpace),
+        marginVertical: pixel(Theme.itemSpace),
     },
     headerWrapper: {
         width: '100%',
@@ -96,50 +96,50 @@ const styles = StyleSheet.create({
     },
     info: {
         justifyContent: 'space-between',
-        marginLeft: PxDp(Theme.itemSpace),
+        marginLeft: pixel(Theme.itemSpace),
     },
     landscape: {
         width: COVER_WIDTH,
         height: (COVER_WIDTH * 9) / 16,
-        borderRadius: PxDp(6),
+        borderRadius: pixel(6),
     },
     metaList: {
         flex: 1,
         justifyContent: 'space-between',
     },
     metaText: {
-        marginLeft: PxDp(5),
-        fontSize: PxDp(11),
+        marginLeft: pixel(5),
+        fontSize: pixel(11),
         color: Theme.slateGray2,
     },
-    nameText: { fontSize: PxDp(14), color: Theme.defaultTextColor, marginLeft: PxDp(5) },
+    nameText: { fontSize: pixel(14), color: Theme.defaultTextColor, marginLeft: pixel(5) },
     portrait: {
         width: COVER_WIDTH * 0.5,
         height: COVER_WIDTH * 0.8,
-        borderRadius: PxDp(6),
+        borderRadius: pixel(6),
     },
     rewardText: {
-        marginLeft: PxDp(5),
-        fontSize: PxDp(11),
+        marginLeft: pixel(5),
+        fontSize: pixel(11),
         color: Theme.watermelon,
     },
     statusLabel: {
         flexDirection: 'row',
         alignItems: 'center',
-        height: PxDp(24),
-        borderRadius: PxDp(12),
-        paddingHorizontal: PxDp(9),
+        height: pixel(24),
+        borderRadius: pixel(12),
+        paddingHorizontal: pixel(9),
         backgroundColor: Theme.groundColour,
     },
     statusText: {
-        fontSize: PxDp(11),
+        fontSize: pixel(11),
         color: Theme.subTextColor,
     },
-    timeAgoText: { fontSize: PxDp(12), color: Theme.slateGray1, fontWeight: '300' },
+    timeAgoText: { fontSize: pixel(12), color: Theme.slateGray1, fontWeight: '300' },
     userInfo: {
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
-        marginRight: PxDp(Theme.itemSpace),
+        marginRight: pixel(Theme.itemSpace),
     },
 });

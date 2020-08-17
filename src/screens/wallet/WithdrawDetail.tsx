@@ -26,7 +26,7 @@ const WithdrawDetail = (props) => {
 
                     return (
                         <View style={{ backgroundColor: Theme.white || '#FFF' }}>
-                            <View style={{ paddingHorizontal: PxDp(15) }}>
+                            <View style={{ paddingHorizontal: pixel(15) }}>
                                 <View style={styles.header}>
                                     <Avatar size={38} source={userStore.me.avatar} />
                                     <Text style={styles.name}>{userStore.me.name}</Text>
@@ -36,7 +36,7 @@ const WithdrawDetail = (props) => {
                                     {withdraw.status === 1 ? (
                                         <Text
                                             style={{
-                                                fontSize: PxDp(16),
+                                                fontSize: pixel(16),
                                                 color: Theme.teaGreen,
                                             }}>
                                             交易成功
@@ -44,7 +44,7 @@ const WithdrawDetail = (props) => {
                                     ) : (
                                         <Text
                                             style={{
-                                                fontSize: PxDp(16),
+                                                fontSize: pixel(16),
                                                 color: Theme.errorColor,
                                             }}>
                                             交易失败
@@ -71,7 +71,7 @@ const WithdrawDetail = (props) => {
                                         style={[
                                             styles.row,
                                             {
-                                                paddingBottom: PxDp(15),
+                                                paddingBottom: pixel(15),
                                             },
                                         ]}>
                                         <Text style={styles.textLeft}>收款账户</Text>
@@ -87,8 +87,8 @@ const WithdrawDetail = (props) => {
                                 style={[
                                     styles.row,
                                     {
-                                        paddingBottom: PxDp(15),
-                                        paddingHorizontal: PxDp(15),
+                                        paddingBottom: pixel(15),
+                                        paddingHorizontal: pixel(15),
                                     },
                                 ]}>
                                 <Text style={styles.textLeft}>订单号</Text>
@@ -99,8 +99,8 @@ const WithdrawDetail = (props) => {
 
                             <View
                                 style={{
-                                    paddingHorizontal: PxDp(15),
-                                    borderTopWidth: PxDp(10),
+                                    paddingHorizontal: pixel(15),
+                                    borderTopWidth: pixel(10),
                                     borderTopColor: '#F0F0F0',
                                 }}>
                                 <View style={styles.footer}>
@@ -108,7 +108,7 @@ const WithdrawDetail = (props) => {
                                         style={[
                                             styles.textLeft,
                                             {
-                                                lineHeight: PxDp(22),
+                                                lineHeight: pixel(22),
                                             },
                                         ]}>
                                         回执信息 {'   '} <Text style={[styles.textRight]}> {withdraw.remark}</Text>
@@ -132,25 +132,25 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: PxDp(15),
+        marginTop: pixel(15),
     },
     name: {
-        paddingLeft: PxDp(10),
+        paddingLeft: pixel(10),
         fontSize: font(18),
         color: Theme.defaultTextColor,
     },
     info: {
         alignItems: 'center',
-        marginVertical: PxDp(20),
+        marginVertical: pixel(20),
     },
     money: {
         fontSize: font(36),
-        paddingBottom: PxDp(15),
+        paddingBottom: pixel(15),
         color: Theme.defaultTextColor,
         textAlign: 'center',
     },
     row: {
-        paddingBottom: PxDp(20),
+        paddingBottom: pixel(20),
         flexDirection: 'row',
         justifyContent: 'space-between',
     },
@@ -170,15 +170,15 @@ const styles = StyleSheet.create({
         textAlign: 'right',
     },
     borderRow: {
-        paddingBottom: PxDp(20),
-        paddingTop: PxDp(15),
+        paddingBottom: pixel(20),
+        paddingTop: pixel(15),
         flexDirection: 'row',
         justifyContent: 'space-between',
-        borderTopWidth: PxDp(1),
+        borderTopWidth: pixel(1),
         borderTopColor: Theme.borderColor,
     },
     footer: {
-        paddingVertical: PxDp(15),
+        paddingVertical: pixel(15),
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'center',

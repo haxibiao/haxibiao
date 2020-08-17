@@ -221,7 +221,7 @@ const Live = (props: { navigation: any; inCurrent: boolean }) => {
             )}
 
             {/* 以白色补上底部透明导航 */}
-            <View style={{ width: Device.WIDTH, height: PxDp(Theme.BOTTOM_HEIGHT), backgroundColor: '#FFF' }} />
+            <View style={{ width: Device.WIDTH, height: pixel(Theme.BOTTOM_HEIGHT), backgroundColor: '#FFF' }} />
         </PageCleared>
     );
 };

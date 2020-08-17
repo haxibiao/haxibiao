@@ -31,7 +31,7 @@ const Love = () => {
 
     const translateY = animation.current.interpolate({
         inputRange: [0, 1, 2],
-        outputRange: [0, 0, -PxDp(120)],
+        outputRange: [0, 0, -pixel(120)],
     });
 
     return (
@@ -49,8 +49,8 @@ const styles = StyleSheet.create({
         left: 200,
         right: 0,
         bottom: 0,
-        height: PxDp(120),
-        width: PxDp(120),
+        height: pixel(120),
+        width: pixel(120),
     },
 });
 

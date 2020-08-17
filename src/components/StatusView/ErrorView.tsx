@@ -48,14 +48,14 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: font(12),
-        marginTop: PxDp(10),
+        marginTop: pixel(10),
         color: Theme.subTextColor,
     },
     button: {
         maxWidth: '60%',
-        height: PxDp(44),
-        borderRadius: PxDp(6),
-        marginTop: PxDp(40),
+        height: pixel(44),
+        borderRadius: pixel(6),
+        marginTop: pixel(40),
         borderWidth: 0,
     },
     buttonText: {

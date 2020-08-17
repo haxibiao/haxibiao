@@ -100,7 +100,7 @@ export default observer(() => {
                             comment={comment}
                             replyHandler={replyHandler}
                             showReplyComment={false}
-                            separatorHeight={PxDp(10)}
+                            separatorHeight={pixel(10)}
                         />
                     )}
                     ListFooterComponent={() => <ListFooter hidden={hiddenListFooter} finished={!hasMorePages} />}
@@ -123,10 +123,10 @@ const styles = StyleSheet.create({
     container: {
         backgroundColor: '#fff',
         flex: 1,
-        paddingBottom: PxDp(Theme.HOME_INDICATOR_HEIGHT),
+        paddingBottom: pixel(Theme.HOME_INDICATOR_HEIGHT),
     },
     contentContainerStyle: {
         flexGrow: 1,
-        paddingBottom: Theme.HOME_INDICATOR_HEIGHT + PxDp(Theme.itemSpace),
+        paddingBottom: Theme.HOME_INDICATOR_HEIGHT + pixel(Theme.itemSpace),
     },
 });

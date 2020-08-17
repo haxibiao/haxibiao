@@ -7,8 +7,8 @@
 import React, { Component } from 'react';
 import { StyleSheet, View } from 'react-native';
 
-function ItemSeparator(props: { height: number, color: any, style: any }) {
-    const height = props.height || PxDp(8);
+function ItemSeparator(props: { height: number; color: any; style: any }) {
+    const height = props.height || pixel(8);
     const color = props.color || Theme.groundColour;
     return <View style={[{ height, backgroundColor: color }, props.style]} />;
 }

@@ -41,7 +41,7 @@ export default observer((props: { navigation: any }) => {
                     contentContainerStyle={{ flexGrow: 1 }}
                     keyExtractor={(item, index) => (item.id ? item.id.toString() : index.toString())}
                     renderItem={({ item }) => <FeedbackItem feedback={item} navigation={props.navigation} />}
-                    ItemSeparatorComponent={() => <ItemSeparator style={{ height: PxDp(10) }} />}
+                    ItemSeparatorComponent={() => <ItemSeparator style={{ height: pixel(10) }} />}
                     refreshing={loading}
                     onRefresh={refetch}
                     onEndReachedThreshold={0.01}
@@ -58,12 +58,12 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        paddingBottom: PxDp(Theme.BOTTOM_HEIGHT),
+        paddingBottom: pixel(Theme.BOTTOM_HEIGHT),
     },
     ad: {
-        minHeight: PxDp(200),
+        minHeight: pixel(200),
         justifyContent: 'center',
         alignItems: 'center',
-        marginVertical: PxDp(5),
+        marginVertical: pixel(5),
     },
 });

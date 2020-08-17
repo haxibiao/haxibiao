@@ -73,15 +73,15 @@ class DetailScreen extends Component {
                                 removeClippedSubviews={true}
                                 keyboardShouldPersistTaps={'handled'}
                                 scrollEventThrottle={16}>
-                                <View style={{ padding: PxDp(Theme.itemSpace) }}>
+                                <View style={{ padding: pixel(Theme.itemSpace) }}>
                                     <Row
                                         style={{
-                                            paddingBottom: PxDp(Theme.itemSpace),
+                                            paddingBottom: pixel(Theme.itemSpace),
                                         }}>
                                         <TouchableOpacity
                                             style={{ marginRight: 6 }}
                                             onPress={() => this.props.navigation.navigate('User', { user })}>
-                                            <Avatar size={PxDp(40)} source={user.avatar} />
+                                            <Avatar size={pixel(40)} source={user.avatar} />
                                         </TouchableOpacity>
                                         <Text style={{ fontSize: font(15), color: Theme.secondaryTextColor }}>
                                             {user.name}
@@ -103,7 +103,7 @@ class DetailScreen extends Component {
                                         </Text>
                                     </View>
                                 </View>
-                                <View style={{ paddingHorizontal: PxDp(Theme.itemSpace) }}>
+                                <View style={{ paddingHorizontal: pixel(Theme.itemSpace) }}>
                                     <HTML
                                         html={article.body}
                                         imagesMaxWidth={Device.WIDTH}

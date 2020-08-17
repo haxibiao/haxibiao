@@ -7,10 +7,10 @@ const SpiderVideoTask = () => {
 
     return (
         <PageContainer title="任务介绍" white>
-            <ScrollView style={{ flex: 1, paddingHorizontal: PxDp(15) }}>
+            <ScrollView style={{ flex: 1, paddingHorizontal: pixel(15) }}>
                 <Image
                     source={require('!/assets/images/spider_video_task1.png')}
-                    style={{ width: WIDTH, height: (WIDTH * 724) / 892, marginTop: PxDp(15) }}
+                    style={{ width: WIDTH, height: (WIDTH * 724) / 892, marginTop: pixel(15) }}
                 />
                 <Image
                     source={require('!/assets/images/spider_video_task2.png')}

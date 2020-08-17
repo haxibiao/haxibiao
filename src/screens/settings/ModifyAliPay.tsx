@@ -65,13 +65,13 @@ class EditProfileScreen extends Component {
         return (
             <PageContainer title="账户绑定" white submitting={submitting}>
                 <View style={styles.container}>
-                    <View style={{ marginTop: PxDp(50), paddingHorizontal: PxDp(25), paddingBottom: PxDp(15) }}>
+                    <View style={{ marginTop: pixel(50), paddingHorizontal: pixel(25), paddingBottom: pixel(15) }}>
                         <Text
                             style={{
                                 color: Theme.black,
                                 fontSize: 20,
                                 fontWeight: '600',
-                                paddingBottom: PxDp(20),
+                                paddingBottom: pixel(20),
                             }}>
                             验证账号
                         </Text>
@@ -84,7 +84,7 @@ class EditProfileScreen extends Component {
                                     ? '验证码将发送至账号 ' + me.phone
                                     : '未绑定手机号，请绑定手机号或重新登录'
                             }
-                            style={{ height: PxDp(48) }}
+                            style={{ height: pixel(48) }}
                             onChangeText={(value) => {
                                 this.setState({
                                     pay_account: value,
@@ -106,36 +106,36 @@ const styles = StyleSheet.create({
         backgroundColor: Theme.white || '#FFF',
     },
     header: {
-        paddingHorizontal: PxDp(25),
-        marginVertical: PxDp(15),
+        paddingHorizontal: pixel(25),
+        marginVertical: pixel(15),
     },
     tips: {
         fontWeight: '300',
         color: Theme.grey,
-        lineHeight: PxDp(20),
+        lineHeight: pixel(20),
     },
     tipsText: {
         color: Theme.grey,
-        fontSize: PxDp(13),
+        fontSize: pixel(13),
     },
     inputWrap: {
-        borderBottomWidth: PxDp(0.5),
+        borderBottomWidth: pixel(0.5),
         borderBottomColor: Theme.borderColor,
-        marginHorizontal: PxDp(25),
+        marginHorizontal: pixel(25),
         paddingHorizontal: 0,
     },
     button: {
-        height: PxDp(38),
-        borderRadius: PxDp(5),
-        marginHorizontal: PxDp(25),
-        marginTop: PxDp(35),
+        height: pixel(38),
+        borderRadius: pixel(5),
+        marginHorizontal: pixel(25),
+        marginTop: pixel(35),
         backgroundColor: Theme.primaryColor,
     },
     footer: {
-        fontSize: PxDp(12),
-        lineHeight: PxDp(16),
+        fontSize: pixel(12),
+        lineHeight: pixel(16),
         color: Theme.secondaryColor,
-        paddingTop: PxDp(15),
+        paddingTop: pixel(15),
     },
 });
 

@@ -87,14 +87,14 @@ const styles = StyleSheet.create({
     closeBtn: {
         alignItems: 'center',
         backgroundColor: 'rgba(255,255,255,0.6)',
-        borderRadius: PxDp(14),
-        height: PxDp(28),
+        borderRadius: pixel(14),
+        height: pixel(28),
         justifyContent: 'center',
-        paddingHorizontal: PxDp(10),
+        paddingHorizontal: pixel(10),
     },
     closeBtnText: {
         color: '#fff',
-        fontSize: PxDp(15),
+        fontSize: pixel(15),
     },
     container: {
         alignItems: 'center',
@@ -107,9 +107,9 @@ const styles = StyleSheet.create({
     header: {
         alignItems: 'flex-end',
         justifyContent: 'center',
-        paddingHorizontal: PxDp(Theme.itemSpace),
+        paddingHorizontal: pixel(Theme.itemSpace),
         position: 'absolute',
-        top: PxDp(Theme.statusBarHeight + 10),
+        top: pixel(Theme.statusBarHeight + 10),
         width: '100%',
     },
 });

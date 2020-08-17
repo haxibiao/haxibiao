@@ -57,7 +57,7 @@ class FollowButton extends Component<Props> {
         };
 
         titleStyle = {
-            fontSize: PxDp(13),
+            fontSize: pixel(13),
             color: textColor,
             overflow: 'hidden',
             ...titleStyle,

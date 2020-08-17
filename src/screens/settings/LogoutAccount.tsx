@@ -9,7 +9,7 @@ const LogoutAccount = (props) => {
     return (
         <PageContainer title="注销账号" white>
             <View style={styles.container}>
-                <Avatar style={styles.caveat} size={PxDp(55)} source={require('!/assets/images/logout.png')} />
+                <Avatar style={styles.caveat} size={pixel(55)} source={require('!/assets/images/logout.png')} />
 
                 <Text style={{ fontSize: font(22), color: '#000000' }}>将现在的账号注销</Text>
 
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     caveat: {
-        borderRadius: PxDp(15),
+        borderRadius: pixel(15),
         margin: 15,
         marginTop: 30,
         alignContent: 'center',
@@ -98,8 +98,8 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         justifyContent: 'center',
         alignItems: 'center',
-        height: PxDp(35),
-        width: PxDp(320),
+        height: pixel(35),
+        width: pixel(320),
         backgroundColor: '#FEC200',
         margin: 15,
     },

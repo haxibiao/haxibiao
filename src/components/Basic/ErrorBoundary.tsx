@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: font(12),
-        marginTop: PxDp(10),
+        marginTop: pixel(10),
         color: Theme.subTextColor,
     },
 });

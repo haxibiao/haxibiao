@@ -10,7 +10,7 @@ import RewardProgress from './components/RewardProgress';
 import CommentOverlay from '../comment/CommentOverlay';
 import { useNavigation } from '~/router';
 import { observer, appStore, Keys, Storage, userStore } from '~/store';
-import VideoStore from '~/store/VideoStore';
+import VideoStore from '!/src/store/DrawVideoStore';
 
 export default observer(() => {
     const me = { ...userStore.me };
@@ -212,8 +212,8 @@ const styles = StyleSheet.create({
     },
     rewardProgress: {
         position: 'absolute',
-        right: PxDp(Theme.itemSpace),
-        bottom: PxDp(350 + Theme.BOTTOM_HEIGHT),
+        right: pixel(Theme.itemSpace),
+        bottom: pixel(350 + Theme.BOTTOM_HEIGHT),
     },
     overlayTip: {
         position: 'absolute',

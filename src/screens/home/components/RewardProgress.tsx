@@ -5,7 +5,7 @@ import { observer, userStore } from '~/store';
 import { GQL, useMutation } from '~/apollo';
 import { middlewareNavigate } from '~/router';
 import * as Progress from 'react-native-progress';
-import VideoStore from '~/store/VideoStore';
+import VideoStore from '!/src/store/DrawVideoStore';
 
 const RewardProgress = observer(() => {
     const firstReward = useRef(true);
@@ -88,10 +88,10 @@ const RewardProgress = observer(() => {
                 {progress > 0 && (
                     <Progress.Circle
                         progress={progress / 100}
-                        size={PxDp(54)}
+                        size={pixel(54)}
                         borderWidth={0}
                         color="#ff5644"
-                        thickness={PxDp(4)}
+                        thickness={pixel(4)}
                         endAngle={1}
                         strokeCap="round"
                     />
@@ -102,14 +102,14 @@ const RewardProgress = observer(() => {
 });
 const styles = StyleSheet.create({
     circleProgress: {
-        height: PxDp(54),
+        height: pixel(54),
         position: 'relative',
-        width: PxDp(54),
+        width: pixel(54),
     },
     rewardImage: {
         ...StyleSheet.absoluteFill,
-        height: PxDp(54),
-        width: PxDp(54),
+        height: pixel(54),
+        width: pixel(54),
     },
     rewardText: {
         position: 'absolute',

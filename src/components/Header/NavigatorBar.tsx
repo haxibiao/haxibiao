@@ -40,10 +40,10 @@ export default (props: any) => {
             position: 'absolute',
             left: 0,
             right: 0,
-            height: PxDp(Theme.NAVBAR_HEIGHT + Theme.statusBarHeight),
-            paddingTop: PxDp(Theme.statusBarHeight),
-            paddingLeft: PxDp(Theme.itemSpace),
-            paddingRight: PxDp(Theme.itemSpace),
+            height: pixel(Theme.NAVBAR_HEIGHT + Theme.statusBarHeight),
+            paddingTop: pixel(Theme.statusBarHeight),
+            paddingLeft: pixel(Theme.itemSpace),
+            paddingRight: pixel(Theme.itemSpace),
             borderBottomWidth: Theme.minimumPixel,
             borderBottomColor: Theme.navBarSeparatorColor,
             flexDirection: 'row',
@@ -55,9 +55,9 @@ export default (props: any) => {
         // build titleViewStyle
         titleViewStyle = {
             position: 'absolute',
-            top: PxDp(Theme.statusBarHeight),
-            left: PxDp(Theme.itemSpace),
-            right: PxDp(Theme.itemSpace),
+            top: pixel(Theme.statusBarHeight),
+            left: pixel(Theme.itemSpace),
+            right: pixel(Theme.itemSpace),
             bottom: 0,
             opacity: barOpacity,
             flexDirection: 'row',
@@ -115,7 +115,7 @@ export default (props: any) => {
                         width: Theme.navBarContentHeight,
                         justifyContent: 'center',
                     }}>
-                    <Iconfont name="zuojiantou" color={'#333'} size={PxDp(22)} />
+                    <Iconfont name="zuojiantou" color={'#333'} size={pixel(22)} />
                 </TouchableOpacity>
             );
         }
@@ -180,7 +180,7 @@ const styles = StyleSheet.create({
     titleText: {
         color: '#666',
         flex: 1,
-        fontSize: PxDp(19),
+        fontSize: pixel(19),
         textAlign: 'center',
     },
 });

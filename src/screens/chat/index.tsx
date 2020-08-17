@@ -97,7 +97,7 @@ const Chat = observer((props: Props) => {
     const renderSend = (props) => {
         return (
             <Send {...props} onSend={ChatStore.onSendTextMessage} containerStyle={styles.sendButton} alwaysShowSend>
-                <Text style={{ color: '#000', fontSize: PxDp(14) }}>发送</Text>
+                <Text style={{ color: '#000', fontSize: pixel(14) }}>发送</Text>
             </Send>
         );
     };
@@ -164,7 +164,7 @@ const Chat = observer((props: Props) => {
                                             style={{
                                                 alignItems: 'center',
                                             }}>
-                                            <Text style={{ fontSize: PxDp(12) }}>查看更早的消息</Text>
+                                            <Text style={{ fontSize: pixel(12) }}>查看更早的消息</Text>
                                         </View>
                                     </TouchableOpacity>
                                 </View>
@@ -189,29 +189,29 @@ const Chat = observer((props: Props) => {
 const chatStyle = {
     bubbleWrapper: {
         left: {
-            marginBottom: PxDp(15),
-            marginLeft: PxDp(3),
+            marginBottom: pixel(15),
+            marginLeft: pixel(3),
             backgroundColor: '#eee',
-            borderWidth: PxDp(2),
+            borderWidth: pixel(2),
             borderColor: '#fff',
             overflow: 'hidden',
         },
         right: {
-            marginBottom: PxDp(15),
-            marginRight: PxDp(3),
+            marginBottom: pixel(15),
+            marginRight: pixel(3),
             backgroundColor: '#b7e8ff',
-            borderWidth: PxDp(2),
+            borderWidth: pixel(2),
             borderColor: '#fff',
             overflow: 'hidden',
         },
     },
     bubbleText: {
         left: {
-            padding: PxDp(5),
+            padding: pixel(5),
             color: '#515151',
         },
         right: {
-            padding: PxDp(5),
+            padding: pixel(5),
             color: '#515151',
         },
     },
@@ -219,17 +219,17 @@ const chatStyle = {
 
 const styles = StyleSheet.create({
     inputToolbar: {
-        // paddingVertical: PxDp(4),
+        // paddingVertical: pixel(4),
         borderTopColor: '#F0F0F0',
-        borderTopWidth: PxDp(0.5),
+        borderTopWidth: pixel(0.5),
         backgroundColor: '#FFF',
     },
     sendButton: {
         // marginBottom: 5,
-        marginRight: PxDp(15),
+        marginRight: pixel(15),
         // width: 60,
         // height: 31,
-        // borderRadius: PxDp(6),
+        // borderRadius: pixel(6),
         alignItems: 'center',
         justifyContent: 'center',
         // backgroundColor: Theme.primaryColor,

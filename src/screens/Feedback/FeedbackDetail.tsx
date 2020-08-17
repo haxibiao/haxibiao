@@ -85,7 +85,7 @@ const index = (props: Props) => {
         (e) => {
             const { contentOffset, contentSize } = e.nativeEvent;
             // fetchMore触发条件
-            if (contentSize.height - contentOffset.y < Device.HEIGHT - PxDp(50)) {
+            if (contentSize.height - contentOffset.y < Device.HEIGHT - pixel(50)) {
                 __.throttle(fetchMoreComments, 500);
             }
         },
@@ -155,13 +155,13 @@ const styles = StyleSheet.create({
         paddingBottom: Theme.HOME_INDICATOR_HEIGHT,
     },
     contentWrap: {
-        margin: PxDp(Theme.itemSpace),
+        margin: pixel(Theme.itemSpace),
     },
     commentsHeader: {
         borderBottomColor: Theme.borderColor,
-        borderBottomWidth: PxDp(0.5),
-        paddingVertical: PxDp(15),
-        paddingLeft: PxDp(15),
+        borderBottomWidth: pixel(0.5),
+        paddingVertical: pixel(15),
+        paddingLeft: pixel(15),
     },
 });
 

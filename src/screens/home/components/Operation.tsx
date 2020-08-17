@@ -116,21 +116,21 @@ const styles = StyleSheet.create({
     body: {
         flexDirection: 'row',
         justifyContent: 'center',
-        paddingVertical: PxDp(30),
+        paddingVertical: pixel(30),
     },
     optionIcon: {
-        height: PxDp(50),
-        width: PxDp(50),
+        height: pixel(50),
+        width: pixel(50),
     },
     optionItem: {
         alignItems: 'center',
         justifyContent: 'center',
-        marginHorizontal: PxDp(25),
+        marginHorizontal: pixel(25),
     },
     optionName: {
         color: '#fff',
-        fontSize: PxDp(13),
-        marginTop: PxDp(10),
+        fontSize: pixel(13),
+        marginTop: pixel(10),
     },
     optionsContainer: {
         height: Device.HEIGHT,
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
     },
     title: {
         color: '#fff',
-        fontSize: PxDp(20),
+        fontSize: pixel(20),
         textAlign: 'center',
     },
 });

@@ -29,7 +29,7 @@ const ReplyComments = (props: Props) => {
     if (CommentsView) {
         return (
             <TouchableOpacity
-                style={{ marginTop: PxDp(10) }}
+                style={{ marginTop: pixel(10) }}
                 activeOpacity={1}
                 onPress={() => navigation.navigate('Comment', { comment })}>
                 <View style={styles.container}>
@@ -49,20 +49,20 @@ const styles = StyleSheet.create({
     },
     container: {
         backgroundColor: '#F8F9FB',
-        borderRadius: PxDp(5),
+        borderRadius: pixel(5),
         flex: 1,
-        paddingHorizontal: PxDp(10),
-        paddingVertical: PxDp(8),
+        paddingHorizontal: pixel(10),
+        paddingVertical: pixel(8),
     },
     linkText: {
         color: Theme.link,
-        fontSize: PxDp(13),
-        lineHeight: PxDp(20),
+        fontSize: pixel(13),
+        lineHeight: pixel(20),
     },
     text: {
         color: Theme.subTextColor,
-        fontSize: PxDp(13),
-        lineHeight: PxDp(20),
+        fontSize: pixel(13),
+        lineHeight: pixel(20),
     },
 });
 

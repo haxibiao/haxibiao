@@ -6,7 +6,7 @@ import { userStore } from '~/store';
 
 const OverlayWidth = Device.WIDTH * 0.6;
 const ADWidth =
-    Device.WIDTH * 0.6 > PxDp(400) ? PxDp(360) : Device.WIDTH * 0.6 > PxDp(300) ? Device.WIDTH * 0.6 : PxDp(260);
+    Device.WIDTH * 0.6 > pixel(400) ? pixel(360) : Device.WIDTH * 0.6 > pixel(300) ? Device.WIDTH * 0.6 : pixel(260);
 
 export const useDetainment = (navigation: any, isEntry: boolean) => {
     const continuous = useRef(true);
@@ -114,47 +114,47 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         color: '#969696',
-        fontSize: PxDp(15),
+        fontSize: pixel(15),
     },
     contentText: {
         color: '#202020',
-        fontSize: PxDp(16),
+        fontSize: pixel(16),
     },
     strategy: {
         alignItems: 'flex-end',
-        marginTop: PxDp(5),
+        marginTop: pixel(5),
     },
     strategyText: {
-        fontSize: PxDp(15),
+        fontSize: pixel(15),
         color: '#FFCC01',
     },
     overlay: { alignItems: 'center', justifyContent: 'center' },
     overlayAd: {
         backgroundColor: '#f0f0f0',
-        marginTop: PxDp(20),
+        marginTop: pixel(20),
         minHeight: ADWidth * 0.5,
         width: ADWidth,
     },
     overlayContent: {
-        padding: PxDp(20),
-        paddingVertical: PxDp(30),
+        padding: pixel(20),
+        paddingVertical: pixel(30),
     },
     overlayFooter: {
         alignItems: 'stretch',
         borderColor: '#f0f0f0',
-        borderTopWidth: PxDp(1),
+        borderTopWidth: pixel(1),
         flexDirection: 'row',
-        height: PxDp(50),
+        height: pixel(50),
     },
     overlayInner: {
         backgroundColor: '#ffffff',
-        borderRadius: PxDp(10),
-        maxWidth: PxDp(400),
-        minWidth: PxDp(300),
+        borderRadius: pixel(10),
+        maxWidth: pixel(400),
+        minWidth: pixel(300),
         width: OverlayWidth,
     },
     verticalLine: {
         backgroundColor: '#f0f0f0',
-        width: PxDp(1),
+        width: pixel(1),
     },
 });

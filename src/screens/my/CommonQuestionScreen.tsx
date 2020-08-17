@@ -96,22 +96,22 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'flex-end',
-        marginTop: PxDp(Theme.itemSpace),
+        marginTop: pixel(Theme.itemSpace),
     },
     answerText: {
         color: Theme.defaultTextColor,
         fontSize: font(15),
-        lineHeight: PxDp(18),
+        lineHeight: pixel(18),
     },
     avatar: {
-        height: PxDp(42),
-        width: PxDp(42),
+        height: pixel(42),
+        width: pixel(42),
     },
     container: {
         backgroundColor: '#fff',
         flexGrow: 1,
         paddingBottom: Theme.HOME_INDICATOR_HEIGHT,
-        paddingTop: PxDp(Theme.itemSpace * 2),
+        paddingTop: pixel(Theme.itemSpace * 2),
     },
     content: {
         flex: 1,
@@ -119,19 +119,19 @@ const styles = StyleSheet.create({
     footer: {
         alignItems: 'center',
         backgroundColor: '#f9f9f9',
-        padding: PxDp(Theme.itemSpace),
+        padding: pixel(Theme.itemSpace),
     },
     inner: {
-        borderRadius: PxDp(5),
-        padding: PxDp(10),
+        borderRadius: pixel(5),
+        padding: pixel(10),
     },
     issueItem: {
-        marginBottom: PxDp(Theme.itemSpace * 2),
-        paddingHorizontal: PxDp(Theme.itemSpace),
+        marginBottom: pixel(Theme.itemSpace * 2),
+        paddingHorizontal: pixel(Theme.itemSpace),
     },
     left: {
         backgroundColor: '#FFEBEE',
-        marginRight: PxDp(10),
+        marginRight: pixel(10),
     },
     question: {
         flex: 1,
@@ -143,11 +143,11 @@ const styles = StyleSheet.create({
         color: Theme.defaultTextColor,
         fontSize: font(15),
         fontWeight: 'bold',
-        lineHeight: PxDp(20),
+        lineHeight: pixel(20),
     },
     right: {
         backgroundColor: '#E1F4FE',
-        marginLeft: PxDp(10),
+        marginLeft: pixel(10),
     },
 });
 

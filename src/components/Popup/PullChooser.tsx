@@ -10,8 +10,8 @@ import { SafeText } from '../Basic';
 import { ItemSeparator } from '../Form';
 
 type ChooserItem = {
-    title: string,
-    onPress: Function,
+    title: string;
+    onPress: Function;
 };
 
 type AnimateType = 'slide' | 'pop';
@@ -25,7 +25,7 @@ class PullChooser {
                     containerStyle={{ backgroundColor: 'transparent' }}
                     style={{ flexDirection: 'column', justifyContent: 'center' }}
                     animated
-                    ref={ref => (this.popViewRef = ref)}>
+                    ref={(ref) => (this.popViewRef = ref)}>
                     <View style={styles.popSheetView}>
                         <FlatList
                             bounces={false}
@@ -45,7 +45,7 @@ class PullChooser {
                                     </TouchableOpacity>
                                 );
                             }}
-                            ItemSeparatorComponent={() => <ItemSeparator height={PxDp(1)} />}
+                            ItemSeparatorComponent={() => <ItemSeparator height={pixel(1)} />}
                             keyExtractor={(item, index) => 'key_' + (item.id ? item.id : index)}
                         />
                     </View>
@@ -57,7 +57,7 @@ class PullChooser {
                     containerStyle={{ backgroundColor: 'transparent' }}
                     style={{ flexDirection: 'column', justifyContent: 'flex-end' }}
                     animated
-                    ref={ref => (this.popViewRef = ref)}>
+                    ref={(ref) => (this.popViewRef = ref)}>
                     <View style={styles.actionSheetView}>
                         <FlatList
                             bounces={false}
@@ -78,7 +78,7 @@ class PullChooser {
                                     </TouchableOpacity>
                                 );
                             }}
-                            ItemSeparatorComponent={() => <ItemSeparator height={PxDp(1)} />}
+                            ItemSeparatorComponent={() => <ItemSeparator height={pixel(1)} />}
                             keyExtractor={(item, index) => 'key_' + (item.id ? item.id : index)}
                         />
                         <TouchableOpacity
@@ -105,35 +105,35 @@ const styles = StyleSheet.create({
     actionSheetView: {
         marginBottom: Theme.HOME_INDICATOR_HEIGHT,
         overflow: 'hidden',
-        padding: PxDp(Theme.itemSpace),
+        padding: pixel(Theme.itemSpace),
     },
     popSheetView: {
         marginBottom: Theme.HOME_INDICATOR_HEIGHT,
         overflow: 'hidden',
-        padding: PxDp(Theme.itemSpace * 2),
+        padding: pixel(Theme.itemSpace * 2),
     },
     chooseContainer: {
         backgroundColor: '#fff',
-        borderRadius: PxDp(6),
+        borderRadius: pixel(6),
     },
     chooserItem: {
-        height: PxDp(50),
+        height: pixel(50),
         justifyContent: 'center',
     },
     chooserItemText: {
         color: Theme.defaultTextColor,
-        fontSize: PxDp(16),
+        fontSize: pixel(16),
         textAlign: 'center',
     },
     closeItem: {
-        height: PxDp(46),
+        height: pixel(46),
         justifyContent: 'center',
         backgroundColor: '#fff',
-        borderRadius: PxDp(6),
-        marginTop: PxDp(Theme.itemSpace),
+        borderRadius: pixel(6),
+        marginTop: pixel(Theme.itemSpace),
     },
     headerText: {
-        fontSize: PxDp(16),
+        fontSize: pixel(16),
         color: Theme.confirm,
         textAlign: 'center',
     },

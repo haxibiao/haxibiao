@@ -37,7 +37,7 @@ export default function Douyin_tutorial() {
                     <View style={styles.content}>
                         <Text style={{ color: '#212121' }}>{item.value}</Text>
                         <Image
-                            style={{ height: 0.55 * height, width: 0.6 * width, marginTop: PxDp(20) }}
+                            style={{ height: 0.55 * height, width: 0.6 * width, marginTop: pixel(20) }}
                             source={{ uri: item.url }}
                         />
                         <View
@@ -62,6 +62,6 @@ const styles = StyleSheet.create({
         height: 'auto',
         paddingHorizontal: 14,
         alignItems: 'center',
-        marginTop: PxDp(20),
+        marginTop: pixel(20),
     },
 });

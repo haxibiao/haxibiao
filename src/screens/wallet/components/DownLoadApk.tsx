@@ -119,9 +119,9 @@ const DownLoadApk = (props) => {
                 style={[
                     styles.downloadProgress,
                     {
-                        borderTopRightRadius: downloading ? 0 : PxDp(5),
-                        borderBottomRightRadius: downloading ? 0 : PxDp(5),
-                        width: downloading ? ((Device.WIDTH - PxDp(88)) * received) / total : Device.WIDTH - PxDp(88),
+                        borderTopRightRadius: downloading ? 0 : pixel(5),
+                        borderBottomRightRadius: downloading ? 0 : pixel(5),
+                        width: downloading ? ((Device.WIDTH - pixel(88)) * received) / total : Device.WIDTH - pixel(88),
                     },
                 ]}>
                 <Text style={styles.downloadText}>{buttonName}</Text>
@@ -133,21 +133,21 @@ const DownLoadApk = (props) => {
 const styles = StyleSheet.create({
     button: {
         backgroundColor: Theme.primaryColor,
-        borderRadius: PxDp(5),
-        width: Device.WIDTH - PxDp(88),
-        height: PxDp(42),
+        borderRadius: pixel(5),
+        width: Device.WIDTH - pixel(88),
+        height: pixel(42),
     },
     download: {
         backgroundColor: '#F0F0F0',
-        borderRadius: PxDp(5),
-        width: Device.WIDTH - PxDp(88),
-        height: PxDp(42),
+        borderRadius: pixel(5),
+        width: Device.WIDTH - pixel(88),
+        height: pixel(42),
     },
     downloadProgress: {
         backgroundColor: Theme.primaryColor,
-        borderTopLeftRadius: PxDp(5),
-        borderBottomLeftRadius: PxDp(5),
-        height: PxDp(42),
+        borderTopLeftRadius: pixel(5),
+        borderBottomLeftRadius: pixel(5),
+        height: pixel(42),
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -158,8 +158,8 @@ const styles = StyleSheet.create({
         textAlignVertical: 'center',
         left: 0,
         top: 0,
-        width: Device.WIDTH - PxDp(88),
-        height: PxDp(42),
+        width: Device.WIDTH - pixel(88),
+        height: pixel(42),
     },
 });
 

@@ -25,7 +25,7 @@ interface Post {
     video: Video;
 }
 
-class VideoStore {
+class DrawVideoStore {
     readonly rewardLimit: number = 30; // 奖励频率
     public playedVideoIds: number[] = []; // 后端需记录用户浏览的视频
 
@@ -35,7 +35,6 @@ class VideoStore {
     @observable public isFinish: boolean = false;
     @observable public isRefreshing: boolean = false;
     @observable public isLoadMore: boolean = false;
-    @observable public videoPaused: boolean = false;
     @observable public currentPage: number = 0;
     @observable public viewableItemIndex: number = -1;
     @observable public rewardProgress: number = 0;
@@ -53,7 +52,6 @@ class VideoStore {
         this.isFinish = false;
         this.isRefreshing = false;
         this.isLoadMore = false;
-        this.videoPaused = false;
         this.viewableItemIndex = -1;
         this.rewardProgress = 0;
         this.getReward = [];
@@ -66,20 +64,10 @@ class VideoStore {
     }
 
     @action.bound
-    public play() {
-        this.videoPaused = false;
-    }
-
-    @action.bound
-    public pause() {
-        this.videoPaused = true;
-    }
-
-    @action.bound
     public addGetRewardId(id: any) {
         this.getReward = this.getReward.concat(id);
         console.log('this.getReward', this.getReward);
     }
 }
 
-export default new VideoStore();
+export default new DrawVideoStore();

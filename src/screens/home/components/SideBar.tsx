@@ -50,7 +50,7 @@ export default observer((props) => {
                     }}>
                     <Avatar
                         source={Helper.syncGetter('user.avatar', media)}
-                        size={PxDp(52)}
+                        size={pixel(52)}
                         style={{ borderColor: '#fff', borderWidth: 1 }}
                     />
                 </TouchableOpacity>
@@ -87,22 +87,22 @@ const styles = StyleSheet.create({
     countText: {
         color: 'rgba(255,255,255,0.8)',
         fontSize: font(12),
-        marginTop: PxDp(10),
+        marginTop: pixel(10),
         textAlign: 'center',
     },
     imageStyle: {
-        height: PxDp(40),
-        width: PxDp(40),
+        height: pixel(40),
+        width: pixel(40),
     },
     itemWrap: {
-        marginTop: PxDp(20),
+        marginTop: pixel(20),
     },
     questionReward: {
-        bottom: PxDp(20),
-        height: (PxDp(40) * 48) / 142,
-        left: PxDp(0),
+        bottom: pixel(20),
+        height: (pixel(40) * 48) / 142,
+        left: pixel(0),
         position: 'absolute',
-        width: PxDp(40),
+        width: pixel(40),
     },
     sideBar: {
         alignItems: 'center',

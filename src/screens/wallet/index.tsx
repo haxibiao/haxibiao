@@ -103,7 +103,7 @@ const walletAdapterData = {
     available_balance: 0,
 };
 
-const BANNER_WIDTH = Device.WIDTH - PxDp(Theme.itemSpace * 2);
+const BANNER_WIDTH = Device.WIDTH - pixel(Theme.itemSpace * 2);
 
 export default observer(() => {
     const navigation = useNavigation();
@@ -373,7 +373,7 @@ export default observer(() => {
                                             styles.boldBlackText2,
                                             Device.Android && {
                                                 fontFamily: ' ',
-                                                marginLeft: PxDp(2),
+                                                marginLeft: pixel(2),
                                             },
                                         ]}>
                                         {`日${Config.limitAlias}`}
@@ -386,7 +386,7 @@ export default observer(() => {
                                             styles.boldBlackText2,
                                             Device.Android && {
                                                 fontFamily: ' ',
-                                                marginLeft: PxDp(2),
+                                                marginLeft: pixel(2),
                                             },
                                         ]}>
                                         {`总${Config.limitAlias}`}
@@ -402,7 +402,7 @@ export default observer(() => {
                     <Text style={styles.withdrawTitle}>提现到</Text>
                     {renderBindTips()}
                 </View>
-                <View style={{ paddingHorizontal: PxDp(Theme.itemSpace) }}>
+                <View style={{ paddingHorizontal: pixel(Theme.itemSpace) }}>
                     <Row style={{ flexWrap: 'wrap', justifyContent: 'space-between' }}>
                         {WithdrawalPlatforms.map((data, index) => {
                             if (Device.IOS && data.type === 'WECHAT') return null;
@@ -455,7 +455,7 @@ export default observer(() => {
 
                 <View
                     style={{
-                        margin: PxDp(Theme.itemSpace),
+                        margin: pixel(Theme.itemSpace),
                         marginBottom: 0,
                         flexDirection: 'row',
                         alignItems: 'center',
@@ -464,7 +464,7 @@ export default observer(() => {
                     <TouchableOpacity onPress={TokenDescription}>
                         <Image
                             source={require('!/assets/images/tokenDescription.png')}
-                            style={{ width: PxDp(18), height: PxDp(18), marginLeft: PxDp(5) }}
+                            style={{ width: pixel(18), height: pixel(18), marginLeft: pixel(5) }}
                         />
                     </TouchableOpacity>
                 </View>
@@ -483,8 +483,8 @@ export default observer(() => {
                                     />
                                     <Text
                                         style={{
-                                            marginTop: PxDp(6),
-                                            fontSize: PxDp(14),
+                                            marginTop: pixel(6),
+                                            fontSize: pixel(14),
                                             color: Theme.defaultTextColor,
                                         }}>
                                         <Text
@@ -505,7 +505,7 @@ export default observer(() => {
                                         <Iconfont
                                             name={selected ? 'radiobuttonchecked' : 'radiobuttonunchecked'}
                                             color={selected ? Theme.watermelon : Theme.borderColor}
-                                            size={PxDp(20)}
+                                            size={pixel(20)}
                                         />
                                     </View>
                                 </TouchableOpacity>
@@ -568,7 +568,7 @@ export default observer(() => {
     );
 });
 
-const valueItemWidth = (Device.WIDTH - PxDp(Theme.itemSpace * 3)) / 2;
+const valueItemWidth = (Device.WIDTH - pixel(Theme.itemSpace * 3)) / 2;
 
 const styles = StyleSheet.create({
     banner: {
@@ -576,13 +576,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'stretch',
-        padding: PxDp(Theme.itemSpace),
+        padding: pixel(Theme.itemSpace),
     },
     bannerRight: {
         justifyContent: 'space-between',
     },
     bannerImage: {
-        borderRadius: PxDp(10),
+        borderRadius: pixel(10),
         height: BANNER_WIDTH * 0.4,
         overflow: 'hidden',
         resizeMode: 'contain',
@@ -605,7 +605,7 @@ const styles = StyleSheet.create({
     blackText1: {
         color: '#000',
         alignItems: 'center',
-        marginLeft: PxDp(5),
+        marginLeft: pixel(5),
         fontSize: font(20),
     },
 
@@ -627,20 +627,20 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     broadTipsImage: {
-        height: PxDp(16),
-        marginRight: PxDp(5),
-        width: PxDp(16),
+        height: pixel(16),
+        marginRight: pixel(5),
+        width: pixel(16),
     },
     container: {
         backgroundColor: '#fff',
         flexGrow: 1,
-        paddingBottom: PxDp(48) + PxDp(Theme.itemSpace * 2) + Theme.HOME_INDICATOR_HEIGHT,
+        paddingBottom: pixel(48) + pixel(Theme.itemSpace * 2) + Theme.HOME_INDICATOR_HEIGHT,
     },
     fixWithdrawBtn: {
-        bottom: PxDp(Theme.itemSpace * 2) + Theme.HOME_INDICATOR_HEIGHT,
-        left: PxDp(Theme.itemSpace * 2),
+        bottom: pixel(Theme.itemSpace * 2) + Theme.HOME_INDICATOR_HEIGHT,
+        left: pixel(Theme.itemSpace * 2),
         position: 'absolute',
-        right: PxDp(Theme.itemSpace * 2),
+        right: pixel(Theme.itemSpace * 2),
     },
     moneyText: {
         color: Theme.subTextColor,
@@ -655,14 +655,14 @@ const styles = StyleSheet.create({
     },
     rule: {
         backgroundColor: '#fff',
-        borderRadius: PxDp(15),
-        margin: PxDp(Theme.itemSpace),
+        borderRadius: pixel(15),
+        margin: pixel(Theme.itemSpace),
     },
     ruleText: {
         color: Theme.subTextColor,
         fontSize: font(14),
-        lineHeight: PxDp(18),
-        paddingVertical: PxDp(5),
+        lineHeight: pixel(18),
+        paddingVertical: pixel(5),
     },
     ruleTitle: {
         color: Theme.defaultTextColor,
@@ -675,19 +675,19 @@ const styles = StyleSheet.create({
         borderColor: Theme.watermelon,
     },
     statistics: {
-        margin: PxDp(Theme.itemSpace),
+        margin: pixel(Theme.itemSpace),
     },
     valueItem: {
         alignItems: 'center',
         backgroundColor: '#fff',
-        borderWidth: PxDp(1),
-        borderRadius: PxDp(5),
+        borderWidth: pixel(1),
+        borderRadius: pixel(5),
         borderColor: Theme.borderColor,
-        paddingTop: PxDp(14),
-        paddingBottom: PxDp(10),
+        paddingTop: pixel(14),
+        paddingBottom: pixel(10),
         justifyContent: 'center',
-        marginRight: PxDp(Theme.itemSpace),
-        marginTop: PxDp(Theme.itemSpace),
+        marginRight: pixel(Theme.itemSpace),
+        marginTop: pixel(Theme.itemSpace),
         width: valueItemWidth,
     },
     withdrawBadgeImage: {
@@ -697,22 +697,22 @@ const styles = StyleSheet.create({
     },
     valueItemLabel: {
         position: 'absolute',
-        right: -PxDp(1),
-        top: -PxDp(1),
-        borderTopRightRadius: PxDp(5),
-        borderBottomLeftRadius: PxDp(5),
+        right: -pixel(1),
+        top: -pixel(1),
+        borderTopRightRadius: pixel(5),
+        borderBottomLeftRadius: pixel(5),
         backgroundColor: Theme.secondaryColor,
-        paddingHorizontal: PxDp(5),
+        paddingHorizontal: pixel(5),
     },
     selectedBadgeItemLabel: {
         position: 'absolute',
-        left: PxDp(5),
-        top: PxDp(4),
+        left: pixel(5),
+        top: pixel(4),
     },
     valueItemLabelText: {
         color: '#fff',
-        fontSize: PxDp(10),
-        lineHeight: PxDp(18),
+        fontSize: pixel(10),
+        lineHeight: pixel(18),
     },
     whiteText: {
         color: '#fff',
@@ -720,17 +720,17 @@ const styles = StyleSheet.create({
     },
     withdrawBtn: {
         alignItems: 'center',
-        borderRadius: PxDp(22),
-        height: PxDp(44),
+        borderRadius: pixel(22),
+        height: pixel(44),
         justifyContent: 'center',
     },
     withdrawLogBtn: {
         alignItems: 'center',
         backgroundColor: 'rgba(255,255,255,0.5)',
-        borderRadius: PxDp(14),
-        height: PxDp(28),
+        borderRadius: pixel(14),
+        height: pixel(28),
         justifyContent: 'center',
-        paddingHorizontal: PxDp(14),
+        paddingHorizontal: pixel(14),
     },
     withdrawLogBtnText: {
         color: '#fff',
@@ -740,18 +740,18 @@ const styles = StyleSheet.create({
     withdrawType: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginTop: PxDp(10),
+        marginTop: pixel(10),
         width: (Device.WIDTH - 40) / 2,
-        height: PxDp(50),
+        height: pixel(50),
         justifyContent: 'center',
         borderColor: Theme.borderColor,
-        borderWidth: PxDp(0.5),
-        borderRadius: PxDp(5),
+        borderWidth: pixel(0.5),
+        borderRadius: pixel(5),
     },
     withdrawTypeText: {
-        width: PxDp(24),
-        height: PxDp(24),
-        marginRight: PxDp(5),
+        width: pixel(24),
+        height: pixel(24),
+        marginRight: pixel(5),
     },
     withdrawOptions: {
         flexDirection: 'row',
@@ -759,8 +759,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     withdrawOptionsWrap: {
-        marginBottom: PxDp(Theme.itemSpace),
-        marginLeft: PxDp(Theme.itemSpace),
+        marginBottom: pixel(Theme.itemSpace),
+        marginLeft: pixel(Theme.itemSpace),
     },
     withdrawText: {
         color: Theme.primaryColor,
@@ -772,7 +772,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     withdrawTop: {
-        margin: PxDp(Theme.itemSpace),
+        margin: pixel(Theme.itemSpace),
         marginBottom: 0,
         flexDirection: 'row',
         justifyContent: 'space-between',

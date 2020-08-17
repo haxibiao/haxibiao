@@ -95,7 +95,7 @@ export default forwardRef((props: any, ref) => {
                                 {Helper.syncGetter('count_comments', media) > 0 ? '条评论' : '评论'}
                             </Text>
                             <TouchFeedback style={styles.close} onPress={slideDown}>
-                                <Iconfont name="guanbi1" size={PxDp(20)} color={Theme.defaultTextColor} />
+                                <Iconfont name="guanbi1" size={pixel(20)} color={Theme.defaultTextColor} />
                             </TouchFeedback>
                         </View>
                         <Comments media={media} commentAbleId={media.id} commentAbleType="articles" />
@@ -110,12 +110,12 @@ const styles = StyleSheet.create({
     close: {
         alignItems: 'center',
         bottom: 0,
-        height: PxDp(44),
+        height: pixel(44),
         justifyContent: 'center',
         position: 'absolute',
         right: 0,
         top: 0,
-        width: PxDp(44),
+        width: pixel(44),
     },
     container: {
         ...StyleSheet.absoluteFill,
@@ -123,23 +123,23 @@ const styles = StyleSheet.create({
     },
     contentContainer: {
         backgroundColor: '#fff',
-        borderTopLeftRadius: PxDp(12),
-        borderTopRightRadius: PxDp(12),
+        borderTopLeftRadius: pixel(12),
+        borderTopRightRadius: pixel(12),
         height: (Device.HEIGHT * 2) / 3,
         overflow: 'hidden',
-        paddingBottom: PxDp(Theme.HOME_INDICATOR_HEIGHT),
+        paddingBottom: pixel(Theme.HOME_INDICATOR_HEIGHT),
     },
     countCommentsText: {
-        fontSize: PxDp(16),
+        fontSize: pixel(16),
     },
     header: {
         alignItems: 'center',
-        height: PxDp(44),
+        height: pixel(44),
         justifyContent: 'center',
     },
     headerText: {
         color: Theme.defaultTextColor,
-        fontSize: PxDp(15),
+        fontSize: pixel(15),
         fontWeight: 'bold',
     },
     mask: {

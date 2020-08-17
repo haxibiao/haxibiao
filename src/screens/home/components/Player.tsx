@@ -5,7 +5,7 @@ import { Iconfont } from '~/components';
 import { useDoubleAction } from '~/utils';
 import { useApolloClient, ApolloProvider } from '~/apollo';
 import { observer } from '~/store';
-import VideoStore from '~/store/VideoStore';
+import VideoStore from '!/src/store/DrawVideoStore';
 import VideoLoading from './VideoLoading';
 import Operation from './Operation';
 import Video from 'react-native-video';
@@ -143,7 +143,7 @@ export default observer((props) => {
                     {...videoEvents}
                 />
 
-                {paused && <Iconfont name="bofang1" size={PxDp(70)} color="rgba(255,255,255,0.8)" />}
+                {paused && <Iconfont name="bofang1" size={pixel(70)} color="rgba(255,255,255,0.8)" />}
                 <View style={styles.bottom}>
                     <VideoLoading loading={loading} />
                     <View style={[styles.progress, { width: (progress / duration.current) * 100 + '%' }]} />
@@ -176,14 +176,14 @@ const styles = StyleSheet.create({
         zIndex: 99,
         left: 0,
         right: 0,
-        bottom:0,
-        height: PxDp(1),
+        bottom: 0,
+        height: pixel(1),
         backgroundColor: 'rgba(255,255,255,0.5)',
     },
     progress: {
         backgroundColor: '#fff',
         bottom: 0,
-        height: PxDp(1),
+        height: pixel(1),
         left: 0,
         position: 'absolute',
         width: 0,

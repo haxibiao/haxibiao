@@ -12,8 +12,8 @@ import { useDetainment, downloadApk } from '~/utils';
 import { AppUtil } from 'react-native-ad';
 import TaskItem from './components/TaskItem';
 
-const batTop = PxDp(Theme.statusBarHeight);
-const bannerWidth = Device.WIDTH - PxDp(30);
+const batTop = pixel(Theme.statusBarHeight);
+const bannerWidth = Device.WIDTH - pixel(30);
 const bannerHeight = (bannerWidth * 174) / 624;
 
 export default observer(() => {
@@ -125,14 +125,14 @@ export default observer(() => {
                             right: 25,
                             zIndex: 10,
                             resizeMode: 'cover',
-                            height: PxDp(40),
-                            width: PxDp(85),
+                            height: pixel(40),
+                            width: pixel(85),
                         }}
                     />
                     <View style={{ alignContent: 'center', alignItems: 'center', marginTop: batTop }}>
-                        <Text style={{ fontSize: PxDp(20), color: '#FFF' }}>现金余额</Text>
+                        <Text style={{ fontSize: pixel(20), color: '#FFF' }}>现金余额</Text>
                     </View>
-                    <Row style={{ paddingVertical: PxDp(20) }}>
+                    <Row style={{ paddingVertical: pixel(20) }}>
                         <TouchableOpacity
                             style={{ flex: 1, alignContent: 'center', alignItems: 'center' }}
                             onPress={() => {
@@ -149,7 +149,7 @@ export default observer(() => {
 
                                 <Text
                                     style={{
-                                        borderWidth: PxDp(1),
+                                        borderWidth: pixel(1),
                                         borderColor: '#FFF6',
                                         backgroundColor: '#FFF2',
                                         borderRadius: 10,
@@ -161,7 +161,7 @@ export default observer(() => {
                                     明细
                                 </Text>
                             </Row>
-                            <Text style={{ fontSize: PxDp(35), color: '#FFF', fontWeight: 'bold' }}>
+                            <Text style={{ fontSize: pixel(35), color: '#FFF', fontWeight: 'bold' }}>
                                 {Helper.syncGetter('gold', userProfile) || 0}
                             </Text>
                         </TouchableOpacity>
@@ -173,29 +173,29 @@ export default observer(() => {
                             }}>
                             <Row>
                                 <Text style={{ color: '#FFF' }}>现金余额（元）</Text>
-                                <Iconfont name="right" size={PxDp(11)} color={'#FFF'} />
+                                <Iconfont name="right" size={pixel(11)} color={'#FFF'} />
                             </Row>
-                            <Text style={{ fontSize: PxDp(35), color: '#FFF', fontWeight: 'bold' }}>
+                            <Text style={{ fontSize: pixel(35), color: '#FFF', fontWeight: 'bold' }}>
                                 {Helper.syncGetter('reward', userProfile) || 0}
                             </Text>
                         </TouchableOpacity>
                     </Row>
-                    <View style={{ alignContent: 'center', alignItems: 'center', paddingBottom: PxDp(15) }}>
-                        <Text style={{ color: '#FFF', marginBottom: PxDp(5), fontWeight: 'bold' }}>
+                    <View style={{ alignContent: 'center', alignItems: 'center', paddingBottom: pixel(15) }}>
+                        <Text style={{ color: '#FFF', marginBottom: pixel(5), fontWeight: 'bold' }}>
                             预计今日转换
                             <Text style={{ color: '#F6DB4A' }}>
                                 汇率：{user.exchangeRate || '600'} {Config.goldAlias} / 1元
                             </Text>
                         </Text>
                         <Text style={{ color: '#FFFC' }}>
-                            <Iconfont name="bangzhu" size={PxDp(12)} color={'#FFFA'} /> {Config.goldAlias}
+                            <Iconfont name="bangzhu" size={pixel(12)} color={'#FFFA'} /> {Config.goldAlias}
                             将于每天凌晨自动兑换为余额
                         </Text>
                     </View>
                 </View>
 
                 {taskAD && appStore.enableWallet && (
-                    <View style={{ margin: PxDp(15), marginBottom: PxDp(0) }}>
+                    <View style={{ margin: pixel(15), marginBottom: pixel(0) }}>
                         <TouchableOpacity onPress={download}>
                             <Image
                                 style={{
@@ -213,7 +213,7 @@ export default observer(() => {
                                     // 关闭任务入口
                                     setTaskAD(false);
                                 }}>
-                                <Iconfont name="guanbi1" size={PxDp(16)} color={'#969696'} />
+                                <Iconfont name="guanbi1" size={pixel(16)} color={'#969696'} />
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -298,7 +298,7 @@ export default observer(() => {
                     <Row>
                         <Image
                             source={require('!/assets/images/icon_wallet_rmb.png')}
-                            style={{ width: PxDp(50), height: PxDp(50) }}
+                            style={{ width: pixel(50), height: pixel(50) }}
                         />
                         <View style={styles.SuccessModuleTextBack}>
                             <Text numberOfLines={1}>{sucReward.message || '完成任务获得奖励！'}</Text>
@@ -341,13 +341,13 @@ const styles = StyleSheet.create({
     container: {
         flexGrow: 1,
         backgroundColor: '#F5F6FB',
-        paddingBottom: PxDp(Theme.BOTTOM_HEIGHT),
+        paddingBottom: pixel(Theme.BOTTOM_HEIGHT),
     },
     walletItemIcon: {
-        borderRadius: PxDp(10),
-        height: PxDp(20),
-        marginRight: PxDp(10),
-        width: PxDp(20),
+        borderRadius: pixel(10),
+        height: pixel(20),
+        marginRight: pixel(10),
+        width: pixel(20),
     },
     SuccessModuleBack: {
         width: Device.WIDTH,
@@ -368,17 +368,17 @@ const styles = StyleSheet.create({
         position: 'absolute',
         zIndex: 68,
         top: '42%',
-        padding: PxDp(20),
-        borderRadius: PxDp(10),
+        padding: pixel(20),
+        borderRadius: pixel(10),
     },
     SuccessModuleTextBack: {
-        width: Device.WIDTH - (Device.WIDTH * 0.3 + PxDp(90)),
+        width: Device.WIDTH - (Device.WIDTH * 0.3 + pixel(90)),
         justifyContent: 'center',
         alignItems: 'center',
         marginLeft: 15,
     },
     SuccessModuleButtonBack: {
-        paddingTop: PxDp(20),
+        paddingTop: pixel(20),
         width: '100%',
         justifyContent: 'center',
         alignContent: 'center',
@@ -393,24 +393,24 @@ const styles = StyleSheet.create({
     },
     listHeader: {
         color: '#202020',
-        margin: PxDp(15),
-        marginBottom: PxDp(5),
-        fontSize: PxDp(18),
+        margin: pixel(15),
+        marginBottom: pixel(5),
+        fontSize: pixel(18),
         fontWeight: 'bold',
         backgroundColor: '#ffffff',
     },
     taskListWrap: {
-        marginBottom: PxDp(20),
-        marginHorizontal: PxDp(15),
+        marginBottom: pixel(20),
+        marginHorizontal: pixel(15),
     },
     taskListContent: {
         flexGrow: 1,
-        borderRadius: PxDp(10),
+        borderRadius: pixel(10),
         overflow: 'hidden',
         backgroundColor: '#ffffff',
     },
     taskItemSeparator: {
-        height: PxDp(1),
+        height: pixel(1),
         backgroundColor: '#F5F6FB',
     },
 });

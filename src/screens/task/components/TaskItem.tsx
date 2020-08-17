@@ -336,7 +336,7 @@ export default (props: Props) => {
                 </View>
             </View>
             <View style={styles.taskButtonWrap}>
-                <Row style={{ marginBottom: PxDp(8) }}>
+                <Row style={{ marginBottom: pixel(8) }}>
                     <Text numberOfLines={1} style={styles.taskRewardInfo}>
                         +{reward_info.gold || 0}
                     </Text>
@@ -355,72 +355,72 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     taskItem: {
-        padding: PxDp(14),
-        paddingHorizontal: PxDp(12),
+        padding: pixel(14),
+        paddingHorizontal: pixel(12),
         flexDirection: 'row',
         alignItems: 'center',
         backgroundColor: '#ffffff',
     },
     iconWrap: {
-        height: PxDp(50),
-        width: PxDp(50),
-        borderRadius: PxDp(25),
+        height: pixel(50),
+        width: pixel(50),
+        borderRadius: pixel(25),
         backgroundColor: '#ECEAF3',
     },
     icon: {
-        height: PxDp(50),
-        width: PxDp(50),
-        borderRadius: PxDp(25),
+        height: pixel(50),
+        width: pixel(50),
+        borderRadius: pixel(25),
     },
     taskContent: {
-        paddingHorizontal: PxDp(10),
+        paddingHorizontal: pixel(10),
         flex: 1,
         alignSelf: 'auto',
     },
     taskContentTop: {
-        marginBottom: PxDp(6),
+        marginBottom: pixel(6),
     },
     taskName: {
         color: '#202020',
-        fontSize: PxDp(17),
+        fontSize: pixel(17),
         fontWeight: 'bold',
     },
     taskProgress: {
         color: '#202020',
-        fontSize: PxDp(12),
+        fontSize: pixel(12),
         fontWeight: 'bold',
     },
     taskRewardInfo: {
         color: '#E64326',
-        fontSize: PxDp(14),
+        fontSize: pixel(14),
         fontWeight: 'bold',
     },
     taskContentBottom: {},
     taskDetails: {
         color: '#969696',
-        fontSize: PxDp(14),
+        fontSize: pixel(14),
     },
     goldIcon: {
-        height: PxDp(15),
-        width: PxDp(15),
-        marginLeft: PxDp(2),
+        height: pixel(15),
+        width: pixel(15),
+        marginLeft: pixel(2),
     },
     taskButtonWrap: {
         justifyContent: 'center',
         alignItems: 'center',
     },
     taskButton: {
-        width: PxDp(80),
-        height: PxDp(30),
+        width: pixel(80),
+        height: pixel(30),
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: PxDp(16),
-        paddingHorizontal: PxDp(10),
+        borderRadius: pixel(16),
+        paddingHorizontal: pixel(10),
         backgroundColor: '#E8E8E8',
     },
     taskButtonName: {
         color: '#FFF',
-        fontSize: PxDp(15),
+        fontSize: pixel(15),
         fontWeight: 'bold',
     },
 });

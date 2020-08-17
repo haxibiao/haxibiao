@@ -46,7 +46,7 @@ export default observer((props: Props) => {
     }
     return (
         <TouchableOpacity style={styles.row} onPress={toggleLike}>
-            <Iconfont size={PxDp(17)} name="xihuanfill" color={comment.liked ? Theme.watermelon : Theme.slateGray2} />
+            <Iconfont size={pixel(17)} name="xihuanfill" color={comment.liked ? Theme.watermelon : Theme.slateGray2} />
             <Text style={styles.countLikes}>{comment.likes}</Text>
         </TouchableOpacity>
     );
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     countLikes: {
         color: Theme.slateGray2,
         fontSize: font(13),
-        marginLeft: PxDp(8),
+        marginLeft: pixel(8),
         textAlign: 'center',
     },
     row: {

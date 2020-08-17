@@ -96,7 +96,7 @@ export default observer(() => {
                                                 <TouchableOpacity style={styles.userInfo}>
                                                     <Avatar
                                                         source={`http://cos.dianmoge.com/storage/avatar/avatar-${avatarId}.jpg`}
-                                                        size={PxDp(38)}
+                                                        size={pixel(38)}
                                                     />
                                                     <View style={styles.info}>
                                                         <SafeText style={styles.nameText}>匿名墨友</SafeText>
@@ -147,7 +147,7 @@ export default observer(() => {
                                                             liked: false,
                                                         }}
                                                         type="icon"
-                                                        iconSize={PxDp(22)}
+                                                        iconSize={pixel(22)}
                                                         containerStyle={{ flexDirection: 'row', alignItems: 'center' }}
                                                         textStyle={{
                                                             color: '#CCD5E0',
@@ -251,46 +251,46 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        paddingBottom: PxDp(Theme.BOTTOM_HEIGHT),
+        paddingBottom: pixel(Theme.BOTTOM_HEIGHT),
     },
     headerWrapper: {
         flexDirection: 'row',
         alignItems: 'center',
-        paddingHorizontal: PxDp(Theme.itemSpace),
-        paddingTop: PxDp(5),
+        paddingHorizontal: pixel(Theme.itemSpace),
+        paddingTop: pixel(5),
     },
     userInfo: {
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
-        marginRight: PxDp(Theme.itemSpace),
+        marginRight: pixel(Theme.itemSpace),
     },
     info: {
         justifyContent: 'space-between',
-        marginLeft: PxDp(Theme.itemSpace),
+        marginLeft: pixel(Theme.itemSpace),
     },
-    timeAgoText: { fontSize: PxDp(12), color: Theme.slateGray1, fontWeight: '300', marginTop: PxDp(5) },
-    nameText: { fontSize: PxDp(14), color: Theme.defaultTextColor },
+    timeAgoText: { fontSize: pixel(12), color: Theme.slateGray1, fontWeight: '300', marginTop: pixel(5) },
+    nameText: { fontSize: pixel(14), color: Theme.defaultTextColor },
     bottomPartWrapper: {
-        // marginTop: PxDp(10),
+        // marginTop: pixel(10),
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'flex-start',
         alignItems: 'center',
-        paddingHorizontal: PxDp(Theme.itemSpace),
-        paddingBottom: PxDp(5),
+        paddingHorizontal: pixel(Theme.itemSpace),
+        paddingBottom: pixel(5),
     },
     metaList: {
         flex: 1,
-        marginLeft: PxDp(10),
+        marginLeft: pixel(10),
         justifyContent: 'flex-start',
     },
     ad: {
-        // minHeight: PxDp(200),
+        // minHeight: pixel(200),
         // backgroundColor: '#F00',
         justifyContent: 'center',
         alignItems: 'center',
-        marginVertical: PxDp(5),
-        marginRight: PxDp(5),
+        marginVertical: pixel(5),
+        marginRight: pixel(5),
     },
 });

@@ -17,9 +17,9 @@ class DownloadApkIntro {
             <Overlay.View animated>
                 <View style={styles.container}>
                     <View style={styles.content}>
-                        <Row style={{ marginTop: PxDp(25) }}>
+                        <Row style={{ marginTop: pixel(25) }}>
                             <Image source={require('!/assets/images/dongdezhuan.png')} style={styles.icon} />
-                            <View style={{ marginLeft: PxDp(5) }}>
+                            <View style={{ marginLeft: pixel(5) }}>
                                 <Text style={styles.title}>懂得赚</Text>
                                 <Text style={styles.appInfo} numberOfLines={1}>
                                     高收益，秒提现，不限时，不限额！
@@ -31,7 +31,7 @@ class DownloadApkIntro {
                             <Text style={styles.text}>2.前往设置-账号中心设置手机与密码</Text>
                             <Text style={styles.text}>3.回到{Config.AppName}绑定懂得赚账号，提现到懂得赚</Text>
                         </View>
-                        <View style={{ marginBottom: PxDp(20), marginTop: PxDp(40) }}>
+                        <View style={{ marginBottom: pixel(20), marginTop: pixel(40) }}>
                             <DownLoadApk
                                 hide={() => {
                                     Overlay.hide(this.OverlayKey);
@@ -40,7 +40,7 @@ class DownloadApkIntro {
                         </View>
                     </View>
                     <TouchFeedback
-                        style={{ marginTop: PxDp(40), alignItems: 'center' }}
+                        style={{ marginTop: pixel(40), alignItems: 'center' }}
                         onPress={() => {
                             Overlay.hide(this.OverlayKey);
                         }}>
@@ -69,44 +69,44 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     content: {
-        width: Device.WIDTH - PxDp(48),
-        borderRadius: PxDp(6),
+        width: Device.WIDTH - pixel(48),
+        borderRadius: pixel(6),
         backgroundColor: '#FFF',
         alignItems: 'center',
     },
     title: {
-        fontSize: PxDp(17),
+        fontSize: pixel(17),
         color: '#000',
     },
 
     appInfo: {
-        fontSize: PxDp(13),
+        fontSize: pixel(13),
         color: Theme.subTextColor,
-        marginTop: PxDp(3),
+        marginTop: pixel(3),
     },
     intro: {
-        marginVertical: PxDp(20),
-        paddingHorizontal: PxDp(25),
+        marginVertical: pixel(20),
+        paddingHorizontal: pixel(25),
     },
     icon: {
-        width: PxDp(58),
-        height: PxDp(58),
-        borderRadius: PxDp(5),
+        width: pixel(58),
+        height: pixel(58),
+        borderRadius: pixel(5),
     },
     text: {
-        lineHeight: PxDp(22),
+        lineHeight: pixel(22),
         color: Theme.subTextColor,
-        paddingTop: PxDp(6),
-        fontSize: PxDp(15),
+        paddingTop: pixel(6),
+        fontSize: pixel(15),
     },
     close: {
-        width: PxDp(42),
-        height: PxDp(42),
-        borderRadius: PxDp(29),
+        width: pixel(42),
+        height: pixel(42),
+        borderRadius: pixel(29),
         justifyContent: 'center',
         alignItems: 'center',
         borderColor: '#fff',
-        borderWidth: PxDp(1),
+        borderWidth: pixel(1),
     },
 });
 

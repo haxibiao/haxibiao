@@ -91,27 +91,27 @@ class VerificationScreen extends Component {
 }
 const styles = StyleSheet.create({
     button: {
-        borderRadius: PxDp(5),
-        height: PxDp(40),
-        marginHorizontal: PxDp(15),
-        marginTop: PxDp(35),
+        borderRadius: pixel(5),
+        height: pixel(40),
+        marginHorizontal: pixel(15),
+        marginTop: pixel(35),
     },
     container: {
         backgroundColor: Theme.white || '#FFF',
         flex: 1,
-        paddingHorizontal: PxDp(20),
+        paddingHorizontal: pixel(20),
     },
     textInput: {
         color: Theme.primaryFont,
-        fontSize: PxDp(16),
-        height: PxDp(50),
+        fontSize: pixel(16),
+        height: pixel(50),
         padding: 0,
     },
     textWrap: {
         borderBottomColor: Theme.lightBorder,
-        borderBottomWidth: PxDp(0.5),
-        marginHorizontal: PxDp(25),
-        marginTop: PxDp(40),
+        borderBottomWidth: pixel(0.5),
+        marginHorizontal: pixel(25),
+        marginTop: pixel(40),
         paddingHorizontal: 0,
     },
 });

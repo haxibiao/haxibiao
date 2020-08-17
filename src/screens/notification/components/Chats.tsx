@@ -10,7 +10,7 @@ interface Props {
 const Chats = (props: Props) => {
     const { chats } = props;
     return (
-        <View style={{ marginHorizontal: PxDp(10), borderRadius: PxDp(6) }}>
+        <View style={{ marginHorizontal: pixel(10), borderRadius: pixel(6) }}>
             {chats.length > 0 &&
                 chats.map((chat, index) => {
                     return (
@@ -22,7 +22,7 @@ const Chats = (props: Props) => {
                                 onPress={() =>
                                     middlewareNavigate('User', { user: Helper.syncGetter('withUser', chat) })
                                 }>
-                                <Avatar source={Helper.syncGetter('withUser.avatar', chat)} size={PxDp(50)} />
+                                <Avatar source={Helper.syncGetter('withUser.avatar', chat)} size={pixel(50)} />
                             </TouchableOpacity>
                             <View style={styles.itemContent}>
                                 <Row style={styles.itemContentTop}>
@@ -48,11 +48,11 @@ const Chats = (props: Props) => {
 const styles = StyleSheet.create({
     itemContent: {
         flex: 1,
-        marginLeft: PxDp(10),
+        marginLeft: pixel(10),
     },
     itemContentBottom: {
         justifyContent: 'space-between',
-        marginTop: PxDp(4),
+        marginTop: pixel(4),
     },
     itemContentTop: {
         justifyContent: 'space-between',
@@ -65,8 +65,8 @@ const styles = StyleSheet.create({
     lastMessage: {
         color: Theme.subTextColor,
         fontSize: font(12),
-        marginTop: PxDp(4),
-        paddingRight: PxDp(20),
+        marginTop: pixel(4),
+        paddingRight: pixel(20),
     },
     notifyItem: {
         alignItems: 'center',
@@ -74,12 +74,12 @@ const styles = StyleSheet.create({
         borderBottomColor: Theme.borderColor,
         borderBottomWidth: Theme.minimumPixel,
         flexDirection: 'row',
-        padding: PxDp(Theme.itemSpace),
+        padding: pixel(Theme.itemSpace),
     },
     notifyType: {
         backgroundColor: '#fff',
-        borderRadius: PxDp(6),
-        margin: PxDp(10),
+        borderRadius: pixel(6),
+        margin: pixel(10),
         overflow: 'hidden',
     },
     timeAgo: {

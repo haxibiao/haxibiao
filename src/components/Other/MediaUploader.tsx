@@ -134,56 +134,52 @@ const VideoUploadView = (props: Props) => {
     //         setVideoSize(Helper.ResponseMedia(video.width, video.height, maxWidth || maxMediaWidth));
     //     }
     // }, [video]);
-        //MARK:Func 选择视频处理函数
-        const __vStart = () => {
-            console.log("视频开始上传");
+    //MARK:Func 选择视频处理函数
+    const __vStart = () => {
+        console.log('视频开始上传');
 
-            Toast.show({
-                content: '视频开始上传',
-            });
+        Toast.show({
+            content: '视频开始上传',
+        });
 
-            // ProgressOverlay.show('正在上传...');
-        }
-        const __vProgress = (progress:number) => {
-            // ProgressOverlay.progress(progress);
-        }
-        const __vComplete = (data:any) => {
-            console.log('shipshdiasudhsaioda',data);
-            
-            // ProgressOverlay.hide();
-            setVideo(data);
-            onResponse(data);
+        // ProgressOverlay.show('正在上传...');
+    };
+    const __vProgress = (progress: number) => {
+        // ProgressOverlay.progress(progress);
+    };
+    const __vComplete = (data: any) => {
+        console.log('shipshdiasudhsaioda', data);
 
-        }
-        const __vError = (error:any) => {
-            // ProgressOverlay.hide();
-            Toast.show({
-                content: '上传失败',
-            });
-            setVideo(null);
-            onResponse(null);
-
-            }
-    
+        // ProgressOverlay.hide();
+        setVideo(data);
+        onResponse(data);
+    };
+    const __vError = (error: any) => {
+        // ProgressOverlay.hide();
+        Toast.show({
+            content: '上传失败',
+        });
+        setVideo(null);
+        onResponse(null);
+    };
 
     const videoUploadHandler = () => {
         ImagePicker.openPicker({
             multiple: false,
             mediaType: 'video',
-            }).then((video:any) => {
-            let p:string = video.path;
-            console.log("视频信息: ",p.substr(7));
+        }).then((video: any) => {
+            let p: string = video.path;
+            console.log('视频信息: ', p.substr(7));
             VodUploaderWithUrl({
                 url: 'https://haxibiao.com/api/signature/vod-' + Config.Name,
                 videoPath: p.substr(7),
                 onProcess: __vProgress,
                 onError: __vError,
                 onCompleted: __vComplete,
-                onStarted: __vStart
+                onStarted: __vStart,
             });
-        })
-    }
-
+        });
+    };
 
     const onUploadError = useCallback(() => {
         ProgressOverlay.hide();
@@ -207,7 +203,7 @@ const VideoUploadView = (props: Props) => {
                     style={[styles.uploadView, style]}>
                     <Image source={{ uri: path }} style={styles.imageItem} />
                     <TouchFeedback style={styles.close} onPress={() => removeImage(index)}>
-                        <Iconfont name="guanbi1" size={PxDp(12)} color="#fff" />
+                        <Iconfont name="guanbi1" size={pixel(12)} color="#fff" />
                     </TouchFeedback>
                 </TouchFeedback>
             );
@@ -229,7 +225,7 @@ const VideoUploadView = (props: Props) => {
                     />
                     <View style={styles.playMark}>
                         <TouchFeedback style={styles.close} onPress={deleteVideo}>
-                            <Iconfont name="guanbi1" size={PxDp(12)} color="#fff" />
+                            <Iconfont name="guanbi1" size={pixel(12)} color="#fff" />
                         </TouchFeedback>
                     </View>
                 </TouchFeedback>
@@ -241,7 +237,7 @@ const VideoUploadView = (props: Props) => {
                 {Album}
                 {images.length < maximum && (
                     <TouchFeedback activeOpacity={0.8} onPress={imagePickerHandler} style={[styles.uploadView, style]}>
-                        <Iconfont name="iconfontadd" size={PxDp(30)} color={Theme.slateGray1} />
+                        <Iconfont name="iconfontadd" size={pixel(30)} color={Theme.slateGray1} />
                     </TouchFeedback>
                 )}
             </View>
@@ -249,7 +245,7 @@ const VideoUploadView = (props: Props) => {
     }
     return (
         <TouchFeedback activeOpacity={0.8} onPress={onPressHandler} style={[styles.uploadView, style]}>
-            <Iconfont name="iconfontadd" size={PxDp(30)} color={Theme.slateGray1} />
+            <Iconfont name="iconfontadd" size={pixel(30)} color={Theme.slateGray1} />
         </TouchFeedback>
     );
 };
@@ -262,13 +258,13 @@ const styles = StyleSheet.create({
     close: {
         alignItems: 'center',
         backgroundColor: 'rgba(32,30,51,0.8)',
-        borderRadius: PxDp(18) / 2,
-        height: PxDp(18),
+        borderRadius: pixel(18) / 2,
+        height: pixel(18),
         justifyContent: 'center',
         position: 'absolute',
-        right: PxDp(3),
-        top: PxDp(3),
-        width: PxDp(18),
+        right: pixel(3),
+        top: pixel(3),
+        width: pixel(18),
     },
     imageItem: {
         bottom: 0,
@@ -281,13 +277,13 @@ const styles = StyleSheet.create({
         ...StyleSheet.absoluteFill,
         alignItems: 'center',
         backgroundColor: 'rgba(0,0,0,0.2)',
-        borderRadius: PxDp(5),
+        borderRadius: pixel(5),
         justifyContent: 'center',
     },
     uploadView: {
         alignItems: 'center',
         backgroundColor: Theme.slateGray2,
-        borderRadius: PxDp(5),
+        borderRadius: pixel(5),
         height: mediaWidth,
         justifyContent: 'center',
         marginRight: Theme.itemSpace,

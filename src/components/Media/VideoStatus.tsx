@@ -16,14 +16,14 @@ import Iconfont from '../Iconfont';
 import { observer } from '~/store';
 
 export default observer((props: any) => {
-    let { status, replay, continueToPlay } = props.videoStore;
+    let { status, replay, continueToPlay } = props.playerStore;
     switch (status) {
         case 'error':
             return (
                 <View style={styles.videoStatus}>
                     <TouchableWithoutFeedback onPress={replay}>
                         <View style={styles.error}>
-                            <Iconfont name="shuaxin1" size={PxDp(25)} color="#fff" />
+                            <Iconfont name="shuaxin1" size={pixel(25)} color="#fff" />
                             <Text style={styles.statusText}>好像迷路啦，请检查网络或者重试</Text>
                         </View>
                     </TouchableWithoutFeedback>
@@ -33,7 +33,7 @@ export default observer((props: any) => {
             return (
                 <View style={styles.videoStatus}>
                     <TouchableOpacity style={styles.playButton} onPress={continueToPlay}>
-                        <Iconfont name="zanting" size={PxDp(25)} color="#fff" />
+                        <Iconfont name="zanting" size={pixel(25)} color="#fff" />
                         <Text style={styles.continueText}>继续播放</Text>
                     </TouchableOpacity>
                     <Text style={styles.statusText}>您正在使用非WiFi网络，播放将产生流量费用</Text>
@@ -52,7 +52,7 @@ export default observer((props: any) => {
                 <View style={styles.videoStatus}>
                     <TouchableWithoutFeedback onPress={replay}>
                         <View style={styles.replay}>
-                            <Iconfont name="shuaxin1" size={PxDp(25)} color="#fff" />
+                            <Iconfont name="shuaxin1" size={pixel(25)} color="#fff" />
                             <Text style={styles.refreshText}>重播</Text>
                         </View>
                     </TouchableWithoutFeedback>
@@ -83,34 +83,34 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        height: PxDp(40),
-        paddingHorizontal: PxDp(16),
-        borderWidth: PxDp(1),
-        borderRadius: PxDp(20),
+        height: pixel(40),
+        paddingHorizontal: pixel(16),
+        borderWidth: pixel(1),
+        borderRadius: pixel(20),
         borderColor: '#fff',
     },
     playButton: {
-        marginBottom: PxDp(10),
-        paddingVertical: PxDp(8),
-        paddingHorizontal: PxDp(16),
+        marginBottom: pixel(10),
+        paddingVertical: pixel(8),
+        paddingHorizontal: pixel(16),
         backgroundColor: '#666666',
-        borderRadius: PxDp(6),
+        borderRadius: pixel(6),
         flexDirection: 'row',
         alignItems: 'center',
     },
     continueText: {
-        marginLeft: PxDp(10),
-        fontSize: PxDp(13),
+        marginLeft: pixel(10),
+        fontSize: pixel(13),
         color: '#fff',
     },
     statusText: {
-        marginTop: PxDp(10),
-        fontSize: PxDp(14),
+        marginTop: pixel(10),
+        fontSize: pixel(14),
         color: '#fff',
     },
     refreshText: {
-        marginLeft: PxDp(15),
-        fontSize: PxDp(14),
+        marginLeft: pixel(15),
+        fontSize: pixel(14),
         color: '#fff',
     },
 });

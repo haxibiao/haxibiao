@@ -44,13 +44,13 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         color: '#fff',
-        fontSize: PxDp(16),
+        fontSize: pixel(16),
     },
     overlayContent: {
         alignItems: 'center',
         flex: 1,
         justifyContent: 'center',
-        paddingHorizontal: PxDp(Theme.itemSpace),
+        paddingHorizontal: pixel(Theme.itemSpace),
     },
     videoCover: {
         width: OVERLAY_WIDTH * 0.5,
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
     },
     overlayWrap: {
         backgroundColor: '#fff',
-        borderRadius: PxDp(5),
+        borderRadius: pixel(5),
     },
     overlayImage: {
         height: OVERLAY_HEIGHT,
@@ -66,14 +66,14 @@ const styles = StyleSheet.create({
     },
     body: {
         color: Theme.defaultTextColor,
-        fontSize: PxDp(14),
-        marginVertical: PxDp(Theme.itemSpace),
+        fontSize: pixel(14),
+        marginVertical: pixel(Theme.itemSpace),
     },
     title: {
         color: Theme.defaultTextColor,
-        fontSize: PxDp(16),
+        fontSize: pixel(16),
         fontWeight: 'bold',
-        marginVertical: PxDp(Theme.itemSpace),
+        marginVertical: pixel(Theme.itemSpace),
     },
 });
 

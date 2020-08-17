@@ -3,6 +3,7 @@ import Theme from '!/theme';
 import _ from 'lodash';
 import config from './config';
 import * as Helper from './helper';
+import * as scale from './helper/scale';
 
 const Global: any = global || window || {};
 
@@ -11,9 +12,12 @@ Global.Device = Device;
 // App主题
 Global.Theme = Theme;
 // 适配字体
-Global.font = Helper.font;
+Global.font = scale.font;
 // 屏幕适配
-Global.PxDp = Helper.PxDp;
+Global.pixel = scale.pixel;
+// 宽度适配
+Global.percent = scale.percent;
+
 // helper
 Global.Helper = Helper;
 // App配置

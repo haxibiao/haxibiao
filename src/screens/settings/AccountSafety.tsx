@@ -57,7 +57,7 @@ export default function AccountSafety() {
                     <HxfButton
                         title={'提交'}
                         gradient={true}
-                        style={{ height: PxDp(40) }}
+                        style={{ height: pixel(40) }}
                         disabled={!(password && phone)}
                         onPress={updateUserInfoSecurity}
                     />
@@ -86,8 +86,8 @@ const styles = StyleSheet.create({
         marginBottom: 28,
     },
     inputStyle: {
-        fontSize: PxDp(16),
-        height: PxDp(40),
+        fontSize: pixel(16),
+        height: pixel(40),
         borderBottomWidth: Theme.minimumPixel,
         borderBottomColor: Theme.borderColor,
     },
@@ -104,11 +104,11 @@ const styles = StyleSheet.create({
         fontWeight: '400',
     },
     inputWrapper: {
-        marginHorizontal: PxDp(Theme.itemSpace * 2),
-        marginBottom: PxDp(Theme.itemSpace),
+        marginHorizontal: pixel(Theme.itemSpace * 2),
+        marginBottom: pixel(Theme.itemSpace),
     },
     btnWrap: {
-        marginTop: PxDp(Theme.itemSpace),
-        marginHorizontal: PxDp(Theme.itemSpace * 2),
+        marginTop: pixel(Theme.itemSpace),
+        marginHorizontal: pixel(Theme.itemSpace * 2),
     },
 });

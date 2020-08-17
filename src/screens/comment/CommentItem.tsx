@@ -160,7 +160,7 @@ const CommentItem = (props: Props) => {
                 )}
                 <TouchFeedback
                     onPress={() => navigation.navigate('User', { user: Helper.syncGetter('user', comment) })}>
-                    <Avatar source={Helper.syncGetter('user.avatar', comment)} size={PxDp(40)} />
+                    <Avatar source={Helper.syncGetter('user.avatar', comment)} size={pixel(40)} />
                 </TouchFeedback>
                 <View style={styles.commentRight}>
                     <View style={styles.commentedUser}>
@@ -184,7 +184,7 @@ const CommentItem = (props: Props) => {
 };
 
 CommentItem.defaultProps = {
-    separatorHeight: PxDp(1),
+    separatorHeight: pixel(1),
     showSeparator: true,
     showReplyComment: true,
 };
@@ -197,29 +197,29 @@ const styles = StyleSheet.create({
     },
     bodyText: {
         color: '#393939',
-        fontSize: PxDp(15),
-        lineHeight: PxDp(20),
+        fontSize: pixel(15),
+        lineHeight: pixel(20),
     },
     acceptAnswer: {
-        width: PxDp(30),
-        height: PxDp(30),
+        width: pixel(30),
+        height: pixel(30),
         position: 'absolute',
         top: 0,
         left: 0,
     },
     acceptImage: {
-        width: PxDp(30),
-        height: PxDp(30),
+        width: pixel(30),
+        height: pixel(30),
     },
     comment: {
         alignItems: 'flex-start',
         flexDirection: 'row',
-        padding: PxDp(Theme.itemSpace),
+        padding: pixel(Theme.itemSpace),
     },
     commentBody: {
-        marginTop: PxDp(10),
+        marginTop: pixel(10),
     },
-    commentRight: { flex: 1, marginLeft: PxDp(10) },
+    commentRight: { flex: 1, marginLeft: pixel(10) },
     commentedUser: {
         flex: 1,
         flexDirection: 'row',
@@ -227,21 +227,21 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     countLikesText: {
-        fontSize: PxDp(12),
+        fontSize: pixel(12),
         fontWeight: '200',
     },
     timeAgoText: {
         color: Theme.subTextColor,
-        fontSize: PxDp(12),
-        marginTop: PxDp(10),
+        fontSize: pixel(12),
+        marginTop: pixel(10),
     },
     userName: {
         flex: 1,
-        marginRight: PxDp(10),
+        marginRight: pixel(10),
     },
     userNameText: {
         color: Theme.defaultTextColor,
-        fontSize: PxDp(12),
+        fontSize: pixel(12),
         fontWeight: 'bold',
     },
 });

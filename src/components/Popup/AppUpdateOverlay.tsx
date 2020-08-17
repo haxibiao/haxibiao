@@ -44,7 +44,7 @@ export const show = (props: Props) => {
                             <Iconfont name={'close'} color={Theme.grey} size={20} />
                         </TouchableOpacity>
                     )}
-                    <View style={[styles.header, { paddingTop: versionData.is_force ? PxDp(25) : PxDp(15) }]}>
+                    <View style={[styles.header, { paddingTop: versionData.is_force ? pixel(25) : pixel(15) }]}>
                         <Text style={styles.modalRemindContent}>检测到新版本</Text>
                     </View>
                     <View style={styles.center}>
@@ -54,7 +54,7 @@ export const show = (props: Props) => {
                         <Text style={styles.centerTitle}>更新说明：</Text>
                         <Text style={styles.centerInfo}>{versionData.description}</Text>
                     </View>
-                    <View style={{ alignItems: 'center', paddingVertical: PxDp(15) }}>
+                    <View style={{ alignItems: 'center', paddingVertical: pixel(15) }}>
                         <DownLoadApk packageName={'appUpdate'} url={versionData.apk} />
                     </View>
                 </View>
@@ -77,8 +77,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     content: {
-        width: SCREEN_WIDTH - PxDp(60),
-        borderRadius: PxDp(15),
+        width: SCREEN_WIDTH - pixel(60),
+        borderRadius: pixel(15),
         backgroundColor: 'white',
         padding: 0,
     },
@@ -87,32 +87,32 @@ const styles = StyleSheet.create({
     },
     headerText: {
         color: Theme.grey,
-        fontSize: PxDp(13),
+        fontSize: pixel(13),
         textAlign: 'center',
-        paddingTop: PxDp(3),
+        paddingTop: pixel(3),
     },
     center: {
-        paddingTop: PxDp(15),
-        paddingBottom: PxDp(20),
-        paddingHorizontal: PxDp(20),
+        paddingTop: pixel(15),
+        paddingBottom: pixel(20),
+        paddingHorizontal: pixel(20),
     },
     centerTitle: {
-        fontSize: PxDp(14),
+        fontSize: pixel(14),
         color: Theme.primaryFont,
-        paddingTop: PxDp(10),
-        lineHeight: PxDp(22),
+        paddingTop: pixel(10),
+        lineHeight: pixel(22),
     },
     centerInfo: {
-        fontSize: PxDp(14),
+        fontSize: pixel(14),
         color: Theme.primaryFont,
-        lineHeight: PxDp(22),
+        lineHeight: pixel(22),
     },
     modalRemindContent: {
-        fontSize: PxDp(18),
+        fontSize: pixel(18),
         color: Theme.black,
-        paddingHorizontal: PxDp(15),
+        paddingHorizontal: pixel(15),
         textAlign: 'center',
-        lineHeight: PxDp(20),
+        lineHeight: pixel(20),
         fontWeight: '500',
     },
     modalFooter: {
@@ -120,14 +120,14 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     operation: {
-        paddingTop: PxDp(10),
-        paddingHorizontal: PxDp(15),
+        paddingTop: pixel(10),
+        paddingHorizontal: pixel(15),
         flexDirection: 'row',
         justifyContent: 'flex-end',
         alignItems: 'center',
     },
     operationText: {
-        fontSize: PxDp(15),
+        fontSize: pixel(15),
         fontWeight: '400',
         color: Theme.grey,
     },

@@ -65,7 +65,7 @@ export default function BindDongdezhuan() {
                     <HxfButton
                         title={'提交'}
                         gradient={true}
-                        style={{ height: PxDp(40) }}
+                        style={{ height: pixel(40) }}
                         disabled={!(password && account)}
                         onPress={bindDongdezhuan}
                     />
@@ -74,10 +74,10 @@ export default function BindDongdezhuan() {
                     onPress={() => downloadApk()}
                     style={{
                         alignItems: 'flex-end',
-                        marginTop: PxDp(10),
-                        marginHorizontal: PxDp(Theme.itemSpace * 2),
+                        marginTop: pixel(10),
+                        marginHorizontal: pixel(Theme.itemSpace * 2),
                     }}>
-                    <Text style={{ color: Theme.link, fontSize: PxDp(13), textDecorationLine: 'underline' }}>
+                    <Text style={{ color: Theme.link, fontSize: pixel(13), textDecorationLine: 'underline' }}>
                         下载懂得赚
                     </Text>
                 </TouchFeedback>
@@ -105,8 +105,8 @@ const styles = StyleSheet.create({
         marginBottom: 46,
     },
     inputStyle: {
-        fontSize: PxDp(16),
-        height: PxDp(40),
+        fontSize: pixel(16),
+        height: pixel(40),
         borderBottomWidth: Theme.minimumPixel,
         borderBottomColor: Theme.borderColor,
     },
@@ -123,11 +123,11 @@ const styles = StyleSheet.create({
         fontWeight: '400',
     },
     inputWrapper: {
-        marginHorizontal: PxDp(Theme.itemSpace * 2),
-        marginBottom: PxDp(Theme.itemSpace),
+        marginHorizontal: pixel(Theme.itemSpace * 2),
+        marginBottom: pixel(Theme.itemSpace),
     },
     btnWrap: {
-        marginTop: PxDp(Theme.itemSpace),
-        marginHorizontal: PxDp(Theme.itemSpace * 2),
+        marginTop: pixel(Theme.itemSpace),
+        marginHorizontal: pixel(Theme.itemSpace * 2),
     },
 });

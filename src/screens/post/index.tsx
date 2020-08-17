@@ -88,7 +88,7 @@ const index = (props: Props) => {
         (e) => {
             const { contentOffset, contentSize } = e.nativeEvent;
             // fetchMore触发条件
-            if (contentSize.height - contentOffset.y < Device.HEIGHT - PxDp(50)) {
+            if (contentSize.height - contentOffset.y < Device.HEIGHT - pixel(50)) {
                 fetchMoreComments();
             }
         },
@@ -170,7 +170,7 @@ const styles = StyleSheet.create({
         paddingBottom: Theme.HOME_INDICATOR_HEIGHT,
     },
     contentWrap: {
-        margin: PxDp(Theme.itemSpace),
+        margin: pixel(Theme.itemSpace),
     },
 });
 

@@ -72,7 +72,7 @@ class index extends Component {
                 <ScrollView
                     style={styles.container}
                     contentContainerStyle={{
-                        paddingBottom: PxDp(20),
+                        paddingBottom: pixel(20),
                     }}
                     bounces={false}
                     removeClippedSubviews={true}
@@ -84,21 +84,21 @@ class index extends Component {
                                 onPress={() => navigation.navigate('AccountSecurity', { user: me })}
                                 style={styles.listItem}
                                 leftComponent={<Text style={styles.itemText}> 账号安全 </Text>}
-                                rightComponent={<Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />}
+                                rightComponent={<Iconfont name="right" size={pixel(14)} color={Theme.subTextColor} />}
                             />
                             <ItemSeparator />
                             <ListItem
                                 onPress={() => navigation.navigate('编辑个人资料')}
                                 style={styles.listItem}
                                 leftComponent={<Text style={styles.itemText}> 修改资料 </Text>}
-                                rightComponent={<Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />}
+                                rightComponent={<Iconfont name="right" size={pixel(14)} color={Theme.subTextColor} />}
                             />
                             <ItemSeparator />
                             <ListItem
                                 onPress={() => navigation.navigate('UserBlockScreen')}
                                 style={styles.listItem}
                                 leftComponent={<Text style={styles.itemText}> 黑名单 </Text>}
-                                rightComponent={<Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />}
+                                rightComponent={<Iconfont name="right" size={pixel(14)} color={Theme.subTextColor} />}
                             />
                             <ItemSeparator />
                         </View>
@@ -107,28 +107,28 @@ class index extends Component {
                         onPress={() => navigation.navigate('UserProtocol')}
                         style={styles.listItem}
                         leftComponent={<Text style={styles.itemText}> 用户协议 </Text>}
-                        rightComponent={<Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />}
+                        rightComponent={<Iconfont name="right" size={pixel(14)} color={Theme.subTextColor} />}
                     />
                     <ItemSeparator />
                     <ListItem
                         onPress={() => navigation.navigate('PrivacyPolicy')}
                         style={styles.listItem}
                         leftComponent={<Text style={styles.itemText}> 隐私政策 </Text>}
-                        rightComponent={<Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />}
+                        rightComponent={<Iconfont name="right" size={pixel(14)} color={Theme.subTextColor} />}
                     />
                     <ItemSeparator />
                     {/* <ListItem
                         onPress={() => navigation.navigate('CommonQuestion')}
                         style={styles.listItem}
                         leftComponent={<Text style={styles.itemText}> 常见问题 </Text>}
-                        rightComponent={<Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />}
+                        rightComponent={<Iconfont name="right" size={pixel(14)} color={Theme.subTextColor} />}
                     />
                     <ItemSeparator /> */}
                     <ListItem
                         onPress={() => navigation.navigate('AboutUs')}
                         style={styles.listItem}
                         leftComponent={<Text style={styles.itemText}> 关于 {Config.userStoreName} </Text>}
-                        rightComponent={<Iconfont name="right" size={PxDp(14)} color={Theme.subTextColor} />}
+                        rightComponent={<Iconfont name="right" size={pixel(14)} color={Theme.subTextColor} />}
                     />
                     <ItemSeparator />
                     <ListItem
@@ -221,22 +221,22 @@ const styles = StyleSheet.create({
     },
     itemText: {
         color: Theme.defaultTextColor,
-        fontSize: PxDp(15),
-        marginRight: PxDp(15),
+        fontSize: pixel(15),
+        marginRight: pixel(15),
     },
     listItem: {
         backgroundColor: '#fff',
-        height: PxDp(50),
-        paddingHorizontal: PxDp(16),
+        height: pixel(50),
+        paddingHorizontal: pixel(16),
     },
     logout: {
         alignSelf: 'center',
         color: Theme.primaryColor,
-        fontSize: PxDp(14),
+        fontSize: pixel(14),
     },
     rigthText: {
         color: Theme.subTextColor,
-        fontSize: PxDp(14),
+        fontSize: pixel(14),
     },
 });
 

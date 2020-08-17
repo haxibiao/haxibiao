@@ -4,7 +4,7 @@ import { observer } from '~/store';
 import { ad } from 'react-native-ad';
 import Player from './Player';
 import SideBar from './SideBar';
-import VideoStore from '~/store/VideoStore';
+import VideoStore from '!/src/store/DrawVideoStore';
 import { useNavigation, useRoute } from '@react-navigation/native';
 
 export default observer((props) => {
@@ -58,7 +58,7 @@ export default observer((props) => {
 });
 
 const styles = StyleSheet.create({
-    body: { color: 'rgba(255,255,255,0.9)', fontSize: font(12), paddingTop: PxDp(8) },
+    body: { color: 'rgba(255,255,255,0.9)', fontSize: font(12), paddingTop: pixel(8) },
     cover: {
         position: 'absolute',
         top: 0,
@@ -89,10 +89,10 @@ const styles = StyleSheet.create({
     },
     name: { color: 'rgba(255,255,255,0.9)', fontSize: font(13), fontWeight: 'bold' },
     videoInfo: {
-        bottom: Theme.HOME_INDICATOR_HEIGHT + PxDp(0),
+        bottom: Theme.HOME_INDICATOR_HEIGHT + pixel(0),
         flexDirection: 'row',
         left: 0,
-        paddingHorizontal: PxDp(Theme.itemSpace),
+        paddingHorizontal: pixel(Theme.itemSpace),
         position: 'absolute',
         right: 0,
     },

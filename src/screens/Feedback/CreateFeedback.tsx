@@ -6,8 +6,8 @@ import { GQL, useMutation } from '~/apollo';
 import { useNavigation } from '~/router';
 //  onPress={() => navigation.navigate('TaskScreen')}
 
-const contentGap = PxDp(20);
-const MediaItemWidth = (Device.WIDTH - PxDp(60)) / 3;
+const contentGap = pixel(20);
+const MediaItemWidth = (Device.WIDTH - pixel(60)) / 3;
 let result = {};
 export default observer((props) => {
     const navigation = useNavigation();
@@ -71,7 +71,7 @@ export default observer((props) => {
                                 <Text style={styles.countInputText}>{`${formData.content.length}/200`}</Text>
                             </View>
                         </View>
-                        <View style={[styles.formTitleWrap, { marginTop: PxDp(10) }]}>
+                        <View style={[styles.formTitleWrap, { marginTop: pixel(10) }]}>
                             <Text style={styles.formTitle}>
                                 <Text>提供问题截图(选填)</Text>
                                 <Text>
@@ -108,15 +108,15 @@ export default observer((props) => {
 
 const styles = StyleSheet.create({
     bodyTextInput: {
-        height: PxDp(120),
+        height: pixel(120),
     },
     bodyTextInputArea: {
         paddingHorizontal: contentGap,
     },
     button: {
-        height: PxDp(40),
-        borderRadius: PxDp(5),
-        margin: PxDp(30),
+        height: pixel(40),
+        borderRadius: pixel(5),
+        margin: pixel(30),
     },
     container: {
         paddingVertical: contentGap,
@@ -125,30 +125,30 @@ const styles = StyleSheet.create({
     },
     countInputText: {
         color: Theme.slateGray1,
-        fontSize: PxDp(13),
+        fontSize: pixel(13),
     },
     creatorContainer: {
         backgroundColor: '#fff',
-        borderRadius: PxDp(3),
+        borderRadius: pixel(3),
     },
-    mediaItem: { width: MediaItemWidth, height: MediaItemWidth, marginTop: PxDp(10), marginRight: PxDp(10) },
+    mediaItem: { width: MediaItemWidth, height: MediaItemWidth, marginTop: pixel(10), marginRight: pixel(10) },
     textInputLimit: {
         alignItems: 'flex-end',
     },
     formTitle: {
         color: Theme.defaultTextColor,
         flexDirection: 'row',
-        fontSize: PxDp(15),
+        fontSize: pixel(15),
         justifyContent: 'space-between',
     },
     formTitleWrap: {
-        marginTop: PxDp(20),
+        marginTop: pixel(20),
         backgroundColor: Theme.groundColour,
-        padding: PxDp(15),
+        padding: pixel(15),
     },
     mediaWrap: {
-        marginLeft: PxDp(20),
-        marginRight: PxDp(10),
-        marginTop: PxDp(10),
+        marginLeft: pixel(20),
+        marginRight: pixel(10),
+        marginTop: pixel(10),
     },
 });

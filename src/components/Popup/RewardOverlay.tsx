@@ -21,7 +21,7 @@ export default (props) => {
                     <Text>≈1.5元</Text>
                 </View>
                 <TouchableOpacity style={styles.closeButton}>
-                    <Iconfont name="close" size={PxDp(18)} color="#f0f0f0" />
+                    <Iconfont name="close" size={pixel(18)} color="#f0f0f0" />
                 </TouchableOpacity>
             </View>
             <View style={styles.adverse}>
@@ -32,24 +32,24 @@ export default (props) => {
 };
 
 const OverlayWidth = Device.WIDTH * 0.8;
-const ADWidth = OverlayWidth > PxDp(360) ? PxDp(360) : OverlayWidth > PxDp(300) ? OverlayWidth : PxDp(300);
+const ADWidth = OverlayWidth > pixel(360) ? pixel(360) : OverlayWidth > pixel(300) ? OverlayWidth : pixel(300);
 
 const styles = StyleSheet.create({
     adverse: {
         backgroundColor: '#f0f0f0',
-        marginTop: PxDp(20),
+        marginTop: pixel(20),
         minHeight: ADWidth * 0.5,
         width: ADWidth,
     },
     container: {
         backgroundColor: '#ffffff',
-        borderRadius: PxDp(10),
-        maxWidth: PxDp(360),
-        minWidth: PxDp(300),
+        borderRadius: pixel(10),
+        maxWidth: pixel(360),
+        minWidth: pixel(300),
         width: OverlayWidth,
     },
     content: {
-        padding: PxDp(20),
-        paddingVertical: PxDp(30),
+        padding: pixel(20),
+        paddingVertical: pixel(30),
     },
 });

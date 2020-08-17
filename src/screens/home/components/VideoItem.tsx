@@ -6,7 +6,7 @@ import { ad } from 'react-native-ad';
 import { useNavigation } from '~/router';
 import Player from './Player';
 import SideBar from './SideBar';
-import VideoStore from '~/store/VideoStore';
+import VideoStore from '!/src/store/DrawVideoStore';
 import AdRewardProgress from './AdRewardProgress';
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -81,9 +81,9 @@ export default observer((props: any) => {
                 {VideoStore.getReward.length < 1 && (
                     <View
                         style={{
-                            bottom: Theme.HOME_INDICATOR_HEIGHT + PxDp(75),
+                            bottom: Theme.HOME_INDICATOR_HEIGHT + pixel(75),
                             position: 'absolute',
-                            right: PxDp(Theme.itemSpace),
+                            right: pixel(Theme.itemSpace),
                             flexDirection: 'row',
                             alignItems: 'center',
                         }}>
@@ -94,8 +94,8 @@ export default observer((props: any) => {
                         <Text
                             style={{
                                 color: '#C0CBD4',
-                                fontSize: PxDp(12),
-                                marginHorizontal: PxDp(10),
+                                fontSize: pixel(12),
+                                marginHorizontal: pixel(10),
                             }}>
                             戳一戳
                         </Text>
@@ -140,7 +140,7 @@ export default observer((props: any) => {
 });
 
 const styles = StyleSheet.create({
-    body: { color: 'rgba(255,255,255,0.9)', fontSize: font(15), paddingTop: PxDp(10) },
+    body: { color: 'rgba(255,255,255,0.9)', fontSize: font(15), paddingTop: pixel(10) },
     cover: {
         position: 'absolute',
         top: 0,
@@ -169,20 +169,20 @@ const styles = StyleSheet.create({
     name: { color: 'rgba(255,255,255,0.9)', fontSize: font(16), fontWeight: 'bold' },
     videoContent: {
         position: 'absolute',
-        bottom: PxDp(Theme.BOTTOM_HEIGHT + 20),
-        left: PxDp(Theme.itemSpace),
-        right: PxDp(90),
+        bottom: pixel(Theme.BOTTOM_HEIGHT + 20),
+        left: pixel(Theme.itemSpace),
+        right: pixel(90),
     },
     videoSideBar: {
         position: 'absolute',
-        bottom: PxDp(Theme.BOTTOM_HEIGHT + 20),
-        right: PxDp(Theme.itemSpace),
+        bottom: pixel(Theme.BOTTOM_HEIGHT + 20),
+        right: pixel(Theme.itemSpace),
     },
     shadowContainer: {
         position: 'absolute',
         top: Device.HEIGHT / 2,
         bottom: 0,
-        padding: PxDp(4),
+        padding: pixel(4),
         width: '100%',
         justifyContent: 'flex-end',
         alignItems: 'flex-start',

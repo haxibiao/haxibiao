@@ -36,7 +36,7 @@ export default observer(({ category, titleStyle, nameStyle }) => {
                 <View style={styles.mask} />
                 <View style={styles.content}>
                     <Animated.View
-                        style={[{ height: PxDp(Theme.NAVBAR_HEIGHT), justifyContent: 'center' }, titleStyle]}>
+                        style={[{ height: pixel(Theme.NAVBAR_HEIGHT), justifyContent: 'center' }, titleStyle]}>
                         <Animated.Text style={[styles.categoryName, nameStyle]}>#{category.name}</Animated.Text>
                     </Animated.View>
                     <Text style={styles.categoryDescription}>
@@ -49,10 +49,10 @@ export default observer(({ category, titleStyle, nameStyle }) => {
             </ImageBackground>
             <View style={styles.navBarStyle}>
                 <TouchableOpacity activeOpacity={1} onPress={navigation.goBack} style={styles.navBarButton}>
-                    <Iconfont name="zuojiantou" color={'#fff'} size={PxDp(22)} />
+                    <Iconfont name="zuojiantou" color={'#fff'} size={pixel(22)} />
                 </TouchableOpacity>
                 {/* <TouchableOpacity activeOpacity={1} onPress={showMoreOperation} style={styles.navBarButton}>
-                    <Iconfont name="qita1" size={PxDp(22)} color={'#fff'} />
+                    <Iconfont name="qita1" size={pixel(22)} color={'#fff'} />
                 </TouchableOpacity> */}
             </View>
         </View>
@@ -74,40 +74,40 @@ const styles = StyleSheet.create({
     },
     content: {
         flex: 1,
-        padding: PxDp(Theme.itemSpace),
-        paddingTop: PxDp(Theme.NAVBAR_HEIGHT + Theme.statusBarHeight),
+        padding: pixel(Theme.itemSpace),
+        paddingTop: pixel(Theme.NAVBAR_HEIGHT + Theme.statusBarHeight),
     },
     categoryName: {
         color: '#fff',
-        fontSize: PxDp(20),
+        fontSize: pixel(20),
     },
     categoryDescription: {
         color: '#f9f9f9',
-        fontSize: PxDp(14),
+        fontSize: pixel(14),
     },
     fill: {
         flex: 1,
-        marginTop: PxDp(Theme.itemSpace * 2),
+        marginTop: pixel(Theme.itemSpace * 2),
         justifyContent: 'flex-end',
     },
     countArticles: {
         color: '#fff',
-        fontSize: PxDp(14),
+        fontSize: pixel(14),
     },
     navBarStyle: {
         position: 'absolute',
         top: 0,
         left: 0,
         right: 0,
-        height: PxDp(Theme.NAVBAR_HEIGHT + Theme.statusBarHeight),
-        paddingTop: PxDp(Theme.statusBarHeight),
+        height: pixel(Theme.NAVBAR_HEIGHT + Theme.statusBarHeight),
+        paddingTop: pixel(Theme.statusBarHeight),
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
     },
     navBarButton: {
         alignSelf: 'stretch',
-        paddingHorizontal: PxDp(Theme.itemSpace),
+        paddingHorizontal: pixel(Theme.itemSpace),
         justifyContent: 'center',
     },
 });

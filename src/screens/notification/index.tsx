@@ -96,14 +96,14 @@ export default observer((props: any) => {
                         onPress={() => authNavigator('CommentNotification', { user })}>
                         <View>
                             <Image
-                                style={{ width: PxDp(42), height: PxDp(42), borderRadius: PxDp(5) }}
+                                style={{ width: pixel(42), height: pixel(42), borderRadius: pixel(5) }}
                                 source={require('!/assets/images/notification_comment.png')}
                             />
                         </View>
                         <View style={styles.itemContent}>
                             <SafeText style={styles.itemName}>评论和@</SafeText>
                         </View>
-                        <View style={{ marginLeft: PxDp(10) }}>
+                        <View style={{ marginLeft: pixel(10) }}>
                             <Badge count={myUnreadNotify.unread_comments} />
                         </View>
                     </TouchableOpacity>
@@ -112,14 +112,14 @@ export default observer((props: any) => {
                         onPress={() => authNavigator('BeLikedNotification', { user })}>
                         <View>
                             <Image
-                                style={{ width: PxDp(42), height: PxDp(42), borderRadius: PxDp(5) }}
+                                style={{ width: pixel(42), height: pixel(42), borderRadius: pixel(5) }}
                                 source={require('!/assets/images/notification_like.png')}
                             />
                         </View>
                         <View style={styles.itemContent}>
                             <SafeText style={styles.itemName}>收到的赞</SafeText>
                         </View>
-                        <View style={{ marginLeft: PxDp(10) }}>
+                        <View style={{ marginLeft: pixel(10) }}>
                             <Badge count={myUnreadNotify.unread_likes} />
                         </View>
                     </TouchableOpacity>
@@ -128,14 +128,14 @@ export default observer((props: any) => {
                         onPress={() => authNavigator('FollowNotification', { user })}>
                         <View>
                             <Image
-                                style={{ width: PxDp(42), height: PxDp(42), borderRadius: PxDp(5) }}
+                                style={{ width: pixel(42), height: pixel(42), borderRadius: pixel(5) }}
                                 source={require('!/assets/images/notification_following.png')}
                             />
                         </View>
                         <View style={styles.itemContent}>
                             <SafeText style={styles.itemName}>新的粉丝</SafeText>
                         </View>
-                        <View style={{ marginLeft: PxDp(10) }}>
+                        <View style={{ marginLeft: pixel(10) }}>
                             <Badge count={myUnreadNotify.unread_follows} />
                         </View>
                     </TouchableOpacity>
@@ -144,14 +144,14 @@ export default observer((props: any) => {
                         onPress={() => authNavigator('OtherRemindNotification', { user })}>
                         <View>
                             <Image
-                                style={{ width: PxDp(42), height: PxDp(42), borderRadius: PxDp(5) }}
+                                style={{ width: pixel(42), height: pixel(42), borderRadius: pixel(5) }}
                                 source={require('!/assets/images/notification_other.png')}
                             />
                         </View>
                         <View style={styles.itemContent}>
                             <SafeText style={styles.itemName}>其它提醒</SafeText>
                         </View>
-                        <View style={{ marginLeft: PxDp(10) }}>
+                        <View style={{ marginLeft: pixel(10) }}>
                             <Badge count={myUnreadNotify.unread_others} />
                         </View>
                     </TouchableOpacity>
@@ -177,12 +177,12 @@ const styles = StyleSheet.create({
     contentContainer: {
         backgroundColor: Theme.groundColour,
         flexGrow: 1,
-        paddingBottom: PxDp(Theme.BOTTOM_HEIGHT),
+        paddingBottom: pixel(Theme.BOTTOM_HEIGHT),
     },
     footerView: {
         alignItems: 'center',
         flexDirection: 'row',
-        height: PxDp(40),
+        height: pixel(40),
         justifyContent: 'center',
     },
     footerViewText: {
@@ -191,11 +191,11 @@ const styles = StyleSheet.create({
     },
     itemContent: {
         flex: 1,
-        marginLeft: PxDp(10),
+        marginLeft: pixel(10),
     },
     itemContentBottom: {
         justifyContent: 'space-between',
-        marginTop: PxDp(4),
+        marginTop: pixel(4),
     },
     itemContentTop: { justifyContent: 'space-between' },
     itemName: {
@@ -206,8 +206,8 @@ const styles = StyleSheet.create({
     lastMessage: {
         color: Theme.subTextColor,
         fontSize: font(12),
-        marginTop: PxDp(4),
-        paddingRight: PxDp(20),
+        marginTop: pixel(4),
+        paddingRight: pixel(20),
     },
     notifyItem: {
         alignItems: 'center',
@@ -215,12 +215,12 @@ const styles = StyleSheet.create({
         borderBottomColor: Theme.borderColor,
         borderBottomWidth: Theme.minimumPixel,
         flexDirection: 'row',
-        padding: PxDp(Theme.itemSpace),
+        padding: pixel(Theme.itemSpace),
     },
     notifyType: {
         backgroundColor: '#fff',
-        borderRadius: PxDp(6),
-        margin: PxDp(10),
+        borderRadius: pixel(6),
+        margin: pixel(10),
         overflow: 'hidden',
     },
     timeAgo: {

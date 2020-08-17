@@ -99,8 +99,8 @@ const DrinkButton = (props: Props) => {
             <Text style={styles.buttonText}>{sub_text}</Text>
             <Image
                 style={{
-                    width: PxDp(25),
-                    height: PxDp(33),
+                    width: pixel(25),
+                    height: pixel(33),
                     position: 'absolute',
                     bottom: -1,
                     right: -28,
@@ -246,7 +246,7 @@ export default (props: any) => {
 
 const styles = StyleSheet.create({
     button: {
-        marginRight: PxDp(60),
+        marginRight: pixel(60),
         marginLeft: 15,
         marginVertical: height * 0.02,
         paddingVertical: height * 0.007,

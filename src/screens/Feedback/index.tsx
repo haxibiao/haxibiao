@@ -18,13 +18,13 @@ function Feedback(props: Props) {
             title={'反馈中心'}
             // contentViewStyle={{ paddingTop: Theme.statusBarHeight }}
             white>
-            <ScrollableTabView renderTabBar={(props) => <ScrollTabBar {...props} tabUnderlineWidth={PxDp(30)} />}>
+            <ScrollableTabView renderTabBar={(props) => <ScrollTabBar {...props} tabUnderlineWidth={pixel(30)} />}>
                 <CreateFeedback navigation={navigation} tabLabel="提交反馈" />
                 <FeedbackHistory navigation={navigation} tabLabel="反馈记录" />
             </ScrollableTabView>
             {/* <View style={styles.back}>
                 <TouchFeedback activeOpacity={1} onPress={() => navigation.goBack()}>
-                    <Iconfont name="zuojiantou" color={Theme.defaultTextColor} size={PxDp(21)} />
+                    <Iconfont name="zuojiantou" color={Theme.defaultTextColor} size={pixel(21)} />
                 </TouchFeedback>
             </View> */}
         </PageContainer>
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
         width: Theme.NAVBAR_HEIGHT,
         height: Theme.NAVBAR_HEIGHT,
         justifyContent: 'center',
-        paddingLeft: PxDp(Theme.itemSpace),
+        paddingLeft: pixel(Theme.itemSpace),
     },
 });
 

@@ -29,7 +29,7 @@ HxfTextInput.defaultProps = {
 
 const styles = StyleSheet.create({
     inputStyle: {
-        fontSize: PxDp(14),
+        fontSize: pixel(14),
         color: Theme.defaultTextColor,
         paddingTop: 0,
         padding: 0,

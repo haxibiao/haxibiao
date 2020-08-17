@@ -72,8 +72,8 @@ const styles = StyleSheet.create({
         borderColor: '#E6E6E6',
     },
     inputBox: {
-        height: PxDp(30),
-        width: PxDp(55),
+        height: pixel(30),
+        width: pixel(55),
         borderBottomWidth: 1,
         borderBottomColor: '#E6E6E6',
     },
@@ -83,8 +83,8 @@ const styles = StyleSheet.create({
         borderRadius: 25,
         justifyContent: 'center',
         alignItems: 'center',
-        height: PxDp(35),
-        width: PxDp(280),
+        height: pixel(35),
+        width: pixel(280),
         backgroundColor: '#51B8FF',
     },
 });

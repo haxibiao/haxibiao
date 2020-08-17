@@ -1,5 +1,5 @@
 import { useEffect, useRef, useCallback } from 'react';
-import VideoStore from '~/store/VideoStore';
+import VideoStore from '!/src/store/DrawVideoStore';
 
 const AdRewardProgress = (focus: boolean) => {
     const currentTime = useRef(0);

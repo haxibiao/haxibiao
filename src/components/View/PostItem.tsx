@@ -66,7 +66,7 @@ export interface Props {
 
 const videoWidth = Device.WIDTH * 0.6;
 const videoHeight = videoWidth * 1.33;
-const COVER_WIDTH = Device.WIDTH - PxDp(Theme.itemSpace) * 2;
+const COVER_WIDTH = Device.WIDTH - pixel(Theme.itemSpace) * 2;
 
 const PostItem: React.FC<Props> = observer((props: Props) => {
     const { showSubmitStatus, showSeparator, post = {}, showComment, time_ago } = props;
@@ -215,7 +215,7 @@ const PostItem: React.FC<Props> = observer((props: Props) => {
                     <View style={styles.headerWrapper}>
                         <View style={styles.userInfo}>
                             <TouchableOpacity onPress={() => navigation.navigate('User', { user })}>
-                                <Avatar source={user.avatar} size={PxDp(38)} />
+                                <Avatar source={user.avatar} size={pixel(38)} />
                             </TouchableOpacity>
                             <View style={styles.info}>
                                 <SafeText style={styles.nameText}>{user.name}</SafeText>
@@ -245,14 +245,14 @@ const PostItem: React.FC<Props> = observer((props: Props) => {
                             <Like
                                 media={post}
                                 type="icon"
-                                iconSize={PxDp(22)}
+                                iconSize={pixel(22)}
                                 containerStyle={{ flexDirection: 'row', alignItems: 'center' }}
                                 textStyle={{ color: '#CCD5E0', fontSize: 14, marginStart: 15, marginEnd: 23 }}
                             />
                             <TouchableOpacity
                                 activeOpacity={0.6}
                                 onPress={() => navigation.navigate('PostDetail', { post })}>
-                                {/* <Comment width={PxDp(23)} height={PxDp(23)} /> */}
+                                {/* <Comment width={pixel(23)} height={pixel(23)} /> */}
                             </TouchableOpacity>
                             {count_replies >= 0 && (
                                 <Text style={{ color: '#bfbfbf', fontSize: 14, marginStart: 15, marginEnd: 23 }}>
@@ -271,13 +271,13 @@ const PostItem: React.FC<Props> = observer((props: Props) => {
                         </Row>
                         {!(isSelf && showComment) && (
                             <TouchableOpacity activeOpacity={0.6}>
-                                <Iconfont name="qita1" size={PxDp(22)} color={'#CCD5E0'} />
+                                <Iconfont name="qita1" size={pixel(22)} color={'#CCD5E0'} />
                             </TouchableOpacity>
                         )}
                     </View>
                 </View>
             </TouchableWithoutFeedback>
-            {showSeparator && <ItemSeparator height={PxDp(8)} />}
+            {showSeparator && <ItemSeparator height={pixel(8)} />}
             {showComment && (
                 <View style={styles.commentsHeader}>
                     <Text style={{ color: '#CBD8E1' }}>{`所有评论(${count_replies || 0})`}</Text>
@@ -302,10 +302,10 @@ const styles = StyleSheet.create({
     categoryItem: {
         alignItems: 'center',
         flexDirection: 'row',
-        height: PxDp(34),
+        height: pixel(34),
         justifyContent: 'center',
-        marginRight: PxDp(10),
-        marginTop: PxDp(10),
+        marginRight: pixel(10),
+        marginTop: pixel(10),
     },
     categoryName: {
         color: Theme.primaryColor,
@@ -315,33 +315,33 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'row',
         alignItems: 'center',
-        marginRight: PxDp(Theme.itemSpace),
+        marginRight: pixel(Theme.itemSpace),
     },
     info: {
         justifyContent: 'space-between',
-        marginLeft: PxDp(Theme.itemSpace),
+        marginLeft: pixel(Theme.itemSpace),
     },
-    timeAgoText: { fontSize: PxDp(12), color: Theme.slateGray1, fontWeight: '300', marginTop: PxDp(5) },
-    nameText: { fontSize: PxDp(14), color: Theme.defaultTextColor },
+    timeAgoText: { fontSize: pixel(12), color: Theme.slateGray1, fontWeight: '300', marginTop: pixel(5) },
+    nameText: { fontSize: pixel(14), color: Theme.defaultTextColor },
     questionLabel: {
         flexDirection: 'row',
         alignItems: 'center',
-        height: PxDp(24),
-        borderRadius: PxDp(12),
-        paddingHorizontal: PxDp(8),
+        height: pixel(24),
+        borderRadius: pixel(12),
+        paddingHorizontal: pixel(8),
         backgroundColor: Theme.groundColour,
     },
     questionText: {
-        fontSize: PxDp(11),
+        fontSize: pixel(11),
         color: Theme.subTextColor,
     },
     rewardText: {
-        marginLeft: PxDp(5),
-        fontSize: PxDp(11),
+        marginLeft: pixel(5),
+        fontSize: pixel(11),
         color: Theme.watermelon,
     },
     bottomPartWrapper: {
-        marginTop: PxDp(10),
+        marginTop: pixel(10),
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -349,19 +349,19 @@ const styles = StyleSheet.create({
     },
     metaList: {
         flex: 1,
-        marginLeft: PxDp(10),
+        marginLeft: pixel(10),
         justifyContent: 'flex-start',
     },
     contentTop: {
-        marginTop: PxDp(Theme.itemSpace),
+        marginTop: pixel(Theme.itemSpace),
     },
     contentBottom: {
-        marginTop: PxDp(Theme.itemSpace),
+        marginTop: pixel(Theme.itemSpace),
     },
-    bodyText: { color: Theme.defaultTextColor, fontSize: PxDp(16), letterSpacing: 0.8 },
+    bodyText: { color: Theme.defaultTextColor, fontSize: pixel(16), letterSpacing: 0.8 },
     postContainer: {
-        paddingHorizontal: PxDp(Theme.itemSpace),
-        marginVertical: PxDp(Theme.itemSpace),
+        paddingHorizontal: pixel(Theme.itemSpace),
+        marginVertical: pixel(Theme.itemSpace),
     },
     headerWrapper: {
         width: '100%',
@@ -371,36 +371,36 @@ const styles = StyleSheet.create({
     landscape: {
         width: COVER_WIDTH,
         height: (COVER_WIDTH * 9) / 16,
-        borderRadius: PxDp(6),
+        borderRadius: pixel(6),
     },
     portrait: {
         width: COVER_WIDTH * 0.5,
         height: COVER_WIDTH * 0.8,
-        borderRadius: PxDp(6),
+        borderRadius: pixel(6),
     },
     submitStatus: {
-        borderRadius: PxDp(12),
-        height: PxDp(24),
-        paddingHorizontal: PxDp(8),
+        borderRadius: pixel(12),
+        height: pixel(24),
+        paddingHorizontal: pixel(8),
         justifyContent: 'center',
         alignItems: 'center',
-        marginLeft: PxDp(10),
+        marginLeft: pixel(10),
     },
     statusText: {
-        fontSize: PxDp(12),
+        fontSize: pixel(12),
         color: '#fff',
     },
     remark: {
         flex: 1,
-        paddingBottom: PxDp(Theme.itemSpace),
+        paddingBottom: pixel(Theme.itemSpace),
     },
     remarkText: {
-        fontSize: PxDp(14),
+        fontSize: pixel(14),
         color: Theme.subTextColor,
     },
     commentsHeader: {
         borderColor: Theme.borderColor,
-        borderBottomWidth: PxDp(0.5),
-        padding: PxDp(Theme.itemSpace),
+        borderBottomWidth: pixel(0.5),
+        padding: pixel(Theme.itemSpace),
     },
 });

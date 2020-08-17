@@ -38,9 +38,9 @@ class IncomeAndExpenditureItem extends Component {
 
 const styles = StyleSheet.create({
     item: {
-        padding: PxDp(Theme.itemSpace),
+        padding: pixel(Theme.itemSpace),
         borderBottomColor: Theme.borderColor,
-        borderBottomWidth: PxDp(1),
+        borderBottomWidth: pixel(1),
     },
 });
 

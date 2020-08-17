@@ -14,8 +14,8 @@ let styles = {
     container: {
         position: 'absolute',
         bottom: 0,
-        paddingTop: PxDp(20),
-        paddingBottom: Theme.HOME_INDICATOR_HEIGHT || PxDp(20),
+        paddingTop: pixel(20),
+        paddingBottom: Theme.HOME_INDICATOR_HEIGHT || pixel(20),
         width: '100%',
         flexDirection: 'row',
         alignItems: 'center',
@@ -30,7 +30,7 @@ let styles = {
         borderRadius: Helper.WPercent(6),
     },
     titleStyle: {
-        fontSize: PxDp(16),
+        fontSize: pixel(16),
         color: '#fff',
     },
 };

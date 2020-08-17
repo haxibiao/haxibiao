@@ -21,12 +21,12 @@ class OverlayViewer {
                             onPress={() => OverlayViewer.hide()}
                             activeOpacity={1}
                             style={{
-                                width: PxDp(70),
-                                height: PxDp(30),
+                                width: pixel(70),
+                                height: pixel(30),
                                 justifyContent: 'center',
                                 alignItems: 'center',
                             }}>
-                            <Iconfont name="guanbi1" color={Theme.navBarMenuColor} size={PxDp(24)} />
+                            <Iconfont name="guanbi1" color={Theme.navBarMenuColor} size={pixel(24)} />
                         </TouchableOpacity>
                     </View>
                     <View style={{ flex: 1 }}>{children}</View>
@@ -50,9 +50,9 @@ const styles = StyleSheet.create({
     },
     navBarStyle: {
         backgroundColor: Theme.navBarBackground,
-        height: PxDp(Theme.NAVBAR_HEIGHT + Theme.statusBarHeight),
-        paddingTop: PxDp(Theme.statusBarHeight),
-        paddingLeft: PxDp(Theme.itemSpace),
+        height: pixel(Theme.NAVBAR_HEIGHT + Theme.statusBarHeight),
+        paddingTop: pixel(Theme.statusBarHeight),
+        paddingLeft: pixel(Theme.itemSpace),
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'flex-end',

@@ -56,7 +56,7 @@ function WithdrawLogItem(props) {
                     item: item,
                 })
             }>
-            <Image source={imageUrl} style={{ width: size, height: size, marginVertical: PxDp(15) }} />
+            <Image source={imageUrl} style={{ width: size, height: size, marginVertical: pixel(15) }} />
             <Row style={styles.content}>
                 <View style={{ width: (Device.WIDTH * 4) / 7 }}>
                     <Text style={styles.statusText}>
@@ -70,7 +70,7 @@ function WithdrawLogItem(props) {
                     <Text style={styles.time}>{item.created_at}</Text>
                 </View>
                 <View>
-                    <Text style={{ fontSize: PxDp(20), color }}>￥{item.amount}</Text>
+                    <Text style={{ fontSize: pixel(20), color }}>￥{item.amount}</Text>
                 </View>
             </Row>
         </TouchableOpacity>
@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
     },
     image: {
         height: 40,
-        marginVertical: PxDp(15),
+        marginVertical: pixel(15),
         width: 40,
     },
     item: {
@@ -97,13 +97,13 @@ const styles = StyleSheet.create({
     },
     statusText: {
         color: Theme.defaultTextColor,
-        fontSize: PxDp(16),
-        lineHeight: PxDp(22),
+        fontSize: pixel(16),
+        lineHeight: pixel(22),
     },
     time: {
         color: Theme.subTextColor,
-        fontSize: PxDp(12),
-        lineHeight: PxDp(22),
+        fontSize: pixel(12),
+        lineHeight: pixel(22),
     },
 });
 

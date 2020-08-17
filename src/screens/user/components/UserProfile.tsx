@@ -96,7 +96,7 @@ export default observer(({ user, titleStyle, contentStyle }) => {
                         navigation.goBack();
                     }}
                     style={styles.navBarButton}>
-                    <Iconfont name="zuojiantou" color={'#fff'} size={PxDp(22)} />
+                    <Iconfont name="zuojiantou" color={'#fff'} size={pixel(22)} />
                 </TouchableOpacity>
                 <Animated.View style={[styles.navBarTitle, titleStyle]}>
                     <Text style={styles.titleText} numberOfLines={1}>
@@ -105,11 +105,11 @@ export default observer(({ user, titleStyle, contentStyle }) => {
                 </Animated.View>
                 {isSelf ? (
                     <View activeOpacity={1} style={[styles.navBarButton, { opacity: 0 }]}>
-                        <Iconfont name="qita1" size={PxDp(22)} color={'#fff'} />
+                        <Iconfont name="qita1" size={pixel(22)} color={'#fff'} />
                     </View>
                 ) : (
                     <TouchableOpacity activeOpacity={1} onPress={showMoreOperation} style={styles.navBarButton}>
-                        <Iconfont name="qita1" size={PxDp(22)} color={'#fff'} />
+                        <Iconfont name="qita1" size={pixel(22)} color={'#fff'} />
                     </TouchableOpacity>
                 )}
             </View>
@@ -149,8 +149,8 @@ const styles = StyleSheet.create({
     },
     content: {
         flex: 1,
-        paddingHorizontal: PxDp(Theme.itemSpace),
-        paddingTop: PxDp(Theme.NAVBAR_HEIGHT + Theme.statusBarHeight),
+        paddingHorizontal: pixel(Theme.itemSpace),
+        paddingTop: pixel(Theme.NAVBAR_HEIGHT + Theme.statusBarHeight),
     },
     contentTop: {
         flexDirection: 'row',
@@ -160,67 +160,67 @@ const styles = StyleSheet.create({
     contentBottom: {
         flex: 1,
         justifyContent: 'space-between',
-        paddingVertical: PxDp(Theme.itemSpace),
+        paddingVertical: pixel(Theme.itemSpace),
     },
     navBarStyle: {
         position: 'absolute',
         top: 0,
         left: 0,
         right: 0,
-        height: PxDp(Theme.NAVBAR_HEIGHT + Theme.statusBarHeight),
-        paddingTop: PxDp(Theme.statusBarHeight),
+        height: pixel(Theme.NAVBAR_HEIGHT + Theme.statusBarHeight),
+        paddingTop: pixel(Theme.statusBarHeight),
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
     },
     navBarButton: {
         alignSelf: 'stretch',
-        paddingHorizontal: PxDp(Theme.itemSpace),
+        paddingHorizontal: pixel(Theme.itemSpace),
         justifyContent: 'center',
     },
     avatar: {
-        width: PxDp(80),
-        height: PxDp(80),
+        width: pixel(80),
+        height: pixel(80),
         borderColor: '#FFF',
-        borderRadius: PxDp(84),
-        borderWidth: PxDp(2),
+        borderRadius: pixel(84),
+        borderWidth: pixel(2),
     },
     editButton: {
-        borderRadius: PxDp(5),
-        paddingHorizontal: PxDp(16),
-        paddingVertical: PxDp(8),
+        borderRadius: pixel(5),
+        paddingHorizontal: pixel(16),
+        paddingVertical: pixel(8),
     },
     followButton: {
-        borderRadius: PxDp(5),
-        paddingHorizontal: PxDp(16),
-        paddingVertical: PxDp(8),
+        borderRadius: pixel(5),
+        paddingHorizontal: pixel(16),
+        paddingVertical: pixel(8),
     },
     introduction: {
         color: '#fff',
-        fontSize: PxDp(14),
+        fontSize: pixel(14),
     },
     metaCountText: {
         color: '#fff',
-        fontSize: PxDp(16),
+        fontSize: pixel(16),
         fontWeight: 'bold',
-        marginRight: PxDp(5),
+        marginRight: pixel(5),
     },
     metaItem: {
         alignItems: 'baseline',
         flexDirection: 'row',
-        marginRight: PxDp(Theme.itemSpace),
+        marginRight: pixel(Theme.itemSpace),
     },
     metaList: {
         flexDirection: 'row',
     },
     metaText: {
         color: '#fff',
-        fontSize: PxDp(12),
+        fontSize: pixel(12),
     },
     userName: {
         color: '#fff',
-        fontSize: PxDp(20),
-        marginRight: PxDp(10),
+        fontSize: pixel(20),
+        marginRight: pixel(10),
         fontWeight: 'bold',
     },
     navBarTitle: {
@@ -228,6 +228,6 @@ const styles = StyleSheet.create({
     },
     titleText: {
         color: '#fff',
-        fontSize: PxDp(15),
+        fontSize: pixel(15),
     },
 });

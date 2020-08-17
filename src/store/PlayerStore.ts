@@ -56,7 +56,17 @@ export default class PlayerStore {
     }
 
     @action.bound
-    getVideoRef(ref) {
+    public play() {
+        this.paused = false;
+    }
+
+    @action.bound
+    public pause() {
+        this.paused = true;
+    }
+
+    @action.bound
+    getVideoRef(ref: any) {
         this.videoRef = ref;
     }
 

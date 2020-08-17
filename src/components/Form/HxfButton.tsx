@@ -28,7 +28,7 @@ class HxfButton extends Component<Props, any> {
         if (plain) {
             buttonStyle = {
                 ...buttonLayout[size],
-                borderWidth: PxDp(1),
+                borderWidth: pixel(1),
                 borderColor: theme,
             };
             titleStyle = { ...buttonTitle[size], color: theme };
@@ -69,7 +69,7 @@ class HxfButton extends Component<Props, any> {
                 <GradientView
                     colors={disabled ? ['#787878', '#a4a4a4'] : [Theme.primaryColor, Theme.secondaryColor]}
                     style={[styles.buttonWrap, style]}>
-                    <TouchableOpacity style={[{flex:1},styles.buttonWrap]} disabled={disabled} onPress={onPress}>
+                    <TouchableOpacity style={[{ flex: 1 }, styles.buttonWrap]} disabled={disabled} onPress={onPress}>
                         {this.renderIcon()}
                         {children || <Text style={titleStyle}>{title}</Text>}
                     </TouchableOpacity>
@@ -91,7 +91,7 @@ class HxfButton extends Component<Props, any> {
 const styles = StyleSheet.create({
     buttonWrap: {
         alignItems: 'center',
-        borderRadius: PxDp(4),
+        borderRadius: pixel(4),
         flexDirection: 'row',
         justifyContent: 'center',
         overflow: 'hidden',
@@ -111,49 +111,49 @@ export default HxfButton;
 
 const buttonLayout = {
     mini: {
-        paddingVertical: PxDp(4),
-        paddingHorizontal: PxDp(9),
+        paddingVertical: pixel(4),
+        paddingHorizontal: pixel(9),
     },
     small: {
-        paddingVertical: PxDp(6),
-        paddingHorizontal: PxDp(11),
+        paddingVertical: pixel(6),
+        paddingHorizontal: pixel(11),
     },
     medium: {
-        paddingVertical: PxDp(9),
-        paddingHorizontal: PxDp(14),
+        paddingVertical: pixel(9),
+        paddingHorizontal: pixel(14),
     },
     default: {
-        paddingVertical: PxDp(11),
-        paddingHorizontal: PxDp(17),
+        paddingVertical: pixel(11),
+        paddingHorizontal: pixel(17),
     },
 };
 
 const buttonTitle = {
     mini: {
-        fontSize: PxDp(13),
+        fontSize: pixel(13),
     },
     small: {
-        fontSize: PxDp(13),
+        fontSize: pixel(13),
     },
     medium: {
-        fontSize: PxDp(15),
+        fontSize: pixel(15),
     },
     default: {
-        fontSize: PxDp(16),
+        fontSize: pixel(16),
     },
 };
 
 const iconWrapStyle = {
     mini: {
-        marginRight: PxDp(2),
+        marginRight: pixel(2),
     },
     small: {
-        marginRight: PxDp(3),
+        marginRight: pixel(3),
     },
     medium: {
-        marginRight: PxDp(4),
+        marginRight: pixel(4),
     },
     default: {
-        marginRight: PxDp(5),
+        marginRight: pixel(5),
     },
 };

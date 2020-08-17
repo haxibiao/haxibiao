@@ -12,7 +12,7 @@ export default (data: any) => {
     let cover_url = cover ? { uri: cover } : require('!/assets/images/default_avatar.png');
 
     return (
-        <View style={{ flexDirection: 'row', paddingHorizontal: PxDp(20), marginVertical: PxDp(15) }}>
+        <View style={{ flexDirection: 'row', paddingHorizontal: pixel(20), marginVertical: pixel(15) }}>
             <TouchableOpacity
                 onPress={() => {
                     const user = Helper.syncGetter('user', item);
@@ -33,7 +33,7 @@ export default (data: any) => {
                     {Helper.syncGetter('user.name', item) || '匿名用户'}
                 </Text>
                 <Text style={{ fontSize: 15 }}>{Helper.syncGetter('type', item) || '赞了你的作品'}</Text>
-                <Text style={{ marginTop: PxDp(10), color: '#AAA' }}>
+                <Text style={{ marginTop: pixel(10), color: '#AAA' }}>
                     {Helper.syncGetter('time_ago', item) || '1分钟前'}
                 </Text>
             </View>
@@ -46,7 +46,7 @@ export default (data: any) => {
                         Toast.show({ content: '该动态或视频已经不存在了！' });
                     }
                 }}>
-                <Image style={{ width: PxDp(90), height: PxDp(60), borderRadius: PxDp(6) }} source={cover_url} />
+                <Image style={{ width: pixel(90), height: pixel(60), borderRadius: pixel(6) }} source={cover_url} />
             </TouchableOpacity>
         </View>
     );

@@ -38,7 +38,7 @@ class Footer extends Component<Props> {
 
 const styles = StyleSheet.create({
     footerView: {
-        paddingVertical: PxDp(Theme.itemSpace),
+        paddingVertical: pixel(Theme.itemSpace),
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     footerViewText: {
         fontSize: font(13),
         color: Theme.subTextColor,
-        marginHorizontal: PxDp(10),
+        marginHorizontal: pixel(10),
     },
 });
 

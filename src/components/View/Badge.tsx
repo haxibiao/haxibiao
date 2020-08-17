@@ -12,8 +12,8 @@ export default class Badge extends Component {
         let { style, countStyle, count, maxCount } = this.props;
 
         let width, height, borderRadius, borderWidth;
-        width = PxDp(20);
-        height = PxDp(20);
+        width = pixel(20);
+        height = pixel(20);
         borderRadius = width / 2;
 
         style = [

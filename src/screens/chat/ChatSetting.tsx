@@ -17,15 +17,15 @@ const ChatSetting = (props) => {
         <PageContainer title={'聊天信息'}>
             <TouchFeedback style={styles.itemStyle} onPress={() => navigation.navigate('User', { user })}>
                 <Row>
-                    <Avatar source={user.avatar} size={PxDp(50)} />
-                    <View style={{ marginLeft: PxDp(10) }}>
+                    <Avatar source={user.avatar} size={pixel(50)} />
+                    <View style={{ marginLeft: pixel(10) }}>
                         <Text style={{ fontSize: font(15), color: Theme.navBarTitleColor || '#666' }}>{user.name}</Text>
                         <Text style={{ fontSize: font(13), color: Theme.secondaryTextColor }}>
                             {user.introduction || '本宝宝暂时还没想到个性签名~'}
                         </Text>
                     </View>
                 </Row>
-                <Iconfont name="right" color={Theme.navBarMenuColor} size={PxDp(18)} />
+                <Iconfont name="right" color={Theme.navBarMenuColor} size={pixel(18)} />
             </TouchFeedback>
             <TouchFeedback style={styles.itemStyle}>
                 <Text style={{ fontSize: font(15), color: Theme.navBarTitleColor || '#666' }}>屏蔽消息</Text>
@@ -39,7 +39,7 @@ const ChatSetting = (props) => {
                     })
                 }>
                 <Text style={{ fontSize: font(15), color: Theme.navBarTitleColor || '#666' }}>举报</Text>
-                <Iconfont name="right" color={Theme.navBarMenuColor} size={PxDp(18)} />
+                <Iconfont name="right" color={Theme.navBarMenuColor} size={pixel(18)} />
             </TouchFeedback>
         </PageContainer>
     );
@@ -50,10 +50,10 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between',
-        paddingHorizontal: PxDp(15),
-        paddingVertical: PxDp(15),
+        paddingHorizontal: pixel(15),
+        paddingVertical: pixel(15),
         borderBottomColor: Theme.navBarSeparatorColor,
-        borderBottomWidth: PxDp(0.5),
+        borderBottomWidth: pixel(0.5),
     },
     radioText: {
         fontSize: font(15),

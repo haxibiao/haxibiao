@@ -5,7 +5,7 @@ export { observer } from 'mobx-react';
 export { default as appStore } from './appStore';
 export { default as userStore } from './userStore';
 export { default as chatStore } from './ChatStore';
-export { default as videoStore } from './VideoStore';
+export { default as videoStore } from './DrawVideoStore';
 
 //非单例的store = viewmdoel
 export { default as PalyerStore } from './PlayerStore';

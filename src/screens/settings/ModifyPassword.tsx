@@ -16,14 +16,14 @@ export default function ModifyPassword() {
     let { id } = me;
     return (
         <PageContainer white title="修改密码" submitting={submitting}>
-            <View style={{ marginVertical: PxDp(35), paddingHorizontal: PxDp(25) }}>
+            <View style={{ marginVertical: pixel(35), paddingHorizontal: pixel(25) }}>
                 <Text style={{ fontSize: font(20), fontWeight: '600' }}>提交新密码</Text>
             </View>
 
             <View style={styles.inputWrap}>
                 <TextInput
                     placeholder="请输入新密码,不少于6位"
-                    style={{ height: PxDp(48) }}
+                    style={{ height: pixel(48) }}
                     onChangeText={(text) => onPasswordChange(text)}
                     value={password}
                     secureTextEntry={true}
@@ -33,7 +33,7 @@ export default function ModifyPassword() {
             <View style={styles.inputWrap}>
                 <TextInput
                     placeholder="请再次输入新密码,不少于6位"
-                    style={{ height: PxDp(48) }}
+                    style={{ height: pixel(48) }}
                     onChangeText={(text) => {
                         onAgainPasswordChange(text);
                     }}
@@ -85,10 +85,10 @@ export default function ModifyPassword() {
 
 const styles = StyleSheet.create({
     button: {
-        height: PxDp(38),
-        borderRadius: PxDp(5),
-        marginHorizontal: PxDp(25),
-        marginTop: PxDp(35),
+        height: pixel(38),
+        borderRadius: pixel(5),
+        marginHorizontal: pixel(25),
+        marginTop: pixel(35),
         paddingVertical: 0,
         backgroundColor: Theme.primaryColor,
     },
@@ -97,9 +97,9 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     inputWrap: {
-        borderBottomWidth: PxDp(0.5),
+        borderBottomWidth: pixel(0.5),
         borderBottomColor: Theme.borderColor,
-        marginHorizontal: PxDp(25),
+        marginHorizontal: pixel(25),
         paddingHorizontal: 0,
     },
 });
