@@ -4,6 +4,14 @@ import { Keys, Storage } from './localStorage';
 import AppJson from '!/app.json';
 
 class AppStore {
+    /**
+     **********************
+     *  直播相关
+     **********************
+     */
+    //是否有足够的权限开启直播( 麦克风，摄像头 )
+    @observable public sufficient_permissions: boolean = false;
+
     @observable viewportHeight: number = Device.HEIGHT;
     @observable deviceOffline: boolean = false;
     @observable connectionInfoType: Record<string, any> = {};
@@ -56,6 +64,12 @@ class AppStore {
         // this.createPostGuidance = await Storage.getItem(Keys.createPostGuidance);
         this.createUserAgreement = (await Storage.getItem(Keys.createUserAgreement)) || false;
         console.log('是否阅读用户：', this.createUserAgreement);
+    }
+
+    // 更新 sufficent_permissions
+    @action.bound
+    public AppSetSufficientPermissions(sufficient: boolean) {
+        this.sufficient_permissions = sufficient;
     }
 
     @action.bound

@@ -77,7 +77,18 @@ import SpiderVideo from '~/screens/task/SpiderVideoTask';
 import TaskRewardVideo from '~/screens/task/rewardVideo';
 import TaskNewUserBook from '~/screens/task/newuser';
 
+// 直播
+import LiveIndex from '~/screens/live';
+import LiveWatch from '~/screens/live/LiveRoom';
+import StartLive from '~/screens/live/ShowTimeStartLive';
+
 export default {
+    直播秀: {
+        component: LiveWatch,
+    },
+    直播列表: {
+        component: LiveIndex,
+    },
     SplashGuide: {
         component: SplashGuide,
         path: 'splash/:route',

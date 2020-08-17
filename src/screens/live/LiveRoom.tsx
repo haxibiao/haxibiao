@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Dimensions, Alert, StatusBar, Image } from 'react-native';
-import { LivePullManager, LivePullView, LIVE_TYPE } from 'hxf-tencent-live';
+import { LivePullManager, LivePullView, LIVE_TYPE } from 'react-native-live';
 import LottieView from 'lottie-react-native';
-import { when, observer, appStore } from '@src/store';
-import { GQL } from '@src/apollo';
+import { when, observer, appStore } from '~/store';
+import { useNavigation, useRoute } from '~/router';
+import { GQL } from '~/apollo';
 import LiveStore from './LiveStore';
 
 import LiveRoomTopWidgets from './LiveRoomTopWidgets';
@@ -24,55 +25,37 @@ const MemoMountPoint = React.memo((props: MountPoint) => <LiveRoomWSMountPoint i
 
 const StreamerLeft = observer((props: any) => {
     useEffect(() => {
-        if (LiveStore.streamerLeft) StreamerLeftModal.showStreamerLeft(props.navigation);
+        if (LiveStore.streamerLeft) {
+            StreamerLeftModal.showStreamerLeft(props.navigation);
+        }
     }, [LiveStore.streamerLeft]);
 
     return <View style={{ position: 'absolute' }} />;
 });
 
 var newclient: ApolloClient<unknown>;
-const LiveRoom = (props: any) => {
-    const navigation = props.navigation;
-    const RoomId = navigation.state.params?.roomid ?? 0; // 跳转过来时传递的 房间号ID
+export default observer((props: any) => {
+    const navigation = useNavigation();
+    const RoomId = useRoute().params.roomid ?? 0; // 跳转过来时传递的 房间号ID
     const [loading, setloading] = useState(true);
     const [prepared, setprepared] = useState(false);
-    const [streamer, setstreamer] = useState({}); // 主播信息
+    const [user, setUser] = useState({}); // 主播信息
 
     useEffect(() => {
-        let beginevt = LivePullManager.subscrib('PLAY_EVT_PLAY_BEGIN', event => {
+        let beginevt = LivePullManager.subscribe('PLAY_EVT_PLAY_BEGIN', (event) => {
             // LiveStore.pushDankamu({name:"直播开始!",message:''});
             setloading(false);
         });
-        let endevt = LivePullManager.subscrib('PLAY_EVT_PLAY_END', event => {
+        let endevt = LivePullManager.subscribe('PLAY_EVT_PLAY_END', (event) => {
             // 直播已结束
             console.log(event);
             LiveStore.pushDankamu({ name: '直播已结束', message: '' });
         });
-        let reconnect = LivePullManager.subscrib('PLAY_WARNING_RECONNECT', event => {
+        let reconnect = LivePullManager.subscribe('PLAY_WARNING_RECONNECT', (event) => {
             // 网络错误，启动重连
-            if (!LiveStore.streamerLeft) {
+            if (!LiveStore.userLeft) {
                 LiveStore.pushDankamu({ name: '主播网络异常、或已下播，尝试重新连接...', message: '' });
             }
-        });
-
-        let disconnectevt = LivePullManager.subscrib('PLAY_ERR_NET_DISCONNECT', event => {
-            // 网络无法重连，可能直播已结束
-            console.log('直播无法重连,', event);
-            if (!LiveStore.streamerLeft) {
-                newclient
-                    .mutate({
-                        mutation: GQL.ExceptionLiveReport,
-                        variables: { roomid: RoomId },
-                    })
-                    .then(rs => {
-                        console.log('直播间网络异常报告结果: ', rs);
-                        LiveStore.pushDankamu({ name: '主播异常下播、直播已结束', message: '' });
-                    })
-                    .catch(err => {
-                        console.log('直播间网络异常报告错误: ', err);
-                    });
-            }
-            LiveStore.setStreamerLeft(true);
         });
 
         return () => {
@@ -81,7 +64,6 @@ const LiveRoom = (props: any) => {
             beginevt.remove();
             endevt.remove();
             reconnect.remove();
-            disconnectevt.remove();
         };
     }, []);
 
@@ -92,33 +74,34 @@ const LiveRoom = (props: any) => {
         if (newclient) {
             newclient
                 .mutate({
-                    mutation: GQL.EnterLiveRoom,
+                    mutation: GQL.JoinLiveMutation,
                     variables: { id: RoomId }, // 传入房间id
                     fetchPolicy: 'no-cache',
                 })
                 .then((rs: any) => {
-                    let d = rs.data?.joinLiveRoom;
+                    let d = rs.data?.joinLive;
                     console.log('单个直播间数据: ', rs);
-                    LiveStore.setroomidForOnlinePeople(rs.data?.joinLiveRoom.id);
-                    let { streamer, pull_url, count_audience } = rs.data.joinLiveRoom;
-                    streamer.count_audience = count_audience;
-                    setstreamer(streamer);
+                    LiveStore.setroomidForOnlinePeople(rs.data?.joinLive.id);
+                    let { user, pull_url, count_users } = rs.data.joinLive;
+                    user.count_users = count_users;
+                    setUser(user);
                     setprepared(true);
                     console.log('拉流地址: ', pull_url);
                     if (pull_url) {
                         // 开始拉流 --
-                        LivePullManager.liveStartPull(pull_url, 0);
+                        LivePullManager.startPull(pull_url, 0);
                         setTimeout(() => {
-                            LivePullManager.liveStartPull(pull_url, 0);
+                            LivePullManager.startPull(pull_url, 0);
                         }, 500);
                     }
                     LiveStore.pushDankamu({
-                        name: `${Config.AppName || ''}超管: *~(￣▽￣)~[] []~(￣▽￣)~* 欢迎来到${streamer.name}的直播间`,
+                        name: `${Config.AppName || ''}超管: *~(￣▽￣)~[] []~(￣▽￣)~* 欢迎来到${user.name}的直播间`,
                         message: '',
                     });
                     LiveStore.pushDankamu({
-                        name: `${Config.AppName ||
-                            ''}超管: 为了营造绿色网络环境、请遵守文明准则哦。禁止发表涉及暴力、色情、歧视等言论。不遵守者一旦被查出将有封号风险。`,
+                        name: `${
+                            Config.AppName || ''
+                        }超管: 为了营造绿色网络环境、请遵守文明准则哦。禁止发表涉及暴力、色情、歧视等言论。不遵守者一旦被查出将有封号风险。`,
                         message: '',
                     });
                 })
@@ -148,7 +131,7 @@ const LiveRoom = (props: any) => {
                 {loading && <LottieView source={require('./res/wind.json')} style={{ width: '100%' }} loop autoPlay />}
                 <StreamerLeft navigation={navigation} />
             </View>
-            <LiveRoomTopWidgets navigation={props.navigation} streamer={streamer} loadingEnd={!loading} />
+            <LiveRoomTopWidgets navigation={props.navigation} user={user} loadingEnd={!loading} />
             <View style={{ height: sh * 0.35 + 40, zIndex: 22 }}>
                 <CommonWidgetLiveRoomMessages />
                 {!loading && <LiveRoomBottomWidgets navigation={props.navigation} />}
@@ -156,9 +139,7 @@ const LiveRoom = (props: any) => {
             <MemoMountPoint id={RoomId} />
         </View>
     );
-};
-
-export default observer(LiveRoom);
+});
 
 const styles = StyleSheet.create({
     body: {

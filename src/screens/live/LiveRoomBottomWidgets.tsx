@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Dimensions, Image, NativeModules, TouchableOpacity } from 'react-native';
 import { observer } from 'mobx-react';
-import { appStore } from '@src/store';
-import { GQL as NewGQL } from '@src/apollo';
+import { appStore } from '~/store';
+import { GQL as NewGQL } from '~/apollo';
 import { ApolloClient } from 'apollo-boost';
 import LiveStore from './LiveStore';
-import { LivePullManager } from 'hxf-tencent-live';
+import { LivePullManager } from 'react-native-live';
 import * as Dankamu from './DankamuInputModal';
 
 const { width: sw, height: sh } = Dimensions.get('window');
@@ -26,19 +26,19 @@ const CloseButton = observer((props: any) => {
             // 为防止用户直接使用物理按键返回，在组件销毁时也调用离开mutation
             client
                 .mutate({
-                    mutation: NewGQL.LeaveLiveRoom,
+                    mutation: NewGQL.LeaveLiveMutation,
                     variables: { roomid: LiveStore.roomidForOnlinePeople },
                 })
-                .then(rs => {
+                .then((rs) => {
                     // 离开成功
                     console.log('[Protect]用户离开直播间mutation调用成功', rs);
                 })
-                .catch(err => {
+                .catch((err) => {
                     // TODO: 离开接口调用失败
                     console.log('[Protect]用户离开直播间接口错误', err);
                 });
-            LiveStore.setStreamerLeft(false); // 离开时设置 主播下播 为false, 隐藏下播状态图
-            LivePullManager.liveStopPull();
+            LiveStore.setuserLeft(false); // 离开时设置 主播下播 为false, 隐藏下播状态图
+            LivePullManager.stopPull();
             console.log('[Protect]停止拉流');
             LiveStore.clearDankamu();
             console.log('[Protect]清除弹幕数据');
@@ -50,7 +50,7 @@ const CloseButton = observer((props: any) => {
             activeOpacity={0.9}
             onPress={() => {
                 // 销毁直播
-                LivePullManager.liveStopPull();
+                LivePullManager.stopPull();
                 console.log('停止拉流');
                 // 清除弹幕
                 LiveStore.clearDankamu();
@@ -59,18 +59,18 @@ const CloseButton = observer((props: any) => {
                 // 离开直播间接口调用
                 client
                     .mutate({
-                        mutation: NewGQL.LeaveLiveRoom,
+                        mutation: NewGQL.LeaveLiveMutation,
                         variables: { roomid: LiveStore.roomidForOnlinePeople },
                     })
-                    .then(rs => {
+                    .then((rs) => {
                         // 离开成功
                         console.log('用户离开直播间', rs);
                     })
-                    .catch(err => {
+                    .catch((err) => {
                         // TODO: 离开接口调用失败
                         console.log('用户离开直播间接口错误', err);
                     });
-                LiveStore.setStreamerLeft(false);
+                LiveStore.setuserLeft(false);
                 props.navigation.goBack();
             }}>
             <Image

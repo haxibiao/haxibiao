@@ -8,10 +8,10 @@ class LiveStore {
 
     @observable dankamu: { name: string; message: string }[] = [];
     @observable hot: number = 0;
-    @observable count_audience = 0;
+    @observable count_users = 0;
     @observable joinRoomEcho: any = null;
     @observable roomidForOnlinePeople: string = '';
-    @observable streamerLeft: boolean = false;
+    @observable steamerLeft: boolean = false;
     @observable onlinePeople: {
         user_id: number;
         user_name: string;
@@ -30,8 +30,8 @@ class LiveStore {
     }
 
     @action.bound
-    public setStreamerLeft(left: boolean) {
-        this.streamerLeft = left;
+    public setSteamerLeft(left: boolean) {
+        this.steamerLeft = left;
     }
 
     @action.bound
@@ -49,7 +49,7 @@ class LiveStore {
     }
     @action.bound
     public setCountAudience(count: number) {
-        this.count_audience = count;
+        this.count_users = count;
     }
 
     @action.bound

@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Dimensions, Text, FlatList, Image } from 'react-native';
 const { width: sw, height: sh } = Dimensions.get('window');
 import { Overlay } from 'teaset';
-import { Avatar } from 'hxf-react-native-uilib';
-import { appStore, observer } from '@src/store';
-import { GQL } from '@src/apollo';
+import { Avatar } from 'react-native-widgets';
+import { appStore, observer } from '~/store';
+import { GQL } from '~/apollo';
 import { ApolloClient } from 'apollo-boost';
 import LiveStore from './LiveStore';
 
@@ -21,18 +21,18 @@ const ContentView = observer((props: any) => {
         if (client) {
             client
                 .query({
-                    query: GQL.GetOnlinePeople,
-                    variables: { roomid: parseInt(LiveStore.roomidForOnlinePeople) },
+                    query: GQL.RoomUsersQuery,
+                    variables: { room_id: parseInt(LiveStore.roomidForOnlinePeople) },
                     fetchPolicy: 'network-only',
                 })
-                .then(rs => {
+                .then((rs) => {
                     console.log(rs);
                     let list = rs.data?.getLiveRoomUsers ?? [];
                     setdata([...list]);
                     console.log(list);
                     setloading(false);
                 })
-                .catch(err => {
+                .catch((err) => {
                     console.log(err);
                 });
         }

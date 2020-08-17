@@ -6,15 +6,19 @@ import codePush from 'react-native-code-push';
 import SplashScreen from 'react-native-splash-screen';
 
 import { ad } from 'react-native-ad';
-
 import ApolloApp from './ApolloApp';
 
 import JPushModule from 'jpush-react-native';
 import * as WeChat from 'react-native-wechat-lib';
 
 import { checkUpdate } from '~/utils';
-
 import { WechatAppId } from '!/app.json';
+import { appStore } from '~/store';
+
+//直播
+import { LicenseKey, LicenseUrl } from '!/app.json';
+import { LivePullManager } from 'react-native-live';
+import { check, request, PERMISSIONS, RESULTS } from 'react-native-permissions';
 
 function App() {
     let toastRef = useRef();
@@ -24,6 +28,13 @@ function App() {
     // ad.AdManager.init();
 
     useEffect(() => {
+        // 只做直播相关权限检查，获取交由权限浮层
+        checkPermission();
+        /**
+         *  直播设置licenseKey,url
+         */
+        LivePullManager.setLicence(LicenseUrl, LicenseKey);
+
         global.Toast = toastRef.current;
         if (appLunch.current) {
             Orientation.lockToPortrait();
@@ -40,6 +51,29 @@ function App() {
 
         WeChat.registerApp(WechatAppId, '');
     }, []);
+
+    // 直播权限检查函数
+    function checkPermission() {
+        if (Platform.OS === 'android') {
+            check(PERMISSIONS.ANDROID.CAMERA).then((result) => {
+                if (result === RESULTS.GRANTED) {
+                    // 有摄像头权限，下一步检查麦克风权限
+                    check(PERMISSIONS.ANDROID.RECORD_AUDIO).then((result) => {
+                        if (result === RESULTS.GRANTED) appStore.AppSetSufficientPermissions(true);
+                    });
+                }
+            });
+        } else if (Platform.OS === 'ios') {
+            check(PERMISSIONS.IOS.CAMERA).then((result) => {
+                if (result === RESULTS.GRANTED) {
+                    // 有摄像头权限，下一步检查麦克风权限
+                    check(PERMISSIONS.IOS.MICROPHONE).then((result) => {
+                        if (result === RESULTS.GRANTED) appStore.AppSetSufficientPermissions(true);
+                    });
+                }
+            });
+        }
+    }
 
     const fetchConfig = () => {
         fetch(Config.ServerRoot + '/api/app-config?os=' + Platform.OS + '&store=' + Config.AppStore, {

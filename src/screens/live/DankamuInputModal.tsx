@@ -2,8 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, Animated, Easing, TextInput, Keyboard, TouchableOpacity, Image, Dimensions } from 'react-native';
 import { ApolloClient } from 'apollo-boost';
 import { Overlay } from 'teaset';
-import { observer, appStore } from '@src/store';
-import { GQL } from '@src/apollo';
+import { observer, appStore } from '~/store';
+import { GQL } from '~/apollo';
 
 import LiveStore from './LiveStore';
 
@@ -28,11 +28,11 @@ const Content = observer((props: any) => {
     }, []);
 
     useEffect(() => {
-        let show = Keyboard.addListener('keyboardDidShow', e => {
+        let show = Keyboard.addListener('keyboardDidShow', (e) => {
             console.log(e.endCoordinates.screenY);
             seth(15);
         });
-        let hide = Keyboard.addListener('keyboardDidHide', e => {
+        let hide = Keyboard.addListener('keyboardDidHide', (e) => {
             seth(0);
         });
         return () => {
@@ -67,7 +67,7 @@ const Content = observer((props: any) => {
                         multiline={true}
                         maxLength={50}
                         placeholder={'输入消息'}
-                        onChangeText={t => {
+                        onChangeText={(t) => {
                             settext(t);
                         }}
                         value={text}
@@ -78,15 +78,15 @@ const Content = observer((props: any) => {
                             if (client && text != '' && LiveStore.roomidForOnlinePeople) {
                                 client
                                     .mutate({
-                                        mutation: GQL.CommentLive,
-                                        variables: { id: LiveStore.roomidForOnlinePeople, message: text },
+                                        mutation: GQL.CommentLiveMutation,
+                                        variables: { live_id: LiveStore.roomidForOnlinePeople, message: text },
                                     })
-                                    .then(rs => {
+                                    .then((rs) => {
                                         console.log('弹幕发送成功,', rs);
                                         settext('');
                                         hideInput();
                                     })
-                                    .catch(err => {
+                                    .catch((err) => {
                                         console.log('弹幕发送接口错误:', err);
                                     });
                             }

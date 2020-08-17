@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Slider, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import { observer } from 'mobx-react';
-import { LivePushManager } from 'hxf-tencent-live';
+import { LivePushManager } from 'react-native-live';
 import { Overlay } from 'teaset';
 import LiveBeautyStore from './LiveBeautyStore';
 
@@ -25,7 +25,7 @@ const ContentView = observer(() => {
                 <TouchableOpacity
                     onPress={() => {
                         //开启镜像
-                        LivePushManager.liveSetMirrorEnabled(true);
+                        LivePushManager.setMirrorEnabled(true);
                         LiveBeautyStore.setmirrored(true);
                     }}
                     style={{
@@ -42,7 +42,7 @@ const ContentView = observer(() => {
                 <TouchableOpacity
                     onPress={() => {
                         //关闭镜像
-                        LivePushManager.liveSetMirrorEnabled(false);
+                        LivePushManager.setMirrorEnabled(false);
                         LiveBeautyStore.setmirrored(false);
                     }}
                     style={{

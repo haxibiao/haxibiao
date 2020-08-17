@@ -272,7 +272,7 @@ function TabBarIcon({ name, focused }) {
 }
 const PublishButton = ({ navigation }) => {
     const onPublishPress = () => {
-        navigation.navigate('AskQuestion');
+        navigation.navigate('直播列表');
     };
 
     return (

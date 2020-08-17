@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Slider, Text, StyleSheet, Dimensions } from 'react-native';
 import { observer } from 'mobx-react';
-import { LivePushManager } from 'hxf-tencent-live';
+import { LivePushManager } from 'react-native-live';
 import { Overlay } from 'teaset';
 import LiveBeautyStore from './LiveBeautyStore';
 
@@ -11,13 +11,13 @@ const sw: number = Dimensions.get('window').width,
 const ContentView = observer(() => {
     const BlurHandler = (value: number) => {
         let rs = Math.round(value) * 10;
-        LivePushManager.liveSetBeautyLevel(rs);
+        LivePushManager.setBeautyLevel(rs);
         LiveBeautyStore.setBlur(rs);
     };
 
     const WhiteHandler = (value: number) => {
         let rs = Math.round(value) * 10;
-        LivePushManager.liveSetWhitenessLevel(rs);
+        LivePushManager.setWhitenessLevel(rs);
         LiveBeautyStore.setWhiteness(rs);
     };
 

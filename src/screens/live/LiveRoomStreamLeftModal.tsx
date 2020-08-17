@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { View, Text, Image, TouchableOpacity, Dimensions } from 'react-native';
 import { ApolloClient } from 'apollo-boost';
-import { LivePullManager } from 'hxf-tencent-live';
+import { LivePullManager } from 'react-native-live';
 import { Overlay } from 'teaset';
-import { GQL as NewGQL } from '@src/apollo';
-import { observer, appStore } from '@src/store';
+import { GQL as NewGQL } from '~/apollo';
+import { observer, appStore } from '~/store';
 import LiveStore from './LiveStore';
 
 const sw: number = Dimensions.get('window').width,
@@ -20,14 +20,14 @@ const Content = observer((props: { navigation: any }) => {
 
     useEffect(() => {
         return () => {
-            hideStreamerLeft();
+            hideuserLeft();
         };
     }, []);
 
     const iKnowHandler = () => {
         props.navigation.goBack();
         //销毁直播
-        LivePullManager.liveStopPull();
+        LivePullManager.stopPull();
         console.log('停止拉流');
         //清除弹幕
         LiveStore.clearDankamu();
@@ -36,20 +36,20 @@ const Content = observer((props: { navigation: any }) => {
         //离开直播间接口调用
         client
             .mutate({
-                mutation: NewGQL.LeaveLiveRoom,
+                mutation: NewGQL.LeaveLiveMutation,
                 variables: { roomid: LiveStore.roomidForOnlinePeople },
             })
-            .then(rs => {
+            .then((rs) => {
                 //离开成功
                 console.log('用户离开直播间', rs);
             })
-            .catch(err => {
+            .catch((err) => {
                 //TODO: 离开接口调用失败
                 console.log('用户离开直播间接口错误', err);
             });
-        LiveStore.setStreamerLeft(false);
+        LiveStore.setuserLeft(false);
 
-        hideStreamerLeft();
+        hideuserLeft();
     };
 
     return (
@@ -96,7 +96,7 @@ const Content = observer((props: { navigation: any }) => {
     );
 });
 
-const showStreamerLeft = (navigation: any) => {
+const showuserLeft = (navigation: any) => {
     const view = (
         <Overlay.View>
             <Content navigation={navigation} />
@@ -105,8 +105,8 @@ const showStreamerLeft = (navigation: any) => {
     overlaykey = Overlay.show(view);
 };
 
-const hideStreamerLeft = () => {
+const hideuserLeft = () => {
     Overlay.hide(overlaykey);
 };
 
-export { showStreamerLeft, hideStreamerLeft };
+export { showuserLeft, hideuserLeft };

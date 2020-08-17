@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { View, Slider, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import { Overlay } from 'teaset';
-import { LivePushManager, VOICETYPE } from 'hxf-tencent-live';
+import { LivePushManager, VOICETYPE } from 'react-native-live';
 import { observer } from 'mobx-react';
 import LiveBeautyStore from './LiveBeautyStore';
-import { Avatar } from 'hxf-react-native-uilib';
+import { Avatar } from 'react-native-widgets';
 
 const sw: number = Dimensions.get('window').width,
     sh: number = Dimensions.get('window').height;
@@ -91,7 +91,7 @@ const ContentView = () => {
                             } else if (selected == 4) {
                                 type = VOICETYPE.uncle;
                             }
-                            LivePushManager.liveSetFakeVoice(type);
+                            LivePushManager.setFakeVoice(type);
                             setapplied(true);
                         }
                     } else {

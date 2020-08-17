@@ -14,8 +14,8 @@ import {
     Dimensions,
 } from 'react-native';
 import PageCleared from './components/PageCleared';
-import { appStore, observer } from '@src/store';
-import { GQL } from '@src/apollo';
+import { appStore, observer } from '~/store';
+import { GQL } from '~/apollo';
 const { width: sw, height: sh } = Dimensions.get('window');
 import ApolloClient from 'apollo-boost';
 import LottieView from 'lottie-react-native';
@@ -35,7 +35,7 @@ interface Item {
     id: string;
     cover: string;
     title: string;
-    count_audience: number;
+    count_users: number;
 }
 let newclient: ApolloClient<unknown>;
 
@@ -51,7 +51,7 @@ const Live = (props: { navigation: any; inCurrent: boolean }) => {
         if (newclient) {
             newclient
                 .query({
-                    query: GQL.RecommendLiveRoom,
+                    query: GQL.RecommendLivesQuery,
                     variables: {
                         page: page ?? 1,
                     },
@@ -59,7 +59,7 @@ const Live = (props: { navigation: any; inCurrent: boolean }) => {
                 })
                 .then((rs: any) => {
                     console.log('直播列表返回数据: ', rs);
-                    let { paginatorInfo, data } = rs.data.recommendLiveRoom;
+                    let { paginatorInfo, data } = rs.data.recommendLives;
                     sethasmore(paginatorInfo.hasMorePages);
                     if (fresh) {
                         setliverooms([...data]);
@@ -72,7 +72,7 @@ const Live = (props: { navigation: any; inCurrent: boolean }) => {
                                     id: i.id,
                                     title: i.title,
                                     cover: i.cover,
-                                    count_audience: i.count_audience,
+                                    count_users: i.count_users,
                                 };
                                 templist.push(room);
                             }
@@ -106,7 +106,7 @@ const Live = (props: { navigation: any; inCurrent: boolean }) => {
                     //TODO: 跳转到直播间
                     // console.log('房间号', roomId);
 
-                    props.navigation.navigate('livewatch', { roomid: roomId });
+                    props.navigation.navigate('直播秀', { roomid: roomId });
                 }}
                 activeOpacity={1.0}
                 style={{ marginStart: ItemGap, marginBottom: ItemGap }}>
@@ -121,7 +121,7 @@ const Live = (props: { navigation: any; inCurrent: boolean }) => {
                                 resizeMode="contain"
                                 style={{ height: 15, width: 15, opacity: 0.8, marginTop: 1.5 }}
                             />
-                            <Text style={{ color: '#ffffffcc' }}>{item.count_audience}</Text>
+                            <Text style={{ color: '#ffffffcc' }}>{item.count_users}</Text>
                         </View>
                     </View>
                 </ImageBackground>

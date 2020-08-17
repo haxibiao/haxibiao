@@ -14,14 +14,14 @@ import {
 import { observer } from 'mobx-react';
 import LiveStore from './LiveStore';
 import LiveBeautyStore from './LiveBeautyStore';
-import { Avatar } from 'hxf-react-native-uilib';
-import { LivePushManager } from 'hxf-tencent-live';
+import { Avatar } from 'react-native-widgets';
+import { LivePushManager } from 'react-native-live';
 // import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 import * as OnlinePeopleModal from './ShowTimeWidgetOnlinePeopleModal';
 import { Overlay } from 'teaset';
 // import { app } from '../../store'; //TODO: replace this import later
-import { appStore, userStore } from '@src/store';
-import { GQL } from '@src/apollo';
+import { appStore, userStore } from '~/store';
+import { GQL } from '~/apollo';
 
 const { StatusBarManager } = NativeModules;
 const { width: sw, height: sh } = Dimensions.get('window');
@@ -40,13 +40,13 @@ const ModalContent = observer((props: any) => {
         /**
          *  停止直播，调用下播接口
          */
-        LivePushManager.liveStopLivePush();
+        LivePushManager.stopLivePush();
         console.log('停止推流');
         if (appStore.client) {
             appStore.client
                 .mutate({
-                    mutation: GQL.CloseLiveRoom,
-                    variables: { roomid: LiveStore.roomidForOnlinePeople },
+                    mutation: GQL.CloseLiveMutation,
+                    variables: { live_id: LiveStore.roomidForOnlinePeople },
                 })
                 .then((rs: any) => {
                     //TODO: 下播成功
@@ -108,7 +108,7 @@ const HotValue = observer(() => {
 
 const OnlinePeople = observer((props: any) => {
     const getCount = () => {
-        let c = LiveStore.count_audience;
+        let c = LiveStore.count_users;
         if (c >= 1000 && c < 10000) {
             return (c / 1000).toFixed(1) + 'k';
         } else if (c >= 10000) {
@@ -158,13 +158,13 @@ const OnlinePeople = observer((props: any) => {
 const ShowTimeWidgetLiveOnWidgetTopBar = (props: { navigation: any }) => {
     useEffect(() => {
         return () => {
-            LivePushManager.liveStopLivePush();
+            LivePushManager.stopLivePush();
             console.log('[Safeguard]停止推流');
             if (appStore.client) {
                 appStore.client
                     .mutate({
-                        mutation: GQL.CloseLiveRoom,
-                        variables: { roomid: LiveStore.roomidForOnlinePeople },
+                        mutation: GQL.CloseLiveMutation,
+                        variables: { live_id: LiveStore.roomidForOnlinePeople },
                     })
                     .then((rs: any) => {
                         // TODO: 下播成功

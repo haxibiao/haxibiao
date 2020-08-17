@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity, Platform } from 'react-native';
 const { width: sw, height: sh } = Dimensions.get('window');
 import { Overlay } from 'teaset';
-import { appStore } from '@src/store';
-import {observer} from 'mobx-react';
+import { appStore } from '~/store';
+import { observer } from 'mobx-react';
 import { check, request, PERMISSIONS, RESULTS } from 'react-native-permissions';
 
 const BOXWIDTH = sw * 0.86;

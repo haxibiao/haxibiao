@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Dimensions, TouchableOpacity, Text, TextInput, Image, StatusBar } from 'react-native';
-import { RoundedImage } from 'hxf-react-native-uilib';
-import { LivePushManager } from 'hxf-tencent-live';
+import { RoundedImage } from 'react-native-widgets';
+import { LivePushManager } from 'react-native-live';
 import MemoBeautySlider from './ShowTimeWidgetBeautySlider';
-import { appStore, observer, userStore } from '@src/store';
+import { appStore, observer, userStore } from '~/store';
 // import {app} from '../../store'; //TODO: replace this import later
-import { GQL } from '@src/apollo';
+import { GQL } from '~/apollo';
 import LiveStore from './LiveStore';
 
 const { width: sw, height: sh } = Dimensions.get('window');
@@ -32,7 +32,7 @@ const ShowTimeWidgetConfigureLayer = (props: { navigation: any; startCallback: (
             if (client) {
                 client
                     .mutate({
-                        mutation: GQL.GetLivePushURL,
+                        mutation: GQL.OpenLiveMutation,
                         variables: {
                             title: titlevalue,
                         },
@@ -45,7 +45,7 @@ const ShowTimeWidgetConfigureLayer = (props: { navigation: any; startCallback: (
                         LiveStore.setroomidForOnlinePeople(room_id);
 
                         console.log('推流地址: ', push_url, room_id);
-                        LivePushManager.liveStartLivePush(push_url);
+                        LivePushManager.startPush(push_url);
                         props.startCallback();
                         LiveStore.pushDankamu({
                             name:
@@ -94,7 +94,7 @@ const ShowTimeWidgetConfigureLayer = (props: { navigation: any; startCallback: (
                 </View>
                 <TouchableOpacity
                     onPress={() => {
-                        LivePushManager.liveSwitchCamera();
+                        LivePushManager.switchCamera();
                     }}
                     style={{ position: 'absolute', right: 10 }}>
                     <Image
