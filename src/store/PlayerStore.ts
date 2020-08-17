@@ -2,12 +2,11 @@
  * @flow
  * created by wyk made in 2019-07-01 14:03:10
  */
-import { View, Image, Keyboard } from 'react-native';
-import { observable, action, runInAction, autorun, reaction, computed } from 'mobx';
+import { observable, action, reaction } from 'mobx';
 import Orientation from 'react-native-orientation';
 import Video from 'react-native-video';
 // import { Api, Tools } from '../../utils';
-import { appStore } from '~/store';
+import appStore from './appStore';
 
 type Status = 'error' | 'notWifi' | 'loading' | 'finished' | 'hide';
 type Layout = 'portrait' | 'landscape';
