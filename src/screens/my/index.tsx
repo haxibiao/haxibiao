@@ -1,29 +1,25 @@
-import React, { Component, useContext, useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
     StyleSheet,
     View,
     ScrollView,
     Text,
     Image,
-    ImageBackground,
     TouchableWithoutFeedback,
     TouchableOpacity,
     StatusBar,
 } from 'react-native';
-import { PageContainer, Iconfont, Row, Avatar, Badge } from '~/components';
-import StoreContext, { observer, appStore, userStore } from '~/store';
-import { middlewareNavigate, useNavigation } from '~/router';
+import { PageContainer, Iconfont, Row, Avatar } from '~/components';
+import { observer, appStore, userStore } from '~/store';
+import { useNavigation } from '~/router';
 import { GQL, useQuery } from '~/apollo';
 import { useDetainment } from '~/utils';
 
-import JPushModule from 'jpush-react-native';
-
-export default observer((props) => {
+export default observer((props: any) => {
     const navigation = useNavigation();
     useDetainment(navigation);
-    const store = useContext(StoreContext);
     const [taskAD, setTaskAD] = useState(false);
-    const user = Helper.syncGetter('userStore.me', store);
+    const user = userStore.me;
     const { login } = userStore;
     const isLogin = user.token && login ? true : false;
     const { data: result, refetch } = useQuery(GQL.userProfileQuery, {

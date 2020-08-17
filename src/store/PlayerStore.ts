@@ -12,7 +12,7 @@ import { appStore } from '~/store';
 type Status = 'error' | 'notWifi' | 'loading' | 'finished' | 'hide';
 type Layout = 'portrait' | 'landscape';
 
-class PlayerStore {
+export default class PlayerStore {
     @observable videoRef: Video = null;
     @observable video: Object = {};
     @observable dimension: Object = {};
@@ -199,5 +199,3 @@ class PlayerStore {
         }, 100);
     }
 }
-
-export default new PlayerStore();

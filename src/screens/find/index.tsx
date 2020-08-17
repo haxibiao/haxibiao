@@ -1,5 +1,5 @@
-import React, { useContext, useState, useCallback, useEffect, useMemo, useRef, Fragment } from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList, StatusBar, Platform } from 'react-native';
+import React, { useState, useCallback, useMemo, useRef, Fragment } from 'react';
+import { StyleSheet, View, Image, TouchableOpacity, FlatList, Platform } from 'react-native';
 import {
     PageContainer,
     Placeholder,
@@ -13,15 +13,14 @@ import {
     Like,
 } from '~/components';
 import Swiper from 'react-native-swiper';
-import { GQL, useQuery, useLazyQuery } from '~/apollo';
-import StoreContext, { observer, appStore } from '~/store';
-import { middlewareNavigate, useNavigation } from '~/router';
-import { exceptionCapture, useDetainment } from '~/utils';
+import { GQL, useQuery } from '~/apollo';
+import { observer, appStore } from '~/store';
+import { useNavigation } from '~/router';
+import { useDetainment } from '~/utils';
 import { observable } from 'mobx';
 import { ad } from 'react-native-ad';
 import Comment from '!/assets/images/pinglun.svg';
 
-const sh = Device.HEIGHT;
 const sw = Device.WIDTH;
 const rech = 280;
 
@@ -37,13 +36,12 @@ const recommend_datas = [
     },
 ];
 
-export default observer((props: any) => {
+export default observer(() => {
     const navigation = useNavigation();
     useDetainment(navigation);
     const swiperRef = useRef<any>(null);
-    const store = useContext(StoreContext);
     let currentPage = 0;
-    const { loading, error, data, fetchMore, refetch } = useQuery(GQL.postsSquareQuery, {
+    const { loading, data, fetchMore, refetch } = useQuery(GQL.postsSquareQuery, {
         variables: { page: currentPage },
     });
 
@@ -76,81 +74,6 @@ export default observer((props: any) => {
     const isFeedADList = [];
 
     let avatarId = Math.round(Math.random() * 10);
-
-    /**
-     *  渲染轮播图
-     */
-    function _renderRecommend() {
-        return (
-            <>
-                <Swiper
-                    containerStyle={styles.RecommendWrapper}
-                    height={rech}
-                    horizontal={true}
-                    ref={swiperRef}
-                    autoplay={true}
-                    loop={true}
-                    index={0}
-                    paginationStyle={{ bottom: 10 }}
-                    autoplayTimeout={6}
-                    showsPagination={true}
-                    removeClippedSubviews={false}
-                    dotStyle={{
-                        backgroundColor: 'rgba(255,255,255,.3)',
-                        width: 18,
-                        height: 3,
-                        ...Platform.select({
-                            android: {
-                                marginBottom: 12,
-                            },
-                            ios: {
-                                marginBottom: 14,
-                            },
-                        }),
-                    }}
-                    activeDotStyle={{
-                        backgroundColor: 'rgba(255,255,255,.9)',
-                        width: 18,
-                        height: 3,
-                        ...Platform.select({
-                            android: {
-                                marginBottom: 12,
-                            },
-                            ios: {
-                                marginBottom: 14,
-                            },
-                        }),
-                    }}>
-                    {recommend_datas.map((item) => {
-                        return (
-                            <View style={styles.recommendItemWrapper}>
-                                {/* <View style={styles.recommendItemTextWrapper}>
-                                    <Text style={styles.title}>这是标题</Text>
-                                    <Text style={styles.description}>这里是APP介绍信息</Text>
-                                </View> */}
-                                <View style={styles.recommendItemTextWrapper} />
-
-                                <View style={styles.recommendItem}>
-                                    <TouchableOpacity
-                                        activeOpacity={0.8}
-                                        onPress={() => {
-                                            //TODO: 轮播图点击跳转事件
-                                            navigation.navigate(item.dest);
-                                        }}>
-                                        <Image
-                                            source={{ uri: item.url }}
-                                            style={{ height: rech * 0.72, width: sw * 0.9, borderRadius: 12 }}
-                                            resizeMode={'cover'}
-                                        />
-                                    </TouchableOpacity>
-                                </View>
-                            </View>
-                        );
-                    })}
-                </Swiper>
-            </>
-        );
-    }
 
     return (
         <PageContainer isTopNavigator={true} title="动态广场">

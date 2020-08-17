@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo, useContext } from 'react';
 import { StyleSheet, View, FlatList, StatusBar, Image, ImageBackground, Text } from 'react-native';
 import { GQL, useQuery, useApolloClient } from '~/apollo';
-import StoreContext, { observer, appStore } from '~/store';
 import { SpinnerLoading } from '~/components';
 import { useDetainment } from '~/utils';
 
@@ -10,12 +9,10 @@ import Footer from './components/Footer';
 import RewardProgress from './components/RewardProgress';
 import CommentOverlay from '../comment/CommentOverlay';
 import { useNavigation } from '~/router';
-import { Keys, Storage } from '~/store';
+import { observer, appStore, Keys, Storage, userStore } from '~/store';
 import VideoStore from '~/store/VideoStore';
 
-export default observer((props) => {
-    const store = useContext(StoreContext);
-    const { userStore } = store;
+export default observer(() => {
     const me = { ...userStore.me };
     const client = useApolloClient();
     const navigation = useNavigation();

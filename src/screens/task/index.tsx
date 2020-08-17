@@ -2,43 +2,28 @@
  * created by Bin
  */
 
-import React, { Component, useCallback, useContext, useState, useRef, useMemo, useEffect } from 'react';
-import {
-    StyleSheet,
-    View,
-    Text,
-    ScrollView,
-    TouchableOpacity,
-    ImageBackground,
-    Image,
-    FlatList,
-    TouchableWithoutFeedback,
-    AppState,
-    NativeModules,
-    Platform,
-    PermissionsAndroid,
-} from 'react-native';
-import { PageContainer, Iconfont, Row, HxfModal, HxfButton, PopOverlay, StatusView } from '~/components';
-import { middlewareNavigate, useNavigation } from '~/router';
-import StoreContext, { observer, appStore, userStore } from '~/store';
-import { GQL, useMutation, useQuery } from '~/apollo';
+import React, { useCallback, useState, useEffect } from 'react';
+import { StyleSheet, View, Text, ScrollView, TouchableOpacity, Image, FlatList, AppState } from 'react-native';
+import { Iconfont, Row, HxfModal, StatusView } from '~/components';
+import { useNavigation } from '~/router';
+import { observer, appStore, userStore } from '~/store';
+import { GQL, useQuery } from '~/apollo';
 import { useDetainment, downloadApk } from '~/utils';
-import { ad, AppUtil } from 'react-native-ad';
+import { AppUtil } from 'react-native-ad';
 import TaskItem from './components/TaskItem';
 
 const batTop = PxDp(Theme.statusBarHeight);
 const bannerWidth = Device.WIDTH - PxDp(30);
 const bannerHeight = (bannerWidth * 174) / 624;
 
-export default observer((props: any) => {
+export default observer(() => {
     const [taskAD, setTaskAD] = useState(true);
     const navigation = useNavigation();
     useDetainment(navigation);
     const [installDDZ, setInstallDDZ] = useState(false);
 
     const { login } = userStore;
-    const store = useContext(StoreContext);
-    const user = Helper.syncGetter('userStore.me', store);
+    const user = userStore.me;
     const isLogin = user.token && login ? true : false;
     let userProfile = {};
     const { data: result, refetch: refetchUserProfile } = useQuery(GQL.userProfileQuery, {
@@ -243,7 +228,7 @@ export default observer((props: any) => {
                                 data={dailyTasksData}
                                 ListHeaderComponent={() => <Text style={styles.listHeader}>日常任务</Text>}
                                 keyExtractor={(item: any, index: any) => item.id.toString() || index.toString()}
-                                renderItem={({ item, index }) => (
+                                renderItem={({ item }) => (
                                     <TaskItem
                                         taskData={item}
                                         setModule={(reward: any) => {
@@ -263,7 +248,7 @@ export default observer((props: any) => {
                                 data={userTasksData}
                                 ListHeaderComponent={() => <Text style={styles.listHeader}>新人任务</Text>}
                                 keyExtractor={(item: any, index: any) => item.id.toString() || index.toString()}
-                                renderItem={({ item, index }) => (
+                                renderItem={({ item }) => (
                                     <TaskItem
                                         taskData={item}
                                         setModule={(reward: any) => {
@@ -284,7 +269,7 @@ export default observer((props: any) => {
                                 data={customTasksData}
                                 ListHeaderComponent={() => <Text style={styles.listHeader}>奖励任务</Text>}
                                 keyExtractor={(item: any, index: any) => item.id.toString() || index.toString()}
-                                renderItem={({ item, index }) => (
+                                renderItem={({ item }) => (
                                     <TaskItem
                                         taskData={item}
                                         setModule={(reward: any) => {

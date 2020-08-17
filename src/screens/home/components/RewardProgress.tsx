@@ -1,17 +1,15 @@
-import React, { useMemo, useEffect, useState, useContext, useRef } from 'react';
-import { StyleSheet, View, Image, TouchableWithoutFeedback, Animated } from 'react-native';
+import React, { useEffect, useState, useRef } from 'react';
+import { StyleSheet, Image, TouchableWithoutFeedback, Animated } from 'react-native';
 import { useBounceAnimation, useLinearAnimation } from '~/utils';
-import StoreContext, { observer } from '~/store';
+import { observer, userStore } from '~/store';
 import { GQL, useMutation } from '~/apollo';
-import { useNavigation, middlewareNavigate } from '~/router';
+import { middlewareNavigate } from '~/router';
 import * as Progress from 'react-native-progress';
 import VideoStore from '~/store/VideoStore';
 
-const RewardProgress = observer((props) => {
-    const store = useContext(StoreContext);
-    const navigation = useNavigation();
+const RewardProgress = observer(() => {
     const firstReward = useRef(true);
-    const userId = useMemo(() => store.userStore.me.id, [store.userStore.me]);
+    const userId = userStore.me.id;
     const progress = (VideoStore.rewardProgress / VideoStore.rewardLimit) * 100;
     const rewardAble = progress >= 100;
 
@@ -24,7 +22,7 @@ const RewardProgress = observer((props) => {
                 video_ids: [...new Set(VideoStore.playedVideoIds)],
             },
         },
-        refetchQueries: (): array => [
+        refetchQueries: () => [
             {
                 query: GQL.userProfileQuery,
                 variables: { id: userId },

@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* haxibiaoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* haxibiaoTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
@@ -19,7 +18,7 @@
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* haxibiaoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* haxibiaoTests.m */; };
 		7E14BFF87D2E3007F325B7E2 /* libPods-haxibiao-haxibiaoTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 69CDF64EB6304C81FED55892 /* libPods-haxibiao-haxibiaoTests.a */; };
-		8009FAAE78FD4251B1F66948 /* iconfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DDC6601A3BA4CBAB1EF8978 /* iconfont.ttf */; };
+		12DE7A62E25249098758958E /* iconfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D676655B1121421283911633 /* iconfont.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,7 +54,6 @@
 		2C44757D24D8565A00505187 /* fixSwift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = fixSwift.swift; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* haxibiao-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "haxibiao-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* haxibiao-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "haxibiao-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5DDC6601A3BA4CBAB1EF8978 /* iconfont.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = iconfont.ttf; path = ../src/assets/fonts/iconfont.ttf; sourceTree = "<group>"; };
 		69CDF64EB6304C81FED55892 /* libPods-haxibiao-haxibiaoTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-haxibiao-haxibiaoTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		857B0A40672E23DBB9BFFC15 /* Pods-haxibiao.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-haxibiao.debug.xcconfig"; path = "Target Support Files/Pods-haxibiao/Pods-haxibiao.debug.xcconfig"; sourceTree = "<group>"; };
 		AB60DFA51107074720040EEB /* Pods-haxibiao.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-haxibiao.release.xcconfig"; path = "Target Support Files/Pods-haxibiao/Pods-haxibiao.release.xcconfig"; sourceTree = "<group>"; };
@@ -63,6 +61,7 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F9012215C4E3FC74DFC459C9 /* libPods-haxibiao.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-haxibiao.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D676655B1121421283911633 /* iconfont.ttf */ = {isa = PBXFileReference; name = "iconfont.ttf"; path = "../assets/fonts/iconfont.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -190,7 +189,7 @@
 		EA78A97700504B57A75EFA30 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				5DDC6601A3BA4CBAB1EF8978 /* iconfont.ttf */,
+				D676655B1121421283911633 /* iconfont.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -339,7 +338,7 @@
 			files = (
 				2C44757924D839D700505187 /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
-				8009FAAE78FD4251B1F66948 /* iconfont.ttf in Resources */,
+				12DE7A62E25249098758958E /* iconfont.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

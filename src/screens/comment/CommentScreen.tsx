@@ -1,18 +1,15 @@
-import React, { useContext, useState, useCallback, useEffect, useMemo, useRef, useImperativeHandle } from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList, StatusBar } from 'react-native';
-import { PageContainer, Placeholder, StatusView, ItemSeparator, ListFooter, SubmitLoading } from '~/components';
+import React, { useState, useCallback, useMemo, useRef } from 'react';
+import { StyleSheet, View, FlatList } from 'react-native';
+import { PageContainer, StatusView, ListFooter } from '~/components';
 
-import { GQL, useQuery, useLazyQuery, useApolloClient } from '~/apollo';
-import StoreContext, { observer, userStore } from '~/store';
-import { middlewareNavigate, useRoute } from '~/router';
-import { exceptionCapture } from '~/utils';
+import { GQL, useQuery } from '~/apollo';
+import { observer } from '~/store';
+import { useRoute } from '~/router';
 
 import CommentItem from './CommentItem';
 import CommentInput from '../../components/View/CommentInput';
 
-export default observer((props) => {
-    const client = useApolloClient();
-    // const store = useContext(StoreContext);
+export default observer(() => {
     const commentId = useRoute().params?.comment.id;
     const [replyByComment, setReplyByComment] = useState();
     const loadingMore = useRef(false);
@@ -80,7 +77,7 @@ export default observer((props) => {
                     data={replyComments}
                     contentContainerStyle={{ flexGrow: 1 }}
                     keyExtractor={(item, index) => (item.id ? item.id.toString() : index.toString())}
-                    renderItem={({ item, index }) => {
+                    renderItem={({ item }) => {
                         return (
                             <CommentItem
                                 comment={item}

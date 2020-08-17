@@ -3,13 +3,12 @@
  * created by wangyukun made in 2019-03-18 11:45:13
  */
 
-import React, { Component, useCallback, useContext, useState, useRef, useMemo, useEffect, Fragment } from 'react';
+import React, { useCallback, useState, useMemo, useEffect, Fragment } from 'react';
 import { StyleSheet, Platform, View, Text, ScrollView, TouchableOpacity, ImageBackground, Image } from 'react-native';
 import { PageContainer, Iconfont, Row, HxfButton, PopOverlay, TouchFeedback } from '~/components';
-import StoreContext, { observer } from '~/store';
-import { middlewareNavigate, useNavigation } from '~/router';
+import { observer } from '~/store';
+import { useNavigation } from '~/router';
 import { GQL, useMutation, useQuery } from '~/apollo';
-import { appStore } from '~/store';
 import { bindWechat, syncGetter } from '~/utils';
 
 import DownloadApkIntro from './components/DownloadApkIntro';
@@ -106,12 +105,11 @@ const walletAdapterData = {
 
 const BANNER_WIDTH = Device.WIDTH - PxDp(Theme.itemSpace * 2);
 
-export default observer((props: any) => {
+export default observer(() => {
     const navigation = useNavigation();
-    const store = useContext(StoreContext);
-    const me = store.userStore.me;
+    const me = userStore.me;
     // 提现请求状态
-    const [isWithdrawRequest, setIsWithdrawRequest] = useState(false);
+    const [, setIsWithdrawRequest] = useState(false);
     const [submitting, setSubmitting] = useState(false);
     const [loading, setLoading] = useState(true);
     const [withdrawType, setWithdrawType] = useState('ALIPAY');
@@ -279,7 +277,7 @@ export default observer((props: any) => {
                         content: '绑定成功',
                     });
                 },
-                onFailed: (error: { message: any }[]) => {
+                onFailed: () => {
                     setSubmitting(false);
                 },
             });

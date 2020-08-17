@@ -46,28 +46,7 @@ const DEFAULT_TABBAR_HEIGHT = 50;
 
 const useNativeDriver = Platform.OS !== 'web';
 
-const iconSource = {
-    HomeScreen: {
-        active: require('!/assets/images/init_main_focus.png'),
-        inactive: require('!/assets/images/init_main.png'),
-    },
-    FindScreen: {
-        active: require('!/assets/images/init_discover_focus.png'),
-        inactive: require('!/assets/images/init_discover.png'),
-    },
-    Notification2: {
-        active: require('!/assets/images/init-notification-focus.png'),
-        inactive: require('!/assets/images/init-notification.png'),
-    },
-    Notification: {
-        active: require('!/assets/images/init-notification-focus.png'),
-        inactive: require('!/assets/images/init-notification.png'),
-    },
-    MyHomeScreen: {
-        active: require('!/assets/images/init_personal_focus.png'),
-        inactive: require('!/assets/images/init_personal.png'),
-    },
-};
+import { bottomTabIcons } from '!/theme';
 
 export default observer(
     ({
@@ -298,10 +277,10 @@ function TabBarIcon({ name, focused, activeTintColor, inactiveTintColor }) {
     return (
         <View style={styles.tabBarIcon}>
             <View style={[styles.icon, { opacity: focused ? 1 : 0 }]}>
-                <Image source={iconSource[name].active} style={styles.iconSize} />
+                <Image source={bottomTabIcons[name].active} style={styles.iconSize} />
             </View>
             <View style={[styles.icon, { opacity: focused ? 0 : 1 }]}>
-                <Image source={iconSource[name].inactive} style={styles.iconSize} />
+                <Image source={bottomTabIcons[name].inactive} style={styles.iconSize} />
             </View>
         </View>
     );
@@ -315,7 +294,7 @@ const PublishButton = ({ navigation }) => {
         <TouchableWithoutFeedback key="publish" onPress={onPublishPress}>
             <View style={styles.tabItem}>
                 <Image
-                    source={require('../assets/images/publish.png')}
+                    source={require('!/assets/images/publish.png')}
                     style={{
                         width: 40,
                         height: 40,

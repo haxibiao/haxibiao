@@ -1,15 +1,14 @@
-import React, { useContext, useState, useCallback, useEffect, useMemo, useRef } from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity, FlatList, StatusBar } from 'react-native';
-import { PageContainer, Placeholder, StatusView, PostItem, Footer, ItemSeparator } from '~/components';
+import React, { useCallback, useMemo } from 'react';
+import { StyleSheet, View, FlatList } from 'react-native';
+import { PageContainer, StatusView, Footer, ItemSeparator } from '~/components';
 
-import { GQL, useQuery, useLazyQuery } from '~/apollo';
-import StoreContext, { observer, userStore } from '~/store';
+import { GQL, useQuery } from '~/apollo';
+import { observer, userStore } from '~/store';
 
 import FeedbackItem from './FeedbackItem';
 
-export default observer((props) => {
-    // const store = useContext(StoreContext);
-    const { loading, error, data, fetchMore, refetch } = useQuery(GQL.MyFeedbackQuery, {
+export default observer((props: { navigation: any }) => {
+    const { loading, data, fetchMore, refetch } = useQuery(GQL.MyFeedbackQuery, {
         variables: { id: userStore.me.id },
     });
 
@@ -41,7 +40,7 @@ export default observer((props) => {
                     data={feedback}
                     contentContainerStyle={{ flexGrow: 1 }}
                     keyExtractor={(item, index) => (item.id ? item.id.toString() : index.toString())}
-                    renderItem={({ item, index }) => <FeedbackItem feedback={item} navigation={props.navigation} />}
+                    renderItem={({ item }) => <FeedbackItem feedback={item} navigation={props.navigation} />}
                     ItemSeparatorComponent={() => <ItemSeparator style={{ height: PxDp(10) }} />}
                     refreshing={loading}
                     onRefresh={refetch}

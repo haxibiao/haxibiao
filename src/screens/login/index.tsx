@@ -3,14 +3,13 @@ import { StyleSheet, View, Image, Text, TouchableOpacity, StatusBar } from 'reac
 import { PageContainer, HxfTextInput, HxfButton, Row, Center, Iconfont, GradientView } from '~/components';
 import { exceptionCapture, useBounceAnimation } from '~/utils';
 import { GQL, useMutation } from '~/apollo';
-import { observer } from '~/store';
+import { observer, userStore } from '~/store';
 import { useNavigation } from '@react-navigation/native';
 
 const thumbType = ['name', 'account', 'password'];
 
 export default observer((props) => {
     const navigation = useNavigation();
-    const store = useContext(StoreContext);
     const [submitting, toggleSubmitting] = useState(false);
     const [secure, setSecure] = useState(true);
     const [thumb, setThumbType] = useState(false);
@@ -70,7 +69,7 @@ export default observer((props) => {
         if (error) {
             Toast.show({ content: error.message || '登录失败', layout: 'top' });
         } else {
-            store.userStore.signIn(Helper.syncGetter('data.signIn', result));
+            userStore.signIn(Helper.syncGetter('data.signIn', result));
             navigation.goBack();
         }
     }, [signUpMutation]);
@@ -83,7 +82,7 @@ export default observer((props) => {
         if (error) {
             Toast.show({ content: error.message || '注册失败', layout: 'top' });
         } else {
-            store.userStore.signIn(Helper.syncGetter('data.signUp', result));
+            userStore.signIn(Helper.syncGetter('data.signUp', result));
             navigation.goBack();
         }
     }, [signUpMutation]);
@@ -97,7 +96,7 @@ export default observer((props) => {
             } else {
                 //登录成功,更新用户全局状态
                 const meInfo = Helper.syncGetter('data.autoSignIn', result);
-                store.userStore.signIn(meInfo);
+                userStore.signIn(meInfo);
                 navigation.goBack();
             }
         } else {

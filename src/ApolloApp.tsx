@@ -2,7 +2,7 @@ import React, { useEffect, useContext, useCallback, useState } from 'react';
 import { StyleSheet, Clipboard, Text, View, TouchableOpacity } from 'react-native';
 import { ApolloProvider, useClientBuilder } from '~/apollo';
 import RootStackNavigator from '~/router/RootStackNavigator';
-import StoreContext, { observer, appStore } from '~/store';
+import { observer, appStore, userStore } from '~/store';
 import { ApolloProvider as OldApolloProvider } from 'react-apollo';
 import { useCaptureVideo } from '~/hooks';
 import { SocketServer, name } from '!/app.json';
@@ -14,8 +14,7 @@ import JPushModule from 'jpush-react-native';
 import { UserAgreementOverlay } from '~/components';
 
 export default observer(() => {
-    // const store = useContext(StoreContext);
-    const client = useClientBuilder(Helper.syncGetter('userStore.me.token', store));
+    const client = useClientBuilder(userStore.me?.token);
     appStore.client = client;
 
     const onStart = useCallback(() => {
@@ -93,7 +92,7 @@ export default observer(() => {
         });
     };
 
-    let user = Helper.syncGetter('userStore.me', store);
+    let user = userStore.me;
     console.log('now user is ', user);
 
     useEffect(() => {
