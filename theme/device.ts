@@ -16,25 +16,46 @@ if (Platform.OS === 'ios' && HAS_NOTCH) {
     HOME_INDICATOR_HEIGHT = 20;
 }
 
+const { height, width } = Dimensions.get('window');
+const NAVBAR_HEIGHT = 44;
+
+const getStatusBarHeight = () => {
+    if (Platform.OS === 'ios') {
+        return getIsLandscape() ? 0 : HAS_NOTCH ? 34 : 20;
+    } else if (Platform.OS === 'android') {
+        return StatusBar.currentHeight as number;
+    }
+    return getIsLandscape() ? 0 : 20;
+};
+
+const getIsLandscape = (): boolean => {
+    return Dimensions.get('window').width > Dimensions.get('window').height;
+};
+
+//兼容global Device
+export const Device = {
+    WIDTH: width,
+    HEIGHT: height,
+    INNER_HEIGHT: height - HOME_INDICATOR_HEIGHT - NAVBAR_HEIGHT - getStatusBarHeight(),
+    OS: Platform.OS,
+    IOS: Platform.OS === 'ios',
+    Android: Platform.OS === 'android',
+    SystemVersion: DeviceInfo.getSystemVersion(),
+    PixelRatio: PixelRatio.get(), // 获取屏幕分辨率
+    PhoneNumber: DeviceInfo.getPhoneNumber(),
+    UUID: DeviceInfo.getUniqueId(),
+};
+
+//兼容theme中的
 export default {
     HAS_NOTCH,
     HAS_HOME_INDICATOR,
     HOME_INDICATOR_HEIGHT,
-    NAVBAR_HEIGHT: 44,
+    NAVBAR_HEIGHT,
     BOTTOM_HEIGHT: HAS_HOME_INDICATOR ? 70 : 50,
     itemSpace: 14,
     minimumPixel: 1 / PixelRatio.get(), // 最小线宽
 
-    get isLandscape(): boolean {
-        return Dimensions.get('window').width > Dimensions.get('window').height;
-    },
-
-    get statusBarHeight(): number {
-        if (Platform.OS === 'ios') {
-            return this.isLandscape ? 0 : HAS_NOTCH ? 34 : 20;
-        } else if (Platform.OS === 'android') {
-            return StatusBar.currentHeight as number;
-        }
-        return this.isLandscape ? 0 : 20;
-    },
+    isLandscape: getIsLandscape(),
+    statusBarHeight: getStatusBarHeight(),
 };

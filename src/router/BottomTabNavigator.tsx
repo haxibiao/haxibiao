@@ -2,52 +2,27 @@ import * as React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import HomeScreen from '~/screens/home';
-import FindScreen from '~/screens/find';
-import NotificationScreen from '~/screens/notification';
-import MyHomeScreen from '~/screens/my';
 
 import BottomTabBar from './BottomTabBar';
+import bottomTabScreens from '!/theme/bottomTabScreens';
 
 const Tab = createBottomTabNavigator();
 export default function MainTabNavigator() {
     return (
         <Tab.Navigator initialRouteName="HomeScreen" tabBar={(props: any) => <BottomTabBar {...props} />}>
-            <Tab.Screen
-                name="HomeScreen"
-                component={HomeScreen}
-                options={{
-                    tabBarLabel: '首页',
-                }}
-            />
-            <Tab.Screen
-                name="FindScreen"
-                component={FindScreen}
-                options={{
-                    tabBarLabel: '发现',
-                }}
-            />
-            <Tab.Screen
-                name="fabu"
-                component={NotificationScreen}
-                options={{
-                    tabBarLabel: '补发布',
-                }}
-            />
-            <Tab.Screen
-                name="Notification"
-                component={NotificationScreen}
-                options={{
-                    tabBarLabel: '通知',
-                }}
-            />
-            <Tab.Screen
-                name="MyHomeScreen"
-                component={MyHomeScreen}
-                options={{
-                    tabBarLabel: '个人',
-                }}
-            />
+            {bottomTabScreens.map((tab: { name: any; screen: any; tabBarLabel: any; trackName: any }, index: any) => {
+                return (
+                    <Tab.Screen
+                        key={index}
+                        name={tab.name}
+                        component={tab.screen}
+                        options={{
+                            tabBarLabel: tab.tabBarLabel,
+                        }}
+                        initialParams={{ trackName: tab.trackName }}
+                    />
+                );
+            })}
         </Tab.Navigator>
     );
 }

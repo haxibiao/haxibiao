@@ -1,6 +1,5 @@
 import { observable, action, computed } from 'mobx';
 import NetInfo from '@react-native-community/netinfo';
-import { act } from 'react-test-renderer';
 import { Keys, Storage } from './localStorage';
 import AppJson from '!/app.json';
 

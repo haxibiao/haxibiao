@@ -14,11 +14,9 @@ import {
     DeviceEventEmitter,
     TouchableWithoutFeedback,
 } from 'react-native';
-import { Overlay } from 'teaset';
 import { CommonActions, useTheme } from '@react-navigation/native';
 import { useSafeArea } from 'react-native-safe-area-context';
-import { observer, userStore, appStore } from '../store';
-import { BoxShadow } from 'react-native-shadow';
+import { observer, appStore } from '~/store';
 
 type Props = {
     state: any;
@@ -44,35 +42,23 @@ type Props = {
 
 const DEFAULT_TABBAR_HEIGHT = 50;
 
-const useNativeDriver = Platform.OS !== 'web';
-
-import { bottomTabIcons } from '!/theme';
+import bottomTabIcons from '!/theme/bottomTabIcons';
+// import { bottomTabIcons } from '!/theme';
 
 export default observer(
     ({
         state,
         navigation,
         descriptors,
-        activeBackgroundColor,
         activeTintColor,
-        adaptive = true,
-        allowFontScaling,
-        inactiveBackgroundColor,
         inactiveTintColor,
         keyboardHidesTabBar = false,
-        labelPosition,
-        labelStyle,
         safeAreaInsets,
-        showIcon,
-        showLabel,
-        style,
-        tabStyle,
     }: Props) => {
         const { colors } = useTheme();
         const defaultInsets = useSafeArea();
 
         const focusedRoute = state.routes[state.index];
-        console.log('111111===============', focusedRoute);
 
         const focusedDescriptor = descriptors[focusedRoute.key];
         const focusedOptions = focusedDescriptor.options;
@@ -180,7 +166,7 @@ export default observer(
                 style={[
                     styles.bottomTabBar,
                     {
-                        backgroundColor: focusedRoute.name != 'HomeScreen' ? colors.card : 'rgba(255,255,255,0)',
+                        backgroundColor: focusedRoute.name != 'Home' ? colors.card : 'rgba(255,255,255,0)',
                         borderTopColor: colors.border,
                     },
                     {
@@ -210,7 +196,6 @@ export default observer(
                         }
 
                         const focused = index === state.index;
-                        const { options } = descriptors[route.key];
                         const color = focused ? '#2F76FE' : '#999999';
                         const tabBarLabel = descriptors[route.key].options.tabBarLabel || route.name;
 
@@ -271,7 +256,7 @@ export default observer(
     },
 );
 
-function TabBarIcon({ name, focused, activeTintColor, inactiveTintColor }) {
+function TabBarIcon({ name, focused }) {
     // We render the icon twice at the same position on top of each other:
     // active and inactive one, so we can fade between them.
     return (
