@@ -1,26 +1,29 @@
 import React, { useCallback, useState, useRef } from 'react';
 import PullChooser from '../Popup/PullChooser';
-import { useApolloClient, useMutation, GQL } from '~/apollo';
+import { useMutation, GQL } from '~/apollo';
 
 const useReport = (props) => {
     const reason = useRef();
-    const [reportMutation] = useMutation(GQL.addReportMutation, {
-        variables: {
-            type: props.type,
-            id: props.target.id,
-            reason: reason.current,
-        },
-        onCompleted: (data) => {
-            Toast.show({
-                content: '举报成功，感谢您的反馈',
-            });
-        },
-        onError: (error) => {
-            Toast.show({
-                content: error.message.replace('GraphQL error: ', '') || '举报失败',
-            });
-        },
-    });
+
+    let reportMutation = {};
+    //FIXME: 用appStore.client.mutate ...
+    // const [reportMutation] = useMutation(GQL.addReportMutation, {
+    //     variables: {
+    //         type: props.type,
+    //         id: props.target.id,
+    //         reason: reason.current,
+    //     },
+    //     onCompleted: (data) => {
+    //         Toast.show({
+    //             content: '举报成功，感谢您的反馈',
+    //         });
+    //     },
+    //     onError: (error) => {
+    //         Toast.show({
+    //             content: error.message.replace('GraphQL error: ', '') || '举报失败',
+    //         });
+    //     },
+    // });
 
     const reportAction = useCallback(
         (content) => {

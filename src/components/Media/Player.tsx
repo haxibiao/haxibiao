@@ -10,8 +10,7 @@ import Video from 'react-native-video';
 import VideoStatus from './VideoStatus';
 import VideoControl from './VideoControl';
 
-import { appStore, observer, PalyerStore } from '~/store';
-import PlayerStore from '~/store/PlayerStore';
+import { appStore, observer, PlayerStore } from '~/store';
 import Orientation from 'react-native-orientation';
 
 let TestVideo = {
@@ -27,16 +26,16 @@ export default observer((props: any) => {
     const [muted, setMuted] = useState(false);
 
     useEffect(() => {
+        // let BackHandler = ReactNative.BackHandler ? ReactNative.BackHandler : ReactNative.BackAndroid;
+        if (Device.Android) {
+            BackHandler.addEventListener('hardwareBackPress', _backButtonPress);
+        }
+
         //进入画面，播放
         let willFocusListener = navigation.addListener('focus', (payload) => {
             console.log('player  willFocus ------------------');
             playerStore.play();
         });
-
-        // let BackHandler = ReactNative.BackHandler ? ReactNative.BackHandler : ReactNative.BackAndroid;
-        if (Device.Android) {
-            BackHandler.addEventListener('hardwareBackPress', _backButtonPress);
-        }
         //不再画面时，暂停播放
         let willBlurListener = navigation.addListener('blur', (payload) => {
             console.log('player  willBlur ------------------');

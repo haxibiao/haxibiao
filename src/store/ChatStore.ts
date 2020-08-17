@@ -30,7 +30,7 @@ class ChatStore {
         emoji: 'emoji',
     };
 
-    @observable public chatId: number;
+    @observable public chatId: number = 0;
     @observable public isLoading: boolean = true;
     @observable public isError: boolean = false;
     @observable public isFinish: boolean = false;

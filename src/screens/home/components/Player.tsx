@@ -1,9 +1,8 @@
 import React, { useRef, useMemo, useState, useCallback, useEffect } from 'react';
-import { StyleSheet, View, TouchableWithoutFeedback } from 'react-native';
+import { StyleSheet, View, TouchableWithoutFeedback, DeviceEventEmitter } from 'react-native';
 import { useNavigation } from '~/router';
 import { Iconfont } from '~/components';
 import { useDoubleAction } from '~/utils';
-import { useApolloClient, ApolloProvider } from '~/apollo';
 import { observer } from '~/store';
 import VideoStore from '!/src/store/DrawVideoStore';
 import VideoLoading from './VideoLoading';
@@ -14,7 +13,6 @@ import { Overlay } from 'teaset';
 export default observer((props) => {
     const { media, index } = props;
     const navigation = useNavigation();
-    const client = useApolloClient();
     const [progress, setProgress] = useState(0);
     const currentTime = useRef(0);
     const duration = useRef(100);
@@ -35,20 +33,18 @@ export default observer((props) => {
                 style={styles.overlay}
                 ref={(ref) => (overlayRef = ref)}
                 containerStyle={{ backgroundColor: 'rgba(0,0,0,0.6)' }}>
-                <ApolloProvider client={client}>
-                    <Operation
-                        navigation={navigation}
-                        onPressIn={() => overlayRef.close()}
-                        target={media}
-                        downloadUrl={Helper.syncGetter('video.url', media)}
-                        downloadUrlTitle={Helper.syncGetter('body', media)}
-                        options={['下载', '不感兴趣', '举报']}
-                    />
-                </ApolloProvider>
+                <Operation
+                    navigation={navigation}
+                    onPressIn={() => overlayRef.close()}
+                    target={media}
+                    downloadUrl={Helper.syncGetter('video.url', media)}
+                    downloadUrlTitle={Helper.syncGetter('body', media)}
+                    options={['下载', '不感兴趣', '举报']}
+                />
             </Overlay.PopView>
         );
         Overlay.show(MoreOperationOverlay);
-    }, [client, media]);
+    }, [media, navigation]);
 
     const togglePause = useCallback(() => {
         setPause((v) => !v);
@@ -107,17 +103,26 @@ export default observer((props) => {
 
     useEffect(() => {
         setPause(!isIntoView);
-        const navWillFocusListener = navigation.addListener('willFocus', () => {
+        const navWillFocusListener = navigation.addListener('focus', () => {
             setPause(!isIntoView);
         });
-        const navWillBlurListener = navigation.addListener('willBlur', () => {
+        const navWillBlurListener = navigation.addListener('blur', () => {
             setPause(true);
         });
+        const videoBlurListener = DeviceEventEmitter.addListener('videoBlur', () => {
+            setPause(true);
+        });
+        const videoFocusListener = DeviceEventEmitter.addListener('videoFocus', () => {
+            setPause(!isIntoView);
+        });
         return () => {
+            videoBlurListener.remove();
+            videoFocusListener.remove();
+
             navWillFocusListener();
             navWillBlurListener();
         };
-    }, [isIntoView]);
+    }, [isIntoView, navigation]);
 
     return (
         <TouchableWithoutFeedback onPress={onPress} onLongPress={onLongPress}>

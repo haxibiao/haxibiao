@@ -8,4 +8,4 @@ export { default as chatStore } from './ChatStore';
 export { default as videoStore } from './DrawVideoStore';
 
 //非单例的store = viewmdoel
-export { default as PalyerStore } from './PlayerStore';
+export { default as PlayerStore } from './PlayerStore';

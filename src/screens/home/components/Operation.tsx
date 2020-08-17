@@ -1,31 +1,33 @@
 import React, { useMemo, useCallback } from 'react';
 import { StyleSheet, View, Text, Image, TouchableWithoutFeedback } from 'react-native';
-import { GQL, useMutation, useClientBuilder } from '~/apollo';
-import { download } from '~/utils';
-import { TouchFeedback } from '~/components';
-import { userStore } from '~/store';
 import useReport from '~/components/View/useReport';
+import { TouchFeedback } from '~/components';
 
-const MoreOperation = (props) => {
+import { GQL } from '~/apollo';
+import { download } from '~/utils';
+import { appStore } from '~/store';
+
+const MoreOperation = (props: any) => {
     const { options, target, type, downloadUrl, downloadUrlTitle, onPressIn, deleteCallback, navigation } = props;
-    const client = useClientBuilder(Helper.syncGetter('me.token', userStore));
+    const client = appStore.client;
     const report = useReport({ target, type });
-    const [deleteArticleMutation] = useMutation(GQL.deleteArticle, {
-        variables: {
-            id: target.id,
-        },
-        onCompleted: (data) => {
-            deleteCallback();
-            Toast.show({
-                content: '删除成功',
-            });
-        },
-        onError: (error) => {
-            Toast.show({
-                content: error.message.replace('GraphQL error: ', '') || '删除失败',
-            });
-        },
-    });
+    let deleteArticleMutation = {};
+    // const [deleteArticleMutation] = useMutation(GQL.deleteArticle, {
+    //     variables: {
+    //         id: target.id,
+    //     },
+    //     onCompleted: (data) => {
+    //         deleteCallback();
+    //         Toast.show({
+    //             content: '删除成功',
+    //         });
+    //     },
+    //     onError: (error) => {
+    //         Toast.show({
+    //             content: error.message.replace('GraphQL error: ', '') || '删除失败',
+    //         });
+    //     },
+    // });
 
     const deleteArticle = useCallback(() => {
         onPressIn();

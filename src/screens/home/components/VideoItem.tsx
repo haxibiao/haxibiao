@@ -6,7 +6,7 @@ import { ad } from 'react-native-ad';
 import { useNavigation } from '~/router';
 import Player from './Player';
 import SideBar from './SideBar';
-import VideoStore from '!/src/store/DrawVideoStore';
+import DrawVideoStore from '~/store/DrawVideoStore';
 import AdRewardProgress from './AdRewardProgress';
 import LinearGradient from 'react-native-linear-gradient';
 
@@ -16,8 +16,9 @@ export default observer((props: any) => {
     const { media, index } = props;
     const navigation = useNavigation();
     const [adShow, setAdShow] = useState(true);
+    const viewable = index === DrawVideoStore.viewableItemIndex;
 
-    AdRewardProgress(media.isAdPosition && index === VideoStore.viewableItemIndex);
+    AdRewardProgress(media.isAdPosition && index === DrawVideoStore.viewableItemIndex);
 
     const renderCategories = useMemo(() => {
         if (Array.isArray(media.categories) && media.categories.length > 0) {
@@ -35,7 +36,7 @@ export default observer((props: any) => {
     }, []);
 
     if (media.isAdPosition && adShow && appStore.enableAd) {
-        if (index !== VideoStore.viewableItemIndex) {
+        if (index !== DrawVideoStore.viewableItemIndex) {
             return (
                 <View style={{ height: appStore.viewportHeight }}>
                     {media.cover && (
@@ -62,8 +63,8 @@ export default observer((props: any) => {
                     onAdClick={() => {
                         const drawFeedAdId = media.id.toString();
 
-                        if (VideoStore.getReward.indexOf(drawFeedAdId) === -1) {
-                            VideoStore.addGetRewardId(drawFeedAdId);
+                        if (DrawVideoStore.getReward.indexOf(drawFeedAdId) === -1) {
+                            DrawVideoStore.addGetRewardId(drawFeedAdId);
                             appStore.client
                                 .mutate({
                                     mutation: GQL.clickVideoAD,
@@ -78,7 +79,7 @@ export default observer((props: any) => {
                         }
                     }}
                 />
-                {VideoStore.getReward.length < 1 && (
+                {DrawVideoStore.getReward.length < 1 && (
                     <View
                         style={{
                             bottom: Theme.HOME_INDICATOR_HEIGHT + pixel(75),
@@ -113,7 +114,7 @@ export default observer((props: any) => {
                     <View style={styles.mask} />
                 </View>
             )}
-            <Player media={media} index={index} navigation={navigation} />
+            <Player media={media} index={index} navigation={navigation} viewable={viewable} />
             <LinearGradient
                 style={styles.shadowContainer}
                 pointerEvents={'none'}

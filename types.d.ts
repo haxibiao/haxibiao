@@ -70,6 +70,9 @@ interface ToastShowParams {
 
 declare let TOKEN: any;
 
+declare const Helper: any;
+declare const Theme: any;
+
 declare const Device: DeviceInfo;
 
 declare const Config: AppConfig;
