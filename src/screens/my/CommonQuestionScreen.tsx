@@ -75,12 +75,12 @@ class CommonQuestionScreen extends Component {
                     <View>{this.renderQuestions()}</View>
                     <View style={styles.footer}>
                         <Row>
-                            <Text style={{ fontSize: Font(13), color: Theme.subTextColor }}>没有解决？</Text>
+                            <Text style={{ fontSize: font(13), color: Theme.subTextColor }}>没有解决？</Text>
                             <TouchFeedback
                                 navigation={navigation}
                                 authenticated
                                 onPress={() => navigation.navigate('Feedback')}>
-                                <Text style={{ fontSize: Font(13), color: Theme.linkColor }}>去反馈</Text>
+                                <Text style={{ fontSize: font(13), color: Theme.linkColor }}>去反馈</Text>
                             </TouchFeedback>
                         </Row>
                     </View>
@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
     },
     answerText: {
         color: Theme.defaultTextColor,
-        fontSize: Font(15),
+        fontSize: font(15),
         lineHeight: PxDp(18),
     },
     avatar: {
@@ -141,7 +141,7 @@ const styles = StyleSheet.create({
     },
     questionText: {
         color: Theme.defaultTextColor,
-        fontSize: Font(15),
+        fontSize: font(15),
         fontWeight: 'bold',
         lineHeight: PxDp(20),
     },

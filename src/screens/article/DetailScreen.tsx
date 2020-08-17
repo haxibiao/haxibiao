@@ -83,7 +83,7 @@ class DetailScreen extends Component {
                                             onPress={() => this.props.navigation.navigate('User', { user })}>
                                             <Avatar size={PxDp(40)} source={user.avatar} />
                                         </TouchableOpacity>
-                                        <Text style={{ fontSize: Font(15), color: Theme.secondaryTextColor }}>
+                                        <Text style={{ fontSize: font(15), color: Theme.secondaryTextColor }}>
                                             {user.name}
                                         </Text>
                                     </Row>

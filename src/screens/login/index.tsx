@@ -118,7 +118,7 @@ export default observer((props) => {
                 </View>
                 <View style={styles.header}>
                     <TouchableOpacity style={{ padding: PxDp(5) }} onPress={() => navigation.pop()}>
-                        <Iconfont name="guanbi1" size={Font(24)} color={'#fff'} />
+                        <Iconfont name="guanbi1" size={font(24)} color={'#fff'} />
                     </TouchableOpacity>
                     <TouchableOpacity style={{ padding: PxDp(5) }} onPress={() => toggleEntrance(!signIn)}>
                         <Text style={styles.linkText}>{signIn ? '去注册' : '去登录'}</Text>
@@ -219,11 +219,11 @@ export default observer((props) => {
                     <Text style={styles.bottomInfoText}>登录代表您已同意</Text>
                     <Row>
                         <TouchableOpacity onPress={() => navigation.navigate('UserProtocol')}>
-                            <Text style={{ fontSize: Font(13), color: Theme.secondaryColor }}>《用户协议》</Text>
+                            <Text style={{ fontSize: font(13), color: Theme.secondaryColor }}>《用户协议》</Text>
                         </TouchableOpacity>
                         <Text style={styles.bottomInfoText}>和</Text>
                         <TouchableOpacity onPress={() => navigation.navigate('PrivacyPolicy')}>
-                            <Text style={{ fontSize: Font(13), color: Theme.secondaryColor }}>《隐私政策》</Text>
+                            <Text style={{ fontSize: font(13), color: Theme.secondaryColor }}>《隐私政策》</Text>
                         </TouchableOpacity>
                     </Row>
                 </Row>
@@ -285,7 +285,7 @@ const styles = StyleSheet.create({
     inputStyle: {
         flex: 1,
         height: PxDp(42),
-        fontSize: Font(16),
+        fontSize: font(16),
         color: '#fff',
         paddingBottom: PxDp(10),
         paddingTop: PxDp(10),
@@ -295,7 +295,7 @@ const styles = StyleSheet.create({
         padding: PxDp(5),
     },
     countdownText: {
-        fontSize: Font(13),
+        fontSize: font(13),
         color: Theme.subTextColor,
     },
     buttonStyle: {
@@ -307,21 +307,21 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     buttonText: {
-        fontSize: Font(16),
+        fontSize: font(16),
         fontWeight: 'bold',
         color: '#fff',
     },
     boldText: {
-        fontSize: Font(15),
+        fontSize: font(15),
         color: '#fff',
         fontWeight: 'bold',
     },
     grayText: {
-        fontSize: Font(14),
+        fontSize: font(14),
         color: '#fff',
     },
     linkText: {
-        fontSize: Font(17),
+        fontSize: font(17),
         color: '#fff',
     },
     groupFooter: {
@@ -331,7 +331,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     bottomInfoText: {
-        fontSize: Font(13),
+        fontSize: font(13),
         color: '#fff',
     },
     protocol: {

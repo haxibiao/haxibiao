@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
         resizeMode: 'cover',
     },
     title: {
-        fontSize: Font(12),
+        fontSize: font(12),
         marginTop: PxDp(10),
         color: Theme.subTextColor,
     },
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
         borderWidth: 0,
     },
     buttonText: {
-        fontSize: Font(14),
+        fontSize: font(14),
         color: '#fff',
     },
 });

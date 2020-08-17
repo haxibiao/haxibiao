@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     },
     categoryName: {
         color: Theme.primaryColor,
-        fontSize: Font(13),
+        fontSize: font(13),
     },
     categoryShadow: {
         backgroundColor: Theme.slateGray2,
@@ -181,7 +181,7 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end',
     },
     radioText: {
-        fontSize: Font(15),
+        fontSize: font(15),
         color: Theme.watermelon,
     },
 });

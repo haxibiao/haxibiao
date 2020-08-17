@@ -49,23 +49,23 @@ const AskQuestionScreen = (props) => {
             },
         },
         onError: (error) => {
-            
-            console.log('打印视频发布错误',error,categories.map((category) => category.id));
-            if(categories.map((category) => category.id)[0] == undefined){
+            console.log(
+                '打印视频发布错误',
+                error,
+                categories.map((category) => category.id),
+            );
+            if (categories.map((category) => category.id)[0] == undefined) {
                 Toast.show({
-                    content:'请添加话题',
+                    content: '请添加话题',
                 });
-    
-            }else{
+            } else {
                 Toast.show({
                     content: error.message.replace('GraphQL error: ', '') || '发布失败',
                 });
-    
             }
-            
         },
         onCompleted: (mutationResult) => {
-            console.log('视频发布成功',mutationResult,categories);
+            console.log('视频发布成功', mutationResult, categories);
 
             Toast.show({
                 content: '发布成功',
@@ -255,7 +255,7 @@ const AskQuestionScreen = (props) => {
                                         onPress={() => setGoldMiddleware(value)}>
                                         <Text style={[styles.goldText, selected && { color: Theme.watermelon }]}>
                                             {value}
-                                            <Text style={{ fontSize: Font(14) }}> {Config.goldAlias}</Text>
+                                            <Text style={{ fontSize: font(14) }}> {Config.goldAlias}</Text>
                                         </Text>
                                     </TouchFeedback>
                                 );
@@ -290,7 +290,7 @@ const styles = StyleSheet.create({
     },
     categoryName: {
         color: Theme.primaryColor,
-        fontSize: Font(13),
+        fontSize: font(13),
     },
     categoryShadow: {
         backgroundColor: Theme.slateGray2,
@@ -368,7 +368,7 @@ const styles = StyleSheet.create({
         alignItems: 'flex-end',
     },
     radioText: {
-        fontSize: Font(15),
+        fontSize: font(15),
         color: Theme.watermelon,
     },
 });

@@ -29,7 +29,7 @@ class Footer extends Component<Props> {
             return (
                 <View style={styles.footerView}>
                     <Text style={styles.footerViewText}>加载中</Text>
-                    <Spinner isVisible={true} size={Font(14)} type={'FadingCircleAlt'} color={Theme.secondaryColor} />
+                    <Spinner isVisible={true} size={font(14)} type={'FadingCircleAlt'} color={Theme.secondaryColor} />
                 </View>
             );
         }
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     footerViewText: {
-        fontSize: Font(13),
+        fontSize: font(13),
         color: Theme.subTextColor,
         marginHorizontal: PxDp(10),
     },

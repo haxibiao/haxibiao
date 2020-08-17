@@ -11,7 +11,7 @@ Global.Device = Device;
 // App主题
 Global.Theme = Theme;
 // 适配字体
-Global.Font = Helper.FontSize;
+Global.font = Helper.font;
 // 屏幕适配
 Global.PxDp = Helper.PxDp;
 // helper

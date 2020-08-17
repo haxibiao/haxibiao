@@ -50,7 +50,7 @@ const HxfRadio = (props: Props) => {
             <Iconfont
                 name={state ? 'radio-check' : 'radio-uncheck'}
                 color={state ? Theme.primaryColor : '#d4d4d4'}
-                size={Font(20)}
+                size={font(20)}
                 style={{ marginRight: PxDp(8) }}
             />
             {title}
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     radioText: {
-        fontSize: Font(15),
+        fontSize: font(15),
         color: Theme.defaultTextColor,
     },
     switchImage: {

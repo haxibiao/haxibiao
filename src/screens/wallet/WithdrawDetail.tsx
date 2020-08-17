@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     },
     name: {
         paddingLeft: PxDp(10),
-        fontSize: Font(18),
+        fontSize: font(18),
         color: Theme.defaultTextColor,
     },
     info: {
@@ -144,7 +144,7 @@ const styles = StyleSheet.create({
         marginVertical: PxDp(20),
     },
     money: {
-        fontSize: Font(36),
+        fontSize: font(36),
         paddingBottom: PxDp(15),
         color: Theme.defaultTextColor,
         textAlign: 'center',
@@ -155,16 +155,16 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     textLeft: {
-        fontSize: Font(15),
+        fontSize: font(15),
         color: Theme.subTextColor,
     },
     textRight: {
-        fontSize: Font(15),
+        fontSize: font(15),
         color: Theme.defaultTextColor,
         textAlign: 'right',
     },
     text: {
-        fontSize: Font(14),
+        fontSize: font(14),
         color: Theme.defaultTextColor,
         // width: (SCREEN_WIDTH * 3) / 4,
         textAlign: 'right',

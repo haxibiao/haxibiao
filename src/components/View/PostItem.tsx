@@ -309,7 +309,7 @@ const styles = StyleSheet.create({
     },
     categoryName: {
         color: Theme.primaryColor,
-        fontSize: Font(13),
+        fontSize: font(13),
     },
     userInfo: {
         flex: 1,

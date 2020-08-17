@@ -14,16 +14,16 @@ const PhoneVerification = (props) => {
                         <Text style={styles.textStyle}>手机号</Text>
                         <Text style={styles.textStyle}>{userStore.me.phone}</Text>
                         <TouchableOpacity style={styles.obtain}>
-                            <Text style={{ fontSize: Font(16), padding: 6 }}>获取验证码</Text>
+                            <Text style={{ fontSize: font(16), padding: 6 }}>获取验证码</Text>
                         </TouchableOpacity>
                     </View>
                     <View style={styles.anotherColumnItem}>
                         <Text style={styles.textStyle}>验证码</Text>
-                        <TextInput style={{ fontSize: Font(20), marginLeft: 20 }} placeholder="请输入验证码" />
+                        <TextInput style={{ fontSize: font(20), marginLeft: 20 }} placeholder="请输入验证码" />
                     </View>
                 </View>
                 <TouchableOpacity style={styles.button}>
-                    <Text style={{ fontSize: Font(20) }}>确认</Text>
+                    <Text style={{ fontSize: font(20) }}>确认</Text>
                 </TouchableOpacity>
             </View>
         </PageContainer>
@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
         borderTopColor: '#E6E6E6',
     },
     textStyle: {
-        fontSize: Font(20),
+        fontSize: font(20),
         marginRight: 15,
     },
     obtain: {

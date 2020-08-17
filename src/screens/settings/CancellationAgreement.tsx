@@ -45,23 +45,23 @@ const styles = StyleSheet.create({
     },
     title: {
         marginTop: 20,
-        fontSize: Font(27),
+        fontSize: font(27),
         color: '#000000',
     },
     body: {
         margin: 15,
     },
     foreword: {
-        fontSize: Font(17),
+        fontSize: font(17),
         margin: 5,
     },
     textStyle: {
-        fontSize: Font(19),
+        fontSize: font(19),
         paddingVertical: 10,
     },
     subtitle: {
         paddingVertical: 8,
-        fontSize: Font(16),
+        fontSize: font(16),
     },
 });
 

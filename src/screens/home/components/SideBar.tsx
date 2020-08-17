@@ -86,7 +86,7 @@ export default observer((props) => {
 const styles = StyleSheet.create({
     countText: {
         color: 'rgba(255,255,255,0.8)',
-        fontSize: Font(12),
+        fontSize: font(12),
         marginTop: PxDp(10),
         textAlign: 'center',
     },

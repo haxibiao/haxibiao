@@ -11,7 +11,7 @@ const LogoutAccount = (props) => {
             <View style={styles.container}>
                 <Avatar style={styles.caveat} size={PxDp(55)} source={require('!/assets/images/logout.png')} />
 
-                <Text style={{ fontSize: Font(22), color: '#000000' }}>将现在的账号注销</Text>
+                <Text style={{ fontSize: font(22), color: '#000000' }}>将现在的账号注销</Text>
 
                 <Text style={{ margin: 15 }}>注意，注销账号后以下信息将被清空且无法找回</Text>
 
@@ -54,7 +54,7 @@ const LogoutAccount = (props) => {
                             navigation.navigate('PhoneVerification');
                         }
                     }}>
-                    <Text style={{ fontSize: Font(20) }}>下一步</Text>
+                    <Text style={{ fontSize: font(20) }}>下一步</Text>
                 </TouchableOpacity>
 
                 <View style={{ flexDirection: 'row', margin: 5 }}>
@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFF',
     },
     textStyle: {
-        fontSize: Font(16),
+        fontSize: font(16),
         paddingVertical: 8,
     },
     button: {
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
         margin: 15,
     },
     description: {
-        fontSize: Font(16),
+        fontSize: font(16),
         lineHeight: 25,
         paddingTop: 15,
         marginTop: 5,

@@ -236,7 +236,7 @@ export default observer(() => {
                     <Text
                         style={{
                             color: '#363636',
-                            fontSize: Font(14),
+                            fontSize: font(14),
                             textDecorationLine: 'underline',
                         }}>{`已绑定`}</Text>
                 </TouchableOpacity>
@@ -248,7 +248,7 @@ export default observer(() => {
                     <Text
                         style={{
                             color: '#363636',
-                            fontSize: Font(14),
+                            fontSize: font(14),
                             textDecorationLine: 'underline',
                         }}>{`已绑定`}</Text>
                 </TouchableOpacity>
@@ -260,7 +260,7 @@ export default observer(() => {
                     <Text
                         style={{
                             color: '#363636',
-                            fontSize: Font(14),
+                            fontSize: font(14),
                             textDecorationLine: 'underline',
                         }}>{`已绑定`}</Text>
                 </TouchableOpacity>
@@ -598,7 +598,7 @@ const styles = StyleSheet.create({
 
     bindPlatform: {
         color: Theme.link,
-        fontSize: Font(14),
+        fontSize: font(14),
         textDecorationLine: 'underline',
     },
 
@@ -606,24 +606,24 @@ const styles = StyleSheet.create({
         color: '#000',
         alignItems: 'center',
         marginLeft: PxDp(5),
-        fontSize: Font(20),
+        fontSize: font(20),
     },
 
     boldBlackText1: {
         color: Theme.defaultTextColor,
         alignItems: 'center',
-        fontSize: Font(14),
+        fontSize: font(14),
         fontWeight: 'bold',
     },
 
     boldBlackText2: {
         color: Theme.defaultTextColor,
-        fontSize: Font(16),
+        fontSize: font(16),
         fontWeight: 'bold',
     },
     boldBlackText3: {
         color: Theme.defaultTextColor,
-        fontSize: Font(30),
+        fontSize: font(30),
         fontWeight: 'bold',
     },
     broadTipsImage: {
@@ -644,7 +644,7 @@ const styles = StyleSheet.create({
     },
     moneyText: {
         color: Theme.subTextColor,
-        fontSize: Font(16),
+        fontSize: font(16),
         fontWeight: 'bold',
         ...Platform.select({
             ios: {},
@@ -660,7 +660,7 @@ const styles = StyleSheet.create({
     },
     ruleText: {
         color: Theme.subTextColor,
-        fontSize: Font(14),
+        fontSize: font(14),
         lineHeight: PxDp(18),
         paddingVertical: PxDp(5),
     },
@@ -716,7 +716,7 @@ const styles = StyleSheet.create({
     },
     whiteText: {
         color: '#fff',
-        fontSize: Font(16),
+        fontSize: font(16),
     },
     withdrawBtn: {
         alignItems: 'center',
@@ -734,7 +734,7 @@ const styles = StyleSheet.create({
     },
     withdrawLogBtnText: {
         color: '#fff',
-        fontSize: Font(14),
+        fontSize: font(14),
         fontWeight: 'bold',
     },
     withdrawType: {
@@ -764,11 +764,11 @@ const styles = StyleSheet.create({
     },
     withdrawText: {
         color: Theme.primaryColor,
-        fontSize: Font(17),
+        fontSize: font(17),
     },
     withdrawTitle: {
         color: Theme.defaultTextColor,
-        fontSize: Font(16),
+        fontSize: font(16),
         fontWeight: 'bold',
     },
     withdrawTop: {

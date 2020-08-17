@@ -59,12 +59,12 @@ const styles = StyleSheet.create({
     },
     itemName: {
         color: Theme.defaultTextColor,
-        fontSize: Font(15),
+        fontSize: font(15),
         fontWeight: 'bold',
     },
     lastMessage: {
         color: Theme.subTextColor,
-        fontSize: Font(12),
+        fontSize: font(12),
         marginTop: PxDp(4),
         paddingRight: PxDp(20),
     },
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
     },
     timeAgo: {
         color: Theme.subTextColor,
-        fontSize: Font(12),
+        fontSize: font(12),
     },
 });
 

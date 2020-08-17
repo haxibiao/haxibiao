@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
         resizeMode: 'contain',
     },
     title: {
-        fontSize: Font(14),
+        fontSize: font(14),
         color: Theme.subTextColor,
         marginTop: PxDp(-40),
     },

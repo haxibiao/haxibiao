@@ -14,20 +14,20 @@ class IncomeAndExpenditureItem extends Component {
         return (
             <View style={styles.item}>
                 <Row style={{ justifyContent: 'space-between' }}>
-                    <Text style={{ fontSize: Font(15), color: Theme.defaultTextColor }}>{item.remark}</Text>
+                    <Text style={{ fontSize: font(15), color: Theme.defaultTextColor }}>{item.remark}</Text>
                     <Text
                         style={{
-                            fontSize: Font(20),
+                            fontSize: font(20),
                             color: item.gold > 0 ? Theme.primaryColor : Theme.secondaryColor,
                         }}>
                         {item.gold > 0 ? '+' + item.gold : item.gold}
                     </Text>
                 </Row>
-                <Row style={{ justifyContent: 'space-between', marginTop: Font(10) }}>
-                    <Text style={{ fontSize: Font(12), color: Theme.subTextColor }}>{item.created_at}</Text>
+                <Row style={{ justifyContent: 'space-between', marginTop: font(10) }}>
+                    <Text style={{ fontSize: font(12), color: Theme.subTextColor }}>{item.created_at}</Text>
                     <Text
                         style={{
-                            fontSize: Font(12),
+                            fontSize: font(12),
                             color: Theme.subTextColor,
                         }}>{`剩余${Config.goldAlias}: ${item.balance}`}</Text>
                 </Row>

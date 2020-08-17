@@ -143,14 +143,14 @@ const styles = StyleSheet.create({
     },
     categoryName: {
         color: Theme.secondaryTextColor,
-        fontSize: Font(13),
+        fontSize: font(13),
     },
     categorySection: {
         marginTop: PxDp(Theme.itemSpace),
     },
     categorySectionTitle: {
         color: Theme.slateGray1,
-        fontSize: Font(14),
+        fontSize: font(14),
         marginVertical: PxDp(10),
     },
     categoryWrap: {
@@ -176,7 +176,7 @@ const styles = StyleSheet.create({
     },
     hotMarkText: {
         color: '#fff',
-        fontSize: Font(11),
+        fontSize: font(11),
     },
 });
 

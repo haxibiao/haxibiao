@@ -55,7 +55,7 @@ export default observer((props: Props) => {
 const styles = StyleSheet.create({
     countLikes: {
         color: Theme.slateGray2,
-        fontSize: Font(13),
+        fontSize: font(13),
         marginLeft: PxDp(8),
         textAlign: 'center',
     },

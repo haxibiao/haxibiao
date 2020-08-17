@@ -221,7 +221,7 @@ export default () => {
 const styles = StyleSheet.create({
     avatarTip: {
         color: Theme.subTextColor,
-        fontSize: Font(13),
+        fontSize: font(13),
         marginVertical: PxDp(15),
     },
     container: {
@@ -231,7 +231,7 @@ const styles = StyleSheet.create({
     },
     field: {
         color: '#666',
-        fontSize: Font(14),
+        fontSize: font(14),
     },
     fieldGroup: {
         marginBottom: PxDp(30),
@@ -246,7 +246,7 @@ const styles = StyleSheet.create({
     inputStyle: {
         color: Theme.defaultTextColor,
         flex: 1,
-        fontSize: Font(15),
+        fontSize: font(15),
         marginTop: PxDp(6),
         paddingVertical: PxDp(10),
     },
@@ -258,12 +258,12 @@ const styles = StyleSheet.create({
     },
     itemText: {
         color: Theme.defaultTextColor,
-        fontSize: Font(15),
+        fontSize: font(15),
         marginRight: PxDp(15),
     },
     linkText: {
         color: '#407FCF',
-        fontSize: Font(15),
+        fontSize: font(15),
         marginRight: PxDp(6),
     },
     listItem: {
@@ -287,7 +287,7 @@ const styles = StyleSheet.create({
     },
     rightText: {
         color: Theme.subTextColor,
-        fontSize: Font(15),
+        fontSize: font(15),
         marginRight: PxDp(6),
     },
     rightWrap: {

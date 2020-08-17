@@ -17,7 +17,7 @@ export default function ModifyPassword() {
     return (
         <PageContainer white title="修改密码" submitting={submitting}>
             <View style={{ marginVertical: PxDp(35), paddingHorizontal: PxDp(25) }}>
-                <Text style={{ fontSize: Font(20), fontWeight: '600' }}>提交新密码</Text>
+                <Text style={{ fontSize: font(20), fontWeight: '600' }}>提交新密码</Text>
             </View>
 
             <View style={styles.inputWrap}>

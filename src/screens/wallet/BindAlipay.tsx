@@ -96,7 +96,7 @@ const BindAlipay = (props) => {
                     <Text
                         style={{
                             color: Theme.defaultTextColor,
-                            fontSize: Font(20),
+                            fontSize: font(20),
                             fontWeight: '600',
                             paddingBottom: PxDp(20),
                         }}>
@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
     },
     tipsText: {
         color: Theme.subTextColor,
-        fontSize: Font(13),
+        fontSize: font(13),
     },
     inputWrap: {
         borderBottomWidth: PxDp(0.5),

@@ -111,10 +111,10 @@ const Chat = observer((props: Props) => {
             autoKeyboardInsets={Device.Android}
             topInsets={Device.Android ? 0 : -Theme.statusBarHeight}
             title={chat.withUser.name}
-            titleStyle={{ fontSize: Font(16) }}
+            titleStyle={{ fontSize: font(16) }}
             rightView={
                 <TouchFeedback onPress={() => middlewareNavigate('ChatSetting', { user: chat.withUser })} style={{}}>
-                    <Text style={{ fontSize: Font(16), color: Theme.navBarTitleColor || '#666' }}>设置</Text>
+                    <Text style={{ fontSize: font(16), color: Theme.navBarTitleColor || '#666' }}>设置</Text>
                 </TouchFeedback>
             }>
             <View style={{ paddingTop: 10, flex: 1 }}>

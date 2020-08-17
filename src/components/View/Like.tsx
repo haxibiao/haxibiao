@@ -96,7 +96,7 @@ const Like = observer((props: Props) => {
 Like.defaultProps = {
     containerStyle: { flexDirection: 'column' },
     imageStyle: { height: PxDp(40), width: PxDp(40) },
-    textStyle: { color: 'rgba(255,255,255,0.8)', fontSize: Font(12), marginTop: PxDp(10), textAlign: 'center' },
+    textStyle: { color: 'rgba(255,255,255,0.8)', fontSize: font(12), marginTop: PxDp(10), textAlign: 'center' },
 };
 
 export default Like;
@@ -104,7 +104,7 @@ export default Like;
 const styles = StyleSheet.create({
     countLikes: {
         color: 'rgba(255,255,255,0.8)',
-        fontSize: Font(12),
+        fontSize: font(12),
         marginTop: PxDp(10),
         textAlign: 'center',
     },

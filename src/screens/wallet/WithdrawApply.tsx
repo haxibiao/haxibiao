@@ -16,7 +16,7 @@ export default function WithdrawApply(props) {
                     <Text style={styles.header}>提现申请已提交</Text>
                     <View style={styles.center}>
                         <Text style={styles.money}>{amount}</Text>
-                        <Text style={{ fontSize: Font(10), color: Theme.secondaryColor, paddingTop: PxDp(32) }}>
+                        <Text style={{ fontSize: font(10), color: Theme.secondaryColor, paddingTop: PxDp(32) }}>
                             {' '}
                             元
                         </Text>
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     },
     header: {
         color: Theme.defaultTextColor,
-        fontSize: Font(22),
+        fontSize: font(22),
     },
     image: {
         height: SCREEN_WIDTH * 0.5,
@@ -80,10 +80,10 @@ const styles = StyleSheet.create({
     },
     money: {
         color: Theme.secondaryColor,
-        fontSize: Font(43),
+        fontSize: font(43),
     },
     text: {
         color: '#363636',
-        fontSize: Font(13),
+        fontSize: font(13),
     },
 });

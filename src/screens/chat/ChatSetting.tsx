@@ -19,8 +19,8 @@ const ChatSetting = (props) => {
                 <Row>
                     <Avatar source={user.avatar} size={PxDp(50)} />
                     <View style={{ marginLeft: PxDp(10) }}>
-                        <Text style={{ fontSize: Font(15), color: Theme.navBarTitleColor || '#666' }}>{user.name}</Text>
-                        <Text style={{ fontSize: Font(13), color: Theme.secondaryTextColor }}>
+                        <Text style={{ fontSize: font(15), color: Theme.navBarTitleColor || '#666' }}>{user.name}</Text>
+                        <Text style={{ fontSize: font(13), color: Theme.secondaryTextColor }}>
                             {user.introduction || '本宝宝暂时还没想到个性签名~'}
                         </Text>
                     </View>
@@ -28,7 +28,7 @@ const ChatSetting = (props) => {
                 <Iconfont name="right" color={Theme.navBarMenuColor} size={PxDp(18)} />
             </TouchFeedback>
             <TouchFeedback style={styles.itemStyle}>
-                <Text style={{ fontSize: Font(15), color: Theme.navBarTitleColor || '#666' }}>屏蔽消息</Text>
+                <Text style={{ fontSize: font(15), color: Theme.navBarTitleColor || '#666' }}>屏蔽消息</Text>
                 <HxfRadio onChange={changeContentType} mode="switch" />
             </TouchFeedback>
             <TouchFeedback
@@ -38,7 +38,7 @@ const ChatSetting = (props) => {
                         content: '举报成功',
                     })
                 }>
-                <Text style={{ fontSize: Font(15), color: Theme.navBarTitleColor || '#666' }}>举报</Text>
+                <Text style={{ fontSize: font(15), color: Theme.navBarTitleColor || '#666' }}>举报</Text>
                 <Iconfont name="right" color={Theme.navBarMenuColor} size={PxDp(18)} />
             </TouchFeedback>
         </PageContainer>
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
         borderBottomWidth: PxDp(0.5),
     },
     radioText: {
-        fontSize: Font(15),
+        fontSize: font(15),
         color: Theme.watermelon,
     },
 });

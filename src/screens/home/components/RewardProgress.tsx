@@ -117,7 +117,7 @@ const styles = StyleSheet.create({
         left: 0,
         right: 0,
         textAlign: 'center',
-        fontSize: Font(12),
+        fontSize: font(12),
         color: '#FFB100',
     },
 });

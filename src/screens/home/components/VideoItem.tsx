@@ -140,7 +140,7 @@ export default observer((props: any) => {
 });
 
 const styles = StyleSheet.create({
-    body: { color: 'rgba(255,255,255,0.9)', fontSize: Font(15), paddingTop: PxDp(10) },
+    body: { color: 'rgba(255,255,255,0.9)', fontSize: font(15), paddingTop: PxDp(10) },
     cover: {
         position: 'absolute',
         top: 0,
@@ -166,7 +166,7 @@ const styles = StyleSheet.create({
         bottom: 0,
         backgroundColor: 'rgba(0,0,0,0.1)',
     },
-    name: { color: 'rgba(255,255,255,0.9)', fontSize: Font(16), fontWeight: 'bold' },
+    name: { color: 'rgba(255,255,255,0.9)', fontSize: font(16), fontWeight: 'bold' },
     videoContent: {
         position: 'absolute',
         bottom: PxDp(Theme.BOTTOM_HEIGHT + 20),

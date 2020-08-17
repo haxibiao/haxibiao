@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
         resizeMode: 'cover',
     },
     title: {
-        fontSize: Font(12),
+        fontSize: font(12),
         marginTop: PxDp(10),
         color: Theme.subTextColor,
     },

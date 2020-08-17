@@ -120,11 +120,11 @@ export default observer(({ user, titleStyle, contentStyle }) => {
 {
     /* <Iconfont
     name={user.gender === '男' ? 'nan1' : 'nv'}
-    size={Font(17)}
+    size={font(17)}
     color={user.gender === '男' ? Theme.boy : Theme.girl}
     style={{
         backgroundColor: '#FFF',
-        borderRadius: Font(24),
+        borderRadius: font(24),
         position: 'absolute',
         right: 0,
         left: 0,

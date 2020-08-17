@@ -67,7 +67,7 @@ export default (props) => {
                         onPress={() =>
                             Linking.openURL(Device.IOS ? Config.iosAppStoreUrl : 'market://details?id=' + Config.AppID)
                         }>
-                        <Text style={{ fontSize: Font(12), color: Theme.grey }}>去应用商店评价</Text>
+                        <Text style={{ fontSize: font(12), color: Theme.grey }}>去应用商店评价</Text>
                         <Iconfont name="right" size={PxDp(14)} color={Theme.grey} />
                     </TouchFeedback>
                 </View>
@@ -115,7 +115,7 @@ export default (props) => {
                 </View>
 
                 <View style={[styles.formTitleWrap, { marginVertical: PxDp(15) }]}>
-                    <Text style={{ fontSize: Font(16), color: Theme.primaryFont }}>
+                    <Text style={{ fontSize: font(16), color: Theme.primaryFont }}>
                         好评内容截图 ({formData.images.length}/3)
                     </Text>
                 </View>
