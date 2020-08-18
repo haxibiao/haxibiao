@@ -5,22 +5,22 @@ import { PageContainer, SpinnerLoading } from '~/components';
 
 import { ad } from 'react-native-ad';
 
-import { appStore } from '~/store';
+import { appStore, adStore } from '~/store';
 import { useCountDown } from '~/utils';
 import { Query, useQuery, GQL } from '~/apollo';
 import { useNavigation } from '~/router';
 import RewardPopup from './components/RewardPopup';
 
 export default (props: any) => {
-    const awaitingTime = useRef(appStore.adWaitingTime);
+    const awaitingTime = useRef(adStore.adWaitingTime);
     const countDown = useCountDown({
         expirationTime: awaitingTime.current,
     });
     useEffect(() => {
         if (countDown.isEnd) {
-            awaitingTime.current = appStore.adWaitingTime;
+            awaitingTime.current = adStore.adWaitingTime;
         }
-    }, [appStore.timeForLastAdvert]);
+    }, [countDown.isEnd]);
 
     const { data, refetch } = useQuery(GQL.sleepTaskQuery, { fetchPolicy: 'network-only' });
     const sleepData = Helper.syncGetter('SleepTask', data);

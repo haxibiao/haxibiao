@@ -1,20 +1,17 @@
 import React, { useRef, useEffect } from 'react';
-import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native';
-
-import { PageContainer, SpinnerLoading, HxfModal, Row } from '~/components';
-
+import { View, Text, Image, TouchableOpacity } from 'react-native';
+import { PageContainer } from '~/components';
 import { ad } from 'react-native-ad';
-import { Overlay } from 'teaset';
 
 import { useCountDown } from '~/utils';
 import { useNavigation } from '~/router';
-import { appStore, userStore } from '~/store';
-import { Query, useQuery, GQL, useMutation } from '~/apollo';
+import { adStore, userStore } from '~/store';
+import { useQuery, GQL, useMutation } from '~/apollo';
 
 import RewardPopup from './components/RewardPopup';
 
-export default (props: any) => {
-    const awaitingTime = useRef(appStore.adWaitingTime);
+export default () => {
+    const awaitingTime = useRef(adStore.adWaitingTime);
     const navigation = useNavigation();
     const countDown = useCountDown({
         expirationTime: awaitingTime.current,
@@ -22,11 +19,11 @@ export default (props: any) => {
 
     useEffect(() => {
         if (countDown.isEnd) {
-            awaitingTime.current = appStore.adWaitingTime;
+            awaitingTime.current = adStore.adWaitingTime;
         }
-    }, [appStore.timeForLastAdvert]);
+    }, [countDown.isEnd]);
 
-    const { data, refetch } = useQuery(GQL.rewardVideoQuery, { fetchPolicy: 'network-only' });
+    const { data } = useQuery(GQL.rewardVideoQuery, { fetchPolicy: 'network-only' });
     const ruleText = Helper.syncGetter('queryDetail', data);
 
     function setModule(mReward: any) {
@@ -93,7 +90,7 @@ export default (props: any) => {
             recordTime = Date.now();
             setModule(data.playADVideo);
         },
-        onError: (error: any) => {
+        onError: () => {
             Toast.show({ content: '服务器响应失败！', duration: 1000 });
         },
     });
@@ -148,67 +145,3 @@ export default (props: any) => {
         </PageContainer>
     );
 };
-
-const styles = StyleSheet.create({
-    contentContainer: {
-        backgroundColor: '#fff',
-        flexGrow: 1,
-        paddingTop: Device.WIDTH * 0.75,
-    },
-    profileView: {
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        right: 0,
-        width: Device.WIDTH,
-        height: Device.WIDTH * 0.75,
-        overflow: 'hidden',
-    },
-    SuccessModuleBack: {
-        width: Device.WIDTH,
-        height: Device.HEIGHT,
-        backgroundColor: '#66666699',
-        position: 'absolute',
-        zIndex: 66,
-        top: 0,
-        bottom: 0,
-        right: 0,
-        left: 0,
-        justifyContent: 'center',
-        alignContent: 'center',
-    },
-    SuccessModule: {
-        marginHorizontal: '15%',
-        backgroundColor: '#FFF',
-        position: 'absolute',
-        zIndex: 68,
-        padding: pixel(20),
-        borderRadius: pixel(10),
-    },
-    SuccessModuleTextBack: {
-        width: Device.WIDTH - (Device.WIDTH * 0.3 + pixel(90)),
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginLeft: 15,
-    },
-    SuccessModuleButtonBack: {
-        paddingTop: pixel(20),
-        width: '100%',
-        justifyContent: 'center',
-        alignContent: 'center',
-    },
-    SuccessModuleButton: {
-        flex: 0.5,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    SuccessModuleButtonTitle: {
-        fontWeight: 'bold',
-    },
-    countDown: {
-        color: Theme.watermelon,
-        fontSize: pixel(20),
-        fontWeight: 'bold',
-        marginTop: pixel(10),
-    },
-});

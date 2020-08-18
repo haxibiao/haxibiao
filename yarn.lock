@@ -6960,6 +6960,10 @@ react-is@^16.12.0, react-is@^16.13.0, react-is@^16.7.0, react-is@^16.8.1, react-
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
+"react-native-ad@git+http://code.haxibiao.cn/packages/react-native-ad.git":
+  version "1.1.3"
+  resolved "git+http://code.haxibiao.cn/packages/react-native-ad.git#29990d2b0afe744a99f12e558bf92f4cf87e3c4e"
+
 react-native-animatable@1.3.3, react-native-animatable@^1.3.3:
   version "1.3.3"
   resolved "https://registry.yarnpkg.com/react-native-animatable/-/react-native-animatable-1.3.3.tgz#a13a4af8258e3bb14d0a9d839917e9bb9274ec8a"
@@ -7300,7 +7304,7 @@ react-native-wechat-lib@^1.1.21:
 
 "react-native-widgets@git+http://code.haxibiao.cn/packages/react-native-widgets":
   version "1.0.0"
-  resolved "git+http://code.haxibiao.cn/packages/react-native-widgets#ada54cf2ef62bfc8a5b97adf88efc2c34f03b8f5"
+  resolved "git+http://code.haxibiao.cn/packages/react-native-widgets#fc4ebbe682566a3d183f179016e0a63394601e77"
 
 react-native@0.63.2:
   version "0.63.2"

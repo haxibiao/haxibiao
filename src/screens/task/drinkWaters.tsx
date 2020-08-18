@@ -7,7 +7,7 @@ import { PageContainer, Row, SpinnerLoading } from '~/components';
 import { ad } from 'react-native-ad';
 
 import { useCountDown } from '~/utils';
-import { appStore, userStore } from '~/store';
+import { appStore, adStore } from '~/store';
 import { Query, useQuery, GQL } from '~/apollo';
 
 import { useNavigation } from '~/router';
@@ -119,15 +119,15 @@ const DrinkButton = (props: Props) => {
 };
 
 export default (props: any) => {
-    const awaitingTime = useRef(appStore.adWaitingTime);
+    const awaitingTime = useRef(adStore.adWaitingTime);
     const countDown = useCountDown({
         expirationTime: awaitingTime.current,
     });
     useEffect(() => {
         if (countDown.isEnd) {
-            awaitingTime.current = appStore.adWaitingTime;
+            awaitingTime.current = adStore.adWaitingTime;
         }
-    }, [appStore.timeForLastAdvert]);
+    }, [countDown.isEnd]);
 
     const [value, setValue] = useState(0);
     const { data, refetch } = useQuery(GQL.drinkWaterListQuery, { fetchPolicy: 'network-only' });

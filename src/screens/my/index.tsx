@@ -10,7 +10,7 @@ import {
     StatusBar,
 } from 'react-native';
 import { PageContainer, Iconfont, Row, Avatar } from '~/components';
-import { observer, appStore, userStore } from '~/store';
+import { observer, appStore, userStore, adStore } from '~/store';
 import { useNavigation } from '~/router';
 import { GQL, useQuery } from '~/apollo';
 import { useDetainment } from '~/utils';
@@ -33,7 +33,7 @@ export default observer((props: any) => {
     let { ad_duration = 900000 } = dongdezhuanUser;
     console.log('用户广告时间' + ad_duration);
 
-    appStore.setAdDuration(ad_duration);
+    adStore.setAdInterval(ad_duration);
 
     const userProfile = Object.assign({}, user, {
         ...userData,

@@ -8,24 +8,51 @@ import SplashScreen from 'react-native-splash-screen';
 import { ad } from 'react-native-ad';
 import ApolloApp from './ApolloApp';
 
-import JPushModule from 'jpush-react-native';
 import * as WeChat from 'react-native-wechat-lib';
 
 import { checkUpdate } from '~/utils';
 import { WechatAppId } from '!/app.json';
-import { appStore } from '~/store';
+import { appStore, adStore } from '~/store';
 
 //直播
 import { LicenseKey, LicenseUrl } from '!/app.json';
 import { LivePullManager } from 'react-native-live';
-import { check, request, PERMISSIONS, RESULTS } from 'react-native-permissions';
+import { check, PERMISSIONS, RESULTS } from 'react-native-permissions';
 
 function App() {
     let toastRef = useRef();
     const appLunch = useRef(true);
 
     //启动前，初始化Ad
-    // ad.AdManager.init();
+    ad.init({
+        appid: adStore.tt_appid,
+    });
+
+    //启动个开屏广告
+    const splashAd = ad.startSplash({
+        appid: adStore.tt_appid,
+        codeid: adStore.codeid_splash,
+    });
+
+    splashAd.subscribe('onAdClose', (event) => {
+        console.log('广告关闭', event);
+    });
+
+    splashAd.subscribe('onAdSkip', (i) => {
+        console.log('用户点击跳过监听', i);
+    });
+
+    splashAd.subscribe('onAdError', (e) => {
+        console.log('开屏加载失败监听', e);
+    });
+
+    splashAd.subscribe('onAdClick', (e) => {
+        console.log('开屏被用户点击了', e);
+    });
+
+    splashAd.subscribe('onAdShow', (e) => {
+        console.log('开屏开始展示', e);
+    });
 
     useEffect(() => {
         // 只做直播相关权限检查，获取交由权限浮层

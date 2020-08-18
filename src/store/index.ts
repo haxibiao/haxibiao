@@ -3,6 +3,7 @@ export { observer } from 'mobx-react';
 
 //单例 store = viewmodel
 export { default as appStore } from './appStore';
+export { default as adStore } from './adStore';
 export { default as userStore } from './userStore';
 export { default as chatStore } from './ChatStore';
 export { default as videoStore } from './DrawVideoStore';
