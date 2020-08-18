@@ -69,7 +69,7 @@ export default observer((props: any) => {
     return (
         <PageContainer contentViewStyle={{ marginTop: 0 }}>
             <ScrollView style={styles.container} bounces={false} showsVerticalScrollIndicator={false}>
-                <View style={{ marginBottom: appStore.enableWallet ? -pixel(20) : pixel(20) }}>
+                <View style={{ marginBottom: adStore.enableWallet ? -pixel(20) : pixel(20) }}>
                     <TouchableWithoutFeedback onPress={() => authNavigator('User', { user })}>
                         <View style={styles.personTopInfo}>
                             {/* <View style={styles.personTopBg}>
@@ -155,7 +155,7 @@ export default observer((props: any) => {
                     </TouchableWithoutFeedback>
                 </View>
 
-                {/* {appStore.enableWallet && (
+                {/* {adStore.enableWallet && (
                     <TouchableWithoutFeedback onPress={() => authNavigator('Wallet', { user: userProfile })}>
                         <View style={styles.wallet}>
                             <View style={styles.walletItem}>
@@ -191,7 +191,7 @@ export default observer((props: any) => {
                     </TouchableWithoutFeedback>
                 )} */}
 
-                {isLogin && taskAD && appStore.enableWallet && (
+                {isLogin && taskAD && adStore.enableWallet && (
                     <View style={{ marginBottom: pixel(10) }}>
                         <TouchableOpacity onPress={() => navigation.navigate('TaskScreen')}>
                             <Image
@@ -218,7 +218,7 @@ export default observer((props: any) => {
                 )}
 
                 <View style={styles.columnItemsWrap}>
-                    {appStore.enableWallet && (
+                    {adStore.enableWallet && (
                         <TouchableOpacity
                             style={styles.columnItem}
                             onPress={() => {

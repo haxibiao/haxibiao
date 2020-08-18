@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { PageContainer, TouchFeedback, Iconfont, Avatar, ListItem, PopOverlay } from '~/components';
-import { userStore, appStore } from '~/store';
+import { userStore, adStore } from '~/store';
 import { useRoute, useNavigation } from '~/router';
 import { bindWechat } from '~/utils';
 
@@ -147,7 +147,7 @@ export default () => {
                     }
                 />
 
-                {/* {appStore.enableWallet && (
+                {/* {adStore.enableWallet && (
                         <ListItem
                             style={styles.listItem}
                             onPress={alipay}

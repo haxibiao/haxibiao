@@ -22,7 +22,7 @@ import MoreOperation from './MoreOperation';
 import Gift from '!/assets/images/gift_svg.svg';
 import Comment from '!/assets/images/pinglun.svg';
 
-import StoreContext, { observer, appStore, userStore } from '~/store';
+import StoreContext, { observer, appStore, userStore, adStore } from '~/store';
 import { useApolloClient, ApolloProvider } from '~/apollo';
 import { useNavigation } from '~/router';
 import { StackActions } from '@react-navigation/native';
@@ -224,7 +224,7 @@ const PostItem: React.FC<Props> = observer((props: Props) => {
                                 </SafeText>
                             </View>
                         </View>
-                        {isQuestion && question_reward > 0 && appStore.enableWallet ? (
+                        {isQuestion && question_reward > 0 && adStore.enableWallet ? (
                             <View style={styles.questionLabel}>
                                 <Text style={styles.questionText}>悬赏问答</Text>
                                 <Text style={styles.rewardText}>{`${question_reward}${Config.goldAlias}`}</Text>

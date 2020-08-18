@@ -15,7 +15,7 @@ import {
     MediaUploader,
     HxfRadio,
 } from '~/components';
-import { observer, userStore, appStore } from '~/store';
+import { observer, userStore, appStore, adStore } from '~/store';
 import { useNavigation } from '~/router';
 import { GQL, useMutation } from '~/apollo';
 import Video from 'react-native-video';
@@ -226,7 +226,7 @@ const AskQuestionScreen = (props) => {
                             )}
                             {addedCategories}
                         </View>
-                        {/* {appStore.enableWallet && (
+                        {/* {adStore.enableWallet && (
                             <HxfRadio
                                 onChange={changeContentType}
                                 radioText={

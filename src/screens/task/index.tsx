@@ -6,7 +6,7 @@ import React, { useCallback, useState, useEffect } from 'react';
 import { StyleSheet, View, Text, ScrollView, TouchableOpacity, Image, FlatList, AppState } from 'react-native';
 import { Iconfont, Row, HxfModal, StatusView } from '~/components';
 import { useNavigation } from '~/router';
-import { observer, appStore, userStore } from '~/store';
+import { observer, adStore, userStore } from '~/store';
 import { GQL, useQuery } from '~/apollo';
 import { useDetainment, downloadApk } from '~/utils';
 import { AppUtil } from 'react-native-ad';
@@ -194,7 +194,7 @@ export default observer(() => {
                     </View>
                 </View>
 
-                {taskAD && appStore.enableWallet && (
+                {taskAD && adStore.enableWallet && (
                     <View style={{ margin: pixel(15), marginBottom: pixel(0) }}>
                         <TouchableOpacity onPress={download}>
                             <Image

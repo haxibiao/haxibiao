@@ -14,7 +14,7 @@ import {
 } from '~/components';
 import Swiper from 'react-native-swiper';
 import { GQL, useQuery } from '~/apollo';
-import { observer, appStore } from '~/store';
+import { observer, appStore, adStore } from '~/store';
 import { useNavigation } from '~/router';
 import { useDetainment } from '~/utils';
 import { observable } from 'mobx';
@@ -90,7 +90,7 @@ export default observer(() => {
                         } else {
                             return (
                                 <Fragment>
-                                    {adVisible && appStore.enableAd && (
+                                    {adVisible && adStore.enableAd && (
                                         <View style={styles.ad}>
                                             <View style={styles.headerWrapper}>
                                                 <TouchableOpacity style={styles.userInfo}>
@@ -107,12 +107,23 @@ export default observer(() => {
                                                 </TouchableOpacity>
                                             </View>
                                             <View>
-                                                <ad.FeedAd
+                                                <ad.Feed
+                                                    codeid={adStore.codeid_feed}
                                                     visible={adVisible}
                                                     visibleHandler={setAdVisible}
                                                     useCache={false}
                                                     adWidth={Device.WIDTH}
-                                                    onClick={() => {
+                                                    onAdLayout={(data) => {
+                                                        console.log('Feed 广告加载成功！', data);
+                                                    }}
+                                                    onAdClose={(data) => {
+                                                        console.log('Feed 广告关闭！', data);
+                                                    }}
+                                                    onAdError={(err) => {
+                                                        console.log('Feed 广告加载失败！', err);
+                                                    }}
+                                                    onAdClick={(val) => {
+                                                        console.log('Feed 广告被用户点击！', val);
                                                         if (isFeedADList.indexOf(index) === -1) {
                                                             isFeedADList.push(index);
                                                             appStore.client
@@ -157,9 +168,7 @@ export default observer(() => {
                                                         }}
                                                         isAd={true}
                                                     />
-                                                    <View>
-                                                        <Comment width={22} height={22} />
-                                                    </View>
+                                                    <View>{/* <Comment width={22} height={22} /> */}</View>
                                                     <SafeText
                                                         style={{
                                                             color: '#bfbfbf',
@@ -173,7 +182,7 @@ export default observer(() => {
                                             </View>
                                         </View>
                                     )}
-                                    {adVisible && appStore.enableAd && <ItemSeparator />}
+                                    {adVisible && adStore.enableAd && <ItemSeparator />}
                                     <PostItem post={item} recommend={false} />
                                 </Fragment>
                             );

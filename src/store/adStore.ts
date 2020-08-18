@@ -34,7 +34,7 @@ class AdStore {
 
     @observable rewardCount: number = 0; // 激励视频的次数
 
-    @observable enableAd: boolean = false; // 广告开关
+    @observable enableAd: boolean = true; // 广告开关
     @observable enableWallet: boolean = true; // 钱包相关业务开关
 
     @observable timeForLastAdShow: number = 0; // 最后一次广告播放事件

@@ -16,7 +16,7 @@ import {
 } from 'react-native';
 import { CommonActions, useTheme } from '@react-navigation/native';
 import { useSafeArea } from 'react-native-safe-area-context';
-import { observer, appStore } from '~/store';
+import { observer, adStore } from '~/store';
 
 type Props = {
     state: any;
@@ -191,7 +191,7 @@ export default observer(
                 pointerEvents={isTabBarHidden ? 'none' : 'auto'}>
                 <View style={styles.content} onLayout={handleLayout}>
                     {routes.map((route: any, index: number) => {
-                        if (!appStore.enableWallet && route.name === 'Task') {
+                        if (!adStore.enableWallet && route.name === 'Task') {
                             return;
                         }
 
