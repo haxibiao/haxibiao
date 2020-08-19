@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# echo "自动生成appicon, 需要先安装 npm install -g yo generator-rn-toolbox"
-# yo rn-toolbox:assets --icon icon.png
+echo "需要先安装 @bam.tech/react-native-make"
 
-react-native set-icon --platform android --path icon.png
+react-native set-icon --platform android --path icon_android.png

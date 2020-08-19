@@ -56,11 +56,11 @@ function App() {
 
     useEffect(() => {
         // 只做直播相关权限检查，获取交由权限浮层
-        checkPermission();
+        // checkPermission();
         /**
          *  直播设置licenseKey,url
          */
-        LivePullManager.setLicence(LicenseUrl, LicenseKey);
+        // LivePullManager.setLicence(LicenseUrl, LicenseKey);
 
         global.Toast = toastRef.current;
         if (appLunch.current) {
