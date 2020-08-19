@@ -12,6 +12,7 @@ export const useBounceAnimation = (props: Props) => {
     const startAnimation = useCallback(() => {
         animation.current.setValue(props.value);
         Animated.spring(animation.current, {
+            useNativeDriver: true,
             toValue: props.toValue,
             friction: 2,
             tension: 40,

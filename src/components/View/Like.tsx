@@ -26,22 +26,24 @@ interface Props {
 }
 
 const Like = observer((props: Props) => {
-    const { media, containerStyle, imageStyle, textStyle, shadowText, iconSize, type } = props;
+    const { post, containerStyle, imageStyle, textStyle, shadowText, iconSize, type } = props;
     const navigation = useNavigation();
     const firstMount = useRef(true);
     const [animation, startAnimation] = useBounceAnimation({ value: 1, toValue: 1.2 });
     const [likeArticle] = useMutation(GQL.toggleLikeMutation, {
         variables: {
-            liked_id: Helper.syncGetter('id', media),
-            liked_type: 'VIDEO',
+            id: post.id,
+            type: 'posts',
         },
     });
 
     const likeHandler = __.debounce(async function () {
         const [error, result] = await Helper.exceptionCapture(likeArticle);
         if (error) {
-            media.liked ? media.count_likes-- : media.count_likes++;
-            media.liked = !media.liked;
+            console.log('like error', error);
+
+            // post.liked ? post.count_likes-- : post.count_likes++;
+            // post.liked = !post.liked;
             if (!props.isAd) {
                 Toast.show({ content: '操作失败' });
             }
@@ -50,8 +52,8 @@ const Like = observer((props: Props) => {
 
     function toggleLike(): void {
         if (TOKEN) {
-            media.liked ? media.count_likes-- : media.count_likes++;
-            media.liked = !media.liked;
+            post.liked ? post.count_likes-- : post.count_likes++;
+            post.liked = !post.liked;
         } else {
             navigation.navigate('Login');
         }
@@ -63,7 +65,7 @@ const Like = observer((props: Props) => {
             likeHandler();
         }
         firstMount.current = false;
-    }, [media.liked]);
+    }, [post.liked]);
 
     const scale = animation.interpolate({
         inputRange: [1, 1.1, 1.2],
@@ -73,9 +75,9 @@ const Like = observer((props: Props) => {
         return (
             <Animated.View style={{ transform: [{ scale }] }}>
                 <TouchableOpacity onPress={toggleLike} style={containerStyle}>
-                    <Iconfont size={iconSize} name="xihuanfill" color={media.liked ? Theme.watermelon : '#CCD5E0'} />
+                    <Iconfont size={iconSize} name="xihuanfill" color={post.liked ? Theme.watermelon : '#CCD5E0'} />
                     <SafeText style={textStyle} shadowText={shadowText}>
-                        {media.count_likes || 0}
+                        {post.count_likes || 0}
                     </SafeText>
                 </TouchableOpacity>
             </Animated.View>
@@ -84,9 +86,9 @@ const Like = observer((props: Props) => {
     return (
         <Animated.View style={{ transform: [{ scale }] }}>
             <TouchableOpacity onPress={toggleLike} style={containerStyle}>
-                <Image source={media.liked ? imageSource.liked : imageSource.unlike} style={imageStyle} />
+                <Image source={post.liked ? imageSource.liked : imageSource.unlike} style={imageStyle} />
                 <SafeText style={textStyle} shadowText={shadowText}>
-                    {media.count_likes}
+                    {post.count_likes}
                 </SafeText>
             </TouchableOpacity>
         </Animated.View>

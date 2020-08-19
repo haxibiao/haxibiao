@@ -243,7 +243,7 @@ const PostItem: React.FC<Props> = observer((props: Props) => {
                     <View style={styles.bottomPartWrapper}>
                         <Row style={styles.metaList}>
                             <Like
-                                media={post}
+                                post={post}
                                 type="icon"
                                 iconSize={pixel(22)}
                                 containerStyle={{ flexDirection: 'row', alignItems: 'center' }}

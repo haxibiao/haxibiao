@@ -1,7 +1,7 @@
 # 喜欢
-mutation toggleLikeMutation($liked_id: Int!, $liked_type: LikeType!) {
-    toggleLike(liked_id: $liked_id, liked_type: $liked_type) {
+mutation toggleLikeMutation($id: Int!, $type: LikableEnumType!, $undo: Boolean) {
+    toggleLike(id: $id, type: $type, undo: $undo) {
         id
-        isLiked
+        created_at
     }
 }
