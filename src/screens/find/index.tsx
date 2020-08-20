@@ -153,7 +153,7 @@ export default observer(() => {
                                             <View style={styles.bottomPartWrapper}>
                                                 <Row style={styles.metaList}>
                                                     <Like
-                                                        media={{
+                                                        post={{
                                                             count_likes: Math.round(Math.random() * 100),
                                                             liked: false,
                                                         }}

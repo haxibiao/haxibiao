@@ -11,7 +11,7 @@ import ApolloApp from './ApolloApp';
 import * as WeChat from 'react-native-wechat-lib';
 
 import { checkUpdate } from '~/utils';
-import { WechatAppId } from '!/app.json';
+import { WechatAppId, DisplayName } from '!/app.json';
 import { appStore, adStore } from '~/store';
 
 //直播
@@ -26,6 +26,7 @@ function App() {
     //启动前，初始化Ad
     ad.init({
         appid: adStore.tt_appid,
+        app: DisplayName,
     });
 
     //启动个开屏广告

@@ -1,16 +1,17 @@
 import React, { useState, useCallback, useMemo } from 'react';
 import { StyleSheet, View, Image, TouchableOpacity, Text } from 'react-native';
 import { SafeText } from '~/components';
-import { observer, appStore } from '~/store';
 import { ad } from 'react-native-ad';
+
+import { observer, appStore, adStore } from '~/store';
 import { useNavigation } from '~/router';
+import { GQL } from '~/apollo';
+
 import Player from './Player';
 import SideBar from './SideBar';
 import DrawVideoStore from '~/store/DrawVideoStore';
 import AdRewardProgress from './AdRewardProgress';
 import LinearGradient from 'react-native-linear-gradient';
-
-import { GQL } from '~/apollo';
 
 export default observer((props: any) => {
     const { media, index } = props;
@@ -35,7 +36,8 @@ export default observer((props: any) => {
         }
     }, []);
 
-    if (media.isAdPosition && adShow && appStore.enableAd) {
+    // if (media.isAdPosition && adShow && adStore.enableAd)
+    if (true) {
         if (index !== DrawVideoStore.viewableItemIndex) {
             return (
                 <View style={{ height: appStore.viewportHeight }}>
@@ -55,8 +57,15 @@ export default observer((props: any) => {
         }
         return (
             <View style={{ height: appStore.viewportHeight }}>
-                <ad.DrawFeedAd
-                    onError={(error: any) => {
+                <ad.DrawFeed
+                    appid={adStore.tt_appid}
+                    codeid={adStore.codeid_draw_video}
+                    onAdShow={() => {
+                        console.log('draw feed onAdShow');
+                    }}
+                    onAdError={(error: any) => {
+                        console.log('draw feed error', error);
+
                         // 广告 error 有几率导致闪退点
                         setAdShow(false);
                     }}

@@ -33,7 +33,7 @@ const Like = observer((props: Props) => {
     const [likeArticle] = useMutation(GQL.toggleLikeMutation, {
         variables: {
             id: post.id,
-            type: 'posts',
+            type: type,
         },
     });
 

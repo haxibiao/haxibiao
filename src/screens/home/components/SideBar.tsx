@@ -56,7 +56,7 @@ export default observer((props) => {
                 </TouchableOpacity>
             </View>
             <View style={styles.itemWrap}>
-                <Like media={media} shadowText={true} />
+                <Like post={media} shadowText={true} />
             </View>
             <View style={styles.itemWrap}>
                 <TouchableOpacity
