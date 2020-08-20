@@ -28,9 +28,7 @@ export default observer((props: any) => {
     });
     const userData = Helper.syncGetter('user', result) || {};
 
-    // 记住用户的广告时间间隔
-    let dongdezhuanUser = Helper.syncGetter('dongdezhuanUser', userData) || {};
-    let { ad_duration = 900000 } = dongdezhuanUser;
+    let ad_duration = 900000;
     console.log('用户广告时间' + ad_duration);
 
     adStore.setAdInterval(ad_duration);

@@ -14,8 +14,6 @@ export default () => {
     let stateObj = {
         is_bind_wechat: Helper.syncGetter('wallet.bind_platforms.wechat', user) || false,
         is_bind_alipay: Helper.syncGetter('wallet.platforms.alipay', user) || false,
-        is_bind_dongdezhuan: Helper.syncGetter('is_bind_dongdezhuan', user) || false,
-        dongdezhuanUser: Helper.syncGetter('dongdezhuanUser', user) || false,
         me: user,
     };
 
@@ -86,17 +84,7 @@ export default () => {
         });
     };
 
-    const handlerBindDongdezhuan = () => {
-        if (state.is_bind_dongdezhuan) {
-            Toast.show({
-                content: '已绑定懂得赚',
-            });
-        } else {
-            navigation.navigate('BindDongdezhuan');
-        }
-    };
-
-    const { is_bind_wechat, is_bind_alipay, is_bind_dongdezhuan, dongdezhuanUser } = state;
+    const { is_bind_wechat, is_bind_alipay } = state;
 
     return (
         <PageContainer title="账号安全" white loading={!user}>
@@ -183,21 +171,7 @@ export default () => {
                                 </View>
                             }
                         />
-                    )}
-
-                    <ListItem
-                        onPress={handlerBindDongdezhuan}
-                        style={styles.listItem}
-                        leftComponent={<Text style={styles.itemText}>懂得赚账号</Text>}
-                        rightComponent={
-                            <View style={styles.rightWrap}>
-                                <Text style={is_bind_dongdezhuan ? styles.rightText : styles.linkText}>
-                                    {is_bind_dongdezhuan ? `已绑定(${dongdezhuanUser.name})` : '去绑定'}
-                                </Text>
-                                <Iconfont name="right" size={pixel(14)} color={Theme.subTextColor} />
-                            </View>
-                        }
-                    /> */}
+                    )} */}
 
                 <ListItem
                     style={styles.listItem}

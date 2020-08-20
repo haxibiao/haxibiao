@@ -9,7 +9,7 @@ import { useNavigation } from '~/router';
 import { observer, adStore, userStore } from '~/store';
 import { GQL, useQuery } from '~/apollo';
 import { useDetainment, downloadApk } from '~/utils';
-import { AppUtil } from 'react-native-ad';
+import { AppUtil } from 'react-native-app-utils';
 import TaskItem from './components/TaskItem';
 
 const batTop = pixel(Theme.statusBarHeight);

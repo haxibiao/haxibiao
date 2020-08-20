@@ -8,17 +8,11 @@ query tasksQuery {
         name
         details
         type
-        submit_name
-        task_class
-        task_status
+        assignment_status
         progress_details
         reward_info {
             gold
             contribute
-        }
-        taskInfo {
-            method
-            router
         }
     }
 }
@@ -31,17 +25,11 @@ query userTasksQuery {
         name
         details
         type
-        submit_name
-        task_class
-        task_status
+        assignment_status
         progress_details
         reward_info {
             gold
             contribute
-        }
-        taskInfo {
-            method
-            router
         }
     }
 }
@@ -54,17 +42,11 @@ query dailyTasksQuery {
         name
         details
         type
-        submit_name
-        task_class
-        task_status
+        assignment_status
         progress_details
         reward_info {
             gold
             contribute
-        }
-        taskInfo {
-            method
-            router
         }
     }
 }
@@ -77,17 +59,11 @@ query customTasksQuery {
         name
         details
         type
-        submit_name
-        task_class
-        task_status
+        assignment_status
         progress_details
         reward_info {
             gold
             contribute
-        }
-        taskInfo {
-            method
-            router
         }
     }
 }

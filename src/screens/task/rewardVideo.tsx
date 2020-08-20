@@ -34,24 +34,37 @@ export default () => {
     // 看激励视频
     const MotivationalVideo = () => {
         // setModule({ message: '观看视频并点击！', gold: 666, contribute: 999 });
-        ad.RewardVideo.loadAd().then(() => {
-            ad.RewardVideo.startAd().then(
-                (result: any) => {
-                    let json = JSON.parse(result);
-                    if (json.ad_click) {
-                        // 点击了激励视频
-                        onClickRewardVideo();
-                    } else if (json.video_play) {
-                        // 广告播放完成
-                        onRewardVideo();
-                    } else {
-                        Toast.show({ content: '视频未看完，任务失败！', duration: 1500 });
-                    }
-                },
-                (error: any) => {
-                    ad.RewardVideo.checkResult(error);
-                },
-            );
+        let rs = ad.startRewardVideo({
+            codeid: adStore.codeid_reward_video,
+        });
+
+        rs.result.then(
+            (result: any) => {
+                let json = JSON.parse(result);
+                if (json.ad_click) {
+                    // 点击了激励视频
+                    onClickRewardVideo();
+                } else if (json.video_play) {
+                    // 广告播放完成
+                    onRewardVideo();
+                } else {
+                    Toast.show({ content: '视频未看完，任务失败！', duration: 1500 });
+                }
+            },
+            (error: any) => {
+                console.log('激励视频出错', error);
+                // ad.RewardVideo.checkResult(error);
+            },
+        );
+
+        rs.subscribe('onAdError', (event) => {
+            console.log('激励视频 onAdError', event);
+        });
+        rs.subscribe('onAdClick', (event) => {
+            console.log('激励视频 onAdClick', event);
+        });
+        rs.subscribe('onAdLoaded', (event) => {
+            console.log('激励视频 onAdLoaded', event);
         });
     };
 

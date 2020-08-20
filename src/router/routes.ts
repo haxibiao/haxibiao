@@ -62,7 +62,6 @@ import ModifyAliPay from '~/screens/settings/ModifyAliPay';
 import LogoutAccount from '~/screens/settings/LogoutAccount';
 import CancellationAgreement from '~/screens/settings/CancellationAgreement';
 import PhoneVerification from '~/screens/settings/PhoneVerification';
-import BindDongdezhuan from '~/screens/settings/BindDongdezhuan';
 
 // feedback
 import FeedbackScreen from '~/screens/Feedback';
@@ -126,9 +125,6 @@ export default {
     },
     BindAlipay: {
         component: BindAlipay,
-    },
-    BindDongdezhuan: {
-        component: BindDongdezhuan,
     },
     CommentNotification: {
         component: CommentsScreen,

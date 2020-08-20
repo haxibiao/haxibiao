@@ -86,11 +86,6 @@ const WithdrawalPlatforms = [
         name: '微信',
         icon: require('!/assets/images/wechat.png'),
     },
-    {
-        type: 'DONGDEZHUAN',
-        name: '懂得赚',
-        icon: require('!/assets/images/dongdezhuan.png'),
-    },
 ];
 
 const walletAdapterData = {
@@ -254,18 +249,6 @@ export default observer(() => {
                 </TouchableOpacity>
             );
         }
-        if (withdrawType === 'DONGDEZHUAN' && syncGetter('is_bind_dongdezhuan', user)) {
-            return (
-                <TouchableOpacity onPress={navigationAction}>
-                    <Text
-                        style={{
-                            color: '#363636',
-                            fontSize: font(14),
-                            textDecorationLine: 'underline',
-                        }}>{`已绑定`}</Text>
-                </TouchableOpacity>
-            );
-        }
 
         let platformName = '支付宝';
         let bindPlatform = () => {
@@ -292,12 +275,6 @@ export default observer(() => {
                     navigation.navigate('ModifyAliPay');
                 };
                 platformName = '支付宝';
-                break;
-            case 'DONGDEZHUAN':
-                platformName = '懂得赚';
-                bindPlatform = () => {
-                    navigation.navigate('BindDongdezhuan');
-                };
                 break;
             default:
                 break;

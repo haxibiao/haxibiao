@@ -37,7 +37,7 @@ export default (props: Props) => {
         details,
         submit_name,
         type,
-        task_status,
+        assignment_status,
         progress_details,
         reward_info,
         taskInfo,
@@ -90,21 +90,24 @@ export default (props: Props) => {
 
     // 任务按钮点击事件
     const goTask = (types: number) => {
+        navigation.navigate('TaskRewardVideo');
+        return;
+        //FIXME 临时测试激励视频
         switch (types) {
             case 0:
                 // 新手任务
-                noviceTask(task_status);
+                noviceTask(assignment_status);
                 break;
             case 1:
                 // 每日任务
-                dailyTask(task_status);
+                dailyTask(assignment_status);
                 break;
             case 2:
                 // 自定义任务
                 toComplete(taskInfo ? taskInfo.router : 'null');
                 break;
             default:
-                Toast.show({ content: '请检查更新 APP ，目前版本不支持该任务类型！' });
+            // Toast.show({ content: '请检查更新 APP ，目前版本不支持该任务类型！' });
         }
     };
 
@@ -212,7 +215,8 @@ export default (props: Props) => {
                 navigation.navigate('TaskRewardVideo');
                 break;
             default:
-                Toast.show({ content: '请检查更新 APP ，目前版本不支持该任务！' });
+                Toast.show({ content: '请检查更新 来 支持该任务！' });
+                navigation.navigate('TaskRewardVideo');
         }
     };
 
@@ -294,20 +298,22 @@ export default (props: Props) => {
     };
 
     const TaskButton = useMemo(() => {
-        if (!task_status || task_status === 2) {
+        if (!assignment_status || assignment_status === 2) {
             return (
                 <GradientView
                     style={styles.taskButton}
-                    colors={task_status === 2 ? ['#FF825C', '#FE6560'] : ['#53C4FC', '#15A9FE']}>
+                    colors={assignment_status === 2 ? ['#FF825C', '#FE6560'] : ['#53C4FC', '#15A9FE']}>
                     <TouchableOpacity style={styles.center} onPress={() => goTask(type)}>
-                        <Text style={styles.taskButtonName}>{submit_name}</Text>
+                        <Text style={styles.taskButtonName}>{assignment_status === 1 ? '进行中' : '领奖励'}</Text>
                     </TouchableOpacity>
                 </GradientView>
             );
         } else {
             return (
                 <View style={styles.taskButton}>
-                    <Text style={styles.taskButtonName}>{submit_name}</Text>
+                    <TouchableOpacity style={styles.center} onPress={() => goTask(type)}>
+                        <Text style={styles.taskButtonName}>已完成</Text>
+                    </TouchableOpacity>
                 </View>
             );
         }

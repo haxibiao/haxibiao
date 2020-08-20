@@ -1,86 +1,82 @@
 # 任务中心领取任务接口
 mutation receiveTaskMutation($id: ID!) {
-  receiveTask(id:$id){
-    id
-    name
-    details
-    type
-    task_status
-    submit_name
-    task_class
-    status
-    taskInfo{
-      method
-      router
+    receiveTask(id: $id) {
+        id
+        name
+        details
+        type
+        assignment_status
+        status
+        taskInfo {
+            method
+            router
+        }
     }
-  }
 }
 
 # 任务中心领取奖励接口
 mutation rewardTaskMutation($id: ID!) {
-  rewardTask(id: $id) {
-    id
-    task_status
-    task_class
-    submit_name
-    progress_details
-    task_progress
-    reward_info {
-      gold
-      contribute
+    rewardTask(id: $id) {
+        id
+        assignment_status
+        progress_details
+        task_progress
+        reward_info {
+            gold
+            contribute
+        }
     }
-  }
 }
 
 # 喝水任务上报打卡接口
 mutation drinkWaterMutation($id: Int!) {
-  DrinkWater(task_id: $id){
-    id
-    task_status
-    start_time
-    task_progress
-  }
+    DrinkWater(task_id: $id) {
+        id
+        assignment_status
+        start_time
+        task_progress
+    }
 }
 
 # 喝水打卡任务获取奖励接口
 mutation drinkWaterRewardMutation {
-  DrinkWaterReward{
-    id
-  	content
-    task {
-      reward_info {
-        gold
-        contribute
-      }
+    DrinkWaterReward {
+        id
+        content
+        task {
+            reward_info {
+                gold
+                contribute
+            }
+        }
+        status
     }
-    status
-  }
 }
 
 # 睡觉打卡奖励接口
 mutation sleepRewardMutation($id: Int!) {
-  SleepReward(task_id: $id) {
-    id
-    content
-    task {
-      reward_info {
-        gold
-        contribute
-      }
+    SleepReward(task_id: $id) {
+        id
+        content
+        task {
+            reward_info {
+                gold
+                contribute
+            }
+        }
     }
-  }
 }
 
 # 看激励视频上报接口
-mutation ADRewardVideoMutation($is_click:Boolean!){
-  playADVideo(is_click: $is_click) {
-    message
-    gold
-    contribute
-  }
+mutation ADRewardVideoMutation($is_click: Boolean!) {
+    playADVideo(is_click: $is_click) {
+        message
+        gold
+        contribute
+    }
 }
 
 # 应用商店好评任务接口
-mutation highPraiseTaskMutation($id: ID,$content: String){
-  highPraiseTask(id: $id, content: $content) 
+mutation highPraiseTaskMutation($id: ID, $content: String) {
+    highPraiseTask(id: $id, content: $content)
 }

@@ -84,6 +84,7 @@
         "react-native-webview": "^10.4.0",
         "react-native-wechat-lib": "^1.1.21",
         "react-native-widgets": "git+http://code.haxibiao.cn/packages/react-native-widgets",
+        "react-native-app-utils": "git+http://code.haxibiao.cn/packages/react-native-app-utils",
         "rn-fetch-blob": "^0.12.0",
         "socket.io-client": "^2.3.0",
         "teaset": "^0.7.4"
