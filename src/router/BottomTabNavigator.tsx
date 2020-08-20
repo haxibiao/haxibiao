@@ -1,16 +1,22 @@
 import * as React from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import BottomTabBar from './BottomTabBar';
 import bottomTabScreens from '!/theme/bottomTabScreens';
+import { adStore } from '../store';
 
 const Tab = createBottomTabNavigator();
 export default function MainTabNavigator() {
     return (
         <Tab.Navigator initialRouteName="HomeScreen" tabBar={(props: any) => <BottomTabBar {...props} />}>
             {bottomTabScreens.map((tab: { name: any; screen: any; tabBarLabel: any; trackName: any }, index: any) => {
+                //通知任务根据网赚钱包开关二选一
+                if (tab.name === 'Notification' && adStore.enableWallet) {
+                    return null;
+                }
+                if (tab.name === 'Task' && !adStore.enableWallet) {
+                    return null;
+                }
                 return (
                     <Tab.Screen
                         key={index}
@@ -19,14 +25,12 @@ export default function MainTabNavigator() {
                         options={{
                             tabBarLabel: tab.tabBarLabel,
                         }}
-                        initialParams={{ trackName: tab.trackName }}
+                        initialParams={{
+                            trackName: tab.trackName,
+                        }}
                     />
                 );
             })}
         </Tab.Navigator>
     );
 }
-
-const styles = StyleSheet.create({
-    tabBarIcon: { width: 22, height: 22 },
-});

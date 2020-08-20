@@ -86,7 +86,7 @@ export default observer(() => {
 
     useEffect(() => {
         AppState.addEventListener('change', stateChangeHandle);
-        const navWillFocusListener = navigation.addListener('willFocus', () => {
+        const navWillFocusListener = navigation.addListener('focus', () => {
             refetchUserProfile();
             refetchUserTask();
             refetchDailyTask();
@@ -94,7 +94,7 @@ export default observer(() => {
         });
         return () => {
             AppState.removeEventListener('change', stateChangeHandle);
-            navWillFocusListener.remove();
+            navWillFocusListener();
         };
     }, [stateChangeHandle]);
 

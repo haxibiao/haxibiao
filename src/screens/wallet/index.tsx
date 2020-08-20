@@ -6,7 +6,7 @@
 import React, { useCallback, useState, useMemo, useEffect, Fragment } from 'react';
 import { StyleSheet, Platform, View, Text, ScrollView, TouchableOpacity, ImageBackground, Image } from 'react-native';
 import { PageContainer, Iconfont, Row, HxfButton, PopOverlay, TouchFeedback } from '~/components';
-import { observer } from '~/store';
+import { observer, userStore } from '~/store';
 import { useNavigation } from '~/router';
 import { GQL, useMutation, useQuery } from '~/apollo';
 import { bindWechat, syncGetter } from '~/utils';

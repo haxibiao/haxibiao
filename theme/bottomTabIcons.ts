@@ -8,8 +8,12 @@ export default {
         inactive: require('!/assets/images/init_discover.png'),
     },
     Notification: {
-        active: require('!/assets/images/init-notification-focus.png'),
-        inactive: require('!/assets/images/init-notification.png'),
+        active: require('!/assets/images/init_notification_focus.png'),
+        inactive: require('!/assets/images/init_notification.png'),
+    },
+    Task: {
+        active: require('!/assets/images/init_task_focus.png'),
+        inactive: require('!/assets/images/init_task.png'),
     },
     My: {
         active: require('!/assets/images/init_personal_focus.png'),

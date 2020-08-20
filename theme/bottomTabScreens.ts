@@ -2,7 +2,8 @@ import HomeScreen from '~/screens/home';
 import FindScreen from '~/screens/find';
 import NotificationScreen from '~/screens/notification';
 import MyHomeScreen from '~/screens/my';
-import LiveIndexScreen from '~/screens/live';
+import TaskScreen from '~/screens/task';
+import AskQuestion from '~/screens/creation/AskQuestionScreen';
 
 //5个主tab的配置
 export default [
@@ -19,16 +20,22 @@ export default [
         trackName: '发现',
     },
     {
-        name: 'Live',
-        screen: LiveIndexScreen, //tab icon 可以被自定义渲染替换
-        tabBarLabel: '直播',
-        trackName: '直播',
+        name: 'Publish',
+        screen: AskQuestion, //tab icon 可以被自定义渲染替换
+        tabBarLabel: '发布',
+        trackName: '发布',
     },
     {
         name: 'Notification',
-        screen: NotificationScreen,
+        screen: NotificationScreen, //通知任务根据网赚钱包开关二选一
         tabBarLabel: '通知',
         trackName: '通知',
+    },
+    {
+        name: 'Task',
+        screen: TaskScreen,
+        tabBarLabel: '任务',
+        trackName: '任务',
     },
     {
         name: 'My',
