@@ -36,8 +36,7 @@ export default observer((props: any) => {
         }
     }, []);
 
-    // if (media.isAdPosition && adShow && adStore.enableAd)
-    if (true) {
+    if (media.isAdPosition && adShow && adStore.enableAd) {
         if (index !== DrawVideoStore.viewableItemIndex) {
             return (
                 <View style={{ height: appStore.viewportHeight }}>

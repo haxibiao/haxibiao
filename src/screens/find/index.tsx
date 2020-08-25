@@ -112,7 +112,7 @@ export default observer(() => {
                                                     visible={adVisible}
                                                     visibleHandler={setAdVisible}
                                                     useCache={false}
-                                                    adWidth={Device.WIDTH}
+                                                    adWidth={360}
                                                     onAdLayout={(data) => {
                                                         console.log('Feed 广告加载成功！', data);
                                                     }}
